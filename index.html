@@ -8,7 +8,12 @@
     body { font-family: sans-serif; padding: 20px; }
     nav { position: fixed; top: 0; left: 0; background: #f4f4f4; padding: 10px; width: 100%; }
     nav button { margin: 5px; }
-    section { margin-top: 80px; padding: 40px 0; border-bottom: 1px solid #ccc; }
+  section {
+    margin-top: 80px;
+    padding: 60px 0;
+    border-bottom: 1px solid #ccc;
+    scroll-margin-top: 120px; /* key fix! */
+  }
   </style>
 </head>
 <body>
@@ -36,7 +41,7 @@
 
   <!-- 10 Sections -->
   <main>
-    <section id="section1" style="scroll-margin-top: 120px;"><h2>What fix?</h2></section>
+    <section id="section1"><h2>What fix?</h2></section>
     <section id="section2"><h2>Section 2</h2></section>
     <section id="section3"><h2>Section 3</h2></section>
     <section id="section4"><h2>Section 4</h2></section>
