@@ -55,8 +55,12 @@
 
   <script>
     function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  const element = document.getElementById(id);
+  const offset = 160; // adjust this number to match your nav + title height
+  const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
     }
+    
   </script>
 
 </body>
