@@ -139,6 +139,25 @@
   color: #333;
   border-bottom: 1px solid #ccc;
 }
+
+#news-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#news-container li {
+  margin-bottom: 0.5em;
+}
+
+.more-news {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.ellipsis {
+  text-decoration: none;
+  color: #000;
+}
     
   </style>
 </head>
@@ -166,8 +185,27 @@
 
   <main>
    
-    <!-- Instead of a static <section id="news"> block -->
-<div id="news-container"></div>
+  <div id="news-container"></div>
+
+<script>
+  fetch('news.html')
+    .then(res => res.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const newsItems = doc.querySelectorAll('.all-news ul li');
+      const previewList = document.createElement('ul');
+
+      newsItems.forEach((item, index) => {
+        if (index < 3) previewList.appendChild(item.cloneNode(true));
+      });
+
+      const container = document.getElementById('news-container');
+      container.innerHTML = '<h2>Latest News</h2>';
+      container.appendChild(previewList);
+      container.innerHTML += '<div class="more-news"><a href="news.html" class="ellipsis">...</a></div>';
+    });
+</script>
 
     <section id="section2">
       <h2>A Fix or a Cure?</h2>
