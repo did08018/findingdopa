@@ -5,90 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finding Dopa</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
 
     body {
-      background: #f9f9f9;
-      color: #111;
-      padding: 20px;
+      background: #111;
+      color: #eee;
+      padding: 0;
     }
 
     header {
-      text-align: center;
-      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .small-title {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 10px;
-    }
-
-    .main-title {
-      font-size: 48px;
+    .site-title {
+      font-size: 18px;
       font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
     }
 
     nav {
-      margin: 40px 0 20px;
-      text-align: center;
+      display: none;
+      flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     nav button {
-      margin: 5px;
-      padding: 10px 16px;
+      padding: 12px 20px;
       font-size: 14px;
       border: none;
-      background: #111;
-      color: white;
-      border-radius: 4px;
+      background: none;
+      text-align: left;
+      color: #eee;
       cursor: pointer;
     }
 
+    nav button:hover {
+      background: #333;
+    }
+
     section {
-      margin: 80px 0;
+      margin: 60px auto;
       padding: 40px 16px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      background: #1a1a1a;
+      border-radius: 8px;
+      border: 1px solid #333;
     }
 
     h2 {
       font-size: 24px;
       margin-bottom: 16px;
       text-align: center;
+      color: #fff;
     }
 
-    /* Optional: Smooth scroll for in-page nav */
+    p {
+      color: #ccc;
+      line-height: 1.6;
+    }
+
     html {
       scroll-behavior: smooth;
     }
+
+    @media (min-width: 600px) {
+      nav {
+        right: 40px;
+      }
+    }
+    .logo-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  height: 36px;
+  width: auto;
+}
   </style>
 </head>
 <body>
 
   <header>
-    <div class="small-title">A fix for Parkinson's Disease is on the way</div>
-    <div class="main-title">Finding Dopa</div>
-  </header>
 
-  <nav>
-    <button onclick="scrollToSection('news')">News</button>
-    <button onclick="scrollToSection('section2')">Section 2</button>
-    <button onclick="scrollToSection('section3')">Section 3</button>
-    <button onclick="scrollToSection('section4')">Section 4</button>
-    <button onclick="scrollToSection('section5')">Section 5</button>
-  </nav>
+<div class="Finding Dopa">
+  <img src="https://did08018.github.io/findingdopa/Finding-Dopa-Logo.png" alt="Logo" class="logo" />
+  <span class="site-title">Finding Dopa</span>
+</div>
+    
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav id="menu">
+      <button onclick="scrollToSection('news')">News</button>
+      <button onclick="scrollToSection('section2')">Section 2</button>
+      <button onclick="scrollToSection('section3')">Section 3</button>
+      <button onclick="scrollToSection('section4')">Section 4</button>
+      <button onclick="scrollToSection('section5')">Section 5</button>
+    </nav>
+  </header>
 
   <main>
     <section id="news">
       <h2>Latest News</h2>
-      <p>[Your first news item goes here]</p>
+      <p>[Your first news post goes here]</p>
     </section>
 
     <section id="section2">
@@ -113,9 +160,16 @@
   </main>
 
   <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
     function scrollToSection(id) {
+      const menu = document.getElementById('menu');
+      menu.style.display = 'none'; // close menu on click
       const element = document.getElementById(id);
-      const offset = 100;
+      const offset = 80;
       const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
