@@ -165,10 +165,13 @@
   </header>
 
   <main>
-    <section id="news">
+    /*<section id="news">
       <h2>Latest News</h2>
       <p>News Coming Soon!</p>
-    </section>
+    </section>*/
+
+    <!-- Instead of a static <section id="news"> block -->
+<div id="news-container"></div>
 
     <section id="section2">
       <h2>A Fix or a Cure?</h2>
@@ -207,5 +210,13 @@
     }
   </script>
 
+<script>
+  fetch('news.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('news-container').innerHTML = data;
+    });
+</script>
+  
 </body>
 </html>
