@@ -6,6 +6,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <style>
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #1a1a1a; /* Dark background */
+  padding: 15px 30px;
+  color: white;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-family: 'Londrina Outline', sans-serif;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.brand img {
+  height: 1.8rem; /* Same as text height */
+  margin-right: 10px;
+}
+    
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -155,6 +178,13 @@
   <header>
     <div class="logo">Finding Dopa</div>
 
+<div class="top-bar">
+  <div class="brand">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Logo">
+    <span>MyBrand</span>
+  </div>
+</div>
+    
     <!-- Manual drag slider -->
     <div class="slider-container">
       <div class="slide">Welcome</div>
