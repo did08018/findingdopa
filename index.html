@@ -74,7 +74,17 @@
       font-size: 0.95rem;
       user-select: none;
       font-family: 'PT Serif', serif;
-    }
+      text-decoration: none; /* <-- key line */
+      display: inline-block;
+}
+
+.slide:link,
+.slide:visited,
+.slide:hover,
+.slide:active {
+  text-decoration: none;
+  color: #ccc;
+}
 
     .hero {
   height: 80vh;
