@@ -149,8 +149,13 @@
     }
 
 .glow-blue {
-  color: #00bfff; /* Deep sky blue */
-  text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
+  color: #00bfff; /* Blue */
+  text-shadow:
+    -1px -1px 0 #000,  /* top-left black outline */
+     1px -1px 0 #000,  /* top-right */
+    -1px  1px 0 #000,  /* bottom-left */
+     1px  1px 0 #000,  /* bottom-right */
+     0 0 8px #00bfff;  /* blue glow */
   font-weight: bold;
 }
     
