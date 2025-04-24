@@ -9,72 +9,63 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #f9f9f9;
-      color: #eee;
+      color: #222;
     }
 
     header {
-      background-color: #121212;
+      background-color: #fff;
       padding: 20px 40px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       position: relative;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .logo {
       font-weight: bold;
-      font-size: 1.7rem;
-      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #ff6600;
     }
 
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      position: absolute;
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
     }
 
     .hamburger span {
       width: 25px;
       height: 3px;
-      background: #fff;
+      background: #333;
       margin: 4px 0;
       transition: 0.3s;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-      position: absolute;
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #ccc;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #8ab4f8;
     }
 
     @media (max-width: 768px) {
       nav {
         display: none;
         flex-direction: column;
-        background: #1f1f2e;
         position: absolute;
         top: 70px;
-        right: 20px;
+        right: 40px;
+        background: white;
         padding: 20px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
         z-index: 1000;
       }
 
@@ -93,7 +84,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(135deg, #1f1f2e, #2e2a89, #541a7b);
+      background: linear-gradient(to right, #ff6600, #ff9900);
       color: white;
       padding: 40px;
     }
@@ -111,7 +102,7 @@
 
     .cta-button {
       background: #fff;
-      color: #2e2a89;
+      color: #ff6600;
       padding: 0.75rem 1.5rem;
       text-decoration: none;
       border-radius: 5px;
@@ -127,7 +118,6 @@
       padding: 60px 20px;
       max-width: 900px;
       margin: auto;
-      color: #222;
     }
 
     .section h2 {
@@ -156,13 +146,13 @@
     }
 
     .ellipsis:hover {
-      color: #2e2a89;
+      color: #ff6600;
     }
 
     footer {
       text-align: center;
       padding: 40px 20px;
-      background: #1a1a1a;
+      background: #222;
       color: white;
       margin-top: 60px;
     }
@@ -194,7 +184,7 @@
   <section class="hero">
     <div>
       <h1>Welcome to Our Website</h1>
-      <p>Discover what’s new, learn about our work, and connect with us.</p>
+      <p>Stay updated with the latest developments, announcements, and more.</p>
       <a href="#news" class="cta-button">Explore News</a>
     </div>
   </section>
