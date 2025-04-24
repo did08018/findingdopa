@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #eee;
+    }
+    
+    header {
+  background-color: #121212;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-link {
+  color: #007acc; /* Matches your glowing blue */
+  margin-right: 12px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.home-link i {
+  margin-right: 8px; /* or 10px for a little more space */
+}
+.home-link:hover {
+  color: #00bfff; /* Brighter blue on hover */
+}
+    
+    .logo {
+      font-weight: bold;
+      font-size: 1.7rem;
+      color: #fff;
+    }
+
+    .slider-container {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+     .slider-container {
+  margin-top: 8px;
+}
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: #ccc;
+      padding: 10px 20px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      user-select: none;
+      font-family: 'PT Serif', serif;
+    }
+
+    .hero {
+  height: 80vh;
+  display: flex;
+  align-items: flex-start; /* move content toward the top */
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #b2fab4, #81d4fa);
+  color: #004d40;
+  padding-top: 20px; /* Reduce this to move it up */
+  padding-bottom: 60px;
+}
+
+    .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+    .hero img {
+      max-width: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: block;
+      border: 2px solid white;
+      transform: scale(1.0); /* Zoom in by 10% */
+      transition: transform 0.3s ease; /* Smooth transition when the image zooms in/out */
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-button {
+  background: #fdfdfd;
+  color: #2e2a89;
+  padding: 0.5rem 1rem; /* Less padding */
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem; /* Slightly smaller */
+  transition: background 0.3s ease;
+}
+
+    .cta-button:hover {
+      background: #f0f0f0;
+    }
+
+    .section {
+  padding: 60px 20px 20px; /* was 60px on bottom */
+  max-width: 900px;
+  margin: auto;
+  color: #222;
+}
+
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    #news-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #news-container li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .ellipsis {
+      display: block;
+      text-align: center;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    .ellipsis:hover {
+      color: #2e2a89;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1a1a1a;
+      color: white;
+    }
+
+.glow-icon {
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px #007acc;
+}
+    
+.glow-blue {
+  color: #007acc; /* Darker blue */
+  text-shadow:
+    -1px -1px 0 #000,  /* black outline */
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px #007acc;  /* darker blue glow */
+  font-weight: bold;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  background: #1a1a1a;
+}
+
+.logo-text {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  color: white;
+  font-size: 1.4rem;
+}
+    
+      .brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand img {
+  height: 1.8rem;
+  margin: 0 10px;
+}
+
+.home-link {
+  color: #007acc;
+  margin-right: 10px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+    
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+<div class="top-bar">
+  <div class="brand">
+    <a href="index.html" class="home-link" aria-label="Home">
+      <i class="fas fa-brain"></i>
+      <span class="logo-text">Finding Dopa</span>
+    </a>
+  </div>
+</div>
+    
+    <!-- Manual drag slider -->
+    <div class="slider-container">
+      <div class="slide">Welcome</div>
+      <div class="slide">Fix or Cure?</div>
+      <div class="slide">Highlights</div>
+      <div class="slide">Lowlights</div>
+      <div class="slide">Clinical Trials</div>
+      <div class="slide">Latest News</div>
+      <div class="slide">About</div>
+      <div class="slide">Disclaimer</div>
+    </div>
+  
+    
+  </header>
+
+  
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    // Load first 3 news items from news.html
+    fetch('news.html')
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newsItems = doc.querySelectorAll('.all-news ul li');
+        const previewList = document.createElement('ul');
+
+        newsItems.forEach((item, index) => {
+          if (index < 3) previewList.appendChild(item.cloneNode(true));
+        });
+
+        const container = document.getElementById('news-container');
+        container.appendChild(previewList);
+        container.innerHTML += '<a href="news.html" class="ellipsis">...</a>';
+      });
+  </script>
+</body>
+</html>
