@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
 
     
@@ -23,6 +24,18 @@
   align-items: flex-start;
 }
 
+.home-link {
+  color: #007acc; /* Matches your glowing blue */
+  margin-right: 12px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #00bfff; /* Brighter blue on hover */
+}
+    
     .logo {
       font-weight: bold;
       font-size: 1.7rem;
@@ -166,6 +179,15 @@
 <body>
 
   <header>
+
+<div class="brand">
+  <a href="index.html" class="home-link">
+    <i class="fas fa-house-chimney"></i>
+  </a>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Logo">
+  <span>MyBrand</span>
+</div>
+    
     <div class="logo">Finding Dopa</div>
     
     <!-- Manual drag slider -->
