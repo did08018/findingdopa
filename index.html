@@ -2,217 +2,284 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dopa Mine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
 
-.logo-title {
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #eee;
+    }
+    
+    header {
+  background-color: #121212;
+  padding: 20px 20px;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.logo {
-  height: 36px;  /* adjust this number as needed */
-  width: auto;
+.home-link {
+  color: #007acc; /* Matches your glowing blue */
+  margin-right: 12px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.site-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;  /* or any color that fits your design */
+.home-link:hover {
+  color: #00bfff; /* Brighter blue on hover */
 }
     
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-    }
-
-    body {
-      background: #111;
-      color: #eee;
-      padding: 0;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 20px;
-      background: #1a1a1a;
-      border-bottom: 1px solid #333;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .site-title {
-      font-size: 18px;
+    .logo {
       font-weight: bold;
-      letter-spacing: 1px;
+      font-size: 1.7rem;
       color: #fff;
     }
 
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #fff;
+    .slider-container {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding-bottom: 10px;
+      scrollbar-width: none;
     }
 
-    nav {
+    .slider-container::-webkit-scrollbar {
       display: none;
-      flex-direction: column;
-      background: #222;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      border: 1px solid #444;
-      border-radius: 6px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    nav button {
-      padding: 12px 20px;
-      font-size: 14px;
-      border: none;
-      background: none;
-      text-align: left;
-      color: #eee;
-      cursor: pointer;
-    }
+     .slider-container {
+  margin-top: 8px;
+}
 
-    nav button:hover {
-      background: #333;
-    }
-
-    section {
-      margin: 60px auto;
-      padding: 40px 16px;
-      max-width: 800px;
-      background: #1a1a1a;
-      border-radius: 8px;
-      border: 1px solid #333;
-    }
-
-    h2 {
-      font-size: 24px;
-      margin-bottom: 16px;
-      text-align: center;
-      color: #fff;
-    }
-
-    p {
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
       color: #ccc;
-      line-height: 1.6;
+      padding: 10px 20px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      user-select: none;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .hero {
+  height: 80vh;
+  display: flex;
+  align-items: flex-start; /* move content toward the top */
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #b2fab4, #81d4fa);
+  color: #004d40;
+  padding-top: 20px; /* Reduce this to move it up */
+  padding-bottom: 60px;
+}
+
+    .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+    .hero img {
+      max-width: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: block;
+      border: 2px solid white;
+      transform: scale(1.0); /* Zoom in by 10% */
+      transition: transform 0.3s ease; /* Smooth transition when the image zooms in/out */
     }
 
-    @media (min-width: 600px) {
-      nav {
-        right: 40px;
-      }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
     }
-    .logo-title {
+
+    .cta-button {
+  background: #fdfdfd;
+  color: #2e2a89;
+  padding: 0.5rem 1rem; /* Less padding */
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem; /* Slightly smaller */
+  transition: background 0.3s ease;
+}
+
+    .cta-button:hover {
+      background: #f0f0f0;
+    }
+
+    .section {
+  padding: 60px 20px 20px; /* was 60px on bottom */
+  max-width: 900px;
+  margin: auto;
+  color: #222;
+}
+
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    #news-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #news-container li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .ellipsis {
+      display: block;
+      text-align: center;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    .ellipsis:hover {
+      color: #2e2a89;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1a1a1a;
+      color: white;
+    }
+
+.glow-icon {
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px #007acc;
+}
+    
+.glow-blue {
+  color: #007acc; /* Darker blue */
+  text-shadow:
+    -1px -1px 0 #000,  /* black outline */
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px #007acc;  /* darker blue glow */
+  font-weight: bold;
+}
+
+.top-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  padding: 15px 30px;
+  background: #1a1a1a;
 }
 
-.logo {
-  height: 36px;
-  width: auto;
+.logo-text {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  color: white;
+  font-size: 1.8rem;
+}
+    
+      .brand {
+  display: flex;
+  align-items: center;
 }
 
-.top-banner {
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #f1f1f1;
-  color: #333;
-  border-bottom: 1px solid #ccc;
+.brand img {
+  height: 1.8rem;
+  margin: 0 10px;
+}
+
+.home-link {
+  color: #007acc;
+  margin-right: 10px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
     
   </style>
 </head>
+
 <body>
-  
-<div class="top-banner">
-  The fix for Parkinson's Disease is on the way.
-</div>
+
   <header>
 
-    <div class="logo-title">
-  <img src="https://did08018.github.io/findingdopa/Dopamine-Logo3.PNG" alt="Dopa Logo" class="logo" />
-  <span class="site-title">Dopa Mine</span>
+<div class="top-bar">
+  <div class="brand">
+    <a href="index.html" class="home-link" aria-label="Home">
+      <i class="fas fa-brain"></i>
+    </a>
+    <span class="logo-text">Finding Dopa</span>
+  </div>
 </div>
     
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav id="menu">
-      <button onclick="scrollToSection('news')">Latest News</button>
-      <button onclick="scrollToSection('section2')">A Fix or a Cure?</button>
-      <button onclick="scrollToSection('section3')">Clinical Trials</button>
-      <button onclick="scrollToSection('section4')">The Details</button>
-      <button onclick="scrollToSection('section5')">Blog</button>
-    </nav>
+    <!-- Manual drag slider -->
+    <div class="slider-container">
+      <div class="slide">Welcome</div>
+      <div class="slide">Fix or Cure?</div>
+      <div class="slide">Highlights</div>
+      <div class="slide">Lowlights</div>
+      <div class="slide">Clinical Trials</div>
+      <div class="slide">Latest News</div>
+      <div class="slide">About</div>
+      <div class="slide">Disclaimer</div>
+    </div>
+  
+    
   </header>
 
-  <main>
-   
-    <!-- Instead of a static <section id="news"> block -->
-<div id="news-container"></div>
+  <section class="hero">
+    <div>
+      <h1>Welcome to <span class="glow-blue">F</span>inding <span class="glow-blue">D</span>opa</h1>
+      <img 
+        src="https://did08018.github.io/findingdopa/Finding-Dopa-Logo-03.jpg" 
+        alt="Brand Logo"
+      >
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <a href="#news" class="cta-button">Latest News</a>
+    </div>
+  </section>
 
-    <section id="section2">
-      <h2>A Fix or a Cure?</h2>
-      <p>Content for section 2...</p>
-    </section>
-
-    <section id="section3">
-      <h2>Clinical Trials</h2>
-      <p>Content for section 3...</p>
-    </section>
-
-    <section id="section4">
-      <h2>The Details</h2>
-      <p>Content for section 4...</p>
-    </section>
-
-    <section id="section5">
-      <h2>Blog</h2>
-      <p>Content for section 5...</p>
-    </section>
-  </main>
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
+    // Load first 3 news items from news.html
+    fetch('news.html')
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newsItems = doc.querySelectorAll('.all-news ul li');
+        const previewList = document.createElement('ul');
 
-    function scrollToSection(id) {
-      const menu = document.getElementById('menu');
-      menu.style.display = 'none'; // close menu on click
-      const element = document.getElementById(id);
-      const offset = 80;
-      const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+        newsItems.forEach((item, index) => {
+          if (index < 3) previewList.appendChild(item.cloneNode(true));
+        });
+
+        const container = document.getElementById('news-container');
+        container.appendChild(previewList);
+        container.innerHTML += '<a href="news.html" class="ellipsis">...</a>';
+      });
   </script>
-
-<script>
-  fetch('news.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('news-container').innerHTML = data;
-    });
-</script>
-  
 </body>
 </html>
