@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finding Dopa</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 0.5rem 1rem;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      height: 48px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #007acc;
+      text-decoration: none;
+      padding-left: 10px;
+      font-size: 1.3rem;
+    }
+
+    .home-brand i {
+      font-size: 1.5rem;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      color: white;
+    }
+
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px;
+      background: #121212;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'PT Serif', serif;
+      font-size: 0.95rem;
+      border: 1px solid #333;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #b2fab4, #81d4fa);
+      color: #004d40;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content img {
+      max-width: 300px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      background: #fdfdfd;
+      color: #2e2a89;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #f0f0f0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+
+    <div class="slider-container">
+      <div class="slide">Welcome</div>
+      <div class="slide">Fix or Cure?</div>
+      <div class="slide">The Science</div>
+      <div class="slide">The Actors</div>
+      <div class="slide">Latest News</div>
+      <div class="slide">Clinical Trials</div>
+      <div class="slide">Resources</div>
+      <div class="slide">About</div>
+      <div class="slide">Disclaimer</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <img 
+        src="https://did08018.github.io/findingdopa/Welcome-to-Finding-Dopa.JPG" 
+        alt="Brand Logo"
+      >
+      <a href="#news" class="cta-button">Latest News</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+</body>
+</html>
