@@ -193,37 +193,39 @@ footer {
   font-weight: bold;
 }
 
-.top-bar {
+.home-brand {
   display: flex;
   align-items: center;
-  padding: 15px 30px;
-  background: #1a1a1a;
-}
-
-    .home-brand {
-  display: flex;
-  align-items: center;
+  gap: 6px; /* Space between brain and text */
+  padding: 2px 8px;
+  margin-left: 8px;
   text-decoration: none;
   color: #007acc;
-  font-size: 1.2rem; /* smaller overall size */
-  margin-left: 1px; /* move closer to the left edge */
-  gap: 10px; /* space between brain and text */
-  padding: 2px 0;
+  font-size: 1rem;
+  height: 32px; /* Prevents tall button */
+}
+
+.home-brand i {
+  font-size: 1rem;
 }
 
 .home-brand:hover {
   color: #00bfff;
 }
 
-.home-brand i {
-  font-size: 0.6rem; /* smaller brain icon */
-}
-
 .logo-text {
   font-family: 'PT Serif', serif;
   font-weight: 700;
-  font-size: 1.1rem; /* smaller text */
+  font-size: 1.05rem;
   color: white;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 4px 0 4px 0;
+  height: 40px;
 }
     
       .brand {
@@ -253,12 +255,10 @@ footer {
   <header>
 
 <div class="top-bar">
-  <div class="brand">
-    <a href="index.html" class="home-link" aria-label="Home">
-      <i class="fas fa-brain"></i>
+  <a href="index.html" class="home-brand" aria-label="Home">
+    <i class="fas fa-brain"></i>
     <span class="logo-text">Finding Dopa</span>
-    </a>
-  </div>
+  </a>
 </div>
     
     <!-- Manual drag slider -->
