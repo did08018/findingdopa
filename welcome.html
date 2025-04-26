@@ -108,11 +108,21 @@
     }
 
     .hero p {
-      font-size: 0.8rem;
-      max-width: 600px;
-      margin: 5px auto 1rem;
-      color: #2e2a89;
-    }
+  font-size: 0.8rem;
+  max-width: 600px;
+  margin: 5px auto 1rem;
+  color: #2e2a89;
+  position: relative;
+}
+
+.hero p::after {
+  content: '';              /* Empty content for the pseudo-element */
+  position: absolute;
+  left: 10%;                /* Adds space on both sides of the line */
+  right: 10%;               /* Ensures the line is thinner than the text */
+  bottom: -5px;             /* Places the line just below the text */
+  border-bottom: 2px solid #2e2a89; /* Thin line, same color as the text */
+}
 
     .hero img {
       max-width: 300px;
