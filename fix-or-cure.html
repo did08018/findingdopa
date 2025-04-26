@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 2rem 0;
+      width: 100%;
+    }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -91,18 +99,31 @@
 
     .hero {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 5px 20px 20px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 10px;
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 5px auto 1rem;
+      margin: 4 0 10px;
+      padding: 0;
+      margin: 5;
       color: #2e2a89;
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -8px;
+      border-bottom: 1px solid #FFFFFF;
     }
 
     .hero img {
@@ -166,6 +187,24 @@
       font-size: 1.3rem;
       color: white;
     }
+
+    .body-text {
+      color: #222222;
+      font-size: 1rem;
+      text-align: left;
+      padding: 0 20px;
+      margin: 0 auto 1rem;
+      max-width: 800px;
+    }
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
   </style>
 </head>
 
@@ -178,23 +217,34 @@
       </a>
     </div>
 
-   <div class="slider-container">
-  <a href="welcome.html" class="slide">Welcome</a>
-  <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-  <a href="science.html" class="slide">The Science</a>
-  <a href="actors.html" class="slide">The Actors</a>
-  <a href="news.html" class="slide">Latest News</a>
-  <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-  <a href="resources.html" class="slide">Resources</a>
-  <a href="about.html" class="slide">About</a>
-  <a href="disclaimer.html" class="slide">Disclaimer</a>
-</div>
+    <div class="slider-container">
+      <a href="welcome.html" class="slide">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <div>
-        <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <h1 class="welcome-text">It's a Fix!</h1>
+    </section>
+
+    <section>
+      <div class="body-text">
+        <p>Stem cell therapy for Parkinson’s disease (PD) is an exciting and promising field that offers hope for improving the lives of patients. While it is not yet a cure, it represents a significant step forward in managing the disease and potentially slowing its progression. Current clinical trials are showing great potential, with many participants experiencing meaningful improvements in motor function, quality of life, and a reduction in symptoms.
+
+Stem cell therapy works by helping to repair or replace damaged dopamine-producing neurons in the brain, which are central to the symptoms of PD. While the therapy may not completely reverse the disease, it has the potential to “fix” the damage, providing much-needed relief for patients and enabling them to lead fuller, more functional lives.
+
+Numerous ongoing studies around the world are exploring different techniques and approaches, and early results are very promising. Researchers like Professor Roger Barker have highlighted cases where patients have experienced remarkable improvements, even achieving near-normal function, though these results are still exceptional.
+
+As research progresses, it’s clear that stem cell therapy holds great promise as a powerful tool for managing Parkinson’s disease, helping to improve symptoms and offering hope for a brighter future. While we’re not yet at the point of a definitive cure, the advancements we’re seeing today are a positive step forward and a source of optimism for patients and their families.</p>
       </div>
     </section>
   </main>
@@ -202,19 +252,20 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
+
   <script>
-  // Get the current file name from the URL
-  const currentPage = window.location.pathname.split("/").pop();
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
 
-  // Get all the slider links
-  const slides = document.querySelectorAll('.slider-container .slide');
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
 
-  slides.forEach(slide => {
-    // Check if the link href matches the current page
-    if (slide.getAttribute('href') === currentPage) {
-      slide.classList.add('active');
-    }
-  });
-</script>
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
