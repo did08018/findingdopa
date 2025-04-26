@@ -8,12 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-
     .section-divider {
       border: 0;
       height: 1px;
-      background: #ccc; /* Light grey */
-      margin: 2rem 0;    /* Top and bottom space */
+      background: #ccc;
+      margin: 2rem 0;
       width: 100%;
     }
 
@@ -100,30 +99,30 @@
 
     .hero {
       display: flex;
-      flex-direction: column;   /* Ensures vertical alignment */
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
-      padding: 5px 20px 20px;
+      padding: 0 20px;
+      margin-bottom: 10px;
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 5px auto 1rem;
+      margin: 5px auto 0.5rem;
       padding: 0;
       color: #2e2a89;
       position: relative;
     }
 
     .hero p::after {
-      content: '';              /* Empty content for the pseudo-element */
+      content: '';
       position: absolute;
-      left: 10%;                /* Adds space on both sides of the line */
-      right: 10%;               /* Ensures the line is thinner than the text */
-      bottom: -10px;             /* Places the line just below the text */
-      border-bottom: 1px solid #FFFFFF; /* Thin line, white color */
+      left: 10%;
+      right: 10%;
+      bottom: -10px;
+      border-bottom: 1px solid #FFFFFF;
     }
 
     .hero img {
@@ -189,20 +188,20 @@
     }
 
     .body-text {
-      color: #222222;                 /* Soft dark gray */
-      font-size: 1rem;                /* Normal readable size */
-      text-align: left;               /* Left-aligned */
-      padding: 0 20px;                /* Horizontal padding */
-      margin: 0 auto 1rem;              /* Top and bottom margin, center in large screens */
-      max-width: 800px;               /* Optional: limit width for better readability */
+      color: #222222;
+      font-size: 1rem;
+      text-align: left;
+      padding: 0 20px;
+      margin: 0 auto 1rem;
+      max-width: 800px;
     }
 
     .welcome-text {
-      font-family: 'PT Serif', serif;   /* Use PT Serif font */
-      font-size: 2rem;                  /* Set a large font size for "Welcome" */
-      color: #2e2a89;                   /* Set the color to match the theme */
-      text-align: center;               /* Center the text */
-      margin-bottom: 2px;              /* Add spacing below "Welcome" */
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      text-align: center;
+      margin-bottom: 5px;
     }
   </style>
 </head>
@@ -216,7 +215,7 @@
       </a>
     </div>
 
-   <div class="slider-container">
+    <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
       <a href="science.html" class="slide">The Science</a>
