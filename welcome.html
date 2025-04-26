@@ -176,6 +176,46 @@
       color: #00bfff; /* Optional: a tiny hover effect */
       text-decoration: none;
     }
+
+.slider-container {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Now the <a> is the slide */
+.slide {
+  flex: 0 0 auto;
+  background: #1f1f1f;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  user-select: none;
+  font-family: 'PT Serif', serif;
+  border: 1px solid #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for active link */
+.slide.active {
+  background: #fdfdfd; /* white background */
+  color: #2e2a89;      /* blue text */
+  border: 2px solid #2e2a89;
+}
+    
   </style>
 </head>
 
@@ -189,34 +229,16 @@
     </div>
 
     <div class="slider-container">
-      <div class="slide">
-        <a href="welcome.html" class="slide-link active">Welcome</a>
-      </div>
-      <div class="slide">
-        <a href="fix-or-cure.html" class="slide-link">Fix or Cure?</a>
-      </div>
-      <div class="slide">
-        <a href="science.html" class="slide-link">The Science</a>
-      </div>
-      <div class="slide">
-        <a href="actors.html" class="slide-link">The Actors</a>
-      </div>
-      <div class="slide">
-        <a href="news.html" class="slide-link">Latest News</a>
-      </div>
-      <div class="slide">
-        <a href="clinical-trials.html" class="slide-link">Clinical Trials</a>
-      </div>
-      <div class="slide">
-        <a href="resources.html" class="slide-link">Resources</a>
-      </div>
-      <div class="slide">
-        <a href="about.html" class="slide-link">About</a>
-      </div>
-      <div class="slide">
-        <a href="disclaimer.html" class="slide-link">Disclaimer</a>
-      </div>
-    </div>
+  <a href="index.html" class="slide">Welcome</a>
+  <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+  <a href="science.html" class="slide">The Science</a>
+  <a href="actors.html" class="slide slide-link">The Actors</a>
+  <a href="news.html" class="slide slide-link">Latest News</a>
+  <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+  <a href="resources.html" class="slide">Resources</a>
+  <a href="about.html" class="slide">About</a>
+  <a href="disclaimer.html" class="slide">Disclaimer</a>
+     </div>
   </header>
 
   <main>
