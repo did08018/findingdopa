@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     html, body {
       height: 100%;
@@ -41,6 +42,11 @@
       line-height: 1.2;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .slider-container {
       width: 100%;
       overflow-x: scroll;
@@ -66,6 +72,21 @@
       user-select: none;
       font-family: 'PT Serif', serif;
       border: 1px solid #333;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide:hover {
+      background: #333;
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
     }
 
     .hero {
@@ -80,7 +101,7 @@
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 5px auto 1.0rem;
+      margin: 5px auto 1rem;
       color: #2e2a89;
     }
 
@@ -95,26 +116,20 @@
     }
 
     .cta-button {
-       background: #2e2a89;  /* Blue background */
-       color: #fdfdfd;       /* White text */
-       padding: 0.5rem 1rem;
-       text-decoration: none;
-       border-radius: 4px;
-       font-weight: 500;
-       font-size: 0.95rem;
-       transition: background 0.3s ease, color 0.3s ease;
-       margin-bottom: 20px;
-     }
-
-     .cta-button:hover {
-       background: #fdfdfd;  /* White background */
-       color: #2e2a89;       /* Blue text */
-     }
-
-    .latest-news-link {
-      margin-top: 5px;
-      text-align: center;
+      background: #2e2a89;
+      color: #fdfdfd;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.3s ease, color 0.3s ease;
       margin-bottom: 20px;
+    }
+
+    .cta-button:hover {
+      background: #fdfdfd;
+      color: #2e2a89;
     }
 
     .top-bar {
@@ -151,71 +166,6 @@
       font-size: 1.3rem;
       color: white;
     }
-
-    a {
-       text-decoration: none; /* Remove underline */
-       color: inherit; /* Inherit color from parent, use white or set explicitly */
-    }
-    
-    /* Normal slider links */
-.slide-link {
-  color: white;
-  text-decoration: none;
-  display: block;
-  height: 100%;
-}
-
-/* Active slider link (current page) */
-.slide-link.active {
-  background: #fdfdfd; /* white background */
-  color: #2e2a89; /* blue text */
-  border-radius: 8px; /* same rounded corners */
-}
-
-    .slide-link:hover {
-      color: #00bfff; /* Optional: a tiny hover effect */
-      text-decoration: none;
-    }
-
-.slider-container {
-  width: 100%;
-  overflow-x: scroll;
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-  padding-bottom: 10px;
-  scrollbar-width: none;
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* Now the <a> is the slide */
-.slide {
-  flex: 0 0 auto;
-  background: #1f1f1f;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
-  white-space: nowrap;
-  font-size: 0.95rem;
-  user-select: none;
-  font-family: 'PT Serif', serif;
-  border: 1px solid #333;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Style for active link */
-.slide.active {
-  background: #fdfdfd; /* white background */
-  color: #2e2a89;      /* blue text */
-  border: 2px solid #2e2a89;
-}
-    
   </style>
 </head>
 
@@ -229,16 +179,16 @@
     </div>
 
     <div class="slider-container">
-  <a href="index.html" class="slide">Welcome</a>
-  <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-  <a href="science.html" class="slide">The Science</a>
-  <a href="actors.html" class="slide slide-link">The Actors</a>
-  <a href="news.html" class="slide slide-link">Latest News</a>
-  <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-  <a href="resources.html" class="slide">Resources</a>
-  <a href="about.html" class="slide">About</a>
-  <a href="disclaimer.html" class="slide">Disclaimer</a>
-     </div>
+      <a href="index.html" class="slide active">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
   </header>
 
   <main>
