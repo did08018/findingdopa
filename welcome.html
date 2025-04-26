@@ -9,14 +9,14 @@
 
   <style>
 
-.section-divider {
-  border: 0;
-  height: 1px;
-  background: #ccc; /* Light grey */
-  margin: 2rem 0;    /* Top and bottom space */
-  width: 100%;
-}
-    
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc; /* Light grey */
+      margin: 2rem 0;    /* Top and bottom space */
+      width: 100%;
+    }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -100,30 +100,31 @@
 
     .hero {
       display: flex;
+      flex-direction: column;   /* Ensures vertical alignment */
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 5px 20px 20px;
       text-align: center;
       margin-bottom: 20px;
     }
 
     .hero p {
-  font-size: 0.8rem;
-  max-width: 600px;
-  margin: 5px auto 1rem;
-  padding: 0;
-  color: #2e2a89;
-  position: relative;
-}
+      font-size: 0.8rem;
+      max-width: 600px;
+      margin: 5px auto 1rem;
+      padding: 0;
+      color: #2e2a89;
+      position: relative;
+    }
 
-.hero p::after {
-  content: '';              /* Empty content for the pseudo-element */
-  position: absolute;
-  left: 10%;                /* Adds space on both sides of the line */
-  right: 10%;               /* Ensures the line is thinner than the text */
-  bottom: -10px;             /* Places the line just below the text */
-  border-bottom: 1px solid #FFFFFF; /* Thin line, same color as the text */
-}
+    .hero p::after {
+      content: '';              /* Empty content for the pseudo-element */
+      position: absolute;
+      left: 10%;                /* Adds space on both sides of the line */
+      right: 10%;               /* Ensures the line is thinner than the text */
+      bottom: -10px;             /* Places the line just below the text */
+      border-bottom: 2px solid #FFFFFF; /* Thin line, white color */
+    }
 
     .hero img {
       max-width: 300px;
@@ -187,23 +188,22 @@
       color: white;
     }
 
-.body-text {
-  color: #222222;                 /* Soft dark gray */
-  font-size: 1rem;                /* Normal readable size */
-  text-align: left;               /* Left-aligned */
-  padding: 0 20px;                /* Horizontal padding */
-  margin: 1rem auto;              /* Top and bottom margin, center in large screens */
-  max-width: 800px;               /* Optional: limit width for better readability */
-}
+    .body-text {
+      color: #222222;                 /* Soft dark gray */
+      font-size: 1rem;                /* Normal readable size */
+      text-align: left;               /* Left-aligned */
+      padding: 0 20px;                /* Horizontal padding */
+      margin: 1rem auto;              /* Top and bottom margin, center in large screens */
+      max-width: 800px;               /* Optional: limit width for better readability */
+    }
 
     .welcome-text {
-  font-family: 'PT Serif', serif;   /* Use PT Serif font */
-  font-size: 2rem;                  /* Set a large font size for "Welcome" */
-  color: #2e2a89;                   /* Set the color to match the theme */
-  text-align: center;               /* Center the text */
-  margin-bottom: 5px;              /* Add spacing below "Welcome" */
-}
-    
+      font-family: 'PT Serif', serif;   /* Use PT Serif font */
+      font-size: 2rem;                  /* Set a large font size for "Welcome" */
+      color: #2e2a89;                   /* Set the color to match the theme */
+      text-align: center;               /* Center the text */
+      margin-bottom: 10px;              /* Add spacing below "Welcome" */
+    }
   </style>
 </head>
 
@@ -217,54 +217,52 @@
     </div>
 
    <div class="slider-container">
-  <a href="welcome.html" class="slide">Welcome</a>
-  <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-  <a href="science.html" class="slide">The Science</a>
-  <a href="actors.html" class="slide">The Actors</a>
-  <a href="news.html" class="slide">Latest News</a>
-  <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-  <a href="resources.html" class="slide">Resources</a>
-  <a href="about.html" class="slide">About</a>
-  <a href="disclaimer.html" class="slide">Disclaimer</a>
-</div>
+      <a href="welcome.html" class="slide">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <div>
-        <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-        <h1 class="welcome-text">Welcome</h1>
-      </div>
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <h1 class="welcome-text">Welcome</h1>
     </section>
 
-<section>
-    <div class="body-text">
-      <p>Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
+    <section>
+      <div class="body-text">
+        <p>Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
 
-      <p>I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
+        <p>I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
 
-      <p>Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
-    </div>
-  </section>
-    
+        <p>Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
+      </div>
+    </section>
   </main>
 
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
+
   <script>
-  // Get the current file name from the URL
-  const currentPage = window.location.pathname.split("/").pop();
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
 
-  // Get all the slider links
-  const slides = document.querySelectorAll('.slider-container .slide');
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
 
-  slides.forEach(slide => {
-    // Check if the link href matches the current page
-    if (slide.getAttribute('href') === currentPage) {
-      slide.classList.add('active');
-    }
-  });
-</script>
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
