@@ -8,16 +8,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #b2fab4, #81d4fa);
-      color: #004d40;
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 2rem 0;
+      width: 100%;
     }
 
+    html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #b2fab4, #81d4fa);
+  background-attachment: fixed;
+  color: #004d40;
+}
+    
     main {
       flex: 1;
       display: flex;
@@ -91,18 +104,31 @@
 
     .hero {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 5px 20px 20px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 10px;
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 5px auto 1rem;
+      margin: 4 0 10px;
+      padding: 0;
+      margin: 5;
       color: #2e2a89;
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -8px;
+      border-bottom: 1px solid #FFFFFF;
     }
 
     .hero img {
@@ -166,6 +192,24 @@
       font-size: 1.3rem;
       color: white;
     }
+
+    .body-text {
+      color: #222222;
+      font-size: 1rem;
+      text-align: left;
+      padding: 0 20px;
+      margin: 0 auto 1rem;
+      max-width: 800px;
+    }
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
   </style>
 </head>
 
@@ -178,23 +222,35 @@
       </a>
     </div>
 
-   <div class="slider-container">
-  <a href="welcome.html" class="slide">Welcome</a>
-  <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-  <a href="science.html" class="slide">The Science</a>
-  <a href="actors.html" class="slide">The Actors</a>
-  <a href="news.html" class="slide">Latest News</a>
-  <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-  <a href="resources.html" class="slide">Resources</a>
-  <a href="about.html" class="slide">About</a>
-  <a href="disclaimer.html" class="slide">Disclaimer</a>
-</div>
+    <div class="slider-container">
+      <a href="welcome.html" class="slide">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <div>
-        <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <h1 class="welcome-text">Latest News</h1>
+    </section>
+
+    <section>
+      <div class="body-text">
+        <p>Today, a range of cutting-edge technologies—like gene therapies, neuroprotective strategies, and targeted drug delivery systems—are offering new hope for Parkinson’s disease, with stem cell therapy standing out as one of the most promising approaches.</p>
+        <p>Current clinical trials are yielding positive results, with many patients experiencing significant improvements in motor function and quality of life.</p>
+        <p>While it doesn’t reverse the disease, stem cell therapy can help repair damaged neurons, providing meaningful relief.</p>
+        <p>The progress in stem cell therapy and other treatments is encouraging, the potential for significant improvements—and possibly even a fix for Parkinson’s in the future—remains strong.</p>
+        <p>So, yes, we will fix it!</p>
+        <p style="color: #007acc;">
+        <i><strong>hPSC-derived DA neurons trial, 2024</strong>: "This data has shown that developing dopamine cells when transplanted in the brain of a PwP (Person with Parkinson's) can survive long term with clinical benefits lasting decades and with restoration of normal dopaminergic innervation in the grafted striatum". - <a href="https://pubmed.ncbi.nlm.nih.gov/39058892/" target="_blank"><strong>Link Here</strong></a> - <a href="pdf/BioEssays - 2024 - Barker - The history and status of dopamine cell therapies for Parkinson s disease.pdf" download>(Download PDF here if link is broken)</a>
+        </i></p>
       </div>
     </section>
   </main>
@@ -202,19 +258,20 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
+
   <script>
-  // Get the current file name from the URL
-  const currentPage = window.location.pathname.split("/").pop();
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
 
-  // Get all the slider links
-  const slides = document.querySelectorAll('.slider-container .slide');
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
 
-  slides.forEach(slide => {
-    // Check if the link href matches the current page
-    if (slide.getAttribute('href') === currentPage) {
-      slide.classList.add('active');
-    }
-  });
-</script>
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
