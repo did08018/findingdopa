@@ -216,6 +216,51 @@
       font-size: 1.3rem;
       color: white;
     }
+
+.tight-text p {
+  margin: 0;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.info-button {
+  width: 26px;
+  height: 26px;
+  background: #2e2a89;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px auto 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 8px;
+  color: #000;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+    
   </style>
 </head>
 
@@ -248,9 +293,21 @@
     </section>
 
     <section class="legend-section">
-      <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
-      <p><strong>Shinya Yamanaka M.D., Ph.D.<br>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
-    </section>
+  <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
+  
+  <div class="tight-text">
+    <p><strong>Shinya Yamanaka M.D., Ph.D.<br>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
+    <div class="info-button" onclick="openPopup()">+</div>
+  </div>
+</section>
+
+<!-- Popup HTML -->
+<div id="popup" class="popup-overlay" onclick="closePopup()">
+  <div class="popup-box" onclick="event.stopPropagation();">
+    <p>Shinya Yamanaka’s discovery that adult cells can be reprogrammed into pluripotent stem cells revolutionized regenerative medicine and earned him a Nobel Prize.</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
 
     <section>
       <div class="body-text">
@@ -282,5 +339,16 @@
       }
     });
   </script>
+
+<script>
+  function openPopup() {
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
+  
 </body>
 </html>
