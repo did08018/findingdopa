@@ -17,19 +17,19 @@
     }
 
     html {
-  height: 100%;
-}
+      height: 100%;
+    }
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #b2fab4, #81d4fa);
-  background-attachment: fixed;
-  color: #004d40;
-}
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #b2fab4, #81d4fa);
+      background-attachment: fixed;
+      color: #004d40;
+    }
     
     main {
       flex: 1;
@@ -102,45 +102,50 @@ body {
       border: 2px solid #2e2a89;
     }
 
-    .hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px; /* small rounded corners instead of full circle */
-  margin: 20px auto 0.5rem;
-  display: block;
-  border: 2px solid white;
-  transform: scale(1.0);
-  transition: transform 0.3s ease;
-}
+    .hero {
+      text-align: center;
+      padding: 20px;
+    }
 
     .hero p {
-      font-size: 0.8rem;
-      max-width: 600px;
-      margin: 4 0 10px;
-      padding: 0;
-      margin: 5;
+      font-size: 1rem;
       color: #2e2a89;
-      position: relative;
+      margin: 0 auto 10px;
+      max-width: 600px;
+    }
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    .legend-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0;
       text-align: center;
     }
 
-    .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
+    .legend-section img.legend-image {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 2px solid white;
+      margin-bottom: 10px;
     }
 
-    .hero img {
-      max-width: 300px;
-      border-radius: 50%;
-      margin: 20px auto 0.5rem;
-      display: block;
-      border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
+    .body-text {
+      color: #222222;
+      font-size: 1rem;
+      text-align: left;
+      padding: 0 20px;
+      margin: 0 auto 1rem;
+      max-width: 800px;
     }
 
     .cta-button {
@@ -194,24 +199,6 @@ body {
       font-size: 1.3rem;
       color: white;
     }
-
-    .body-text {
-      color: #222222;
-      font-size: 1rem;
-      text-align: left;
-      padding: 0 20px;
-      margin: 0 auto 1rem;
-      max-width: 800px;
-    }
-
-    .welcome-text {
-      font-family: 'PT Serif', serif;
-      font-size: 2rem;
-      color: #2e2a89;
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 0px;
-    }
   </style>
 </head>
 
@@ -241,16 +228,19 @@ body {
     <section class="hero">
       <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
       <h1 class="welcome-text">Legend</h1>
-      <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" />
+    </section>
+
+    <section class="legend-section">
+      <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
       <p><strong>Shinya Yamanaka M.D., Ph.D.</strong></p>
-      <strong><p>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
+      <p><strong>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
     </section>
 
     <section>
       <div class="body-text">
         <p>Prize motivation: “for the discovery that mature cells can be reprogrammed to become pluripotent”</p>
         <p>In 2006, Shinya Yamanaka succeeded in identifying a small number of genes within the genome of mice that proved decisive in this process. When activated, skin cells from mice could be reprogrammed to immature stem cells, which, in turn, can grow into different types of cells within the body.</p>
-        
+
         <p style="color: #007acc;">
         <i><strong>hPSC-derived DA neurons trial, 2024</strong>: "This data has shown that developing dopamine cells when transplanted in the brain of a PwP (Person with Parkinson's) can survive long term with clinical benefits lasting decades and with restoration of normal dopaminergic innervation in the grafted striatum". - <a href="https://pubmed.ncbi.nlm.nih.gov/39058892/" target="_blank"><strong>Link Here</strong></a> - <a href="pdf/BioEssays - 2024 - Barker - The history and status of dopamine cell therapies for Parkinson s disease.pdf" download>(Download PDF here if link is broken)</a>
         </i></p>
