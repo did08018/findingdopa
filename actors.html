@@ -103,16 +103,30 @@
     }
 
     .hero {
-      text-align: center;
-      padding: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
 
-    .hero p {
-      font-size: 1rem;
-      color: #2e2a89;
-      margin: 0 auto 10px;
-      max-width: 600px;
-    }
+.hero p {
+  font-size: 1rem;
+  color: #2e2a89;
+  margin: 0 auto 10px;
+  max-width: 600px;
+  position: relative;
+}
+
+.hero p::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -8px;
+  border-bottom: 1px solid #ffffff;
+}
 
     .welcome-text {
       font-family: 'PT Serif', serif;
