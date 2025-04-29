@@ -1,2 +1,2 @@
 # findingdopa
-Looking for (and finding) a fix for Parkinson's Disease
+Finding a Fix for Parkinson's Disease
