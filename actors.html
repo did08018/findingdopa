@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    /* Existing Styles */
     .section-divider {
       border: 0;
       height: 1px;
@@ -261,6 +262,43 @@
       text-align: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+    
+    .trial-section {
+      background: #f0f4f8;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .trial-section h2 {
+      text-align: center;
+      color: #2e2a89;
+      font-size: 2rem;
+    }
+
+    .trial-list {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .trial-item {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .trial-item h3 {
+      font-size: 1.2rem;
+      color: #004d40;
+    }
+
+    .trial-item p {
+      font-size: 0.95rem;
+      color: #555;
+    }
   </style>
 </head>
 
@@ -282,7 +320,7 @@
       <a href="clinical-trials.html" class="slide">Clinical Trials</a>
       <a href="resources.html" class="slide">Resources</a>
       <a href="about.html" class="slide">About</a>
-      <a href="disclaimer.html" class="slide">Disclaimer</a>
+            <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
 
@@ -330,16 +368,46 @@
       </div>
     </div>
 
-    <section>
-      <div class="body-text">
-        <!-- Optional content -->
+    <!-- New Section for Trials -->
+    <section class="trial-section">
+      <h2>Stem Cell Clinical Trials for Parkinson's Disease in the U.S.</h2>
+      <div class="trial-list">
+        <div class="trial-item">
+          <h3>Trial: Stem Cell Transplantation for Parkinson's Disease</h3>
+          <p><strong>Organization:</strong> California Stem Cell, Inc.</p>
+          <p><strong>Location:</strong> San Diego, California</p>
+          <p><strong>Trial Type:</strong> Phase 1/2 clinical trial</p>
+          <p>This study is evaluating the safety and potential benefits of stem cell therapy to treat Parkinson's Disease.</p>
+        </div>
+        <div class="trial-item">
+          <h3>Trial: Stem Cell-based Parkinson's Disease Therapy</h3>
+          <p><strong>Organization:</strong> USC Stem Cell</p>
+          <p><strong>Location:</strong> Los Angeles, California</p>
+          <p><strong>Trial Type:</strong> Phase 2 clinical trial</p>
+          <p>This research is focused on the potential of stem cell-based therapies to repair dopamine-producing neurons in the brain.</p>
+        </div>
+        <div class="trial-item">
+          <h3>Trial: Neural Stem Cells for Parkinson's Disease</h3>
+          <p><strong>Organization:</strong> Stanford University</p>
+          <p><strong>Location:</strong> Stanford, California</p>
+          <p><strong>Trial Type:</strong> Phase 1/2 clinical trial</p>
+          <p>The goal is to assess the safety and efficacy of neural stem cell transplantation in Parkinson's Disease patients.</p>
+        </div>
+        <div class="trial-item">
+          <h3>Trial: ESC-derived Dopaminergic Neurons for Parkinson's Disease</h3>
+          <p><strong>Organization:</strong> Johns Hopkins University</p>
+          <p><strong>Location:</strong> Baltimore, Maryland</p>
+          <p><strong>Trial Type:</strong> Phase 2 clinical trial</p>
+          <p>This trial is exploring the potential for ESC-derived dopaminergic neurons to provide therapeutic effects in patients with Parkinson’s Disease.</p>
+        </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    &copy; 2025 Finding Dopa. All rights reserved.
-  </footer>
+    <footer>
+      &copy; 2025 Finding Dopa. All rights reserved.
+    </footer>
+
+  </main>
 
   <script>
     // Highlight active menu item
