@@ -1,2 +1,2 @@
 # findingdopa
-Finding a Fix for Parkinson's Disease
+A fix for Parkinson's Disease is on the way. Keep fighting!
