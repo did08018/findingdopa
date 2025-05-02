@@ -205,6 +205,37 @@
       margin-top: 10px;
       margin-bottom: 0px;
     }
+
+    .hero-section-with-bg {
+  position: relative;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.background-bolt {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 400px;
+  opacity: 0.15; /* softer on small screens */
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .background-bolt {
+    width: 300px;
+    opacity: 0.2;
+  }
+}
+
+.hero-section-with-bg .welcome-text,
+.hero-section-with-bg .body-text {
+  position: relative;
+  z-index: 1;
+}
   </style>
 </head>
 
@@ -230,16 +261,12 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-      <h1 class="welcome-text">Warning</h1>
-    </section>
-
+ <main>
+  <section class="hero-section-with-bg">
+    <h1 class="welcome-text">Warning</h1>
+    <img src="images/Lightning Bolt.PNG" alt="Lightning Bolt" class="background-bolt">
     
-    
-    <section>
-      <div class="body-text">
+    <div class="body-text">
         <p>This website is a one-man operation created by someone dedicated to sharing the latest advancements in Parkinson’s disease treatment.</p>
         <p>While I don’t have a medical background, my goal is to organize and share the most up-to-date information on cutting-edge technologies and therapies.</p>
         <p>I hope to bring hope and clarity to those seeking potential solutions.</p>
