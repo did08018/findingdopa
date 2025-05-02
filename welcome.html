@@ -210,9 +210,15 @@ body {
       margin-top: 10px;
       margin-bottom: 0px;
     }
-    .legend-section img.legend-image {
+    .legend-section {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional, for vertical centering if needed */
+}
+
+.legend-section img.legend-image {
   max-width: 300px;
-  width: 100%;
+  width: 100%; /* This will scale down to max-width */
   height: 300px;
   object-fit: cover;
   border-radius: 12px;
