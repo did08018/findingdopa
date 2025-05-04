@@ -9,53 +9,49 @@
 
   <style>
     html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #b2fab4, #81d4fa);
+      background-attachment: fixed;
       color: #004d40;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     header {
       background-color: #121212;
+      padding: 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .top-bar {
-      display: flex;
-      align-items: center;
+    footer {
+      text-align: center;
+      padding: 10px 20px;
       background: #1a1a1a;
-      padding: 4px 0;
-      height: 40px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007acc;
-      font-size: 1.2rem;
-    }
-
-    .home-brand:hover {
-      color: #00bfff;
-    }
-
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
       color: white;
+      font-size: 0.8rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .slider-container {
       width: 100%;
-      overflow-x: auto;
+      overflow-x: scroll;
       display: flex;
       gap: 10px;
-      padding: 10px;
+      margin-top: 8px;
+      padding-bottom: 10px;
       scrollbar-width: none;
     }
 
@@ -74,6 +70,11 @@
       text-align: center;
     }
 
+    .slide:hover {
+      background: #333;
+      color: #00bfff;
+    }
+
     .slide.active {
       background: #fdfdfd;
       color: #2e2a89;
@@ -81,179 +82,232 @@
     }
 
     .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
       text-align: center;
-      padding: 20px;
     }
 
     .hero p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      max-width: 600px;
       color: #2e2a89;
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero p::after {
-      content: '';
-      display: block;
-      margin: 10px auto;
-      width: 80%;
-      border-bottom: 1px solid #FFFFFF;
     }
 
     .welcome-text {
       font-family: 'PT Serif', serif;
       font-size: 2rem;
       color: #2e2a89;
-      margin: 10px 0;
+      text-align: center;
+      margin-top: 10px;
     }
 
     .section-buttons {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      background: #b2fab4;
+      padding: 10px 0;
+      z-index: 1000;
+      border-bottom: 1px solid #2e2a89;
     }
 
-    .section-buttons button {
-      background: transparent;
-      border: none;
-      font-size: 1rem;
-      color: #2e2a89;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 8px 16px;
+    .section-buttons a {
+      background: #2e2a89;
+      color: white;
+      padding: 6px 12px;
       border-radius: 4px;
-      transition: background 0.2s ease;
+      font-size: 0.9rem;
+      font-family: 'PT Serif', serif;
+      transition: background 0.3s ease;
     }
 
-    .section-buttons button:hover,
-    .section-buttons button.active {
-      background-color: #ffffff33;
+    .section-buttons a:hover {
+      background: #004d40;
     }
 
-    .content-section {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      padding: 0 20px;
+    .section-title {
+      font-size: 1.5rem;
+      color: #2e2a89;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-family: 'PT Serif', serif;
     }
 
-    .resource-card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-bottom: 2rem;
+    .resource-entry {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 800px;
+      margin: 1rem auto;
+      padding: 12px;
+      background: #ffffffcc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .resource-card h3 {
+    .resource-entry img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #2e2a89;
+      flex-shrink: 0;
+    }
+
+    .resource-content {
+      flex: 1;
+    }
+
+    .resource-content h3 {
       font-family: 'PT Serif', serif;
       color: #2e2a89;
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
     }
 
-    .resource-card p {
-      font-size: 1rem;
+    .resource-content p {
+      font-size: 0.95rem;
       color: #004d40;
+      margin: 0 0 0.5rem;
     }
 
-    iframe {
-      width: 100%;
-      max-width: 660px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      border: none;
+    .resource-link {
+      margin-left: auto;
+      color: #2e2a89;
+      font-size: 1.2rem;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px 20px;
+    .resource-link:hover {
+      color: #007acc;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
       background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
+      padding: 4px 0;
+      height: 40px;
     }
 
-    @media (max-width: 600px) {
-      .section-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      color: #007acc;
+      font-size: 1.2rem;
+    }
 
-      .resource-card {
-        padding: 1rem 0.5rem;
-      }
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
     }
   </style>
 </head>
+
 <body>
-
-<header>
-  <div class="top-bar">
-    <a href="index.html" class="home-brand">
-      <i class="fas fa-brain"></i>
-      <span class="logo-text">Finding Dopa</span>
-    </a>
-  </div>
-
-  <div class="slider-container">
-    <a href="welcome.html" class="slide">Welcome</a>
-    <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-    <a href="science.html" class="slide">The Science</a>
-    <a href="actors.html" class="slide">The Actors</a>
-    <a href="news.html" class="slide">Latest News</a>
-    <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-    <a href="resources.html" class="slide active">Resources</a>
-    <a href="about.html" class="slide">About</a>
-    <a href="disclaimer.html" class="slide">Disclaimer</a>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-    <h1 class="welcome-text">Resources</h1>
-  </section>
-
-  <div class="section-buttons">
-    <button class="active">Podcasts</button>
-    <button>Papers</button>
-    <button>Institutions</button>
-  </div>
-
-  <section class="content-section">
-    <div class="resource-card">
-      <iframe height="175" src="https://embed.podcasts.apple.com/fr/podcast/the-parkinsons-podcast/id1435180246?i=1000669938403"
-              allow="autoplay *; encrypted-media *; fullscreen *"
-              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation">
-      </iframe>
-      <h3>The Parkinson’s Podcast</h3>
-      <p>This episode is an interview with Roger Barker, Professor of Clinical Neuroscience at the University of Cambridge. He discusses novel therapies for Parkinson's and the importance of clinical studies.</p>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
     </div>
 
-    <div class="resource-card">
-      <iframe height="175" src="https://embed.podcasts.apple.com/fr/podcast/movers-and-shakers-a-podcast-about-life-with-parkinsons/id1677410087?i=1000653743718"
-              allow="autoplay *; encrypted-media *; fullscreen *"
-              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation">
-      </iframe>
-      <h3>Movers and Shakers</h3>
-      <p>This podcast discusses the potential for game-changing treatments for Parkinson’s, featuring Professor Roger Barker on stem cells and their future promise.</p>
+    <div class="slider-container">
+      <a href="welcome.html" class="slide">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
-  </section>
-</main>
+  </header>
 
-<footer>
-  &copy; 2025 Finding Dopa. All rights reserved.
-</footer>
+  <main>
+    <section class="hero">
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <h1 class="welcome-text">Resources</h1>
+    </section>
 
-<script>
-  // Highlight current nav link
-  const currentPage = window.location.pathname.split("/").pop();
-  const slides = document.querySelectorAll('.slider-container .slide');
-  slides.forEach(slide => {
-    if (slide.getAttribute('href') === currentPage) {
-      slide.classList.add('active');
-    }
-  });
-</script>
+    <div class="section-buttons">
+      <a href="#podcasts">Podcasts</a>
+      <a href="#papers">Papers</a>
+      <a href="#institutions">Institutions</a>
+    </div>
 
+    <section id="podcasts">
+      <h2 class="section-title">Podcasts</h2>
+
+      <div class="resource-entry">
+        <img src="images/podcast1.jpg" alt="Parkinson’s Podcast Thumbnail" />
+        <div class="resource-content">
+          <h3>The Parkinson’s Podcast</h3>
+          <p>Interview with Roger Barker, Professor of Clinical Neuroscience at the University of Cambridge, on combining basic research and clinical studies in Parkinson’s.</p>
+        </div>
+        <a class="resource-link" href="https://podcasts.apple.com/fr/podcast/the-parkinsons-podcast/id1435180246?i=1000669938403" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+
+      <!-- Add more podcast entries here -->
+    </section>
+
+    <section id="papers">
+      <h2 class="section-title">Papers</h2>
+      <!-- Add your paper resources here -->
+      <div class="resource-entry">
+        <img src="images/paper.jpg" alt="Paper icon" />
+        <div class="resource-content">
+          <h3>Stem Cell Therapy for Parkinson’s</h3>
+          <p>A recent publication analyzing clinical results for dopaminergic neuron transplants.</p>
+        </div>
+        <a class="resource-link" href="#" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </section>
+
+    <section id="institutions">
+      <h2 class="section-title">Institutions</h2>
+      <!-- Add your institution resources here -->
+      <div class="resource-entry">
+        <img src="images/institution.jpg" alt="Institution logo" />
+        <div class="resource-content">
+          <h3>Michael J. Fox Foundation</h3>
+          <p>Leading organization funding Parkinson’s research and clinical trials worldwide.</p>
+        </div>
+        <a class="resource-link" href="https://www.michaeljfox.org" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
