@@ -150,7 +150,23 @@
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
+.resource-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 80px;
+  font-size: 0.75rem;
+  color: #2e2a89;
+  font-family: 'PT Serif', serif;
+}
 
+.resource-date {
+  font-weight: bold;
+}
+
+.resource-section {
+  font-style: italic;
+}
     .resource-entry img {
       width: 90px;
       height: 100%;
@@ -278,6 +294,10 @@
       <h2 class="section-title">Podcasts</h2>
 
       <div class="resource-entry">
+        <div class="resource-meta">
+    <div class="resource-date">Apr 2025</div>
+    <div class="resource-section">Podcasts</div>
+  </div>
         <img src="images/Parkinsons Poscast.png" alt="Parkinson’s Podcast Thumbnail" />
         <div class="resource-content">
           <h3>The Parkinson’s Podcast</h3>
