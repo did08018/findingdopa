@@ -114,7 +114,7 @@
   z-index: 1000;
   /*border-bottom: 1px solid #2e2a89;*/
 }*/
-    .section-buttons {
+    /*.section-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,8 +133,37 @@
   border-radius: 4px;
   background: white;
   color: #2e2a89;
+}*/
+.section-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
 }
 
+.section-filter {
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-family: 'PT Serif', serif;
+  border: 1px solid #2e2a89;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #2e2a89;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%232e2a89%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  min-width: 160px;
+  text-align: center;
+}
 .section-buttons a {
   background: transparent; /* Transparent button background */
   color: #2e2a89;
@@ -308,10 +337,18 @@
       <a href="#institutions">Institutions</a>
     </div>-->
 
-    <div class="section-buttons">
+    <!--<div class="section-buttons">
   <label for="section-filter" style="font-family: 'PT Serif', serif; font-weight: bold; margin-right: 0.5rem;">Filter:</label>
   <select id="section-filter">
     <option value="All">All</option>
+    <option value="Podcasts">Podcasts</option>
+    <option value="Papers">Papers</option>
+    <option value="Institutions">Institutions</option>
+  </select>
+</div>-->
+    <div class="section-buttons">
+  <select id="section-filter">
+    <option value="All">Filter</option>
     <option value="Podcasts">Podcasts</option>
     <option value="Papers">Papers</option>
     <option value="Institutions">Institutions</option>
@@ -380,6 +417,23 @@
       }
     });
   </script>
+  <!--<script>
+  const sectionFilter = document.getElementById('section-filter');
+  const entries = document.querySelectorAll('.resource-entry');
+
+  sectionFilter.addEventListener('change', () => {
+    const selected = sectionFilter.value;
+
+    entries.forEach(entry => {
+      const entrySection = entry.getAttribute('data-section');
+      if (selected === 'All' || entrySection === selected) {
+        entry.style.display = 'flex';
+      } else {
+        entry.style.display = 'none';
+      }
+    });
+  });
+</script>-->
   <script>
   const sectionFilter = document.getElementById('section-filter');
   const entries = document.querySelectorAll('.resource-entry');
