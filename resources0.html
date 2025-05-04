@@ -103,7 +103,7 @@
       margin-top: 10px;
     }
 
-    .section-buttons {
+    /*.section-buttons {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -113,6 +113,26 @@
   padding: 10px 0;
   z-index: 1000;
   /*border-bottom: 1px solid #2e2a89;*/
+}*/
+    .section-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+}
+
+.section-filter {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  font-family: 'PT Serif', serif;
+  border: 1px solid #2e2a89;
+  border-radius: 4px;
+  background: white;
+  color: #2e2a89;
 }
 
 .section-buttons a {
@@ -282,16 +302,27 @@
       <img src="images/Resources.JPEG" alt="Resources" class="legend-image" />
     </section>
 
-    <div class="section-buttons">
+   <!-- <div class="section-buttons">
       <a href="#podcasts">Podcasts</a>
       <a href="#papers">Papers</a>
       <a href="#institutions">Institutions</a>
-    </div>
+    </div>-->
+
+    <div class="section-buttons">
+  <label for="section-filter" style="font-family: 'PT Serif', serif; font-weight: bold; margin-right: 0.5rem;">Filter:</label>
+  <select id="section-filter">
+    <option value="All">All</option>
+    <option value="Podcasts">Podcasts</option>
+    <option value="Papers">Papers</option>
+    <option value="Institutions">Institutions</option>
+  </select>
+</div>
 
     <section id="podcasts">
       <h2 class="section-title">Podcasts</h2>
 
-      <div class="resource-entry">
+      <!--<div class="resource-entry">-->
+        <div class="resource-entry" data-section="Podcasts">
         <div class="resource-meta-columns">
     <div class="resource-date">Apr 2025</div>
     <div class="resource-section">Podcasts</div>
@@ -349,5 +380,22 @@
       }
     });
   </script>
+  <script>
+  const sectionFilter = document.getElementById('section-filter');
+  const entries = document.querySelectorAll('.resource-entry');
+
+  sectionFilter.addEventListener('change', () => {
+    const selected = sectionFilter.value;
+
+    entries.forEach(entry => {
+      const entrySection = entry.getAttribute('data-section');
+      if (selected === 'All' || entrySection === selected) {
+        entry.style.display = 'flex';
+      } else {
+        entry.style.display = 'none';
+      }
+    });
+  });
+</script>
 </body>
 </html>
