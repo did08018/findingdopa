@@ -104,30 +104,32 @@
     }
 
     .section-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      position: sticky;
-      top: 0;
-      background: #b2fab4;
-      padding: 10px 0;
-      z-index: 1000;
-      border-bottom: 1px solid #2e2a89;
-    }
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  background: transparent; /* Removed green background */
+  padding: 10px 0;
+  z-index: 1000;
+  border-bottom: 1px solid #2e2a89;
+}
 
-    .section-buttons a {
-      background: #2e2a89;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-family: 'PT Serif', serif;
-      transition: background 0.3s ease;
-    }
+.section-buttons a {
+  background: transparent; /* Transparent button background */
+  color: #2e2a89;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'PT Serif', serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  border: 1px solid #2e2a89;
+}
 
-    .section-buttons a:hover {
-      background: #004d40;
-    }
+.section-buttons a:hover {
+  background: #2e2a89;
+  color: white;
+}
 
     .section-title {
       font-size: 1.5rem;
