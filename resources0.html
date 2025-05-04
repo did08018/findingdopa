@@ -140,32 +140,30 @@
     }
 
     .resource-entry {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      max-width: 800px;
-      margin: 1rem auto;
-      padding: 12px;
-      background: #ffffffcc;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-.resource-meta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 80px;
+  align-items: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 12px;
+  background: #ffffffcc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.resource-meta-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  min-width: 120px;
+}
+
+.resource-date,
+.resource-section {
   font-size: 0.75rem;
   color: #2e2a89;
   font-family: 'PT Serif', serif;
-}
-
-.resource-date {
-  font-weight: bold;
-}
-
-.resource-section {
-  font-style: italic;
+  width: 60px;
 }
     .resource-entry img {
       width: 90px;
@@ -294,7 +292,7 @@
       <h2 class="section-title">Podcasts</h2>
 
       <div class="resource-entry">
-        <div class="resource-meta">
+        <div class="resource-meta-columns">
     <div class="resource-date">Apr 2025</div>
     <div class="resource-section">Podcasts</div>
   </div>
