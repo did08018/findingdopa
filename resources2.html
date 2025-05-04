@@ -219,6 +219,21 @@
       font-size: 1.3rem;
       color: white;
     }
+    .legend-section {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional, for vertical centering if needed */
+}
+
+.legend-section img.legend-image {
+  max-width: 300px;
+  width: 100%; /* This will scale down to max-width */
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #2e2a89;
+  margin-bottom: 5px;
+}
   </style>
 </head>
 
@@ -247,7 +262,7 @@
   <main>
     <section class="hero">
       <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-      <h1 class="welcome-text">Resources</h1>
+      <!-- <h1 class="welcome-text">Resources</h1> -->
     </section>
     <section class="legend-section">
       <img src="images/Resources.JPEGg" alt="Resources" class="legend-image" />
