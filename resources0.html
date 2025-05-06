@@ -103,37 +103,6 @@
       margin-top: 10px;
     }
 
-    /*.section-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.95); /* Light background for readability */transparent; /* Removed green background */
-  padding: 10px 0;
-  z-index: 1000;
-  /*border-bottom: 1px solid #2e2a89;*/
-}*/
-    /*.section-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  z-index: 1000;
-}
-
-.section-filter {
-  padding: 6px 10px;
-  font-size: 0.9rem;
-  font-family: 'PT Serif', serif;
-  border: 1px solid #2e2a89;
-  border-radius: 4px;
-  background: white;
-  color: #2e2a89;
-}*/
 .section-buttons {
   display: flex;
   justify-content: center;
@@ -417,23 +386,7 @@
       }
     });
   </script>
-  <!--<script>
-  const sectionFilter = document.getElementById('section-filter');
-  const entries = document.querySelectorAll('.resource-entry');
-
-  sectionFilter.addEventListener('change', () => {
-    const selected = sectionFilter.value;
-
-    entries.forEach(entry => {
-      const entrySection = entry.getAttribute('data-section');
-      if (selected === 'All' || entrySection === selected) {
-        entry.style.display = 'flex';
-      } else {
-        entry.style.display = 'none';
-      }
-    });
-  });
-</script>-->
+  
   <script>
   const sectionFilter = document.getElementById('section-filter');
   const entries = document.querySelectorAll('.resource-entry');
