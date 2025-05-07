@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: white; /*linear-gradient(135deg, #b2fab4, #81d4fa);*/
+      background-attachment: fixed;
+      color: #004d40;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .slider-container {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-family: 'PT Serif', serif;
+      border: 1px solid #333;
+      text-align: center;
+    }
+
+    .slide:hover {
+      background: #333;
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hero p {
+      font-size: 0.8rem;
+      max-width: 600px;
+      color: #2e2a89;
+    }
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .section-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95); /* Light background for readability */transparent; /* Removed green background */
+  padding: 10px 0;
+  z-index: 1000;
+  /*border-bottom: 1px solid #2e2a89;*/
+}
+
+.section-buttons a {
+  background: transparent; /* Transparent button background */
+  color: #2e2a89;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'PT Serif', serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  border: 1px solid #2e2a89;
+}
+
+.section-buttons a:hover {
+  background: #2e2a89;
+  color: white;
+}
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #2e2a89;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-family: 'PT Serif', serif;
+    }
+
+    .resource-entry {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 800px;
+      margin: 1rem auto;
+      padding: 12px;
+      background: #ffffffcc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .resource-entry img {
+      width: 90px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      /*border: 2px solid #2e2a89;*/
+      flex-shrink: 0;
+    }
+
+    .resource-content {
+      flex: 1;
+    }
+
+    .resource-content h3 {
+      font-family: 'PT Serif', serif;
+      color: #2e2a89;
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .resource-content p {
+      font-size: 0.95rem;
+      color: #004d40;
+      margin: 0 0 0.5rem;
+    }
+
+    .resource-link {
+      margin-left: auto;
+      color: #2e2a89;
+      font-size: 1.2rem;
+    }
+
+    .resource-link:hover {
+      color: #007acc;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 4px 0;
+      height: 40px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      color: #007acc;
+      font-size: 1.2rem;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+    .legend-section {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional, for vertical centering if needed */
+    }
+
+.legend-section img.legend-image {
+  max-width: 300px;
+  width: 100%; /* This will scale down to max-width */
+  /*height: 300px;*/
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid white;
+  margin-bottom: 5px;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+
+    <div class="slider-container">
+      <a href="welcome.html" class="slide">Welcome</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+      <!-- <h1 class="welcome-text">Resources</h1> -->
+    </section>
+    <section class="legend-section">
+      <img src="images/Resources.JPEG" alt="Resources" class="legend-image" />
+    </section>
+
+    <div class="section-buttons">
+      <a href="#podcasts">Podcasts</a>
+      <a href="#papers">Papers</a>
+      <a href="#institutions">Institutions</a>
+    </div>
+
+    <section id="podcasts">
+      <h2 class="section-title">Podcasts</h2>
+
+      <div class="resource-entry">
+        <img src="images/Parkinsons Poscast.png" alt="Parkinson’s Podcast Thumbnail" />
+        <div class="resource-content">
+          <h3>The Parkinson’s Podcast</h3>
+          <p>Interview with Roger Barker, Professor of Clinical Neuroscience at the University of Cambridge, on combining basic research and clinical studies in Parkinson’s.</p>
+        </div>
+        <a class="resource-link" href="https://davisphinneyfoundation.org/podcast-cell-replacement-parkinsons-with-roger-barker/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+
+      <!-- Add more podcast entries here -->
+    </section>
+
+    <section id="papers">
+      <h2 class="section-title">Papers</h2>
+      <!-- Add your paper resources here -->
+      <div class="resource-entry">
+        <img src="images/TreeFrog.PNG" alt="Paper icon" />
+        <div class="resource-content">
+          <h3>TreeFrog Therapeutics</h3>
+          <p>Overview of Parkinson’s Disease Clinical Trial Landscape.
+
+</p>
+        </div>
+        <a class="resource-link" href="https://treefrog.fr/2025/04/10/overview-of-parkinsons-disease-clinical-trial-landscape/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </section>
+
+    <section id="institutions">
+      <h2 class="section-title">Institutions</h2>
+      <!-- Add your institution resources here -->
+      <div class="resource-entry">
+        <img src="images/michaeljfox.JPG" alt="Institution logo" />
+        <div class="resource-content">
+          <h3>Michael J. Fox Foundation</h3>
+          <p>Leading organization funding Parkinson’s research and clinical trials worldwide.</p>
+        </div>
+        <a class="resource-link" href="https://www.michaeljfox.org" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
