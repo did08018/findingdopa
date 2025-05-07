@@ -341,7 +341,7 @@
       const filter = btn.dataset.filter;
 
       // Show only the matching section
-      ['podcasts', 'papers', 'institutions'].forEach(id => {
+      ['podcasts', 'papers', 'organizations'].forEach(id => {
         document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
       });
     });
