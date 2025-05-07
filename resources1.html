@@ -388,7 +388,7 @@
     document.getElementById(id).style.display = 'block';
   });
 </script>-->
-<script>
+<!--<script>
   const buttons = document.querySelectorAll('.section-buttons a');
   let activeFilter = null;
 
@@ -413,6 +413,39 @@
         });
         activeFilter = filter;
         btn.classList.add('active');
+      }
+    });
+  });
+
+  // Show all sections initially
+  ['podcasts', 'papers', 'organizations'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
+</script>-->
+  <script>
+  const buttons = document.querySelectorAll('.section-buttons a');
+  let activeFilter = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      if (activeFilter === filter) {
+        // Deactivate filter
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = 'block';
+        });
+        btn.classList.remove('active'); // remove highlight
+        activeFilter = null;
+      } else {
+        // Activate new filter
+        buttons.forEach(button => button.classList.remove('active'));
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+        });
+        btn.classList.add('active');
+        activeFilter = filter;
       }
     });
   });
