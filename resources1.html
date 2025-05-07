@@ -334,7 +334,7 @@
       }
     });
   </script>-->
-  <script>
+  <!--<script>
   document.querySelectorAll('.section-buttons a').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -351,6 +351,36 @@
   ['podcasts', 'papers', 'institutions'].forEach(id => {
     document.getElementById(id).style.display = 'block';
   });
+</script>-->
+  <script>
+  const buttons = document.querySelectorAll('.section-buttons a');
+  let activeFilter = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      // If clicked again on the same filter, show all sections
+      if (activeFilter === filter) {
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = 'block';
+        });
+        activeFilter = null; // reset filter
+      } else {
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+        });
+        activeFilter = filter;
+      }
+    });
+  });
+
+  // Show all sections initially
+  ['podcasts', 'papers', 'organizations'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
 </script>
+
 </body>
 </html>
