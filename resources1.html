@@ -269,9 +269,12 @@
     </section>
 
     <div class="section-buttons">
-      <a href="#podcasts">Podcasts</a>
+      <a href="#" data-filter="podcasts">Podcasts</a>
+      <a href="#" data-filter="papers">Papers</a>
+      <a href="#" data-filter="organizations">Organizations</a>
+     <!-- <a href="#podcasts">Podcasts</a>
       <a href="#papers">Papers</a>
-      <a href="#institutions">Institutions</a>
+      <a href="#institutions">Institutions</a>-->
     </div>
 
     <section id="podcasts">
@@ -322,7 +325,7 @@
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  <script>
+<!--  <script>
     const currentPage = window.location.pathname.split("/").pop();
     const slides = document.querySelectorAll('.slider-container .slide');
     slides.forEach(slide => {
@@ -330,6 +333,24 @@
         slide.classList.add('active');
       }
     });
-  </script>
+  </script>-->
+  <script>
+  document.querySelectorAll('.section-buttons a').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      // Show only the matching section
+      ['podcasts', 'papers', 'institutions'].forEach(id => {
+        document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+      });
+    });
+  });
+
+  // Optional: show all sections initially
+  ['podcasts', 'papers', 'institutions'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
+</script>
 </body>
 </html>
