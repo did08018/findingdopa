@@ -352,7 +352,7 @@
     document.getElementById(id).style.display = 'block';
   });
 </script>-->
-  <script>
+  <!--<script>
   const buttons = document.querySelectorAll('.section-buttons a');
   let activeFilter = null;
 
@@ -380,7 +380,40 @@
   ['podcasts', 'papers', 'organizations'].forEach(id => {
     document.getElementById(id).style.display = 'block';
   });
-</script>
+</script>-->
+<script>
+  const buttons = document.querySelectorAll('.section-buttons a');
+  let activeFilter = null;
 
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      // Remove the 'active' class from all buttons
+      buttons.forEach(button => button.classList.remove('active'));
+
+      // If clicked again on the same filter, show all sections
+      if (activeFilter === filter) {
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = 'block';
+        });
+        activeFilter = null; // reset filter
+      } else {
+        // Show the corresponding section and add 'active' class to the clicked button
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+        });
+        activeFilter = filter;
+        btn.classList.add('active');
+      }
+    });
+  });
+
+  // Show all sections initially
+  ['podcasts', 'papers', 'organizations'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
+</script>
 </body>
 </html>
