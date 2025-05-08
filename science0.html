@@ -115,17 +115,22 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #4fc3f7, #0d1b2a);
-  box-shadow: 0 0 12px 2px rgba(79,195,247,0.3);
+  background: rgba(80, 200, 120, 0.15);
+  box-shadow: 0 0 8px rgba(80, 200, 120, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: center; /* Ensures multiline text is centered */
+  padding: 10px;
+  overflow-wrap: break-word; /* Allows words to break to next line */
+  word-wrap: break-word;
+  white-space: normal; /* Allow wrapping instead of forcing one line */
   font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  animation: float 6s ease-in-out infinite;
+  color: #ffffff;
+}
+.orb span {
+  display: block;
+  width: 100%;
 }
 
     .orb:nth-child(odd) {
