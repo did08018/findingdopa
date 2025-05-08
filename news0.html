@@ -1,4 +1,4 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,23 +6,24 @@
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #b2fab4, #81d4fa);
-      background-attachment: fixed;
+      background-color: #ffffff;
       color: #004d40;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
       background-color: #121212;
-      padding: 2px 0;
     }
 
     .top-bar {
-      width: 100%;
       display: flex;
       align-items: center;
       background: #1a1a1a;
@@ -39,14 +40,15 @@
       text-decoration: none;
       color: #007acc;
       font-size: 1.2rem;
-    }
-
-    .home-brand i {
-      font-size: 1.3rem;
+      height: 32px;
     }
 
     .home-brand:hover {
       color: #00bfff;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
     }
 
     .logo-text {
@@ -60,10 +62,9 @@
       width: 100%;
       overflow-x: auto;
       display: flex;
-      gap: 8px;
-      padding: 6px 12px;
+      gap: 10px;
+      padding: 10px 10px;
       scrollbar-width: none;
-      max-height: 44px;
     }
 
     .slider-container::-webkit-scrollbar {
@@ -74,18 +75,13 @@
       flex: 0 0 auto;
       background: #1f1f1f;
       color: white;
-      padding: 5px 10px;
+      padding: 5px 12px;
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
       font-family: 'PT Serif', serif;
       border: 1px solid #333;
       text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .slide:hover {
@@ -99,72 +95,67 @@
       border: 2px solid #2e2a89;
     }
 
+    main {
+      flex: 1;
+    }
+
     .hero {
       background: white;
-      padding: 10px;
       text-align: center;
+      padding: 20px;
     }
 
-    .hero p {
-      font-size: 0.8rem;
-      color: #2e2a89;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
+    .hero img {
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #2e2a89;
+      margin-top: 10px;
     }
 
     .welcome-text {
       font-family: 'PT Serif', serif;
       font-size: 2rem;
       color: #2e2a89;
-      margin-top: 10px;
-      margin-bottom: 0;
+      margin-top: 0.5rem;
     }
 
-    .legend-section {
-      background: white;
-      display: flex;
-      justify-content: center;
+    .articles {
+      max-width: 800px;
+      margin: 0 auto;
       padding: 20px;
-    }
-
-    .legend-section img.legend-image {
-      max-width: 300px;
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid #2e2a89;
-      margin-bottom: 5px;
     }
 
     .article-entry {
       padding: 20px;
-      color: white;
-      font-size: 1rem;
-      font-family: 'Segoe UI', sans-serif;
+      border-radius: 8px;
+      margin-bottom: 20px;
     }
 
-    .article-entry strong {
-      font-family: 'PT Serif', serif;
-      font-size: 1.2rem;
-      display: block;
-      margin-bottom: 4px;
+    .article-date {
+      font-size: 0.85rem;
+      color: #333;
+      margin-bottom: 0.2rem;
     }
 
-    .article-entry a {
-      color: white;
-      text-decoration: underline;
+    .article-title {
+      font-size: 1.5rem;
       font-weight: bold;
+      margin: 0.3rem 0;
+    }
+
+    .article-link {
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .article-link:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -196,68 +187,68 @@
       <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
+
   <main>
     <section class="hero">
       <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-      <!--<h1 class="welcome-text">Latest News</h1>-->
+      <h1 class="welcome-text">Latest News</h1>
+      <img src="images/Bone.JPG" alt="Booo" />
     </section>
-    <section class="legend-section">
-      <img src="images/Bone.JPG" alt="Booo" class="legend-image" />
-    </section>
-    <section class="article-entry">
-      <strong>April 30, 2025</strong>
-      "iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles" - 
-      <a href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" target="_blank">Technology Networks Article Here</a>
-    </section>
-    <section class="article-entry">
-      <strong>April 28, 2025</strong>
-      "betaSENSE GmbH has published stunning results..." -
-      <a href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" target="_blank">European Biotechnology Article Here</a>
-    </section>
-    <section class="article-entry">
-      <strong>April 09, 2025</strong>
-      "Embryo-destroying research funds are better spent..." -
-      <a href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" target="_blank">Rep. Chris Smith Press Release Here</a>
-    </section>
-    <section class="article-entry">
-      <strong>April 09, 2025</strong>
-      "A cloaked human stem-cell-derived neural graft..." -
-      <a href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" target="_blank">ScienceDirect News Article Here</a> -
-      <a href="pdf/1-s2.0-S1934590925000980-main.pdf" download>(Download PDF)</a>
-    </section>
-    <section class="article-entry">
-      <strong>April 01, 2025</strong>
-      "Why is Philadelphia called the Cellicon Valley?" -
-      <a href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" target="_blank">Penn Medicine Article</a> -
-      <a href="pdf/Why is Philadelphia called the Cellicon Valley.pdf" download>(Download PDF)</a>
-    </section>
-    <section class="article-entry">
-      <strong>November 19, 2024</strong>
-      "New Stem Cell Therapy Confirmed Safe & Effective" -
-      <a href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" target="_blank">Access Newswire Article</a> -
-      <a href="pdf/Parkinson patient moves freely again after world-first implant of lab-grown.pdf" download>(Download PDF)</a>
-    </section>
-    <section class="article-entry">
-      <strong>May 08, 2024</strong>
-      "Parkinson’s patient moves freely again..." -
-      <a href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" target="_blank">Euro News Article</a> -
-      <a href="pdf/A New Stem Cell Therapy for Parkinson Disease Has Been Confirmed Safe and Effe.pdf" download>(Download PDF)</a>
+
+    <section class="articles">
+      <div class="article-entry">
+        <p class="article-date">April 30, 2025</p>
+        <p class="article-title">iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles</p>
+        <a href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" class="article-link" target="_blank">Technology Networks Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 28, 2025</p>
+        <p class="article-title">betaSENSE GmbH Finds Biomarker for Pre-Onset Diagnosis</p>
+        <a href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" class="article-link" target="_blank">European Biotechnology Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 09, 2025</p>
+        <p class="article-title">Embryo-destroying Research Should Shift to Ethical Treatments</p>
+        <a href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" class="article-link" target="_blank">Rep. Chris Smith Press Release Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 09, 2025</p>
+        <p class="article-title">Human Neural Graft Shows Immune Evasion in Rodent Models</p>
+        <a href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" class="article-link" target="_blank">ScienceDirect News Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 01, 2025</p>
+        <p class="article-title">Why is Philadelphia Called the Cellicon Valley?</p>
+        <a href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" class="article-link" target="_blank">Penn Medicine News Article Here</a>
+      </div>
     </section>
   </main>
+
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
+
   <script>
-    // Auto-color article entries
     const colors = [
-      '#6a5acd', '#ff6347', '#20b2aa', '#f08080',
-      '#9370db', '#4682b4', '#3cb371', '#ffa07a',
-      '#8fbc8f', '#da70d6', '#ffb6c1', '#87cefa', '#bc8f8f', '#40e0d0'
+      '#ffe0e0', '#e0f7fa', '#e6e6fa', '#fce4ec',
+      '#e8f5e9', '#fff3e0', '#ede7f6', '#f3e5f5'
     ];
 
     const entries = document.querySelectorAll('.article-entry');
     entries.forEach((entry, index) => {
       entry.style.backgroundColor = colors[index % colors.length];
+    });
+
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
     });
   </script>
 </body>
