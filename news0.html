@@ -3,39 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    .section-divider {
-      border: 0;
-      height: 1px;
-      background: #ccc;
-      margin: 2rem 0;
-      width: 100%;
-    }
-
-    html {
+    html, body {
       height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #f3e7ff, #d9f7ff); /* Linktree-inspired soft gradient */
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #b2fab4, #81d4fa);
       background-attachment: fixed;
-      color: #1a1a1a;
-    }
-    
-    main {
-      flex: 1;
+      color: #004d40;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
     }
 
     header {
@@ -46,18 +27,35 @@
       align-items: flex-start;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px 20px;
+    .top-bar {
+      display: flex;
+      align-items: center;
       background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-      line-height: 1.2;
+      padding: 4px 0;
+      height: 40px;
     }
 
-    a {
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
       text-decoration: none;
-      color: inherit;
+      color: #007acc;
+      font-size: 1.2rem;
+      height: 32px;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
     }
 
     .slider-container {
@@ -82,14 +80,9 @@
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
-      user-select: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
+      font-family: 'PT Serif', serif;
       border: 1px solid #333;
       text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .slide:hover {
@@ -101,6 +94,13 @@
       background: #fdfdfd;
       color: #2e2a89;
       border: 2px solid #2e2a89;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .hero {
@@ -116,7 +116,7 @@
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 4px 0 10px;
+      margin: 4 0 10px;
       padding: 0;
       color: #2e2a89;
       position: relative;
@@ -141,71 +141,9 @@
       transition: transform 0.3s ease;
     }
 
-    .cta-button {
-      background: #2e2a89;
-      color: #fdfdfd;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: background 0.3s ease, color 0.3s ease;
-      margin-bottom: 20px;
-    }
-
-    .cta-button:hover {
-      background: #fdfdfd;
-      color: #2e2a89;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      padding: 4px 0;
-      height: 40px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007acc;
-      font-size: 1.2rem;
-      height: 32px;
-    }
-
-    .home-brand i {
-      font-size: 1.3rem;
-    }
-
-    .home-brand:hover {
-      color: #00bfff;
-    }
-
-    .logo-text {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-    }
-
-    .body-text {
-      color: #1a1a1a;
-      font-size: 1rem;
-      text-align: left;
-      padding: 0 20px;
-      margin: 0 auto 1rem;
-      max-width: 800px;
-    }
-
     .welcome-text {
-      font-family: 'Inter', sans-serif;
+      font-family: 'PT Serif', serif;
       font-size: 2rem;
-      font-weight: 700;
       color: #2e2a89;
       text-align: center;
       margin-top: 10px;
@@ -228,54 +166,50 @@
       margin-bottom: 5px;
     }
 
-    /* News Item Styling */
     .news-item {
-      background: #ffffff; /* Fallback color */
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 1.2rem;
+      border-radius: 16px;
+      margin: 1rem 20px;
+      background-color: var(--bg-color, #333);
+      color: white;
+      font-family: 'PT Serif', serif;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       transition: transform 0.2s ease;
     }
 
     .news-item:hover {
-      transform: translateY(-2px);
+      transform: scale(1.02);
     }
 
-    .news-item p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.5;
+    .news-date {
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 6px;
     }
 
-    .news-item a {
-      color: #1a1a1a;
-      font-weight: 500;
+    .news-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: white;
+    }
+
+    .news-link {
+      color: white;
+      font-weight: bold;
       text-decoration: underline;
-      transition: color 0.2s ease;
     }
 
-    .news-item a:hover {
-      color: #2e2a89;
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+      line-height: 1.2;
     }
-
-    /* Automatic Color Scheme for News Items */
-    .news-item:nth-child(1) { background-color: #e0f7ff; } /* Light Cyan */
-    .news-item:nth-child(2) { background-color: #ffe0f0; } /* Light Pink */
-    .news-item:nth-child(3) { background-color: #e6ffe0; } /* Light Green */
-    .news-item:nth-child(4) { background-color: #fff3d6; } /* Light Yellow */
-    .news-item:nth-child(5) { background-color: #f0e6ff; } /* Light Purple */
-    .news-item:nth-child(6) { background-color: #ffd9e0; } /* Light Coral */
-    .news-item:nth-child(7) { background-color: #d9f7ff; } /* Light Blue */
-    .news-item:nth-child(8) { background-color: #e0f7e0; } /* Light Mint */
-    .news-item:nth-child(9) { background-color: #ffe6e6; } /* Light Red */
-    .news-item:nth-child(10) { background-color: #f0f0f0; } /* Light Gray */
-
-    /* Ensure colors cycle if more than 10 items */
-    .news-item:nth-child(11) { background-color: #e0f7ff; }
-    .news-item:nth-child(12) { background-color: #ffe0f0; }
-    .news-item:nth-child(13) { background-color: #e6ffe0; }
-    /* Add more as needed */
   </style>
 </head>
 
@@ -287,7 +221,6 @@
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
-
     <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
@@ -310,62 +243,65 @@
       <img src="images/Bone.JPG" alt="Booo" class="legend-image" />
     </section>
     <section>
-      <div class="body-text">
-        <div class="news-item">
-          <p>
-            <strong>April 30, 2025</strong>: "iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles" - <a href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" target="_blank"><strong>Technology Networks Article Here</strong></a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>April 28, 2025</strong>: "betaSENSE GmbH has published stunning results from two clinical trials that suggest that the ratio of alpha-synuclein to beta-synuclein protein might allow pre-onset diagnosis of Parkinson’s disease." - <a href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" target="_blank"><strong>European Biotechnology Article Here</strong></a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>April 09, 2025</strong>: "Embryo-destroying research funds are better spent on existing, effective, and ethical treatments" - <a href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" target="_blank"><strong>Rep. Chris Smith (R-NJ), Sen. Roger Wicker (R-MS) Press Release Here</strong></a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>April 09, 2025</strong>: "A cloaked human stem-cell-derived neural graft capable of functional integration and immune evasion in rodent models" - <a href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" target="_blank"><strong>ScienceDirect News Article Here</strong></a> - <a href="pdf/1-s2.0-S1934590925000980-main.pdf" download>(Download PDF here if link is broken)</a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>April 01, 2025</strong>: "Why is Philadelphia called the Cellicon Valley?" - <a href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" target="_blank"><strong>Penn Medicine News Article Here</strong></a> - <a href="pdf/Why is Philadelphia called the Cellicon Valley.pdf" download>(Download PDF here if link is broken)</a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>November 19, 2024</strong>: "A New Stem Cell Therapy for Parkinson's Disease Has Been Confirmed Safe and Effective for the First Time" - <a href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" target="_blank"><strong>Access Newswire Article Here</strong></a> - <a href="pdf/Parkinson patient moves freely again after world-first implant of lab-grown.pdf" download>(Download PDF here if link is broken)</a>
-          </p>
-        </div>
-        <div class="news-item">
-          <p>
-            <strong>May 08, 2024</strong>: "Parkinson’s patient moves freely again after world-first implant of lab-grown cells into his brain" - <a href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" target="_blank"><strong>Euro News Article Here</strong></a> - <a href="pdf/A New Stem Cell Therapy for Parkinson Disease Has Been Confirmed Safe and Effe.pdf" download>(Download PDF here if link is broken)</a>
-          </p>
-        </div>
+      <div class="news-item">
+        <div class="news-date">April 30, 2025</div>
+        <div class="news-title">iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles</div>
+        <a class="news-link" href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" target="_blank">Read Article</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">April 28, 2025</div>
+        <div class="news-title">New biomarker may enable pre-onset Parkinson's diagnosis</div>
+        <a class="news-link" href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" target="_blank">Read Article</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">April 09, 2025</div>
+        <div class="news-title">Funding ethical treatments over embryo-destructive research</div>
+        <a class="news-link" href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" target="_blank">Read Article</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">April 09, 2025</div>
+        <div class="news-title">Immune-evasive human stem cell graft integrates in rodents</div>
+        <a class="news-link" href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" target="_blank">Read Article</a> - <a class="news-link" href="pdf/1-s2.0-S1934590925000980-main.pdf" download>(PDF)</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">April 01, 2025</div>
+        <div class="news-title">Why is Philadelphia called the Cellicon Valley?</div>
+        <a class="news-link" href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" target="_blank">Read Article</a> - <a class="news-link" href="pdf/Why is Philadelphia called the Cellicon Valley.pdf" download>(PDF)</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">November 19, 2024</div>
+        <div class="news-title">New stem cell therapy confirmed safe and effective</div>
+        <a class="news-link" href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" target="_blank">Read Article</a> - <a class="news-link" href="pdf/Parkinson patient moves freely again after world-first implant of lab-grown.pdf" download>(PDF)</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">May 08, 2024</div>
+        <div class="news-title">Patient regains movement after lab-grown cell transplant</div>
+        <a class="news-link" href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" target="_blank">Read Article</a> - <a class="news-link" href="pdf/A New Stem Cell Therapy for Parkinson Disease Has Been Confirmed Safe and Effe.pdf" download>(PDF)</a>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2025 Finding Dopa. All rights reserved.
+    &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
   <script>
-    // Get the current file name from the URL
     const currentPage = window.location.pathname.split("/").pop();
-
-    // Get all the slider links
     const slides = document.querySelectorAll('.slider-container .slide');
-
     slides.forEach(slide => {
-      // Check if the link href matches the current page
       if (slide.getAttribute('href') === currentPage) {
         slide.classList.add('active');
       }
+    });
+
+    const colors = [
+      '#2e2a89', '#007acc', '#00bfa5', '#8e24aa',
+      '#f4511e', '#3949ab', '#1e88e5', '#43a047',
+      '#d81b60', '#fdd835'
+    ];
+
+    document.querySelectorAll('.news-item').forEach((item, index) => {
+      item.style.setProperty('--bg-color', colors[index % colors.length]);
     });
   </script>
 </body>
