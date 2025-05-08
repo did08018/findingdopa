@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,7 +6,6 @@
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     html, body {
       height: 100%;
@@ -144,6 +143,7 @@
       object-fit: cover;
       border-radius: 8px;
       border: 2px solid #2e2a89;
+      margin-bottom: 5px;
     }
 
     .article-entry {
@@ -175,7 +175,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="top-bar">
@@ -184,7 +183,6 @@
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
-
     <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
@@ -197,56 +195,47 @@
       <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
-
   <main>
     <section class="hero">
       <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
       <h1 class="welcome-text">Latest News</h1>
     </section>
-
     <section class="legend-section">
       <img src="images/Bone.JPG" alt="Booo" class="legend-image" />
     </section>
-
     <section class="article-entry">
       <strong>April 30, 2025</strong>
       "iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles" - 
       <a href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" target="_blank">Technology Networks Article Here</a>
     </section>
-
     <section class="article-entry">
       <strong>April 28, 2025</strong>
       "betaSENSE GmbH has published stunning results..." -
       <a href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" target="_blank">European Biotechnology Article Here</a>
     </section>
-
     <section class="article-entry">
       <strong>April 09, 2025</strong>
       "Embryo-destroying research funds are better spent..." -
       <a href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" target="_blank">Rep. Chris Smith Press Release Here</a>
     </section>
-
     <section class="article-entry">
       <strong>April 09, 2025</strong>
       "A cloaked human stem-cell-derived neural graft..." -
       <a href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" target="_blank">ScienceDirect News Article Here</a> -
       <a href="pdf/1-s2.0-S1934590925000980-main.pdf" download>(Download PDF)</a>
     </section>
-
     <section class="article-entry">
       <strong>April 01, 2025</strong>
       "Why is Philadelphia called the Cellicon Valley?" -
       <a href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" target="_blank">Penn Medicine Article</a> -
       <a href="pdf/Why is Philadelphia called the Cellicon Valley.pdf" download>(Download PDF)</a>
     </section>
-
     <section class="article-entry">
       <strong>November 19, 2024</strong>
       "New Stem Cell Therapy Confirmed Safe & Effective" -
       <a href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" target="_blank">Access Newswire Article</a> -
       <a href="pdf/Parkinson patient moves freely again after world-first implant of lab-grown.pdf" download>(Download PDF)</a>
     </section>
-
     <section class="article-entry">
       <strong>May 08, 2024</strong>
       "Parkinson’s patient moves freely again..." -
@@ -254,28 +243,20 @@
       <a href="pdf/A New Stem Cell Therapy for Parkinson Disease Has Been Confirmed Safe and Effe.pdf" download>(Download PDF)</a>
     </section>
   </main>
-
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-
   <script>
     // Auto-color article entries
     const colors = [
       '#6a5acd', '#ff6347', '#20b2aa', '#f08080',
       '#9370db', '#4682b4', '#3cb371', '#ffa07a',
-      '#8fbc8f', '#da70d6', '#ffb6c1', '#00ced1'
+      '#8fbc8f', '#da70d6', '#ffb6c1', '#87cefa', '#bc8f8f', '#40e0d0'
     ];
-    document.querySelectorAll('.article-entry').forEach((el, i) => {
-      el.style.backgroundColor = colors[i % colors.length];
-    });
 
-    // Highlight active nav link
-    const currentPage = window.location.pathname.split("/").pop();
-    document.querySelectorAll('.slider-container .slide').forEach(slide => {
-      if (slide.getAttribute('href') === currentPage) {
-        slide.classList.add('active');
-      }
+    const entries = document.querySelectorAll('.article-entry');
+    entries.forEach((entry, index) => {
+      entry.style.backgroundColor = colors[index % colors.length];
     });
   </script>
 </body>
