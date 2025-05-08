@@ -309,7 +309,7 @@
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  <script>
+  <!--<script>
     const buttons = document.querySelectorAll('.section-buttons a');
     let activeButton = null;
 
@@ -339,6 +339,54 @@
     ['podcasts', 'papers', 'organizations'].forEach(id => {
       document.getElementById(id).style.display = 'block';
     });
-  </script>
+  </script>-->
+  <script>
+  const buttons = document.querySelectorAll('.section-buttons a');
+  let activeButton = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      // Toggle off if the same button is clicked again
+      if (activeButton === btn) {
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = 'block';
+        });
+
+        // Reset button states
+        buttons.forEach(b => {
+          b.classList.remove('active');
+          b.style.backgroundColor = 'white';
+          b.style.color = '#2e2a89';
+        });
+
+        activeButton = null;
+      } else {
+        // Activate selected button and filter
+        buttons.forEach(b => {
+          b.classList.remove('active');
+          b.style.backgroundColor = 'white';
+          b.style.color = '#2e2a89';
+        });
+
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+        });
+
+        btn.classList.add('active');
+        btn.style.backgroundColor = '#2e2a89';
+        btn.style.color = 'white';
+        activeButton = btn;
+      }
+    });
+  });
+
+  // Show all sections by default on load
+  ['podcasts', 'papers', 'organizations'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
+</script>
 </body>
 </html>
