@@ -3,218 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-  <title>Finding Dopa</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <title>Finding Dopa – Beehive Grid</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    body {
+      font-family: 'PT Serif', serif;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: white;
-      color: #004d40;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background-color: #fff8dc; /* Honey-colored background */
     }
 
-    header {
-      background-color: #121212;
-      padding: 2px 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    footer {
+    /* Header, slider, and footer placeholders */
+    header, footer, .slider {
+      padding: 20px;
       text-align: center;
-      padding: 10px 20px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-    }
-
-    .slider-container {
-      width: 100%;
-      overflow-x: auto;
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-      padding-bottom: 10px;
-      scrollbar-width: none;
-    }
-
-    .slider-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slide {
-      flex: 0 0 auto;
-      background: #1f1f1f;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: 'PT Serif', serif;
-      border: 1px solid #333;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .slide:hover {
-      background: #333;
-      color: #00bfff;
-    }
-
-    .slide.active {
-      background: #fdfdfd;
+      background-color: #f1c40f;
       color: #2e2a89;
-      border: 2px solid #2e2a89;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      padding: 4px 0;
-      height: 40px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007acc;
-      font-size: 1.2rem;
-    }
-
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 10px;
-    }
-
-    .welcome-text {
-      font-family: 'PT Serif', serif;
-      font-size: 2rem;
-      color: #2e2a89;
-      margin: 0;
-    }
-
-    /* Beehive Styles */
-    .beehive {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 30px 10px;
-    }
-
-    .hex {
-      width: 100px;
-      height: 55px;
-      background-color: #2e2a89;
-      color: white;
-      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-weight: bold;
+    }
+
+    /* Hexagon Grid Container */
+    .hex-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      justify-items: center;
+      padding: 40px 20px;
+      background-color: #fff8dc;
+    }
+
+    /* Hexagon Shape */
+    .hex {
+      width: 120px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      clip-path: polygon(
+        50% 0%,
+        93% 25%,
+        93% 75%,
+        50% 100%,
+        7% 75%,
+        7% 25%
+      );
+      background-color: #fff;
+      border: 2px solid #f1c40f;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       cursor: pointer;
-      text-align: center;
       transition: transform 0.3s;
     }
 
     .hex:hover {
       transform: scale(1.05);
-      background-color: #007acc;
     }
 
+    /* Hexagon Content */
     .hex-content {
-      max-width: 600px;
-      margin: 10px auto;
-      background: #f3f3f3;
-      padding: 15px;
-      border-radius: 8px;
-      display: none;
-    }
-
-    .hex-content.active {
-      display: block;
-    }
-
-    .close-btn {
-      float: right;
-      cursor: pointer;
-      color: #2e2a89;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      background-color: #fff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       font-weight: bold;
-      font-size: 1.2rem;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .hex-content .hex-front,
+    .hex-content .hex-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      overflow-y: auto;
+    }
+
+    .hex-content .hex-front {
+      background-color: #fff;
+      color: #2e2a89;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hex-content .hex-back {
+      background-color: #fff;
+      color: #333;
+      transform: rotateY(180deg);
+      font-size: 0.85rem;
+      text-align: left;
+      overflow-y: auto;
+    }
+
+    .hex-content.flipped {
+      transform: rotateY(180deg);
+    }
+
+    /* Optional: Add a smoother scroll for mobile reading */
+    .hex-content .hex-back::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .hex-content .hex-back::-webkit-scrollbar-thumb {
+      background: #f1c40f;
+      border-radius: 3px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="top-bar">
-      <a href="index.html" class="home-brand" aria-label="Home">
-        <i class="fas fa-brain"></i>
-        <span class="logo-text">Finding Dopa</span>
-      </a>
-    </div>
 
-    <div class="slider-container">
-      <a href="welcome.html" class="slide">Welcome</a>
-      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-      <a href="science.html" class="slide active">The Science</a>
-      <a href="actors.html" class="slide">The Actors</a>
-      <a href="news.html" class="slide">Latest News</a>
-      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-      <a href="resources.html" class="slide">Resources</a>
-      <a href="about.html" class="slide">About</a>
-      <a href="disclaimer.html" class="slide">Disclaimer</a>
-    </div>
+  <!-- Header -->
+  <header>
+    Finding Dopa
   </header>
 
-  <main>
-    <section class="hero">
-      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-      <h1 class="welcome-text">The Science</h1>
-    </section>
+  <!-- Slider Placeholder -->
+  <div class="slider">
+    [Your Slider Content Here]
+  </div>
 
-    <section class="beehive">
-      <div class="hex" onclick="toggleHex('grafts')">Nerve Grafts</div>
-      <div class="hex" onclick="toggleHex('mscs')">MSCs</div>
-    </section>
-
-    <div id="grafts" class="hex-content">
-      <span class="close-btn" onclick="toggleHex('grafts')">&times;</span>
-      <p><strong>Nerve Grafts</strong> aim to minimize immune rejection. Autologous grafts use your own nerve tissue to integrate into the brain and reduce inflammation. Co-transplanting T cells helps reduce “needle trauma” inflammation. Clinical trials are ongoing.</p>
+  <!-- Hexagon Beehive Section -->
+  <section class="hex-grid">
+    <div class="hex">
+      <div class="hex-content" onclick="toggleHex(this)">
+        <div class="hex-front">Nerve Grafts</div>
+        <div class="hex-back">
+          <p>Nerve grafts aim to reduce immune rejection in Parkinson’s treatment by being invisible to the immune system. Autologous nerve tissue is often used to improve compatibility.</p>
+          <p>Co-transplanting regulatory T cells has shown promise in suppressing the immune reaction to surgical trauma, improving graft survival.</p>
+          <p>These strategies are being tested in clinical trials to enhance the safety and longevity of Parkinson’s therapies.</p>
+        </div>
+      </div>
     </div>
 
-    <div id="mscs" class="hex-content">
-      <span class="close-btn" onclick="toggleHex('mscs')">&times;</span>
-      <p><strong>MSCs</strong> (Mesenchymal stem cells) promote repair, reduce inflammation, and secrete protective factors. They’re under clinical trial as neuroprotective agents in Parkinson’s but don't yet replace dopamine neurons directly.</p>
+    <div class="hex">
+      <div class="hex-content" onclick="toggleHex(this)">
+        <div class="hex-front">MSCs</div>
+        <div class="hex-back">
+          <p>Mesenchymal stem cells (MSCs) are adult stem cells with regenerative and immunomodulatory abilities.</p>
+          <p>In Parkinson’s research, MSCs help protect neurons by secreting factors like BDNF and GDNF, reducing inflammation, and possibly aiding brain repair.</p>
+          <p>They're being tested in trials using various delivery methods, including intravenous and intrathecal injection.</p>
+        </div>
+      </div>
     </div>
-  </main>
 
+    <!-- Empty hexagons for future content -->
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    &copy; 2025 Finding Dopa. All rights reserved.
+    © 2025 Finding Dopa
   </footer>
 
+  <!-- JavaScript -->
   <script>
-    function toggleHex(id) {
-      const box = document.getElementById(id);
-      box.classList.toggle('active');
+    function toggleHex(element) {
+      element.classList.toggle('flipped');
     }
   </script>
+
 </body>
 </html>
