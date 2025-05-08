@@ -115,16 +115,7 @@
   /*border-bottom: 1px solid #2e2a89;*/
 }
 
-/*.section-buttons a {
-  background: transparent; 
-  color: #2e2a89;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-family: 'PT Serif', serif;
-  transition: background 0.3s ease, color 0.3s ease;
-  border: 1px solid #2e2a89;
-}*/
+
     .section-buttons a {
   background: white; /* Changed from transparent */
   color: #2e2a89;
@@ -148,11 +139,7 @@
   color: white;
   border: 2px solid #fa88dd;
 }
-/*.section-buttons a.active {
-  background: white;
-  color: #2e2a89;
-  border: 2px solid #2e2a89;
-}*/
+
  
     .section-title {
       font-size: 1.5rem;
@@ -347,130 +334,6 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-
-<!--  <script>
-    const currentPage = window.location.pathname.split("/").pop();
-    const slides = document.querySelectorAll('.slider-container .slide');
-    slides.forEach(slide => {
-      if (slide.getAttribute('href') === currentPage) {
-        slide.classList.add('active');
-      }
-    });
-  </script>-->
-  <!--<script>
-  document.querySelectorAll('.section-buttons a').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const filter = btn.dataset.filter;
-
-      // Show only the matching section
-      ['podcasts', 'papers', 'organizations'].forEach(id => {
-        document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-      });
-    });
-  });
-
-  // Optional: show all sections initially
-  ['podcasts', 'papers', 'institutions'].forEach(id => {
-    document.getElementById(id).style.display = 'block';
-  });
-</script>-->
-  <!--<script>
-  const buttons = document.querySelectorAll('.section-buttons a');
-  let activeFilter = null;
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const filter = btn.dataset.filter;
-
-      // If clicked again on the same filter, show all sections
-      if (activeFilter === filter) {
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = 'block';
-        });
-        activeFilter = null; // reset filter
-      } else {
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-        });
-        activeFilter = filter;
-      }
-    });
-  });
-
-  // Show all sections initially
-  ['podcasts', 'papers', 'organizations'].forEach(id => {
-    document.getElementById(id).style.display = 'block';
-  });
-</script>-->
-<!--<script>
-  const buttons = document.querySelectorAll('.section-buttons a');
-  let activeFilter = null;
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const filter = btn.dataset.filter;
-
-      // Remove the 'active' class from all buttons
-      buttons.forEach(button => button.classList.remove('active'));
-
-      // If clicked again on the same filter, show all sections
-      if (activeFilter === filter) {
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = 'block';
-        });
-        activeFilter = null; // reset filter
-      } else {
-        // Show the corresponding section and add 'active' class to the clicked button
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-        });
-        activeFilter = filter;
-        btn.classList.add('active');
-      }
-    });
-  });
-
-  // Show all sections initially
-  ['podcasts', 'papers', 'organizations'].forEach(id => {
-    document.getElementById(id).style.display = 'block';
-  });
-</script>-->
- <!-- <script>
-  const buttons = document.querySelectorAll('.section-buttons a');
-  let activeFilter = null;
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const filter = btn.dataset.filter;
-
-      if (activeFilter === filter) {
-        // Deactivate filter
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = 'block';
-        });
-        btn.classList.remove('active'); // remove highlight
-        activeFilter = null;
-      } else {
-        // Activate new filter
-        buttons.forEach(button => button.classList.remove('active'));
-        ['podcasts', 'papers', 'organizations'].forEach(id => {
-          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-        });
-        btn.classList.add('active');
-        activeFilter = filter;
-      }
-    });
-  });
-
-  // Show all sections initially
-  ['podcasts', 'papers', 'organizations'].forEach(id => {
-    document.getElementById(id).style.display = 'block';
-  });
-</script>-->
   <script>
   const buttons = document.querySelectorAll('.section-buttons a');
   let activeButton = null;
