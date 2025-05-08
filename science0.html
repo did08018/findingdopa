@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Finding Dopa - Beehive</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #fff8dc;
-      color: #333;
+      color: #2e2a89;
     }
 
     header {
@@ -36,6 +36,7 @@
       text-decoration: none;
       color: #007acc;
       font-size: 1.2rem;
+      height: 32px;
     }
 
     .home-brand i {
@@ -54,11 +55,17 @@
     }
 
     .slider-container {
-      display: flex;
+      width: 100%;
       overflow-x: auto;
-      padding: 8px;
+      display: flex;
       gap: 10px;
-      background: #1a1a1a;
+      padding: 8px 10px;
+      scrollbar-width: none;
+      background-color: #121212;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
     }
 
     .slide {
@@ -68,9 +75,11 @@
       padding: 5px 10px;
       border-radius: 8px;
       white-space: nowrap;
+      font-size: 0.95rem;
       font-family: 'PT Serif', serif;
       border: 1px solid #333;
       text-align: center;
+      text-decoration: none;
     }
 
     .slide:hover {
@@ -84,75 +93,83 @@
       border: 2px solid #2e2a89;
     }
 
-    .hive-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
-      padding: 40px 0;
-      background: #fff3b0;
+    .hex-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 2px;
+      padding: 10px;
     }
 
     .hex {
-      width: 100px;
-      height: 57.74px;
-      background: #ffd700;
       position: relative;
-      margin: 28.87px 5px;
+      width: 100%;
+      padding-bottom: 86.6%;
+      background-color: #f1c40f;
+      clip-path: polygon(
+        50% 0%,
+        93% 25%,
+        93% 75%,
+        50% 100%,
+        7% 75%,
+        7% 25%
+      );
       cursor: pointer;
-      transition: transform 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      text-align: center;
-      color: #333;
+      transition: transform 0.3s;
     }
 
     .hex:hover {
       transform: scale(1.05);
-      background: #fcd116;
-    }
-
-    .hex::before,
-    .hex::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-    }
-
-    .hex::before {
-      bottom: 100%;
-      border-bottom: 28.87px solid #ffd700;
-    }
-
-    .hex::after {
-      top: 100%;
-      border-top: 28.87px solid #ffd700;
     }
 
     .hex-content {
-      padding: 5px;
-      background: white;
-      border-radius: 4px;
-      display: none;
       position: absolute;
-      top: 120%;
-      width: 200px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .hex-content p {
-      margin: 0;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-family: 'PT Serif', serif;
       font-size: 0.9rem;
-      color: #333;
+      background: white;
+      padding: 6px;
+      border-radius: 6px;
     }
 
-    .hex.open .hex-content {
-      display: block;
+    .popup {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 20px;
+      border: 2px solid #2e2a89;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      max-width: 600px;
+      z-index: 10;
+    }
+
+    .popup h3 {
+      margin-top: 0;
+      color: #2e2a89;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      cursor: pointer;
+      color: #2e2a89;
+      font-size: 1.2rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 9;
     }
 
     footer {
@@ -162,7 +179,6 @@
       color: white;
       font-size: 0.8rem;
     }
-
   </style>
 </head>
 <body>
@@ -173,6 +189,7 @@
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
+
     <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
@@ -186,51 +203,61 @@
     </div>
   </header>
 
-  <main>
-    <div class="hive-container">
-      <!-- Repeat 20 hexes -->
-      <div class="hex" onclick="toggleHex(this)">Nerve Grafts
-        <div class="hex-content">
-          <p>Nerve grafts minimize immune rejection in PD by using autologous tissues or immune modulation.</p>
-        </div>
-      </div>
-      <div class="hex" onclick="toggleHex(this)">MSCs
-        <div class="hex-content">
-          <p>Mesenchymal stem cells help reduce inflammation and protect neurons in PD.</p>
-        </div>
-      </div>
-      <!-- 18 empty hexes -->
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
-      <div class="hex" onclick="toggleHex(this)"></div>
+  <main class="hex-grid">
+    <!-- Filled hexes -->
+    <div class="hex" onclick="showPopup('Nerve Grafts', 'Nerve grafts use patient’s own tissue to reduce immune rejection, especially during deep brain stimulation surgery.')">
+      <div class="hex-content">Nerve Grafts</div>
     </div>
+    <div class="hex" onclick="showPopup('MSCs', 'Mesenchymal stem/stromal cells help modulate inflammation, promote repair, and are being tested for Parkinson’s disease.')">
+      <div class="hex-content">MSCs</div>
+    </div>
+
+    <!-- Empty hexes for future entries -->
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
+    <div class="hex"><div class="hex-content"></div></div>
   </main>
 
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
+  <div id="overlay" class="overlay" style="display:none" onclick="closePopup()"></div>
+  <div id="popup" class="popup" style="display:none">
+    <div class="popup-close" onclick="closePopup()">&times;</div>
+    <h3 id="popup-title"></h3>
+    <p id="popup-content"></p>
+  </div>
+
   <script>
-    function toggleHex(el) {
-      el.classList.toggle('open');
+    function showPopup(title, content) {
+      document.getElementById('popup-title').innerText = title;
+      document.getElementById('popup-content').innerText = content;
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
     }
 
-    // Highlight current page in slider
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    // Highlight active slide
     const currentPage = window.location.pathname.split("/").pop();
     document.querySelectorAll('.slide').forEach(slide => {
       if (slide.getAttribute('href') === currentPage) {
