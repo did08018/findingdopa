@@ -275,9 +275,9 @@
         <a class="resource-link" href="https://davisphinneyfoundation.org/podcast-cell-replacement-parkinsons-with-roger-barker/" target="_blank">
           <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
+<!-- Add more podcast entries here -->
       </div>
     </section>
-
     <section id="papers">
       <div class="resource-entry">
         <img src="images/TreeFrog.PNG" alt="Paper icon" />
@@ -288,9 +288,9 @@
         <a class="resource-link" href="https://treefrog.fr/2025/04/10/overview-of-parkinsons-disease-clinical-trial-landscape/" target="_blank">
           <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
+<!-- Add more papers entries here -->
       </div>
     </section>
-
     <section id="organizations">
       <div class="resource-entry">
         <img src="images/michaeljfox.JPG" alt="Institution logo" />
@@ -301,6 +301,7 @@
         <a class="resource-link" href="https://www.michaeljfox.org" target="_blank">
           <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
+  <!-- Add more organizations entries here -->
       </div>
     </section>
   </main>
@@ -308,38 +309,6 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-
-  <!--<script>
-    const buttons = document.querySelectorAll('.section-buttons a');
-    let activeButton = null;
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        const filter = btn.dataset.filter;
-
-        if (activeButton === btn) {
-          ['podcasts', 'papers', 'organizations'].forEach(id => {
-            document.getElementById(id).style.display = 'block';
-          });
-          btn.classList.remove('active');
-          activeButton = null;
-        } else {
-          buttons.forEach(b => b.classList.remove('active'));
-          ['podcasts', 'papers', 'organizations'].forEach(id => {
-            document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-          });
-          btn.classList.add('active');
-          activeButton = btn;
-        }
-      });
-    });
-
-    // Show all sections initially
-    ['podcasts', 'papers', 'organizations'].forEach(id => {
-      document.getElementById(id).style.display = 'block';
-    });
-  </script>-->
   <script>
   const buttons = document.querySelectorAll('.section-buttons a');
   let activeButton = null;
