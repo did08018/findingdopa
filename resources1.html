@@ -115,7 +115,7 @@
   /*border-bottom: 1px solid #2e2a89;*/
 }
 
-.section-buttons a {
+/*.section-buttons a {
   background: transparent; /* Transparent button background */
   color: #2e2a89;
   padding: 6px 12px;
@@ -124,7 +124,7 @@
   font-family: 'PT Serif', serif;
   transition: background 0.3s ease, color 0.3s ease;
   border: 1px solid #2e2a89;
-}
+}*/
 /*.section-buttons a.active {
       background: #2e2a89;
       color: white;
@@ -133,7 +133,7 @@
     .section {
       display: none;
     }*/
-.section-buttons a:hover {
+/*.section-buttons a:hover {
   background: #fa88dd;
   color: white;
 }
@@ -141,6 +141,27 @@
   background: white;
   color: #2e2a89;
   border: 2px solid #2e2a89;
+}*/
+    .section-buttons a {
+  background: white;
+  color: #2e2a89;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'PT Serif', serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  border: 1px solid #2e2a89;
+}
+
+.section-buttons a.active {
+  background: #2e2a89;
+  color: white;
+  border: 2px solid #2e2a89;
+}
+
+.section-buttons a:hover {
+  background: #fa88dd;
+  color: white;
 }
     .section-title {
       font-size: 1.5rem;
@@ -450,6 +471,39 @@
         });
         btn.classList.add('active');
         activeFilter = filter;
+      }
+    });
+  });
+
+  // Show all sections initially
+  ['podcasts', 'papers', 'organizations'].forEach(id => {
+    document.getElementById(id).style.display = 'block';
+  });
+</script>-->
+  <!--<script>
+  const buttons = document.querySelectorAll('.section-buttons a');
+  let activeButton = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = btn.dataset.filter;
+
+      // Toggle: if clicking the already active button, unfilter
+      if (activeButton === btn) {
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = 'block';
+        });
+        btn.classList.remove('active');
+        activeButton = null;
+      } else {
+        // Otherwise, filter and update active
+        buttons.forEach(b => b.classList.remove('active'));
+        ['podcasts', 'papers', 'organizations'].forEach(id => {
+          document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+        });
+        btn.classList.add('active');
+        activeButton = btn;
       }
     });
   });
