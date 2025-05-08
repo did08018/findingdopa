@@ -8,23 +8,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    :root {
+      --colors: #2e2a89, #007acc, #00bfa5, #ff4081, #6a1b9a, #c2185b, #0097a7, #ef6c00;
+    }
+
     html, body {
-      height: 100%;
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #b2fab4, #81d4fa);
       background-attachment: fixed;
       color: #004d40;
-      display: flex;
-      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
       background-color: #121212;
-      padding: 2px 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
     }
 
     .top-bar {
@@ -44,7 +43,10 @@
       text-decoration: none;
       color: #007acc;
       font-size: 1.2rem;
-      height: 32px;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
     }
 
     .home-brand:hover {
@@ -63,8 +65,7 @@
       overflow-x: scroll;
       display: flex;
       gap: 10px;
-      margin-top: 8px;
-      padding-bottom: 10px;
+      padding: 8px 10px;
       scrollbar-width: none;
     }
 
@@ -76,13 +77,17 @@
       flex: 0 0 auto;
       background: #1f1f1f;
       color: white;
-      padding: 5px 10px;
+      padding: 6px 14px;
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
       font-family: 'PT Serif', serif;
       border: 1px solid #333;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
     .slide:hover {
@@ -96,39 +101,21 @@
       border: 2px solid #2e2a89;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
     .hero {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       padding: 0 20px;
-      margin-bottom: 10px;
       text-align: center;
     }
 
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 4 0 10px;
-      padding: 0;
+      margin: 5px auto;
       color: #2e2a89;
       position: relative;
-    }
-
-    .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
     }
 
     .hero img {
@@ -137,8 +124,6 @@
       margin: 20px auto 0.5rem;
       display: block;
       border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
     }
 
     .welcome-text {
@@ -147,16 +132,14 @@
       color: #2e2a89;
       text-align: center;
       margin-top: 10px;
-      margin-bottom: 0px;
     }
 
     .legend-section {
       display: flex;
       justify-content: center;
-      align-items: center;
     }
 
-    .legend-section img.legend-image {
+    .legend-image {
       max-width: 300px;
       width: 100%;
       height: 300px;
@@ -167,33 +150,21 @@
     }
 
     .news-item {
-      padding: 1.2rem;
-      border-radius: 16px;
-      margin: 1rem 20px;
-      background-color: var(--bg-color, #333);
+      padding: 1.5rem;
       color: white;
       font-family: 'PT Serif', serif;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s ease;
     }
 
-    .news-item:hover {
-      transform: scale(1.02);
+    .news-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
     }
 
     .news-date {
       font-size: 0.9rem;
-      font-weight: 400;
       opacity: 0.85;
-      margin-bottom: 6px;
-    }
-
-    .news-title {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 8px;
-      display: block;
-      color: white;
+      margin-bottom: 0.3rem;
     }
 
     .news-link {
@@ -208,7 +179,6 @@
       background: #1a1a1a;
       color: white;
       font-size: 0.8rem;
-      line-height: 1.2;
     }
   </style>
 </head>
@@ -221,6 +191,7 @@
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
+
     <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
@@ -239,45 +210,13 @@
       <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
       <h1 class="welcome-text">Latest News</h1>
     </section>
+
     <section class="legend-section">
       <img src="images/Bone.JPG" alt="Booo" class="legend-image" />
     </section>
-    <section>
-      <div class="news-item">
-        <div class="news-date">April 30, 2025</div>
-        <div class="news-title">iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles</div>
-        <a class="news-link" href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" target="_blank">Read Article</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">April 28, 2025</div>
-        <div class="news-title">New biomarker may enable pre-onset Parkinson's diagnosis</div>
-        <a class="news-link" href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" target="_blank">Read Article</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">April 09, 2025</div>
-        <div class="news-title">Funding ethical treatments over embryo-destructive research</div>
-        <a class="news-link" href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" target="_blank">Read Article</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">April 09, 2025</div>
-        <div class="news-title">Immune-evasive human stem cell graft integrates in rodents</div>
-        <a class="news-link" href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" target="_blank">Read Article</a> - <a class="news-link" href="pdf/1-s2.0-S1934590925000980-main.pdf" download>(PDF)</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">April 01, 2025</div>
-        <div class="news-title">Why is Philadelphia called the Cellicon Valley?</div>
-        <a class="news-link" href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" target="_blank">Read Article</a> - <a class="news-link" href="pdf/Why is Philadelphia called the Cellicon Valley.pdf" download>(PDF)</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">November 19, 2024</div>
-        <div class="news-title">New stem cell therapy confirmed safe and effective</div>
-        <a class="news-link" href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" target="_blank">Read Article</a> - <a class="news-link" href="pdf/Parkinson patient moves freely again after world-first implant of lab-grown.pdf" download>(PDF)</a>
-      </div>
-      <div class="news-item">
-        <div class="news-date">May 08, 2024</div>
-        <div class="news-title">Patient regains movement after lab-grown cell transplant</div>
-        <a class="news-link" href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" target="_blank">Read Article</a> - <a class="news-link" href="pdf/A New Stem Cell Therapy for Parkinson Disease Has Been Confirmed Safe and Effe.pdf" download>(PDF)</a>
-      </div>
+
+    <section id="news-container">
+      <!-- News items will be inserted here by JS -->
     </section>
   </main>
 
@@ -288,20 +227,66 @@
   <script>
     const currentPage = window.location.pathname.split("/").pop();
     const slides = document.querySelectorAll('.slider-container .slide');
+
     slides.forEach(slide => {
       if (slide.getAttribute('href') === currentPage) {
         slide.classList.add('active');
       }
     });
 
-    const colors = [
-      '#2e2a89', '#007acc', '#00bfa5', '#8e24aa',
-      '#f4511e', '#3949ab', '#1e88e5', '#43a047',
-      '#d81b60', '#fdd835'
+    const newsData = [
+      {
+        date: "April 30, 2025",
+        title: "iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles",
+        link: "https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137"
+      },
+      {
+        date: "April 28, 2025",
+        title: "betaSENSE GmbH suggests alpha/beta-synuclein ratios can diagnose Parkinson’s pre-onset",
+        link: "https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/"
+      },
+      {
+        date: "April 09, 2025",
+        title: "Embryo-destroying research funds better spent on ethical treatments",
+        link: "https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617"
+      },
+      {
+        date: "April 09, 2025",
+        title: "Immune-evading human stem-cell neural graft integrates in rodents",
+        link: "https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub"
+      },
+      {
+        date: "April 01, 2025",
+        title: "Why is Philadelphia called the Cellicon Valley?",
+        link: "https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley"
+      },
+      {
+        date: "November 19, 2024",
+        title: "New Stem Cell Therapy for Parkinson's Found Safe & Effective",
+        link: "https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706"
+      },
+      {
+        date: "May 08, 2024",
+        title: "Parkinson’s patient walks after lab-grown brain cell implant",
+        link: "https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm"
+      }
     ];
 
-    document.querySelectorAll('.news-item').forEach((item, index) => {
-      item.style.setProperty('--bg-color', colors[index % colors.length]);
+    const colors = [
+      '#2e2a89', '#007acc', '#00bfa5', '#ff4081', '#6a1b9a', '#c2185b', '#0097a7', '#ef6c00'
+    ];
+
+    const container = document.getElementById('news-container');
+    newsData.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'news-item';
+      div.style.backgroundColor = colors[index % colors.length];
+      div.innerHTML = `
+        <div class="news-date">${item.date}</div>
+        <div class="news-title">${item.title}</div>
+        <a class="news-link" href="${item.link}" target="_blank">Read Article</a>
+      `;
+      container.appendChild(div);
     });
   </script>
 </body>
