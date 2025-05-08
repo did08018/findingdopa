@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Finding Dopa – The Science</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
 
+  <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #0b0f1a, #05060c);
-      color: #d4f2ff;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('images/alien_background.jpg'); /* Replace with your own path */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+      color: #ffffff;
     }
 
     header {
-      background: #121212;
+      background-color: #121212;
       padding: 2px 2px;
     }
 
@@ -40,15 +41,20 @@
       padding: 2px 8px;
       margin-left: 8px;
       text-decoration: none;
-      color: #00eaff;
+      color: #00ffcc;
       font-size: 1.2rem;
     }
 
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
     .home-brand:hover {
-      color: #73fff1;
+      color: #00bfff;
     }
 
     .logo-text {
+      font-family: 'PT Serif', serif;
       font-weight: 700;
       font-size: 1.3rem;
       color: white;
@@ -56,11 +62,11 @@
 
     .slider-container {
       width: 100%;
-      overflow-x: auto;
+      overflow-x: scroll;
       display: flex;
       gap: 10px;
-      padding: 10px 8px;
-      background: #181818;
+      margin-top: 8px;
+      padding: 5px 10px;
       scrollbar-width: none;
     }
 
@@ -70,123 +76,122 @@
 
     .slide {
       flex: 0 0 auto;
-      background: #333;
+      background: #222;
       color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
+      padding: 6px 14px;
+      border-radius: 8px;
       white-space: nowrap;
-      text-decoration: none;
-      border: 1px solid #555;
-    }
-
-    .slide:hover {
-      background: #007aff;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      border: 1px solid #444;
+      text-align: center;
     }
 
     .slide.active {
-      background: #00ffe0;
-      color: #000;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
+      background: #fff;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
     }
 
     main {
-      padding: 20px;
-    }
-
-    .hex-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      justify-items: center;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      margin-top: 20px;
+      position: relative;
     }
 
-    .hex {
-      width: 100px;
-      aspect-ratio: 1 / 1.1547;
-      background: rgba(0, 255, 255, 0.1);
-      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    .orb-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .orb {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #00ffee, #002244);
+      box-shadow: 0 0 18px 4px rgba(0,255,255,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 10px;
-      color: #00ffe0;
-      font-size: 0.8rem;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: bold;
       cursor: pointer;
-      border: 1px solid #00ffe0;
+      transition: transform 0.3s ease;
+      animation: float 6s ease-in-out infinite;
     }
 
-    .hex:hover {
-      background: #00ffe0;
-      color: #000;
+    .orb:nth-child(odd) {
+      animation-delay: 1.5s;
     }
 
-    .hex.empty {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px dashed #555;
-      color: #555;
-      cursor: default;
+    .orb:hover {
+      transform: scale(1.1);
     }
 
-    .overlay {
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .popup {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .overlay-content {
-      background: #0e1a26;
-      border: 2px solid #00ffe0;
-      color: #d4f2ff;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(5, 5, 15, 0.95);
+      color: #fff;
       padding: 20px;
       border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0,255,255,0.5);
+      z-index: 999;
       max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
+      width: 90%;
+      display: none;
     }
 
-    .overlay-content h2 {
+    .popup h2 {
       margin-top: 0;
-      color: #00ffe0;
+      color: #00ffee;
     }
 
-    .close-btn {
-      background: transparent;
+    .popup button {
+      margin-top: 15px;
+      background: #00ffee;
+      color: #000;
       border: none;
-      color: #00ffe0;
-      font-size: 1.2rem;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
       cursor: pointer;
-      float: right;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
     <div class="top-bar">
-      <a href="index.html" class="home-brand">
+      <a href="index.html" class="home-brand" aria-label="Home">
         <i class="fas fa-brain"></i>
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
+
     <div class="slider-container">
       <a href="welcome.html" class="slide">Welcome</a>
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
@@ -201,28 +206,23 @@
   </header>
 
   <main>
-    <h1 style="text-align:center;">The Science</h1>
-    <div class="hex-grid">
-      <div class="hex" onclick="openOverlay('Nerve Grafts', `Nerve grafts minimize immune rejection in Parkinson’s treatment. Autologous peripheral nerve grafts use the patient’s own tissue for better compatibility. Combined with regulatory T cells, they reduce inflammation and improve neuron survival. Clinical trials are evaluating safety and efficacy.`)">Nerve Grafts</div>
-      <div class="hex" onclick="openOverlay('MSCs', `Mesenchymal stem cells (MSCs) aid Parkinson’s treatment via neuroprotection and immunomodulation. They secrete trophic factors (e.g., BDNF, GDNF), reduce inflammation, and support brain repair. Delivery methods vary, and trials are ongoing to assess long-term effectiveness.`)">MSCs</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
-      <div class="hex empty">Coming Soon</div>
+    <h1 style="text-align: center; font-family: 'PT Serif', serif;">The Science</h1>
+    <div class="orb-container">
+      <div class="orb" onclick="openPopup('Nerve Grafts', `Nerve grafts are designed to minimize immune rejection in Parkinson’s treatment by using the patient’s own cells or immune-friendly strategies.`)">Nerve Grafts</div>
+      <div class="orb" onclick="openPopup('MSCs', `Mesenchymal stem cells (MSCs) offer neuroprotection, reduce inflammation, and support repair in Parkinson’s disease. They are being tested in clinical trials.`)">MSCs</div>
+      <div class="orb" onclick="openPopup('Gene Therapy', `Gene therapies are being developed to boost dopamine production or protect neurons, with some already in clinical trials.`)">Gene Therapy</div>
+      <div class="orb" onclick="openPopup('DBS', `Deep Brain Stimulation (DBS) is a surgical treatment that helps regulate abnormal brain signals in Parkinson’s.`)">DBS</div>
+      <div class="orb" onclick="openPopup('Neuroinflammation', `Neuroinflammation contributes to neuron damage in Parkinson’s. Therapies targeting it aim to reduce progression.`)">Neuroinflammation</div>
+      <div class="orb" onclick="openPopup('Microbiome', `Gut bacteria may influence brain inflammation and Parkinson’s risk. New research is exploring this gut-brain link.`)">Microbiome</div>
+      <div class="orb" onclick="openPopup('Alpha-synuclein', `This protein misfolds and aggregates in Parkinson’s disease. Therapies aim to stop or reverse this process.`)">Alpha-synuclein</div>
+      <div class="orb" onclick="openPopup('Exosomes', `Exosomes are tiny vesicles used in cell communication. They may deliver therapies directly to brain cells.`)">Exosomes</div>
+      <!-- Add more orbs here as needed -->
+    </div>
+
+    <div class="popup" id="popup">
+      <h2 id="popup-title"></h2>
+      <p id="popup-content"></p>
+      <button onclick="closePopup()">Close</button>
     </div>
   </main>
 
@@ -230,32 +230,24 @@
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  <div class="overlay" id="overlay">
-    <div class="overlay-content">
-      <button class="close-btn" onclick="closeOverlay()">&times;</button>
-      <h2 id="overlay-title"></h2>
-      <p id="overlay-text"></p>
-    </div>
-  </div>
-
   <script>
+    const slides = document.querySelectorAll('.slider-container .slide');
     const currentPage = window.location.pathname.split("/").pop();
-    document.querySelectorAll('.slider-container .slide').forEach(slide => {
+    slides.forEach(slide => {
       if (slide.getAttribute('href') === currentPage) {
         slide.classList.add('active');
       }
     });
 
-    function openOverlay(title, text) {
-      document.getElementById("overlay-title").textContent = title;
-      document.getElementById("overlay-text").textContent = text;
-      document.getElementById("overlay").style.display = "flex";
+    function openPopup(title, content) {
+      document.getElementById('popup-title').textContent = title;
+      document.getElementById('popup-content').textContent = content;
+      document.getElementById('popup').style.display = 'block';
     }
 
-    function closeOverlay() {
-      document.getElementById("overlay").style.display = "none";
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
     }
   </script>
-
 </body>
 </html>
