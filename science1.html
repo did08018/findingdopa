@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -13,47 +12,16 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
       overflow-x: hidden;
-      font-family: 'Segoe UI', sans-serif;
     }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      background: black;
-      color: #eee;
-      position: relative;
-    }
-
-    /* STARFIELD BACKGROUND */
-    body::before {
-      content: '';
+    canvas#bgCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(white 1px, transparent 1px),
-                  radial-gradient(white 1px, transparent 1px);
-      background-size: 50px 50px;
-      background-position: 0 0, 25px 25px;
-      z-index: 0;
-      opacity: 0.07;
-      animation: moveStars 200s linear infinite;
-    }
-
-    @keyframes moveStars {
-      0% {
-        transform: translate(0, 0);
-      }
-      100% {
-        transform: translate(-100px, -100px);
-      }
-    }
-
-    main, header, footer {
-      position: relative;
-      z-index: 1;
+      z-index: -1;
     }
 
     header {
@@ -79,21 +47,15 @@
       padding: 2px 8px;
       margin-left: 8px;
       text-decoration: none;
-      color: #00bfff;
+      color: #00ccff;
       font-size: 1.2rem;
-      height: 32px;
-    }
-
-    .home-brand i {
-      font-size: 1.3rem;
     }
 
     .home-brand:hover {
-      color: #00ffee;
+      color: #66e0ff;
     }
 
     .logo-text {
-      font-family: 'PT Serif', serif;
       font-weight: 700;
       font-size: 1.3rem;
       color: white;
@@ -121,13 +83,15 @@
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
-      font-family: 'PT Serif', serif;
+      font-family: 'Orbitron', sans-serif;
       border: 1px solid #333;
+      text-align: center;
+      text-decoration: none;
     }
 
     .slide:hover {
       background: #333;
-      color: #00ffee;
+      color: #00ccff;
     }
 
     .slide.active {
@@ -137,83 +101,84 @@
     }
 
     .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 20px;
-      margin-bottom: 10px;
       text-align: center;
+      margin: 20px;
     }
 
     .hero p {
-      font-size: 0.8rem;
-      max-width: 600px;
-      margin: 5px;
-      color: #00ffee;
-      position: relative;
-    }
-
-    .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
+      font-size: 1rem;
+      color: #00ccff;
     }
 
     .welcome-text {
-      font-family: 'PT Serif', serif;
       font-size: 2rem;
-      color: #00ffee;
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 0px;
+      color: #fff;
+      margin-top: 5px;
     }
 
-    .futuristic-section {
+    .orb-section {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 40px;
       padding: 40px 20px;
-      background: transparent;
-      font-family: 'Orbitron', sans-serif;
     }
 
     .orb {
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at center, #2e2a89, #000033);
       border-radius: 50%;
-      background: #1a1a40;
-      border: 2px solid #00ffee;
-      box-shadow: 0 0 12px #00ffee77;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #00ffee;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: white;
       text-align: center;
+      font-size: 1rem;
       padding: 10px;
+      cursor: pointer;
+      border: 2px solid #66e0ff;
+      box-shadow: 0 0 20px #00ccff;
+      transition: transform 0.3s ease;
     }
 
     .orb:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px #00ffeeaa;
+      box-shadow: 0 0 30px #00ffff;
     }
 
-    .paragraph-box {
+    .modal {
       display: none;
-      margin: 20px auto;
-      max-width: 800px;
-      background: #111;
-      color: #eee;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.85);
+      padding: 40px 20px;
+    }
+
+    .modal-content {
+      background-color: #1a1a1a;
+      margin: auto;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ffee44;
-      font-family: 'Segoe UI', sans-serif;
+      border: 2px solid #00ccff;
+      max-width: 800px;
+      color: white;
+    }
+
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: white;
     }
 
     footer {
@@ -222,74 +187,129 @@
       background: #1a1a1a;
       color: white;
       font-size: 0.8rem;
-      line-height: 1.2;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="top-bar">
-      <a href="index.html" class="home-brand" aria-label="Home">
-        <i class="fas fa-brain"></i>
-        <span class="logo-text">Finding Dopa</span>
-      </a>
+<canvas id="bgCanvas"></canvas>
+
+<header>
+  <div class="top-bar">
+    <a href="index.html" class="home-brand" aria-label="Home">
+      <i class="fas fa-brain"></i>
+      <span class="logo-text">Finding Dopa</span>
+    </a>
+  </div>
+
+  <div class="slider-container">
+    <a href="welcome.html" class="slide">Welcome</a>
+    <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+    <a href="science.html" class="slide">The Science</a>
+    <a href="actors.html" class="slide">The Actors</a>
+    <a href="news.html" class="slide">Latest News</a>
+    <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+    <a href="resources.html" class="slide">Resources</a>
+    <a href="about.html" class="slide">About</a>
+    <a href="disclaimer.html" class="slide">Disclaimer</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
+    <h1 class="welcome-text">The Science</h1>
+  </section>
+
+  <section class="orb-section">
+    <div class="orb" onclick="openModal('nerve')">Nerve Grafts</div>
+    <div class="orb" onclick="openModal('mscs')">MSCs</div>
+    <!-- Add more orbs as needed -->
+  </section>
+
+  <!-- Modals -->
+  <div id="nerve" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('nerve')">&times;</span>
+      <h2>Nerve Grafts</h2>
+      <p>Nerve grafts are designed to minimize immune rejection in Parkinson’s disease treatment. These grafts aim to be “invisible” to the body’s immune system.</p>
+      <p>One approach uses autologous peripheral nerve grafts implanted into affected brain regions, leveraging compatibility and reducing immune response.</p>
+      <p>Another strategy involves co-transplanting regulatory T cells, which reduce inflammation and improve graft survival.</p>
+      <p>These advancements pave the way for durable PD treatments that integrate immune modulation.</p>
     </div>
+  </div>
 
-    <div class="slider-container">
-      <a href="welcome.html" class="slide">Welcome</a>
-      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
-      <a href="science.html" class="slide">The Science</a>
-      <a href="actors.html" class="slide">The Actors</a>
-      <a href="news.html" class="slide">Latest News</a>
-      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
-      <a href="resources.html" class="slide">Resources</a>
-      <a href="about.html" class="slide">About</a>
-      <a href="disclaimer.html" class="slide">Disclaimer</a>
+  <div id="mscs" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('mscs')">&times;</span>
+      <h2>MSCs</h2>
+      <p>Mesenchymal stem cells (MSCs) support tissue repair, reduce inflammation, and are being studied for Parkinson’s disease.</p>
+      <p>They secrete neuroprotective factors, shift immune cells to neuroprotective states, and may stimulate endogenous repair mechanisms.</p>
+      <p>MSCs can be delivered via various methods and have shown early promise in trials, though long-term efficacy is under investigation.</p>
     </div>
-  </header>
+  </div>
+</main>
 
-  <main>
-    <section class="hero">
-      <p>A fix for Parkinson's Disease is on the way. Keep fighting!</p>
-      <h1 class="welcome-text">The Science</h1>
-    </section>
+<footer>
+  &copy; 2025 Finding Dopa. All rights reserved.
+</footer>
 
-    <section class="futuristic-section">
-      <div class="orb" onclick="toggleParagraph('nerveGrafts')">Nerve Grafts</div>
-      <div class="orb" onclick="toggleParagraph('mscs')">MSCs</div>
-    </section>
+<script>
+  // Modal functions
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
 
-    <div id="nerveGrafts" class="paragraph-box">
-      <p><strong>Nerve Grafts</strong></p>
-      <p>Nerve grafts are designed to minimize immune rejection in Parkinson’s disease (PD) treatment. These grafts aim to be “invisible” to the body’s immune system, enhancing their integration and effectiveness.</p>
-      <p>One approach utilizes autologous peripheral nerve grafts, where a patient’s own nerve tissue is transplanted into the brain regions affected by PD, such as the substantia nigra...</p>
-    </div>
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
 
-    <div id="mscs" class="paragraph-box">
-      <p><strong>MSCs: Mesenchymal stem/stromal cells</strong></p>
-      <p>MSCs are a type of adult stem cell found in bone marrow, fat, and other tissues. They help reduce inflammation and support tissue repair...</p>
-      <p>They’re being researched in Parkinson’s for their potential to support dopaminergic neurons, reduce neuroinflammation, and stimulate brain repair...</p>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Finding Dopa. All rights reserved.
-  </footer>
-
-  <script>
-    function toggleParagraph(id) {
-      const para = document.getElementById(id);
-      para.style.display = para.style.display === 'block' ? 'none' : 'block';
+  // Highlight active link
+  const currentPage = window.location.pathname.split("/").pop();
+  document.querySelectorAll('.slider-container .slide').forEach(slide => {
+    if (slide.getAttribute('href') === currentPage) {
+      slide.classList.add('active');
     }
+  });
 
-    const currentPage = window.location.pathname.split("/").pop();
-    const slides = document.querySelectorAll('.slider-container .slide');
-    slides.forEach(slide => {
-      if (slide.getAttribute('href') === currentPage) {
-        slide.classList.add('active');
-      }
+  // Animated background
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2 + 1,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+      color: `rgba(${100 + Math.random()*155},${100 + Math.random()*155},255,0.8)`
     });
-  </script>
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
 </body>
 </html>
