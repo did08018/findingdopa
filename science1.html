@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -16,15 +16,13 @@
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
+    /* Canvas Background */
+    #nebula-canvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/ESO_-_Nebulae_in_Scorpius_%28by%29.jpg') no-repeat center center fixed;
-      background-size: cover;
-      opacity: 0.3;
       z-index: -1;
     }
 
@@ -51,7 +49,7 @@
       padding: 2px 8px;
       margin-left: 8px;
       text-decoration: none;
-      color: #007acc;
+      color: #29ff7a;
       font-size: 1.2rem;
       height: 32px;
     }
@@ -101,13 +99,13 @@
 
     .slide:hover {
       background: #333;
-      color: #00bfff;
+      color: #29ff7a;
     }
 
     .slide.active {
       background: #fdfdfd;
-      color: #2e2a89;
-      border: 2px solid #2e2a89;
+      color: #29ff7a;
+      border: 2px solid #29ff7a;
     }
 
     main {
@@ -120,12 +118,12 @@
     .hero {
       font-family: 'PT Serif', serif;
       padding: 0 20px;
-      margin: 30px 0 10px;
+      margin: 10px 0 10px; /* Adjusted margin to move catchphrase higher */
     }
 
     .hero p {
       font-size: 1rem;
-      color: #2e2a89;
+      color: #29ff7a;
       margin-bottom: 5px;
       position: relative;
     }
@@ -141,7 +139,7 @@
 
     .welcome-text {
       font-size: 2rem;
-      color: #2e2a89;
+      color: #29ff7a;
     }
 
     .orb-grid {
@@ -155,7 +153,7 @@
 
     .orb {
       background: rgba(255, 255, 255, 0.15);
-      border: 2px solid #2e2a89;
+      border: 2px solid #29ff7a;
       border-radius: 50%;
       width: 140px;
       height: 140px;
@@ -173,7 +171,7 @@
 
     .orb:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #00bfff;
+      box-shadow: 0 0 15px #29ff7a;
     }
 
     .modal {
@@ -224,6 +222,9 @@
   </style>
 </head>
 <body>
+  <!-- Canvas for Particle Animation -->
+  <canvas id="nebula-canvas"></canvas>
+
   <header>
     <div class="top-bar">
       <a href="index.html" class="home-brand" aria-label="Home">
@@ -292,6 +293,73 @@
         slide.classList.add('active');
       }
     });
+
+    // Particle Animation
+    const canvas = document.getElementById('nebula-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    // Resize canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Create particles
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random();
+        this.color = `rgba(41, 255, 122, ${this.opacity})`; // green glow
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      const numberOfParticles = 150;
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
   </script>
 </body>
 </html>
