@@ -247,11 +247,24 @@ body::before {
   background-color: rgba(10, 10, 20, 0.7); /* Adjust opacity if needed */
   z-index: 0;
 }
+
+.main-overlay {
+  background-color: rgba(10, 10, 20, 0.4); /* Light transparent layer */
+  backdrop-filter: blur(2px); /* Optional soft blur */
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+    
   </style>
 </head>
 
 <body>
-  <div class="background-overlay"></div>
+  <!--<div class="background-overlay"></div>-->
   <header>
     <div class="top-bar">
       <a href="index.html" class="home-brand" aria-label="Home">
@@ -276,7 +289,7 @@ body::before {
   <div style="text-align: center; color: #00ffee; margin-top: 8px; font-size: 0.9rem;">
   A fix for Parkinson's Disease is on the way. Keep fighting!
 </div>
-
+<div class="main-overlay">
 <main>
     <div class="orb-container">
       <div class="orb" onclick="openPopup('Nerve Grafts', `Nerve grafts are designed to minimize immune rejection in Parkinson’s treatment by using the patient’s own cells or immune-friendly strategies.`)">Nerve Grafts</div>
