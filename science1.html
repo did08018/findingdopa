@@ -341,10 +341,12 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = 'rgba(0, 0, 0, 1)';
         ctx.fill();
       }
     }
+    
+/*ctx.fillStyle = this.color;*/
 
     function initParticles() {
       particlesArray = [];
