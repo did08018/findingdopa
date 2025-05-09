@@ -9,34 +9,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    .section-divider {
-      border: 0;
-      height: 1px;
-      background: #ccc;
-      margin: 2rem 0;
-      width: 100%;
-    }
-
-    html {
+    html, body {
+      margin: 0;
+      padding: 0;
       height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      margin: 0;
       display: flex;
       flex-direction: column;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #b2fab4, #81d4fa);
-      background-attachment: fixed;
-      color: #004d40;
+      background: black;
+      color: #eee;
+      position: relative;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+    /* STARFIELD BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(white 1px, transparent 1px),
+                  radial-gradient(white 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px;
+      z-index: 0;
+      opacity: 0.07;
+      animation: moveStars 200s linear infinite;
+    }
+
+    @keyframes moveStars {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-100px, -100px);
+      }
+    }
+
+    main, header, footer {
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -47,18 +64,39 @@
       align-items: flex-start;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px 20px;
+    .top-bar {
+      display: flex;
+      align-items: center;
       background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-      line-height: 1.2;
+      padding: 4px 0;
+      height: 40px;
     }
 
-    a {
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
       text-decoration: none;
-      color: inherit;
+      color: #00bfff;
+      font-size: 1.2rem;
+      height: 32px;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
+    .home-brand:hover {
+      color: #00ffee;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
     }
 
     .slider-container {
@@ -83,18 +121,13 @@
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
-      user-select: none;
       font-family: 'PT Serif', serif;
       border: 1px solid #333;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .slide:hover {
       background: #333;
-      color: #00bfff;
+      color: #00ffee;
     }
 
     .slide.active {
@@ -117,7 +150,7 @@
       font-size: 0.8rem;
       max-width: 600px;
       margin: 5px;
-      color: #2e2a89;
+      color: #00ffee;
       position: relative;
     }
 
@@ -130,86 +163,22 @@
       border-bottom: 1px solid #FFFFFF;
     }
 
-    .hero img {
-      max-width: 300px;
-      border-radius: 50%;
-      margin: 20px auto 0.5rem;
-      display: block;
-      border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
-    }
-
-    .cta-button {
-      background: #2e2a89;
-      color: #fdfdfd;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: background 0.3s ease, color 0.3s ease;
-      margin-bottom: 20px;
-    }
-
-    .cta-button:hover {
-      background: #fdfdfd;
-      color: #2e2a89;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      padding: 4px 0;
-      height: 40px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007acc;
-      font-size: 1.2rem;
-      height: 32px;
-    }
-
-    .home-brand i {
-      font-size: 1.3rem;
-    }
-
-    .home-brand:hover {
-      color: #00bfff;
-    }
-
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-    }
-
     .welcome-text {
       font-family: 'PT Serif', serif;
       font-size: 2rem;
-      color: #2e2a89;
+      color: #00ffee;
       text-align: center;
       margin-top: 10px;
       margin-bottom: 0px;
     }
 
-    /* FUTURISTIC SECTION */
     .futuristic-section {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
       padding: 40px 20px;
-      background: radial-gradient(circle at center, #0f0f1f, #000000);
-      min-height: 80vh;
+      background: transparent;
       font-family: 'Orbitron', sans-serif;
     }
 
@@ -245,6 +214,15 @@
       border-radius: 8px;
       box-shadow: 0 0 10px #00ffee44;
       font-family: 'Segoe UI', sans-serif;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+      line-height: 1.2;
     }
   </style>
 </head>
@@ -286,14 +264,12 @@
       <p><strong>Nerve Grafts</strong></p>
       <p>Nerve grafts are designed to minimize immune rejection in Parkinson’s disease (PD) treatment. These grafts aim to be “invisible” to the body’s immune system, enhancing their integration and effectiveness.</p>
       <p>One approach utilizes autologous peripheral nerve grafts, where a patient’s own nerve tissue is transplanted into the brain regions affected by PD, such as the substantia nigra...</p>
-      <!-- More paragraphs can go here -->
     </div>
 
     <div id="mscs" class="paragraph-box">
       <p><strong>MSCs: Mesenchymal stem/stromal cells</strong></p>
       <p>MSCs are a type of adult stem cell found in bone marrow, fat, and other tissues. They help reduce inflammation and support tissue repair...</p>
       <p>They’re being researched in Parkinson’s for their potential to support dopaminergic neurons, reduce neuroinflammation, and stimulate brain repair...</p>
-      <!-- More paragraphs can go here -->
     </div>
   </main>
 
