@@ -290,6 +290,19 @@
   border: 2px solid #2e2a89;
      }
 
+.name-row {
+  display: flex;
+  gap: 10px; /* space between the names */
+  justify-content: center; /* or 'flex-start' if you want left-aligned */
+  margin-top: 20px;
+}
+
+.scientist {
+  font-family: 'PT Serif', serif;
+  color: #29ff7a;
+  font-size: 1rem;
+}
+      
   </style>
 </head>
 
@@ -321,6 +334,11 @@
       <h1 class="welcome-text">Legends</h1>
     </section>
 
+<div class="name-row">
+  <span class="scientist">Yamanaka</span>
+  <span class="scientist">Gurdon</span>
+</div>
+    
     <section class="legend-section">
       <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
       <div class="tight-text">
