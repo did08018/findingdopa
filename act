@@ -1,0 +1,96 @@
+  <div class="legend-pair">
+    
+    <section class="legend-section">
+      <img src="images/Dr James Parkinson Cover.jpg" alt="Legend" class="legend-image" />
+      <div class="tight-text">
+        <p><strong>Dr James Parkinson<br>- Sage of Old -</strong></p>
+        <div class="info-button" onclick="openPopup('popup-parkinson')">+</div>
+      </div>
+    </section>
+
+    <!-- Popup 0.0 -->
+    <div id="popup-parkinson" class="popup-overlay" onclick="closePopup('popup-parkinson')">
+      <div class="popup-box" onclick="event.stopPropagation();">
+        <p>Named PD in 1817, laying the foundation for its study.</p>
+        <p>---</p>
+        <button onclick="closePopup('popup-parkinson')">Close</button>
+      </div>
+    </div>
+
+<section class="legend-section">
+      <img src="https://github.com/did08018/findingdopa/blob/6bf716f813e6204601d672a3844c9e6574adbe6d/images/michaeljfox.WEBP" alt="Legend" class="legend-image" />
+      <div class="tight-text">
+        <p><strong>Michael J. Fox<br>- High King of Hope -</strong></p>
+        <div class="info-button" onclick="openPopup('popup-fox')">+</div>
+      </div>
+    </section>
+
+    <!-- Popup 0.1 -->
+    <div id="popup-fox" class="popup-overlay" onclick="closePopup('popup-fox')">
+      <div class="popup-box" onclick="event.stopPropagation();">
+        <p>Global advocate and MJFF founder, funding $100M+ annually</p>
+        <p>Driving PPMI and biomarkers like αSyn-</p>
+        <button onclick="closePopup('popup-fox')">Close</button>
+      </div>
+    </div>
+    
+    <section class="hero">
+      <h1 class="welcome-text">Titans</h1>
+    </section>
+    
+    <div class="titan-pair">
+   <section class="legend-section">
+      <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
+      <div class="tight-text">
+        <p><strong>Shinya Yamanaka M.D., Ph.D.<br>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
+        <div class="info-button" onclick="openPopup('popup-yamanaka')">+</div>
+      </div>
+    </section>
+
+    <!-- Popup 1 -->
+    <div id="popup-yamanaka" class="popup-overlay" onclick="closePopup('popup-yamanaka')">
+      <div class="popup-box" onclick="event.stopPropagation();">
+        <p>Prize motivation: “for the discovery that mature cells can be reprogrammed to become pluripotent”</p>
+        <p>In 2006, Shinya Yamanaka succeeded in identifying a small number of genes within the genome of mice that proved decisive in this process. When activated, skin cells from mice could be reprogrammed to immature stem cells, which, in turn, can grow into different types of cells within the body.</p>
+        <button onclick="closePopup('popup-yamanaka')">Close</button>
+      </div>
+    </div>
+
+<section class="legend-section">
+      <img src="images/Sir John B. Gurdon.JPG" alt="Legend" class="legend-image" />
+      <div class="tight-text">
+        <p><strong>Sir John B. Gurdon<br>- Nobel Prize in Physiology or Medicine 2012 -</strong></p>
+        <div class="info-button" onclick="openPopup('popup-gurdon')">+</div>
+      </div>
+    </section>
+
+    <!-- Popup 1.5 -->
+    <div id="popup-gurdon" class="popup-overlay" onclick="closePopup('popup-gurdon')">
+      <div class="popup-box" onclick="event.stopPropagation();">
+        <p>Prize motivation: “for the discovery that mature cells can be reprogrammed to become pluripotent”</p>
+        <p>In 1962, John Gurdon removed the nucleus of a fertilized egg cell from a frog and replaced it with the nucleus of a cell taken from a tadpole's intestine. This modified egg cell grew into a new frog, proving that the mature cell still contained the genetic information needed to form all types of cells.</p>
+        <button onclick="closePopup('popup-gurdon')">Close</button>
+      </div>
+    </div>
+  </div>
+    <section class="hero">
+      <h1 class="welcome-text">Giant</h1>
+    </section>
+
+    <section class="legend-section">
+      <img src="images/Professor Roger Barker.PNG" alt="Giant" class="legend-image" />
+      <div class="tight-text">
+        <p><strong>Professor Roger Barker<br>- Professor of clinical neuroscience and honorary consultant neurologist -</strong></p>
+        <div class="info-button" onclick="openPopup('popup-barker')">+</div>
+      </div>
+    </section>
+
+    <!-- Popup 2 -->
+    <div id="popup-barker" class="popup-overlay" onclick="closePopup('popup-barker')">
+     <div class="popup-box" onclick="event.stopPropagation();">
+        <p>Roger Barker is the Professor of Clinical Neuroscience and Honorary Consultant in Neurology at the University of Cambridge and at Addenbrooke's Hospital. He trained at Oxford and London and has been in his current position since 2000, after completing an MRC Clinician Scientist Fellowship.</p>
+        <p>Roger combines basic research looking at novel therapies to treat chronic neurodegenerative disorders of the brain with clinically-based work aimed at better defining such disorders. He co-ordinated the TRANSEURO project looking at fetal cell grafting in patients with early Parkinson's Disease (PD) and is now leading a new stem cell trial in PD, STEM-PD. He is a Director of the ISSCR and is the Lead Academic Scientist on the ADDI in Cambridge.</p>
+        <button onclick="closePopup('popup-barker')">Close</button>
+      </div>
+    </div>
+</div>
