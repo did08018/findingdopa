@@ -372,5 +372,19 @@
     document.getElementById(id).style.display = 'block';
   });
 </script>
+ <script>
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
