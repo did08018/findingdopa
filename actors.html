@@ -302,6 +302,13 @@
   color: #29ff7a;
   font-size: 1rem;
 }
+
+.legend-pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
       
   </style>
 </head>
@@ -334,11 +341,13 @@
       <h1 class="welcome-text">Legends</h1>
     </section>
 
-<div class="name-row">
+<!--<div class="name-row">
   <p><span class="legend-name">Yamanaka</span> &nbsp;&nbsp; <span class="legend-name">Gurdon</span></p>
   <!--<span class="scientist">Yamanaka</span>
-  <span class="scientist">Gurdon</span>-->
-</div>
+  <span class="scientist">Gurdon</span>
+</div>-->
+    
+    <div class="legend-pair">
     
     <section class="legend-section">
       <img src="images/Shinya Yamanaka M.D., Ph.D..jpg" alt="Legend" class="legend-image" />
@@ -373,7 +382,7 @@
         <button onclick="closePopup('popup-gurdon')">Close</button>
       </div>
     </div>
-
+  </div>
     <section class="hero">
       <h1 class="welcome-text">Giant</h1>
     </section>
