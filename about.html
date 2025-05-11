@@ -267,6 +267,54 @@ body {
   transform: scale(1.2);
   transition: all 0.2s ease;
 }
+
+#feedback-wall {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-family: 'PT Serif', serif;
+  font-size: 1.8rem;
+  color: #2e2a89;
+  margin-bottom: 1rem;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feedback-card {
+  background: #fdfdfd;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.feedback-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-name {
+  font-size: 0.9rem;
+  color: #2e2a89;
+  font-style: italic;
+}
     
   </style>
 </head>
@@ -347,10 +395,20 @@ body {
   </div>
 </section>
 
-     <section>
-<div class="body-text">
-  <p>Who will be first?</p>
-  <p> --> ... </p>
+     <section id="feedback-wall">
+  <h2 class="section-title">Who will be first?</h2>
+  <div class="feedback-grid">
+    <div class="feedback-card">
+      <p class="feedback-text">"My neurologist said 2040. I said... wanna bet?"</p>
+      <span class="feedback-name">— Alex</span>
+    </div>
+    <div class="feedback-card">
+      <p class="feedback-text">"I printed your page and brought it to my appointment."</p>
+      <span class="feedback-name">— Janelle</span>
+    </div>
+    <!-- Add more feedback-card divs dynamically or manually -->
+  </div>
+</section>
     
   </main>
 
