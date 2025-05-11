@@ -269,40 +269,26 @@ body {
       </div>
     </section>
 
-<form id="contact-form">
+<!--<form id="contact-form">
   <input type="text" name="name" required placeholder="Your Name">
   <textarea name="feedback" required placeholder="Your Feedback"></textarea>
   <button type="submit">Send</button>
-</form>
+</form>-->
+
+    <section style="display: flex; justify-content: center; margin-top: 2rem;">
+  <form action="https://formspree.io/f/xnndbdyk" method="POST" style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); max-width: 400px; width: 100%; font-family: 'Segoe UI', sans-serif;">
+    <input type="text" name="name" required placeholder="Your Name" style="padding: 10px; border: 2px solid #2e2a89; border-radius: 6px; font-size: 1rem;">
+    <textarea name="feedback" required placeholder="Your Feedback" rows="4" style="padding: 10px; border: 2px solid #2e2a89; border-radius: 6px; font-size: 1rem;"></textarea>
+    <input type="hidden" name="_redirect" value="https://findingdopa.com#thankyou">
+    <button type="submit" style="background: linear-gradient(135deg, #2e2a89, #007acc); color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: transform 0.2s;">
+      Send It!
+    </button>
+  </form>
+</section>
 
 <div id="thankyou" style="display: none; text-align: center; margin-top: 1rem;">
   <p>Thank you for your feedback!</p>
-</div>
-    
-     <!--<form action="https://formspree.io/f/xnndbdyk" method="POST">
-  <input type="text" name="name" required>
-  <textarea name="feedback" required></textarea>
-  <input type="hidden" name="_redirect" value="https://findingdopa.com#thankyou">
-  <button type="submit">Send</button>
-</form>
-
-    <div id="thankyou" style="display: none;">
-  <p>Thank you for your feedback!</p>
-</div>-->
-
-
-    
-       <!-- <form action="https://formspree.io/f/xnndbdyk" method="POST">
-  <label>Name:<br>
-    <input type="text" name="name" required>
-  </label><br><br>
-  
-  <label>Feedback:<br>
-    <textarea name="feedback" required></textarea>
-  </label><br><br>
-  
-  <button type="submit">Send</button>
-</form> -->
+</di>
     
   </main>
 
@@ -324,13 +310,7 @@ body {
       }
     });
   </script>
-
-<!--<script>
-  if (window.location.hash === "#thankyou") {
-    document.getElementById("thankyou").style.display = "block";
-  }
-</script>-->
-
+  
   <script>
   const form = document.getElementById("contact-form");
   const thankYou = document.getElementById("thankyou");
