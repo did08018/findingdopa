@@ -210,6 +210,57 @@ body {
       margin-top: 10px;
       margin-bottom: 0px;
     }
+
+    .form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+#contact-form,
+#thankyou {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-family: 'PT Serif', serif;
+  text-align: center;
+}
+
+#contact-form h2 {
+  margin-top: 0;
+  color: #2e2a89;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+}
+
+#contact-form button {
+  background: #2e2a89;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+#contact-form button:hover {
+  background: #007acc;
+}
+    
   </style>
 </head>
 
@@ -269,15 +320,18 @@ body {
       </div>
     </section>
 
-<form id="contact-form">
-  <input type="text" name="name" required placeholder="Your Name">
-  <textarea name="feedback" required placeholder="Your Feedback"></textarea>
-  <button type="submit">Send</button>
-</form>
+<section class="form-wrapper">
+  <form id="contact-form">
+    <h2>Got Thoughts?</h2>
+    <input type="text" name="name" required placeholder="Your Name">
+    <textarea name="feedback" required placeholder="Your Feedback"></textarea>
+    <button type="submit">Send</button>
+  </form>
 
-<div id="thankyou" style="display: none; text-align: center; margin-top: 1rem;">
-  <p>Thank you for your feedback!</p>
-</div>
+  <div id="thankyou" style="display: none;">
+    <p>Thank you for your feedback!</p>
+  </div>
+</section>
     
   </main>
 
