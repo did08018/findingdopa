@@ -211,11 +211,27 @@ body {
       margin-bottom: 0px;
     }
 
+    /*.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}*/
+
     .form-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
+  background: radial-gradient(circle at 30% 30%, #ff00cc, #3333ff, #00ffff, #ffcc00);
+  background-size: 400% 400%;
+  animation: psychedelic-bg 10s ease infinite;
+}
+
+    @keyframes psychedelic-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 #contact-form,
