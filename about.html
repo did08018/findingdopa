@@ -326,10 +326,17 @@ body {
         <p>Ask your neurologist and let me know the answer, I'll paste it below.</p>
       </div>
 
+      <!--<div id="contact-email" style="text-align: center; margin-top: 1rem;">
+  <strong>Contact me:</strong> <span id="email-text">you@example.com</span>
+  <i class="fa-regular fa-clone" id="copy-icon" style="cursor: pointer; margin-left: 8px;" title="Copy to clipboard"></i>
+  <span id="copied-popup" style="display:none; margin-left: 10px; color: green; font-size: 0.9rem;">Copied!</span>
+</div>-->
+      
       <div id="contact-email" style="text-align: center; margin-top: 1rem;">
        Email or form - <span id="email-text">fix@findingdopa.com</span>
   <i class="fa-regular fa-clone" id="copy-icon" style="cursor: pointer; margin-left: 8px;" title="Copy to clipboard"></i>
-</div>
+   <span id="copied-popup" style="display:none; margin-left: 10px; color: green; font-size: 0.9rem;">Copied!</span>
+      </div>
 
     </section>
 
@@ -396,6 +403,21 @@ body {
     alert("Email copied to clipboard!");
   });
 });
+</script>
+
+  <script>
+  const copyIcon = document.getElementById("copy-icon");
+  const emailText = document.getElementById("email-text").textContent;
+  const copiedPopup = document.getElementById("copied-popup");
+
+  copyIcon.addEventListener("click", () => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      copiedPopup.style.display = "inline";
+      setTimeout(() => {
+        copiedPopup.style.display = "none";
+      }, 1500);
+    });
+  });
 </script>
   
 </body>
