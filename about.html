@@ -261,6 +261,12 @@ body {
 #contact-form button:hover {
   background: #007acc;
 }
+
+    #copy-icon:hover {
+  color: #2e2a89;
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
     
   </style>
 </head>
@@ -319,6 +325,12 @@ body {
         
         <p>Ask your neurologist and let me know the answer, I'll paste it below.</p>
       </div>
+
+      <div id="contact-email" style="text-align: center; margin-top: 1rem;">
+  <strong>Send it by email or form - </strong> <span id="email-text">fix@findingdopa.com</span>
+  <i class="fa-regular fa-clone" id="copy-icon" style="cursor: pointer; margin-left: 8px;" title="Copy to clipboard"></i>
+</div>
+
     </section>
 
 <section class="form-wrapper">
@@ -377,6 +389,13 @@ body {
       alert("There was a problem submitting the form. Please try again.");
     }
   });
+
+   document.getElementById("copy-icon").addEventListener("click", function () {
+  const email = document.getElementById("email-text").textContent;
+  navigator.clipboard.writeText(email).then(() => {
+    alert("Email copied to clipboard!");
+  });
+});
 </script>
   
 </body>
