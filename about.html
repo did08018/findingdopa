@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+p<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -282,38 +282,40 @@ body {
   margin-bottom: 1rem;
 }
 
+.feedback-section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.feedback-title {
+  font-family: 'PT Serif', serif;
+  font-size: 2rem;
+  color: #2e2a89;
+  margin-bottom: 2rem;
+}
+
 .feedback-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .feedback-card {
-  background: #fdfdfd;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.3s ease;
 }
 
 .feedback-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-
-.feedback-text {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.feedback-name {
-  font-size: 0.9rem;
-  color: #2e2a89;
-  font-style: italic;
+  transform: scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
     
   </style>
@@ -395,18 +397,19 @@ body {
   </div>
 </section>
 
-     <section id="feedback-wall">
-  <h2 class="section-title">Who will be first?</h2>
+ <section class="feedback-section">
+  <h2 class="feedback-title">Who will be first?</h2>
   <div class="feedback-grid">
     <div class="feedback-card">
-      <p class="feedback-text">"My neurologist said 2040. I said... wanna bet?"</p>
-      <span class="feedback-name">— Alex</span>
+      <p><strong>Emma R.</strong> – "My neurologist said this is still a decade away, but I'm hopeful."</p>
     </div>
     <div class="feedback-card">
-      <p class="feedback-text">"I printed your page and brought it to my appointment."</p>
-      <span class="feedback-name">— Janelle</span>
+      <p><strong>James T.</strong> – "She told me to keep dreaming... I will."</p>
     </div>
-    <!-- Add more feedback-card divs dynamically or manually -->
+    <div class="feedback-card">
+      <p><strong>Sandra K.</strong> – "No answer. But I'm printing the article to bring next visit."</p>
+    </div>
+    <!-- Add more feedback entries here -->
   </div>
 </section>
     
