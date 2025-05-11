@@ -269,7 +269,20 @@ body {
       </div>
     </section>
 
-        <form action="https://formspree.io/f/xnndbdyk" method="POST">
+     <form action="https://formspree.io/f/xnndbdyk" method="POST">
+  <input type="text" name="name" required>
+  <textarea name="feedback" required></textarea>
+  <input type="hidden" name="_redirect" value="https://findingdopa.com#thankyou">
+  <button type="submit">Send</button>
+</form>
+
+    <div id="thankyou" style="display: none;">
+  <p>Thank you for your feedback!</p>
+</div>
+
+
+    
+       <!-- <form action="https://formspree.io/f/xnndbdyk" method="POST">
   <label>Name:<br>
     <input type="text" name="name" required>
   </label><br><br>
@@ -279,7 +292,7 @@ body {
   </label><br><br>
   
   <button type="submit">Send</button>
-</form>
+</form> -->
     
   </main>
 
@@ -301,5 +314,12 @@ body {
       }
     });
   </script>
+
+<script>
+  if (window.location.hash === "#thankyou") {
+    document.getElementById("thankyou").style.display = "block";
+  }
+</script>
+  
 </body>
 </html>
