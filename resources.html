@@ -374,7 +374,10 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-  <script>
+
+  
+  
+  <!--<script>
   const buttons = document.querySelectorAll('.section-buttons a');
   let activeButton = null;
 
@@ -421,7 +424,57 @@
   ['podcasts', 'papers', 'organizations', ´videos'].forEach(id => {
     document.getElementById(id).style.display = 'block';
   });
+</script>/ -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.section-buttons a');
+    let activeButton = null;
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filter = btn.dataset.filter;
+
+        // Toggle off if same button clicked
+        if (activeButton === btn) {
+          ['podcasts', 'papers', 'organizations', 'videos'].forEach(id => {
+            document.getElementById(id).style.display = 'block';
+          });
+
+          buttons.forEach(b => {
+            b.classList.remove('active');
+            b.style.backgroundColor = 'white';
+            b.style.color = '#2e2a89';
+          });
+
+          activeButton = null;
+        } else {
+          buttons.forEach(b => {
+            b.classList.remove('active');
+            b.style.backgroundColor = 'white';
+            b.style.color = '#2e2a89';
+          });
+
+          ['podcasts', 'papers', 'organizations', 'videos'].forEach(id => {
+            document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
+          });
+
+          btn.classList.add('active');
+          btn.style.backgroundColor = '#2e2a89';
+          btn.style.color = 'white';
+          activeButton = btn;
+        }
+      });
+    });
+
+    // Show all sections on initial load
+    ['podcasts', 'papers', 'organizations', 'videos'].forEach(id => {
+      document.getElementById(id).style.display = 'block';
+    });
+  });
 </script>
+  
  <script>
     // Get the current file name from the URL
     const currentPage = window.location.pathname.split("/").pop();
