@@ -121,32 +121,41 @@
       color: #00bfff;
     }
 
-    .hero {
+ .hero {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px 20px 10px;
-  text-align: center;
-  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-    .hero h1 {
-      font-family: 'PT Serif', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #111;
-    }
+.hero-wrapper {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px; /* Match slider width or adjust as needed */
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
 
-    .hero img {
+.hero-text, .hero-image {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 1.6rem;
+  margin: 0;
+  color: #1a1a1a;
+  font-family: 'PT Serif', serif;
+}
+
+.hero-image img {
   max-width: 100%;
   height: auto;
   border-radius: 50%;
-  margin: 20px auto 0.5rem;
-  display: block;
   border: 2px solid white;
-  transform: scale(1.0);
-  transition: transform 0.3s ease;
   box-sizing: border-box;
 }
 
@@ -227,9 +236,15 @@
 
   <main>
     <section class="hero">
+  <div class="hero-wrapper">
+    <div class="hero-text">
       <h1>A fix for Parkinson's disease is on the way. Keep fighting!</h1>
+    </div>
+    <div class="hero-image">
       <img src="logos/Welcome-to-Finding-Dopa-2.jpg" alt="Finding Dopa Brand Logo">
-    </section>
+    </div>
+  </div>
+</section>
 
     <section class="latest-news-link">
       <a href="news.html" class="cta-button">Latest News</a>
