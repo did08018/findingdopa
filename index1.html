@@ -112,90 +112,36 @@
       color: #00bfff;
     }
 
-    /* New styles for the grid layout */
-    .hero-grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* Two columns */
-      grid-template-rows: auto auto; /* Two rows, height adapts to content */
-      gap: 20px; /* Space between grid items */
-      max-width: 900px;
-      margin: 20px auto; /* Center the grid */
-      padding: 0 20px;
-      align-items: center; /* Vertically align items in the grid cells */
-    }
-
-    .grid-item {
+    /* Hero section with headline and logo */
+    .hero-main {
       display: flex;
-      justify-content: center;
+      flex-direction: row; /* Horizontal layout for headline and logo */
       align-items: center;
-      text-align: center; /* Default for items */
-      box-sizing: border-box; /* Include padding in element's total width and height */
+      justify-content: center;
+      gap: 20px; /* Space between headline and logo */
+      padding: 20px 0;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .grid-item.headline {
-      grid-column: 1 / 2; /* Top-left */
-      text-align: left;
-      padding-right: 10px;
-    }
-
-    .grid-item.logo {
-      grid-column: 2 / 3; /* Top-right */
-      text-align: right;
-      padding-left: 10px;
-    }
-
-    .grid-item.booo-image {
-      grid-column: 1 / 2; /* Bottom-left */
-      margin-top: 20px; /* Space above the image */
-    }
-
-    .grid-item.welcome-content {
-      grid-column: 2 / 3; /* Bottom-right */
-      padding-left: 10px;
-      text-align: left; /* Aligns text within the div */
-    }
-
-    .hero-grid-container h1 {
+    .hero-main h1 {
       font-size: clamp(1rem, 4.5vw, 2rem);
       margin: 0;
       color: #1a1a1a;
       font-family: 'PT Serif', serif;
+      flex-basis: 60%; /* Headline takes more space */
+      text-align: right; /* Align headline to the right */
     }
 
-    .hero-grid-container img {
-      max-width: 100%;
+    .hero-main img {
+      max-width: 150px; /* Adjust logo size */
       height: auto;
+      border-radius: 50%;
       border: 2px solid white;
       box-sizing: border-box;
-    }
-
-    .grid-item.logo img { /* Specific style for the Finding Dopa logo */
-      border-radius: 50%;
-    }
-
-    .legend-image-small { /* For the Booo image in the grid */
-      max-width: 200px; /* Adjust size as needed for grid */
-      width: 100%;
-      height: auto;
-      object-fit: contain; /* Ensures the entire image is visible, no cropping */
-      border: 2px solid white;
-      /* Removed border-radius for square shape */
-    }
-
-    /* Styles for horizontal paragraphs */
-    .welcome-paragraphs-container {
-      display: flex;
-      flex-direction: column; /* Default to column for small screens */
-      gap: 15px; /* Space between paragraphs */
-      justify-content: center; /* Center horizontally if items don't fill space */
-      align-items: flex-start; /* Align paragraphs to the left */
-    }
-
-    .welcome-paragraphs-container p {
-      margin: 0; /* Remove default paragraph margins */
-      line-height: 1.5;
-      color: #222222;
-      flex-shrink: 0; /* Prevent paragraphs from shrinking too much */
+      flex-basis: 40%; /* Logo takes remaining space */
+      text-align: left; /* Align logo to the left */
     }
 
     .cta-button {
@@ -226,23 +172,30 @@
       margin-top: 30px;
     }
 
-    .body-text { /* For quotes section */
-      text-align: center;
+    .body-text-section { /* Container for both description and quotes */
+      max-width: 800px;
+      margin: 40px auto; /* More margin to separate from CTA */
       padding: 0 20px;
+      text-align: center;
     }
 
-    .quote {
+    .animated-text { /* For both site description and quotes */
       font-style: italic;
       margin-bottom: 1.2rem;
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
+      line-height: 1.5;
     }
 
-    .quote:nth-child(1) { animation-delay: 0.3s; color: #007acc; }
-    .quote:nth-child(2) { animation-delay: 0.6s; color: black; }
-    .quote:nth-child(3) { animation-delay: 0.9s; color: #007acc; }
-    .quote:nth-child(4) { animation-delay: 1.2s; color: black; }
-    .quote:nth-child(5) { animation-delay: 1.5s; color: #007acc; }
+    .animated-text:nth-child(1) { animation-delay: 0.3s; color: #007acc; }
+    .animated-text:nth-child(2) { animation-delay: 0.6s; color: black; }
+    .animated-text:nth-child(3) { animation-delay: 0.9s; color: #007acc; }
+    .animated-text:nth-child(4) { animation-delay: 1.2s; color: black; }
+    .animated-text:nth-child(5) { animation-delay: 1.5s; color: #007acc; }
+    /* Continue for more if needed for description + quotes */
+    .animated-text:nth-child(6) { animation-delay: 1.8s; color: black; }
+    .animated-text:nth-child(7) { animation-delay: 2.1s; color: #007acc; }
+    .animated-text:nth-child(8) { animation-delay: 2.4s; color: black; }
 
     @keyframes fadeInUp {
       from {
@@ -255,42 +208,19 @@
       }
     }
 
-    @media (min-width: 701px) { /* Apply horizontal paragraphs on larger screens */
-      .welcome-paragraphs-container {
-        flex-direction: row; /* Make paragraphs horizontal */
-        flex-wrap: wrap; /* Allow wrapping if needed */
-        justify-content: space-between; /* Distribute space between paragraphs */
-        align-items: stretch; /* Make paragraphs fill vertical space if needed */
-      }
-      .welcome-paragraphs-container p {
-        flex: 1 1 calc(33% - 10px); /* Approx 33% width minus gap, allows wrapping */
-        max-width: calc(33% - 10px); /* Ensure max width for horizontal layout */
-        text-align: left; /* Keep text left-aligned within each paragraph box */
-      }
-    }
-
     @media (max-width: 700px) {
-      .hero-grid-container {
-        grid-template-columns: 1fr; /* Stack all items in a single column on small screens */
-        grid-template-rows: auto;
-        gap: 20px;
+      .hero-main {
+        flex-direction: column; /* Stack headline and logo vertically */
+        gap: 15px;
       }
-      .grid-item.headline,
-      .grid-item.logo,
-      .grid-item.booo-image,
-      .grid-item.welcome-content {
-        grid-column: 1 / 2; /* All items span the full width */
-        padding: 0; /* Remove padding */
-        text-align: center; /* Center content */
+      .hero-main h1 {
+        flex-basis: auto;
+        text-align: center; /* Center headline when stacked */
+        padding: 0 10px;
       }
-      .grid-item.logo img {
-        margin-top: 10px; /* Add a little space above the logo */
-      }
-      .grid-item.headline h1 {
-        padding: 0;
-      }
-      .legend-image-small {
-        margin-top: 10px; /* Adjust spacing */
+      .hero-main img {
+        flex-basis: auto;
+        max-width: 120px; /* Smaller logo on mobile */
       }
     }
   </style>
@@ -318,47 +248,43 @@
   </header>
 
   <main>
-    <section class="hero-grid-container">
-      <div class="grid-item headline">
-        <h1>A fix for Parkinson's disease is on the way. Keep fighting!</h1>
-      </div>
-      <div class="grid-item logo">
-        <img src="logos/Welcome-to-Finding-Dopa-2.jpg" alt="Finding Dopa Brand Logo">
-      </div>
-      <div class="grid-item booo-image">
-        <img src="images/Booo.jpg" alt="Booo" class="legend-image-small" />
-      </div>
-      <div class="grid-item welcome-content">
-        <div class="welcome-paragraphs-container">
-          <p>Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
-          <p>I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
-          <p>Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
-        </div>
-      </div>
+    <section class="hero-main">
+      <h1>A fix for Parkinson's disease is on the way. Keep fighting!</h1>
+      <img src="logos/Welcome-to-Finding-Dopa-2.jpg" alt="Finding Dopa Brand Logo">
     </section>
 
     <section class="latest-news-link">
       <a href="news.html" class="cta-button">Latest News</a>
     </section>
 
-    <section class="body-text quote-container">
-      <p class="quote">
+    <section class="body-text-section">
+      <p class="animated-text">
+        Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.
+      </p>
+      <p class="animated-text">
+        I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
+      </p>
+      <p class="animated-text">
+        Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.
+      </p>
+
+      <p class="animated-text">
         "Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."
         — Dr. Roger Barker, University of Cambridge, 2021
       </p>
-      <p class="quote">
+      <p class="animated-text">
         "The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
         — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019
       </p>
-      <p class="quote">
+      <p class="animated-text">
         "We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."
         — Dr. Claire Henchcliffe, UC Irvine, 2020
       </p>
-      <p class="quote">
+      <p class="animated-text">
         "This is not just a treatment—this is an attempt at a true biological fix."
         — The New York Times, 2022
       </p>
-      <p class="quote">
+      <p class="animated-text">
         "Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."
         — Scientific American, 2021
       </p>
