@@ -128,30 +128,31 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      text-align: center; /* Default for items */
+      box-sizing: border-box; /* Include padding in element's total width and height */
     }
 
     .grid-item.headline {
-      grid-column: 1 / 2; /* Spans across the first column */
-      text-align: left; /* Align text to the left within its cell */
-      padding-right: 10px; /* Add some padding to the right */
+      grid-column: 1 / 2; /* Top-left */
+      text-align: left;
+      padding-right: 10px;
     }
 
     .grid-item.logo {
-      grid-column: 2 / 3; /* Spans across the second column */
-      text-align: right; /* Align text to the right within its cell */
-      padding-left: 10px; /* Add some padding to the left */
+      grid-column: 2 / 3; /* Top-right */
+      text-align: right;
+      padding-left: 10px;
     }
 
     .grid-item.booo-image {
-      grid-column: 1 / 2; /* Booo image in the first column, second row */
-      margin-top: 20px; /* Add space above the image */
+      grid-column: 1 / 2; /* Bottom-left */
+      margin-top: 20px; /* Space above the image */
     }
 
     .grid-item.welcome-content {
-      grid-column: 2 / 3; /* Welcome content in the second column, second row */
-      text-align: left; /* Align text to the left */
-      padding-left: 10px; /* Add some padding to the left */
+      grid-column: 2 / 3; /* Bottom-right */
+      padding-left: 10px;
+      text-align: left; /* Aligns text within the div */
     }
 
     .hero-grid-container h1 {
@@ -164,62 +165,65 @@
     .hero-grid-container img {
       max-width: 100%;
       height: auto;
-      border-radius: 50%;
       border: 2px solid white;
       box-sizing: border-box;
+    }
+
+    .grid-item.logo img { /* Specific style for the Finding Dopa logo */
+      border-radius: 50%;
     }
 
     .legend-image-small { /* For the Booo image in the grid */
       max-width: 200px; /* Adjust size as needed for grid */
       width: 100%;
       height: auto;
-      object-fit: cover;
-      border-radius: 12px;
+      object-fit: contain; /* Ensures the entire image is visible, no cropping */
       border: 2px solid white;
+      /* Removed border-radius for square shape */
     }
 
-    .welcome-body-text p {
-        margin-bottom: 1em;
-        line-height: 1.5;
-        color: #222222; /* Ensure color is consistent with index0.html */
+    /* Styles for horizontal paragraphs */
+    .welcome-paragraphs-container {
+      display: flex;
+      flex-direction: column; /* Default to column for small screens */
+      gap: 15px; /* Space between paragraphs */
+      justify-content: center; /* Center horizontally if items don't fill space */
+      align-items: flex-start; /* Align paragraphs to the left */
     }
 
-    .welcome-body-text .science-direct-link {
-        color: #007acc;
-        font-style: italic;
-        font-weight: bold;
+    .welcome-paragraphs-container p {
+      margin: 0; /* Remove default paragraph margins */
+      line-height: 1.5;
+      color: #222222;
+      flex-shrink: 0; /* Prevent paragraphs from shrinking too much */
     }
-    .welcome-body-text .science-direct-link a {
-        color: inherit; /* Keep link color consistent with parent */
-    }
-
 
     .cta-button {
       background: #007acc;
       color: white;
-      padding: 0.8rem 1.8rem; /* Make it more prominent */
+      padding: 0.8rem 1.8rem;
       text-decoration: none;
-      border-radius: 8px; /* Slightly larger radius */
+      border-radius: 8px;
       font-weight: bold;
-      font-size: 1.1rem; /* Larger font size */
+      font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* More pronounced shadow */
-      display: inline-block; /* Essential for padding and margin to work */
-      margin-top: 20px; /* Space above the button */
-      margin-bottom: 40px; /* Space below the button */
-      letter-spacing: 0.05em; /* Slightly spaced out letters */
-      text-transform: uppercase; /* All caps for emphasis */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: inline-block;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .cta-button:hover {
       background: #005f99;
-      transform: translateY(-3px) scale(1.02); /* More noticeable hover effect */
+      transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
 
     .latest-news-link {
       text-align: center;
-      margin-top: 30px; /* Add space above the CTA */
+      margin-top: 30px;
     }
 
     .body-text { /* For quotes section */
@@ -248,6 +252,20 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 701px) { /* Apply horizontal paragraphs on larger screens */
+      .welcome-paragraphs-container {
+        flex-direction: row; /* Make paragraphs horizontal */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: space-between; /* Distribute space between paragraphs */
+        align-items: stretch; /* Make paragraphs fill vertical space if needed */
+      }
+      .welcome-paragraphs-container p {
+        flex: 1 1 calc(33% - 10px); /* Approx 33% width minus gap, allows wrapping */
+        max-width: calc(33% - 10px); /* Ensure max width for horizontal layout */
+        text-align: left; /* Keep text left-aligned within each paragraph box */
       }
     }
 
@@ -311,13 +329,11 @@
         <img src="images/Booo.jpg" alt="Booo" class="legend-image-small" />
       </div>
       <div class="grid-item welcome-content">
-        <p>Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
-        <p>I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
-        <p>Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
-        <p class="science-direct-link">
-          <i><strong>hESC trial, 2021</strong>: "This trial dosed a total of 12 patients in US and Canada with the H9-derived Bemdaneprocel product (NCT04802733) and has reported a ∼50% decrease in PD symptoms in the high-dose group at 18 and 24 months relative to baseline". - <a href="https://www.sciencedirect.com/science/article/pii/S1934590924004454" target="_blank"><strong>Science Direct Link Here</strong></a> - <a href="pdf/1-s2.0-S1934590924004454-main.pdf" download>(Download PDF here if link is broken)</a>
-          </i>
-        </p>
+        <div class="welcome-paragraphs-container">
+          <p>Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
+          <p>I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
+          <p>Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
+        </div>
       </div>
     </section>
 
