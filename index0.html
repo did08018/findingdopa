@@ -49,38 +49,40 @@
       font-size: 0.8rem;
     }
 
-    .top-bar {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      height: 40px;
-    }
+.top-bar {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 6px 10px;
+  height: auto;
+  flex-wrap: wrap;
+}
 
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007acc;
-      font-size: 1.2rem;
-    }
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #007acc;
+  font-size: 1.2rem;
+  margin-right: 12px;
+}
 
-    .home-brand i {
-      font-size: 1.3rem;
-    }
+.logo-text {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: white;
+}
 
-    .home-brand:hover {
-      color: #00bfff;
-    }
-
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-    }
+.tagline {
+  color: white;
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 400;
+  flex: 1;
+  min-width: 220px;
+}
 
     .slider-container {
   width: 100%;
@@ -199,11 +201,12 @@
 <body>
   <header>
     <div class="top-bar">
-      <a href="index.html" class="home-brand" aria-label="Home">
-        <i class="fas fa-brain"></i>
-        <span class="logo-text">Finding Dopa</span>
-      </a>
-    </div>
+  <a href="index.html" class="home-brand" aria-label="Home">
+    <i class="fas fa-brain"></i>
+    <span class="logo-text">Finding Dopa</span>
+  </a>
+  <div class="tagline">A fix for Parkinson’s disease is on the way. Keep fighting!</div>
+</div>
     <div class="slider-container">
       <div class="slide"><a href="welcome.html" class="slide-link">Welcome</a></div>
       <div class="slide"><a href="fix-or-cure.html" class="slide-link">Fix or Cure?</a></div>
