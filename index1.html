@@ -336,20 +336,34 @@
     });
   </script>
   
-  <div id="cookieConsent">
-    This website uses cookies to ensure you get the best experience.
-    <button onclick="acceptCookies()">Got it!</button>
+  <div id="cookieConsent" style="display:none;">
+    This website uses cookies to enhance your experience.
+    <button onclick="handleConsent(true)">Accept</button>
+    <button onclick="handleConsent(false)">Decline</button>
   </div>
 
   <script>
-    function acceptCookies() {
-      localStorage.setItem("cookiesAccepted", "true");
+    function handleConsent(consent) {
+      localStorage.setItem("cookiesAccepted", consent);
       document.getElementById("cookieConsent").style.display = "none";
+
+      if (consent) {
+        // Initialize cookies/tracking (only now)
+        loadAnalytics(); // You'd call Google Analytics or other scripts here
+      }
+    }
+
+    function loadAnalytics() {
+      // Example: Simulate loading analytics
+      console.log("Analytics loaded");
     }
 
     window.onload = function() {
-      if (!localStorage.getItem("cookiesAccepted")) {
+      const consent = localStorage.getItem("cookiesAccepted");
+      if (consent === null) {
         document.getElementById("cookieConsent").style.display = "block";
+      } else if (consent === "true") {
+        loadAnalytics();
       }
     };
   </script>
