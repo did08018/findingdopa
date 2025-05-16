@@ -140,34 +140,39 @@
 
     /* Hero section with background image */
     .hero-main {
-      position: relative;
-      padding: 100px 20px;
-      text-align: center;
-      color: white;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-      background: url('logos/Welcome-to-Finding-Dopa-2.jpg') center center / cover no-repeat fixed;
-      border-bottom: 1px solid #eee;
-      overflow: hidden;
-    }
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  background: url('logos/Welcome-to-Finding-Dopa-2.jpg') center center / cover no-repeat fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px;
+  text-align: center;
+  overflow: hidden;
+  margin: 0;
+}
 
-    .hero-main::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5); /* overlay */
-      z-index: 1;
-    }
+.hero-main::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 
-    .hero-main h1 {
-      position: relative;
-      z-index: 2;
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-      font-family: 'PT Serif', serif;
-      margin: 0;
-    }
+.hero-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+}
+
+.hero-text h1 {
+  font-family: 'PT Serif', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin: 0;
+}
 
     .cta-button {
       background: #f1d600;
@@ -263,8 +268,13 @@
 
   <main>
     <section class="hero-main">
-      <h1>A fix for Parkinson's disease is on the way. Keep fighting!</h1>
-    </section>
+  <div class="hero-text top">
+    <h1>A fix for Parkinson's disease is on the way.</h1>
+  </div>
+  <div class="hero-text bottom">
+    <h1>Keep fighting!</h1>
+  </div>
+</section>
 
     <section class="latest-news-link">
       <a href="news.html" class="cta-button">Latest News</a>
