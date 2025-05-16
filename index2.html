@@ -245,6 +245,28 @@
 .mission-section p {
   margin: 20px 0;
 }
+
+.motivational-line {
+  width: 100%;
+  text-align: center;
+  border-top: 2px solid green;
+  position: relative;
+  margin: 20px 0;
+  box-sizing: border-box;
+  font-family: 'PT Serif', serif;
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  color: green;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.motivational-line span {
+  background-color: #f5f8fa; /* same as body bg */
+  padding: 0 12px;
+  white-space: nowrap;
+}
     
   </style>
 </head>
@@ -276,6 +298,10 @@
     <div class="hero-line">Keep fighting!</div>
   --> </section>
 
+<section class="motivational-line">
+  <span>A fix for Parkinson's disease is on the way. Keep fighting!</span>
+</section>
+  
   <main>
     <section class="body-text-section">
       <a href="news.html" class="cta-button">Latest News</a>
