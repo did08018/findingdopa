@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <title>Finding Dopa – A fix for Parkinson's disease is on the way. Keep fighting!</title>
   <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope: a fix is on the way, keep fighting!.">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Segoe UI', sans-serif;
       background: #f5f8fa;
       color: #222;
@@ -29,50 +27,8 @@
       overflow-x: hidden;
     }
 
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
     header {
       background-color: #121212;
-      padding: 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px 20px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-    }
-
-    #cookieConsent {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #222;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-      font-family: sans-serif;
-      font-size: 0.6rem;
-      flex-wrap: wrap;
-      gap: 10px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    #cookieConsent button {
-      margin-left: 10px;
-      padding: 5px 10px;
-      background: #f1d600;
-      border: none;
-      cursor: pointer;
     }
 
     .top-bar {
@@ -80,7 +36,6 @@
       align-items: center;
       background: #1a1a1a;
       padding: 6px 10px;
-      height: auto;
       flex-wrap: wrap;
     }
 
@@ -103,14 +58,12 @@
 
     .slider-container {
       width: 100%;
-      max-width: 100vw;
-      overflow-x: auto;
       display: flex;
       gap: 10px;
-      margin-top: 8px;
-      padding: 0 10px 10px 10px;
-      box-sizing: border-box;
+      padding: 10px;
+      overflow-x: auto;
       scrollbar-width: none;
+      box-sizing: border-box;
     }
 
     .slider-container::-webkit-scrollbar {
@@ -138,25 +91,37 @@
       color: #00bfff;
     }
 
-    /* Full-width hero section with image and split text */
-    .hero-main {
-      width: 100vw;
-      height: 80vh;
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
       background: url('logos/Welcome-to-Finding-Dopa-2.jpg') center center / cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      padding: 40px 10px;
       box-sizing: border-box;
+      padding: 40px 20px;
     }
 
-    .hero-text {
-      color: white;
+    .hero-line {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
       font-family: 'PT Serif', serif;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
     }
 
     .cta-button {
@@ -170,8 +135,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       display: inline-block;
-      margin-top: 20px;
-      margin-bottom: 40px;
+      margin: 30px auto;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
@@ -180,11 +144,6 @@
       background: #005f99;
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-
-    .latest-news-link {
-      text-align: center;
-      margin-top: 30px;
     }
 
     .body-text-section {
@@ -222,16 +181,50 @@
       }
     }
 
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+    }
+
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #222;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      font-family: sans-serif;
+      font-size: 0.6rem;
+      flex-wrap: wrap;
+      gap: 10px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    #cookieConsent button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background: #f1d600;
+      border: none;
+      cursor: pointer;
+    }
+
     @media (max-width: 700px) {
-      .hero-text {
-        font-size: 1.6rem;
-        padding: 0 10px;
+      .hero-line {
+        font-size: 1.2rem;
+        padding: 8px 12px;
       }
     }
   </style>
 </head>
-
 <body>
+
   <header>
     <div class="top-bar">
       <a href="index.html" class="home-brand" aria-label="Home">
@@ -252,63 +245,29 @@
     </div>
   </header>
 
+  <section class="hero-section">
+    <div class="hero-line">A fix for Parkinson's disease is on the way.</div>
+    <div class="hero-line">Keep fighting!</div>
+  </section>
+
   <main>
-    <section class="hero-main">
-      <div class="hero-text">A fix for Parkinson's disease is on the way.</div>
-      <div class="hero-text">Keep fighting!</div>
-    </section>
-
-    <section class="latest-news-link">
-      <a href="news.html" class="cta-button">Latest News</a>
-    </section>
-
     <section class="body-text-section">
-      <p class="animated-text">
-        Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.
-      </p>
-      <p class="animated-text">
-        I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
-      </p>
-      <p class="animated-text">
-        Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.
-      </p>
+      <a href="news.html" class="cta-button">Latest News</a>
 
-      <p class="animated-text">
-        "Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."
-        — Dr. Roger Barker, University of Cambridge, 2021
-      </p>
-      <p class="animated-text">
-        "The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
-        — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019
-      </p>
-      <p class="animated-text">
-        "We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."
-        — Dr. Claire Henchcliffe, UC Irvine, 2020
-      </p>
-      <p class="animated-text">
-        "This is not just a treatment—this is an attempt at a true biological fix."
-        — The New York Times, 2022
-      </p>
-      <p class="animated-text">
-        "Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."
-        — Scientific American, 2021
-      </p>
+      <p class="animated-text">Finding Dopa is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's Disease.</p>
+      <p class="animated-text">I believe in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.</p>
+      <p class="animated-text">Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.</p>
+      <p class="animated-text">"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease." — Dr. Roger Barker, University of Cambridge, 2021</p>
+      <p class="animated-text">"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves." — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</p>
+      <p class="animated-text">"We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials." — Dr. Claire Henchcliffe, UC Irvine, 2020</p>
+      <p class="animated-text">"This is not just a treatment—this is an attempt at a true biological fix." — The New York Times, 2022</p>
+      <p class="animated-text">"Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell." — Scientific American, 2021</p>
     </section>
   </main>
 
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Finding Dopa",
-    "alternateName": "FindingDopa",
-    "url": "https://findingdopa.com"
-  }
-  </script>
 
   <script>
     const sliderLinks = document.querySelectorAll('.slider-container .slide-link');
@@ -331,9 +290,7 @@
     function handleConsent(consent) {
       localStorage.setItem("cookiesAccepted", consent);
       document.getElementById("cookieConsent").style.display = "none";
-      if (consent) {
-        loadAnalytics();
-      }
+      if (consent) loadAnalytics();
     }
 
     function loadAnalytics() {
@@ -349,5 +306,6 @@
       }
     };
   </script>
+
 </body>
 </html>
