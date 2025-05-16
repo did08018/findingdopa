@@ -138,45 +138,30 @@
       color: #00bfff;
     }
 
-    /* Hero section with background image */
+    /* Full-width hero section with image and split text */
     .hero-main {
-  position: relative;
-  width: 100vw;
-  height: 80vh;
-  background: url('logos/Welcome-to-Finding-Dopa-2.jpg') center center / cover no-repeat fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 20px;
-  text-align: center;
-  overflow: hidden;
-  margin: 0;
-}
+      width: 100vw;
+      height: 80vh;
+      background: url('logos/Welcome-to-Finding-Dopa-2.jpg') center center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 40px 10px;
+      box-sizing: border-box;
+    }
 
-.hero-main::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
-}
-
-.hero-text h1 {
-  font-family: 'PT Serif', serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  margin: 0;
-}
+    .hero-text {
+      color: white;
+      font-family: 'PT Serif', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
 
     .cta-button {
-      background: #f1d600;
-      color: #000;
+      background: #007acc;
+      color: white;
       padding: 0.8rem 1.8rem;
       text-decoration: none;
       border-radius: 8px;
@@ -192,7 +177,7 @@
     }
 
     .cta-button:hover {
-      background: #e1c600;
+      background: #005f99;
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
@@ -238,8 +223,9 @@
     }
 
     @media (max-width: 700px) {
-      .hero-main {
-        background-attachment: scroll;
+      .hero-text {
+        font-size: 1.6rem;
+        padding: 0 10px;
       }
     }
   </style>
@@ -268,13 +254,9 @@
 
   <main>
     <section class="hero-main">
-  <div class="hero-text top">
-    <h1>A fix for Parkinson's disease is on the way.</h1>
-  </div>
-  <div class="hero-text bottom">
-    <h1>Keep fighting!</h1>
-  </div>
-</section>
+      <div class="hero-text">A fix for Parkinson's disease is on the way.</div>
+      <div class="hero-text">Keep fighting!</div>
+    </section>
 
     <section class="latest-news-link">
       <a href="news.html" class="cta-button">Latest News</a>
@@ -290,20 +272,26 @@
       <p class="animated-text">
         Stay informed, stay strong, and join me in the journey towards a brighter tomorrow.
       </p>
+
       <p class="animated-text">
-        "Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease." — Dr. Roger Barker, University of Cambridge, 2021
+        "Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."
+        — Dr. Roger Barker, University of Cambridge, 2021
       </p>
       <p class="animated-text">
-        "The goal is no longer just to treat symptoms, but to replace the damaged cells themselves." — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019
+        "The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
+        — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019
       </p>
       <p class="animated-text">
-        "We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials." — Dr. Claire Henchcliffe, UC Irvine, 2020
+        "We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."
+        — Dr. Claire Henchcliffe, UC Irvine, 2020
       </p>
       <p class="animated-text">
-        "This is not just a treatment—this is an attempt at a true biological fix." — The New York Times, 2022
+        "This is not just a treatment—this is an attempt at a true biological fix."
+        — The New York Times, 2022
       </p>
       <p class="animated-text">
-        "Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell." — Scientific American, 2021
+        "Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."
+        — Scientific American, 2021
       </p>
     </section>
   </main>
@@ -343,7 +331,9 @@
     function handleConsent(consent) {
       localStorage.setItem("cookiesAccepted", consent);
       document.getElementById("cookieConsent").style.display = "none";
-      if (consent) loadAnalytics();
+      if (consent) {
+        loadAnalytics();
+      }
     }
 
     function loadAnalytics() {
