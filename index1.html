@@ -49,6 +49,26 @@
       font-size: 0.8rem;
     }
 
+#cookieConsent {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-family: sans-serif;
+      display: none;
+      z-index: 1000;
+    }
+    #cookieConsent button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background: #f1d600;
+      border: none;
+      cursor: pointer;
+      }
+
     .top-bar {
       display: flex;
       align-items: center;
@@ -315,5 +335,23 @@
         }
     });
   </script>
+  
+  <div id="cookieConsent">
+    This website uses cookies to ensure you get the best experience.
+    <button onclick="acceptCookies()">Got it!</button>
+  </div>
+
+  <script>
+    function acceptCookies() {
+      localStorage.setItem("cookiesAccepted", "true");
+      document.getElementById("cookieConsent").style.display = "none";
+    }
+
+    window.onload = function() {
+      if (!localStorage.getItem("cookiesAccepted")) {
+        document.getElementById("cookieConsent").style.display = "block";
+      }
+    };
+  
 </body>
 </html>
