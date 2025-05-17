@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finding Dopa - Science</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'PT Serif', serif;
+      background-color: #0e0e1a;
+      color: #fff;
+    }
+
+    header, .slider, footer {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #111;
+    }
+
+    .slider a {
+      color: #eee;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .main-banner {
+      padding: 40px 20px;
+      text-align: center;
+      background: #1a1a2e;
+    }
+
+    .main-banner h2 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .orb-section {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #0e0e1a, #1a1a2e);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .orb-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .orb {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at top left, #00f0ff, #003b5b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      box-shadow: 0 0 20px #00f0ff70;
+    }
+
+    .orb:hover {
+      transform: scale(1.1);
+    }
+
+    .orb span {
+      padding: 10px;
+      font-size: 0.9em;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #1f1f2e;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      color: #fff;
+      font-family: 'PT Serif', serif;
+      position: relative;
+      box-shadow: 0 0 20px #00f0ff80;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>Finding Dopa</h1>
+  </header>
+
+  <div class="slider">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Science</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="main-banner">
+    <h2>A fix for Parkinson’s Disease is on the way. Keep fighting!</h2>
+  </div>
+
+  <section class="orb-section">
+    <div class="orb-container">
+      <div class="orb" onclick="showModal('modal1')"><span>Nerve Grafts</span></div>
+      <div class="orb" onclick="showModal('modal2')"><span>MSCs</span></div>
+      <div class="orb" onclick="showModal('modal3')"><span>Dopamine Pathways</span></div>
+      <div class="orb" onclick="showModal('modal4')"><span>Glial Cells</span></div>
+      <div class="orb" onclick="showModal('modal5')"><span>Brain Plasticity</span></div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+      <h3>Nerve Grafts</h3>
+      <p>Nerve grafts are used to replace or repair damaged neural pathways in Parkinson’s. They may reconnect circuits or provide scaffolding for new growth.</p>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+      <h3>MSCs</h3>
+      <p>Mesenchymal Stem Cells (MSCs) offer potential for repairing damaged tissue, reducing inflammation, and supporting neurogenesis in Parkinson's patients.</p>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+      <h3>Dopamine Pathways</h3>
+      <p>These pathways are critical for movement and mood. Parkinson’s disrupts them, but new therapies aim to restore or bypass these circuits.</p>
+    </div>
+  </div>
+
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
+      <h3>Glial Cells</h3>
+      <p>Glial cells support neurons and help maintain brain health. They're being studied for their role in neurodegeneration and recovery.</p>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal5')">&times;</span>
+      <h3>Brain Plasticity</h3>
+      <p>Neuroplasticity is the brain’s ability to adapt and rewire. Enhancing plasticity could help Parkinson’s patients regain lost function.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 Finding Dopa. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Close modal on background click
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    };
+  </script>
+</body>
+</html>
