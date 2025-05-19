@@ -22,6 +22,16 @@
       touch-action: manipulation;       /* Prevent pinch zoom/gesture */
       overflow-x: hidden;
     }
+    
+    .hero-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #f5f8fa 0%, rgba(245, 248, 250, 0.4) 20%, transparent 60%);
+  pointer-events: none;
+}
 
 .hero-wrapper {
   max-width: 1200px;
@@ -343,6 +353,7 @@ strong {
 
   <section class="hero-section">
     <img src="logos/Welcome to Finding Dopa 169.jpeg" class="hero-img" alt="Finding Dopa">
+      <div class="hero-gradient-overlay"></div>
     <!--<div class="hero-line">A fix for Parkinson's disease is on the way.</div>
     <div class="hero-line">Keep fighting!</div>
    </div> -->
