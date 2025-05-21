@@ -336,6 +336,16 @@ strong {
   border-radius: 6px;
   text-align: left;
 }
+    
+    .animated-message {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.animated-message:nth-child(1) { animation-delay: 0.3s; }
+.animated-message:nth-child(2) { animation-delay: 0.6s; }
+.animated-message:nth-child(3) { animation-delay: 0.9s; }
+    
   </style>
 </head>
 <body>
@@ -348,7 +358,6 @@ strong {
       </a>
     </div>
     <div class="slider-container">
-     <!-- <a href="welcome.html" class="slide slide-link">Welcome</a> -->
       <a href="fix-or-cure.html" class="slide slide-link">Fix or Cure?</a>
       <a href="science.html" class="slide slide-link">The Science</a>
       <a href="actors.html" class="slide slide-link">The Actors</a>
@@ -374,6 +383,7 @@ strong {
 
 <section class="hero-message-blocks">
   <div class="message-block">
+    <div class="message-block animated-message">
     <span style="color: #007acc;">Finding Dopa</span> is a platform dedicated to providing the latest research, resources, and hope to individuals affected by Parkinson's disease.
   </div>
   <div class="message-block">
