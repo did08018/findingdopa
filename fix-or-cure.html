@@ -115,7 +115,7 @@
       font-family: 'PT Serif', serif;
     }*/
 
-    hero {
+    /*hero {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -133,8 +133,35 @@
       margin: 5;
       color: #2e2a89;
       position: relative;
-    }
+    }*/
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.hero p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 0 10px 0;
+  padding: 0;
+  color: #2e2a89;
+  font-family: 'PT Serif', serif;
+}
+
+.welcome-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: green;
+  font-family: 'PT Serif', serif;
+  margin: 5px 0 0 0;
+}
+    
     .hero p::after {
       content: '';
       position: absolute;
@@ -144,14 +171,14 @@
       border-bottom: 1px solid pink;
     }
 
-    .welcome-text {
+    /*.welcome-text {
       font-size: 2.5rem;
       margin: 0 auto;
       color: green;
       font-family: 'PT Serif', serif;
       margin-top: 0;
       margin-bottom: 10px;
-    }
+    }*/
 
     .legend-section {
       text-align: center;
@@ -222,7 +249,7 @@
 
   <main>
 
-    <div class="main-content=">
+    <div class="main-content">
     <section class="hero">
       <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
       <h1 class="welcome-text">Yes We Will</h1>
