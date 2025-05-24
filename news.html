@@ -152,7 +152,7 @@
   margin-top: 10px;
 }*/
 
-    .hero img {
+   /* .hero img {
   width: 100%;
   max-width: 700px;
   height: auto;       /* maintain aspect ratio */
@@ -161,6 +161,25 @@
   margin-top: 10px;
   display: block;     /* helps with responsiveness */
   max-height: none;   /* remove any height constraints */
+}*/
+
+    .hero img {
+  width: 100%;
+  max-width: 700px;        /* max size on bigger screens */
+  max-height: 90vh;        /* limit image height to 90% viewport height */
+  height: auto;
+  object-fit: contain;     /* contain the entire image, no cropping */
+  border-radius: 12px;
+  margin-top: 10px;
+  display: block;
+}
+
+    @media (max-width: 480px) {
+  .hero img {
+    max-width: 100vw;      /* let image fill full viewport width */
+    max-height: 60vh;      /* smaller max height for portrait */
+    margin-top: 8px;
+  }
 }
 
     .welcome-text {
