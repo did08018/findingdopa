@@ -19,10 +19,6 @@
       flex-direction: column;
       overflow-x: hidden; /* Prevent horizontal scroll */
     }
-
-    /*header {
-      background-color: #121212;
-    }*/
     
     header {
       background-color: #121212;
@@ -71,17 +67,6 @@
       font-size: 1.3rem;
       color: white;
     }
-
-  /*  .slider-container {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: auto;
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      box-sizing: border-box;
-      scrollbar-width: none;
-    }*/
     
       .slider-container {
       width: 100%;
@@ -129,12 +114,6 @@
     main {
       flex: 1;
     }
-
-    /*.hero {
-      background: white;
-      text-align: center;
-      padding: 20px;
-    }*/
     
      .hero {
       display: flex;
@@ -227,7 +206,6 @@
       </a>
     </div>
     <div class="slider-container">
-      <!--<a href="welcome.html" class="slide">Welcome</a>-->
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
       <a href="science.html" class="slide">The Science</a>
       <a href="actors.html" class="slide">The Actors</a>
@@ -242,7 +220,6 @@
   <main>
     <section class="hero">
       <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
-      <!--<h1 class="welcome-text">Latest News</h1>-->
       <img src="images/Bone.JPG" alt="Booo" />
     </section>
 
@@ -314,26 +291,6 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer
-
-  <!--<script>
-    const colors = [
-      '#ffe0e0', '#e0f7fa', '#e6e6fa', '#fce4ec',
-      '#e8f5e9', '#fff3e0', '#ede7f6', '#f3e5f5'
-    ];
-
-    const entries = document.querySelectorAll('.article-entry');
-    entries.forEach((entry, index) => {
-      entry.style.backgroundColor = colors[index % colors.length];
-    });
-
-    const currentPage = window.location.pathname.split("/").pop();
-    const slides = document.querySelectorAll('.slider-container .slide');
-    slides.forEach(slide => {
-      if (slide.getAttribute('href') === currentPage) {
-        slide.classList.add('active');
-      }
-    });
-  </script>-->
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
