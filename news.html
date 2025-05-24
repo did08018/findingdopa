@@ -143,13 +143,24 @@
       margin-top: 10px;
     }*/
 
-    .hero img {
+   /* .hero img {
   max-width: 100%;
   width: 100%;
   max-width: 700px;
   object-fit: cover;
   border-radius: 12px;
   margin-top: 10px;
+}*/
+
+    .hero img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;       /* maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 10px;
+  display: block;     /* helps with responsiveness */
+  max-height: none;   /* remove any height constraints */
 }
 
     .welcome-text {
