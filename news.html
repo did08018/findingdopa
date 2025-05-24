@@ -295,9 +295,15 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const colors = [
-      '#ffe0e0', '#e0f7fa', '#e6e6fa', '#fce4ec',
-      '#e8f5e9', '#fff3e0', '#ede7f6', '#f3e5f5'
-    ];
+  '#ffe0e0', // light pink
+  '#e0f7fa', // light cyan
+  '#e6e6fa', // lavender
+  '#fce4ec', // blush pink
+  '#e8f5e9', // mint green
+  '#fff3e0', // peach
+  '#dcedc8', // pale lime green (replaces #ede7f6)
+  '#fff9c4'  // soft yellow (replaces #f3e5f5)
+];
 
     const entries = document.querySelectorAll('.article-entry');
     entries.forEach((entry, index) => {
