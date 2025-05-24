@@ -315,7 +315,7 @@
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer
 
-  <script>
+  <!--<script>
     const colors = [
       '#ffe0e0', '#e0f7fa', '#e6e6fa', '#fce4ec',
       '#e8f5e9', '#fff3e0', '#ede7f6', '#f3e5f5'
@@ -333,6 +333,29 @@
         slide.classList.add('active');
       }
     });
-  </script>
+  </script>-->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const colors = [
+      '#ffe0e0', '#e0f7fa', '#e6e6fa', '#fce4ec',
+      '#e8f5e9', '#fff3e0', '#ede7f6', '#f3e5f5'
+    ];
+
+    const entries = document.querySelectorAll('.article-entry');
+    entries.forEach((entry, index) => {
+      entry.style.backgroundColor = colors[index % colors.length];
+    });
+
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  });
+</script>
+  
 </body>
 </html>
