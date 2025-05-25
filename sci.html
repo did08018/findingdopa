@@ -21,7 +21,10 @@
       color: #222;
       overflow-x: hidden;
     }
-    
+     .main-content {
+  max-width: 700px;
+  margin: 0 auto;
+    }
     /* Canvas Background */
     #nebula-canvas {
       position: fixed;
@@ -207,6 +210,24 @@
       color: white;
     }
 
+ .hero-section {
+   max-width: 700px;
+      margin: 0 auto;
+  display: flex;
+  justify-content: center; /* NEW: ensures image is centered */
+  padding: 0 5px; /* NEW: add padding for mobile spacing */
+  box-sizing: border-box;
+}
+
+.hero-img {
+  max-width: 100%; /* UPDATED: make image responsive */
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid white;
+  margin-top: 3px;
+}
+       
     footer {
       text-align: center;
       padding: 10px 20px;
@@ -239,13 +260,17 @@
       <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
-
+<div class="main-content">
   <main>
     <section class="hero">
       <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
       <h1 class="welcome-text">The Science</h1>
     </section>
 
+  <section class="hero-section">
+    <img src="logos/Welcome to Finding Dopa 169.jpeg" class="hero-img" alt="The Science">
+  </section>
+      
     <section class="orb-grid">
       <div class="orb" onclick="openModal('modal6')">Fetal vs. Embryonic Stem Cells</div>
       <div class="orb" onclick="openModal('modal5')">hESCs</div>
@@ -329,7 +354,7 @@
 </p>
     </div>
   </div>
-
+</div>
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
