@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Finding Dopa – Platform dedicated to providing the latest research, resources, and hope.</title>
   <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope: a fix is on the way, keep fighting!.">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#000000">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -95,17 +94,6 @@
       color: #00bfff;
     }
 
-    h1, h2, h3, .hero-line, .slide, .cta-button {
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    h2, h3, .hero-line, .cta-button {
-      color: #00f7ff;
-      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-    }
-
     .hero {
       display: flex;
       flex-direction: column;
@@ -119,7 +107,7 @@
     .hero p {
       font-size: 0.8rem;
       max-width: 600px;
-      margin: 5px 0 10px;
+      margin: 4px 0 10px; /* Combined margin properties */
       padding: 0;
       color: #2e2a89;
       position: relative;
@@ -132,16 +120,6 @@
       right: 10%;
       bottom: -8px;
       border-bottom: 1px solid #FFFFFF;
-    }
-
-    .hero img {
-      max-width: 300px;
-      border-radius: 50%;
-      margin: 20px auto 0.5rem;
-      display: block;
-      border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
     }
 
     .hero-section {
@@ -162,82 +140,87 @@
       margin-top: 3px;
     }
 
-    .hero-line {
-      max-width: 800px;
+    main {
+      flex: 1;
+      max-width: 900px;
       margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.55);
-      color: #007acc;
       padding: 10px 20px;
-      border-radius: 10px;
-      font-family: 'PT Serif', serif;
-      font-size: clamp(1.2rem, 3vw, 2.2rem);
-      text-align: center;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    }
-
-    .mission-section {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      background: #f5f8fa;
-      color: green;
-      padding: 10px 10px;
       box-sizing: border-box;
-      text-align: center;
-      font-family: 'PT Serif', serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1.3;
     }
 
-    .mission-section p {
-      margin: 20px 0;
-    }
-
-    .motivational-line {
-      width: 100%;
-      text-align: center;
-      margin: 20px 5px 5px 5px;
-      font-family: 'PT Serif', serif;
-      font-size: clamp(1.1rem, 2.5vw, 2rem);
-      color: green;
-      padding: 10px 10px;
-      box-sizing: border-box;
-      white-space: normal;
-      line-height: 1.3;
-    }
-
-    .motivational-line span {
-      background-color: #f5f8fa;
-      padding: 0 12px;
-      white-space: nowrap;
-    }
-
-    .mission-box {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px 25px;
-      background-color: #e4f9e7;
-      color: #222;
-      font-size: 0.95rem;
-      border-radius: 12px;
-      border: 1.5px solid green;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      line-height: 1.6;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-    }
-
-    .quote {
-      color: #007acc;
-      font-style: italic;
-    }
-
-    strong {
-      color: #000;
+    .cta-button {
+      background: green;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 8px;
       font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: inline-block;
+      margin: 5px auto;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cta-button:hover {
+      background: #005f99;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .cta-button1 {
+      background: #fa88dd;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: inline-block;
+      margin: 5px auto;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cta-button1:hover {
+      background: #005f99;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .body-text-section {
+      max-width: 800px;
+      margin: 5px auto;
+      text-align: center;
+    }
+
+    .animated-text {
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      line-height: 1.5;
+    }
+
+    .animated-text:nth-child(1) { animation-delay: 0.3s; }
+    .animated-text:nth-child(2) { animation-delay: 0.6s; }
+    .animated-text:nth-child(3) { animation-delay: 0.9s; }
+    .animated-text:nth-child(4) { animation-delay: 1.2s; }
+    .animated-text:nth-child(5) { animation-delay: 1.5s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     footer {
@@ -248,12 +231,77 @@
       font-size: 0.8rem;
     }
 
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #222;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      font-family: sans-serif;
+      font-size: 0.6rem;
+      flex-wrap: wrap;
+      gap: 10px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    #cookieConsent button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background: #f1d600;
+      border: none;
+      cursor: pointer;
+    }
+
     @media (max-width: 700px) {
       .hero-line {
         font-size: 1.2rem;
         padding: 8px 12px;
       }
     }
+
+    .quote {
+      color: #007acc;
+      font-style: italic;
+    }
+
+    strong {
+      color: #000;
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    .hero-message-blocks {
+      max-width: 900px;
+      margin: 40px auto 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .message-block {
+      font-family: 'PT Serif', serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      line-height: 1.4;
+      color: #222;
+      background: #fff;
+      padding: 20px 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 6px;
+      text-align: left;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .message-block:nth-child(1) { animation-delay: 0.3s; }
+    .message-block:nth-child(2) { animation-delay: 0.6s; }
+    .message-block:nth-child(3) { animation-delay: 0.9s; }
   </style>
 </head>
 <body>
@@ -280,30 +328,29 @@
    <section class="hero">
       <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
     </section>
-  
+
  <div class="main-content">
   <section class="hero-section">
     <img src="images/Clinical Trial.JPEG" class="hero-img" alt="Finding Dopa">
   </section>
-  
+
   <main>
     <section class="body-text-section">
       <a href="news.html" class="cta-button">Latest News</a>
       <br><a href="resources.html" class="cta-button1">Resources</a>
- 
+
 <section class="hero-message-blocks">
-  <!--<div class="message-block">-->
-    <div class="message-block animated-message">
+  <div class="message-block animated-message">
     <span style="color: #007acc;">Clinical trials</span> are research studies involving people, designed to answer specific questions about new treatments (like drugs, devices, or therapies). They help determine if these treatments are safe, effective, and better than what’s currently available.
   </div>
-  <div class="message-block">
+  <div class="message-block animated-message">
     <span style="color: #007acc;">I believe</span> in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
   </div>
-  <div class="message-block">
+  <div class="message-block animated-message">
     <span style="color: #007acc;">Stay informed</span>, stay strong, and join me in the journey towards a brighter tomorrow.
   </div>
 </section>
-       
+
       <p class="animated-text">
   <span class="quote">"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."</span>
   <br> — <strong>Dr. Roger Barker, University of Cambridge, 2021</strong>
@@ -326,17 +373,6 @@
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
-
-  <script>
-    const sliderLinks = document.querySelectorAll('.slider-container .slide-link');
-    sliderLinks.forEach(link => {
-      if (link.textContent.trim() === 'Welcome') {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  </script>
 
   <div id="cookieConsent" style="display:none;">
     This website uses cookies to enhance your experience.
