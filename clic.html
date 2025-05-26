@@ -257,6 +257,113 @@
   </style>
 </head>
 <body>
-  <!-- Your HTML structure and content should follow here -->
+
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+    <div class="slider-container">
+      <a href="fix-or-cure.html" class="slide slide-link">Fix or Cure?</a>
+      <a href="science.html" class="slide slide-link">The Science</a>
+      <a href="actors.html" class="slide slide-link">The Actors</a>
+      <a href="news.html" class="slide slide-link">Latest News</a>
+      <a href="clinical-trials.html" class="slide slide-link">Clinical Trials</a>
+      <a href="resources.html" class="slide slide-link">Resources</a>
+      <a href="about.html" class="slide slide-link">About</a>
+      <a href="disclaimer.html" class="slide slide-link">Disclaimer</a>
+    </div>
+  </header>
+
+   <section class="hero">
+      <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
+    </section>
+  
+ <div class="main-content">
+  <section class="hero-section">
+    <img src="images/Clinical Trial.JPEG" class="hero-img" alt="Finding Dopa">
+  </section>
+  
+  <main>
+    <section class="body-text-section">
+      <a href="news.html" class="cta-button">Latest News</a>
+      <br><a href="resources.html" class="cta-button1">Resources</a>
+ 
+<section class="hero-message-blocks">
+  <!--<div class="message-block">-->
+    <div class="message-block animated-message">
+    <span style="color: #007acc;">Clinical trials</span> are research studies involving people, designed to answer specific questions about new treatments (like drugs, devices, or therapies). They help determine if these treatments are safe, effective, and better than what’s currently available.
+  </div>
+  <div class="message-block">
+    <span style="color: #007acc;">I believe</span> in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
+  </div>
+  <div class="message-block">
+    <span style="color: #007acc;">Stay informed</span>, stay strong, and join me in the journey towards a brighter tomorrow.
+  </div>
+</section>
+       
+      <p class="animated-text">
+  <span class="quote">"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."</span>
+  <br> — <strong>Dr. Roger Barker, University of Cambridge, 2021</strong>
+</p>
+      <p class="animated-text">
+      <span class="quote">"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."</span>
+       <br> — <strong>Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</strong></p>
+      <p class="animated-text">
+       <span class="quote">"We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."</span>
+        <br> — <strong>Dr. Claire Henchcliffe, UC Irvine, 2020</strong></p>
+      <p class="animated-text">
+       <span class="quote">"This is not just a treatment—this is an attempt at a true biological fix."</span>
+       <br>  — <strong>The New York Times, 2022</strong></p>
+      <p class="animated-text">
+       <span class="quote">"Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."</span>
+       <br> — <strong>Scientific American, 2021</strong></p>
+    </section>
+  </main>
+</div>
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    const sliderLinks = document.querySelectorAll('.slider-container .slide-link');
+    sliderLinks.forEach(link => {
+      if (link.textContent.trim() === 'Welcome') {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  </script>
+
+  <div id="cookieConsent" style="display:none;">
+    This website uses cookies to enhance your experience.
+    <button onclick="handleConsent(true)">Accept</button>
+    <button onclick="handleConsent(false)">Decline</button>
+  </div>
+
+  <script>
+    function handleConsent(consent) {
+      localStorage.setItem("cookiesAccepted", consent);
+      document.getElementById("cookieConsent").style.display = "none";
+      if (consent) loadAnalytics();
+    }
+
+    function loadAnalytics() {
+      console.log("Analytics loaded");
+    }
+
+    window.onload = function() {
+      const consent = localStorage.getItem("cookiesAccepted");
+      if (consent === null) {
+        document.getElementById("cookieConsent").style.display = "block";
+      } else if (consent === "true") {
+        loadAnalytics();
+      }
+    };
+  </script>
+
 </body>
 </html>
