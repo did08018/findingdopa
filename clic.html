@@ -8,6 +8,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -94,32 +95,35 @@
       color: #00bfff;
     }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 20px;
-      margin-bottom: 10px;
-      text-align: center;
+    h1, h2, h3, .hero-line, .slide, .cta-button {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .hero p {
-      font-size: 0.8rem;
-      max-width: 600px;
-      margin: 4px 0 10px; /* Combined margin properties */
-      padding: 0;
-      color: #2e2a89;
-      position: relative;
+    h2, h3, .hero-line, .cta-button {
+      color: #00f7ff;
+      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
     }
 
-    .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
+    .cta-button1 {
+      background: #ff00c8;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .cta-button1:hover {
+      background: #880088;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8, 0 0 30px #ff00c8;
     }
 
     .hero-section {
@@ -140,87 +144,100 @@
       margin-top: 3px;
     }
 
-    main {
-      flex: 1;
-      max-width: 900px;
+    #main {
+      padding: 60px 20px;
+      background: radial-gradient(ellipse at top, #0b0f1a, #000);
+      color: #e0e0e0;
+      font-family: 'PT Serif', serif;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 10px 20px;
-      box-sizing: border-box;
+      display: grid;
+      gap: 40px;
     }
 
-    .cta-button {
-      background: green;
-      color: white;
-      padding: 0.8rem 1.8rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: inline-block;
-      margin: 5px auto;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .cta-button:hover {
-      background: #005f99;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-
-    .cta-button1 {
-      background: #fa88dd;
-      color: white;
-      padding: 0.8rem 1.8rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: inline-block;
-      margin: 5px auto;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .cta-button1:hover {
-      background: #005f99;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-
-    .body-text-section {
-      max-width: 800px;
-      margin: 5px auto;
+    #main .intro {
       text-align: center;
+      margin-bottom: 50px;
     }
 
-    .animated-text {
-      font-style: italic;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      line-height: 1.5;
+    #main .intro h2 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: #b2fefa;
+      font-weight: 600;
     }
 
-    .animated-text:nth-child(1) { animation-delay: 0.3s; }
-    .animated-text:nth-child(2) { animation-delay: 0.6s; }
-    .animated-text:nth-child(3) { animation-delay: 0.9s; }
-    .animated-text:nth-child(4) { animation-delay: 1.2s; }
-    .animated-text:nth-child(5) { animation-delay: 1.5s; }
+    #main .tagline {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+    .science-block {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .science-block:hover {
+      transform: translateY(-5px);
+    }
+
+    .science-block h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1.2px;
+      color: #00f7ff;
+      text-shadow:
+        0 0 5px #00f7ff,
+        0 0 10px #00f7ff,
+        0 0 20px #00f7ff,
+        0 0 40px #00f7ff;
+      text-transform: uppercase;
+      animation: neonPulse 2.5s ease-in-out infinite;
+      position: relative;
+    }
+
+    .science-block h3::after {
+      content: '';
+      display: block;
+      width: 50px;
+      margin-top: 8px;
+      height: 3px;
+      background: #00f7ff;
+      box-shadow:
+        0 0 5px #00f7ff,
+        0 0 10px #00f7ff,
+        0 0 15px #00f7ff;
+      border-radius: 2px;
+    }
+
+    @keyframes neonPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 5px #00f7ff,
+          0 0 10px #00f7ff,
+          0 0 20px #00f7ff,
+          0 0 40px #00f7ff;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      50% {
+        text-shadow:
+          0 0 2px #00f7ff,
+          0 0 5px #00f7ff,
+          0 0 10px #00f7ff,
+          0 0 20px #00f7ff;
       }
+    }
+
+    .science-block p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      color: #ccc;
     }
 
     footer {
@@ -256,52 +273,6 @@
       border: none;
       cursor: pointer;
     }
-
-    @media (max-width: 700px) {
-      .hero-line {
-        font-size: 1.2rem;
-        padding: 8px 12px;
-      }
-    }
-
-    .quote {
-      color: #007acc;
-      font-style: italic;
-    }
-
-    strong {
-      color: #000;
-      font-weight: bold;
-      font-style: normal;
-    }
-
-    .hero-message-blocks {
-      max-width: 900px;
-      margin: 40px auto 20px auto;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    .message-block {
-      font-family: 'PT Serif', serif;
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      line-height: 1.4;
-      color: #222;
-      background: #fff;
-      padding: 20px 25px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      border-radius: 6px;
-      text-align: left;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .message-block:nth-child(1) { animation-delay: 0.3s; }
-    .message-block:nth-child(2) { animation-delay: 0.6s; }
-    .message-block:nth-child(3) { animation-delay: 0.9s; }
   </style>
 </head>
 <body>
@@ -325,51 +296,34 @@
     </div>
   </header>
 
-   <section class="hero">
-      <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
-    </section>
-
- <div class="main-content">
-  <section class="hero-section">
-    <img src="images/Clinical Trial.JPEG" class="hero-img" alt="Finding Dopa">
+<main id="main">
+    <section class="intro">
+    <h2>Clinical Trials</h2>
+    <p class="tagline">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
   </section>
 
-  <main>
-    <section class="body-text-section">
-      <a href="news.html" class="cta-button">Latest News</a>
-      <br><a href="resources.html" class="cta-button1">Resources</a>
+  <div class="science-block">
+    <h3>Nerve Grafts</h3>
+    <p>Scientists are exploring nerve grafts to replace damaged neurons in Parkinson’s patients. These grafts may help re-establish lost connections and restore motor function over time.</p>
+  </div>
+  <div class="science-block">
+    <h3>MSCs</h3>
+    <p>Mesenchymal stem cells (MSCs) have anti-inflammatory properties and may slow disease progression. They’re also being tested for their ability to support dopamine-producing cells.</p>
+  </div>
+  <div class="science-block">
+    <h3>iPSCs</h3>
+    <p>Induced pluripotent stem cells (iPSCs) can be turned into dopamine-producing neurons. This personalized approach could lead to safer, patient-specific therapies.</p>
+  </div>
+  <div class="science-block">
+    <h3>Clinical Trials</h3>
+    <p>Multiple clinical trials are underway to evaluate stem cell treatments for Parkinson’s. Results so far are promising, with some showing motor improvement and safety.</p>
+  </div>
+  <div class="science-block">
+    <h3>The Future</h3>
+    <p>Combining cell therapies, gene editing, and brain-targeted delivery may offer a cure in the coming years. Research is accelerating toward lasting solutions.</p>
+  </div>
+</main>
 
-<section class="hero-message-blocks">
-  <div class="message-block animated-message">
-    <span style="color: #007acc;">Clinical trials</span> are research studies involving people, designed to answer specific questions about new treatments (like drugs, devices, or therapies). They help determine if these treatments are safe, effective, and better than what’s currently available.
-  </div>
-  <div class="message-block animated-message">
-    <span style="color: #007acc;">I believe</span> in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
-  </div>
-  <div class="message-block animated-message">
-    <span style="color: #007acc;">Stay informed</span>, stay strong, and join me in the journey towards a brighter tomorrow.
-  </div>
-</section>
-
-      <p class="animated-text">
-  <span class="quote">"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."</span>
-  <br> — <strong>Dr. Roger Barker, University of Cambridge, 2021</strong>
-</p>
-      <p class="animated-text">
-      <span class="quote">"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."</span>
-       <br> — <strong>Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</strong></p>
-      <p class="animated-text">
-       <span class="quote">"We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."</span>
-        <br> — <strong>Dr. Claire Henchcliffe, UC Irvine, 2020</strong></p>
-      <p class="animated-text">
-       <span class="quote">"This is not just a treatment—this is an attempt at a true biological fix."</span>
-       <br>  — <strong>The New York Times, 2022</strong></p>
-      <p class="animated-text">
-       <span class="quote">"Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."</span>
-       <br> — <strong>Scientific American, 2021</strong></p>
-    </section>
-  </main>
-</div>
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
