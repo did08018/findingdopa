@@ -497,6 +497,88 @@ strong {
 <div class="message-block animated-message">Message 1</div>
 <div class="message-block animated-message">Message 2</div>
 <div class="message-block animated-message">Message 3</div>
+
+
+.main-content {
+  background: radial-gradient(ellipse at top, #0b0f1a, #000);
+  padding: 60px 20px;
+  display: grid;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'PT Serif', serif;
+  color: #e0e0e0;
+}
+
+.science-block {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.science-block:hover {
+  transform: translateY(-5px);
+}
+
+/* Neon Futuristic H3 */
+.science-block h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1.2px;
+  color: #00f7ff;
+  text-shadow:
+    0 0 5px #00f7ff,
+    0 0 10px #00f7ff,
+    0 0 20px #00f7ff,
+    0 0 40px #00f7ff;
+  text-transform: uppercase;
+  animation: neonPulse 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+.science-block h3::after {
+  content: '';
+  display: block;
+  width: 50px;
+  margin-top: 8px;
+  height: 3px;
+  background: #00f7ff;
+  box-shadow:
+    0 0 5px #00f7ff,
+    0 0 10px #00f7ff,
+    0 0 15px #00f7ff;
+  border-radius: 2px;
+}
+
+/* Neon Pulse Animation */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #00f7ff,
+      0 0 10px #00f7ff,
+      0 0 20px #00f7ff,
+      0 0 40px #00f7ff;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #00f7ff,
+      0 0 5px #00f7ff,
+      0 0 10px #00f7ff,
+      0 0 20px #00f7ff;
+  }
+}
+
+.science-block p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #ccc;
+}
     
   </style>
 </head>
@@ -531,35 +613,30 @@ strong {
   </section>
   
 <main id="main">
-  <section class="intro">
-    <h2>Explore the Science</h2>
-    <p class="tagline">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
-  </section>
-
-  <section class="science-block">
+  <!-- BEGIN: Main Content Section -->
+<section class="main-content">
+  <div class="science-block">
     <h3>Nerve Grafts</h3>
-    <p>Scientists are exploring the transplantation of peripheral nerve tissue to stimulate regeneration in the brain’s dopaminergic system. Early results are promising and offer a potential support framework for restoring lost function.</p>
-  </section>
-
-  <section class="science-block">
-    <h3>Mesenchymal Stem Cells (MSCs)</h3>
-    <p>MSCs are multipotent stem cells capable of reducing inflammation and secreting protective factors. Researchers hope they can provide neuroprotective effects or even differentiate into neural cells in Parkinson’s patients.</p>
-  </section>
-
-  <section class="science-block">
-    <h3>Gene Therapy</h3>
-    <p>Gene therapy aims to correct or replace faulty genes responsible for dopamine production. Several clinical trials are testing its ability to slow or reverse Parkinson’s progression.</p>
-  </section>
-
-  <section class="science-block">
-    <h3>Dopaminergic Cells</h3>
-    <p>Scientists are working to develop dopaminergic neurons from stem cells that can be implanted into the brain to restore lost function. These lab-grown cells are showing great promise in early studies.</p>
-  </section>
-
-  <section class="science-block">
-    <h3>Future Tech</h3>
-    <p>Innovations such as brain-computer interfaces, nanomedicine, and adaptive neurostimulation may transform how we treat Parkinson’s Disease in the coming decade.</p>
-  </section>
+    <p>Scientists are exploring nerve grafts to replace damaged neurons in Parkinson’s patients. These grafts may help re-establish lost connections and restore motor function over time.</p>
+  </div>
+  <div class="science-block">
+    <h3>MSCs</h3>
+    <p>Mesenchymal stem cells (MSCs) have anti-inflammatory properties and may slow disease progression. They’re also being tested for their ability to support dopamine-producing cells.</p>
+  </div>
+  <div class="science-block">
+    <h3>iPSCs</h3>
+    <p>Induced pluripotent stem cells (iPSCs) can be turned into dopamine-producing neurons. This personalized approach could lead to safer, patient-specific therapies.</p>
+  </div>
+  <div class="science-block">
+    <h3>Clinical Trials</h3>
+    <p>Multiple clinical trials are underway to evaluate stem cell treatments for Parkinson’s. Results so far are promising, with some showing motor improvement and safety.</p>
+  </div>
+  <div class="science-block">
+    <h3>The Future</h3>
+    <p>Combining cell therapies, gene editing, and brain-targeted delivery may offer a cure in the coming years. Research is accelerating toward lasting solutions.</p>
+  </div>
+</section>
+<!-- END: Main Content Section -->
 </main>
 </div>
   <footer>
