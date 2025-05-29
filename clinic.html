@@ -2,70 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Finding Dopa – Platform dedicated to providing the latest research, resources, and hope.</title>
-  <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope: a fix is on the way, keep fighting!.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finding Dopa – Parkinson’s Disease Research and Clinical Trials</title>
+  <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope for a cure.">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#000000">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #00f7ff;
+      font-family: 'PT Serif', serif;
       color: #222;
+      background: radial-gradient(ellipse at top, #0b0f1a, #000);
       overscroll-behavior: none;
-      touch-action: manipulation;
       overflow-x: hidden;
     }
 
-/*background: #f5f8fa;*/ 
-    
     body {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      max-width: 100%;
     }
 
     header {
       background-color: #1a1a1a;
     }
 
-    /*#121212*/
-
-.main-content {
-  max-width: 700px;
-  margin: 0 auto;
+    .main-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    
+
     .top-bar {
       display: flex;
       align-items: center;
       background: #1a1a1a;
-      padding: 6px 10px;
+      padding: 10px;
       flex-wrap: wrap;
     }
 
     .home-brand {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       text-decoration: none;
       color: #007acc;
       font-size: 1.2rem;
-      margin-right: 12px;
+      margin-right: 15px;
     }
 
     .logo-text {
       font-family: 'PT Serif', serif;
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: white;
     }
 
@@ -76,7 +69,6 @@
       padding: 10px;
       overflow-x: auto;
       scrollbar-width: none;
-      box-sizing: border-box;
     }
 
     .slider-container::-webkit-scrollbar {
@@ -87,11 +79,10 @@
       flex: 0 0 auto;
       background: #1f1f1f;
       color: white;
-      padding: 5px 10px;
+      padding: 8px 15px;
       border-radius: 8px;
       white-space: nowrap;
       font-size: 0.95rem;
-      font-family: 'PT Serif', serif;
     }
 
     .slide-link {
@@ -108,21 +99,16 @@
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-    }
-
-    h2, h3, .hero-line, .cta-button {
       color: #00f7ff;
-      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
     }
 
-   <!-- p, .hero-line, {
+    p, .hero-line {
       color: #A576E0;
-      text-shadow: 0 0 5px #A576E0, 0 0 10px #A576E0, 0 0 20px #A576E0;
-    }-->
+      text-shadow: 0 0 5px #A576E0, 0 0 10px #A576E0;
+    }
 
-    
-
-    .cta-button1 {
+    .cta-button {
       background: #ff00c8;
       color: white;
       padding: 0.8rem 1.8rem;
@@ -131,77 +117,56 @@
       font-weight: bold;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8, 0 0 20px #ff00c8;
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
+      box-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8;
     }
 
-    .cta-button1:hover {
+    .cta-button:hover {
       background: #880088;
       transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8, 0 0 30px #ff00c8;
+      box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
     }
 
     .hero-section {
       background: radial-gradient(ellipse at top, #0b0f1a, #000);
-      max-width: 700px;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      padding: 0 5px;
-      box-sizing: border-box;
+      padding: 20px 0;
+      text-align: center;
     }
 
-/*margin: 0 auto;*/
-    
     .hero-img {
       max-width: 100%;
       height: auto;
-      display: block;
       border-radius: 12px;
-      margin-top: 0px;
     }
-    
-/*border: 2px solid white;*/
-    
+
     #main {
-      background: radial-gradient(ellipse at top, #0b0f1a, #000);
-      padding: 20px 20px;
+      padding: 20px 0;
       color: #e0e0e0;
-      font-family: 'PT Serif', serif;
-      max-width: 1000px;
-      margin: 0 auto;
       display: grid;
       gap: 20px;
     }
-    
-    #main .intro {
+
+    .intro {
       text-align: center;
-      margin-bottom: 10px;
     }
 
-    #main .intro h2 {
-      font-size: 2.8rem;
+    .intro h2 {
+      font-size: 2.5rem;
       margin-bottom: 10px;
       color: #b2fefa;
-      font-weight: 600;
     }
 
-    #main .tagline {
+    .tagline {
       font-size: 1.2rem;
       color: #aaa;
     }
 
     .science-block {
       background: rgba(255, 255, 255, 0.05);
-      padding: 5px 10px 5px 10px;
+      padding: 15px;
       border-radius: 12px;
-      backdrop-filter: blur(8px);
       border: 1px solid rgba(0, 255, 255, 0.2);
       transition: transform 0.3s ease;
     }
-
-    /*box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);*/
 
     .science-block:hover {
       transform: translateY(-5px);
@@ -210,67 +175,59 @@
     .science-block h3 {
       font-size: 1.8rem;
       margin-bottom: 15px;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1.2px;
-      color: #00f7ff;
-      text-shadow:
-        0 0 5px #00f7ff,
-        0 0 10px #00f7ff,
-        0 0 20px #00f7ff,
-        0 0 40px #00f7ff;
-      text-transform: uppercase;
-      animation: neonPulse 2.5s ease-in-out infinite;
       position: relative;
     }
 
-/*box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);*/
-    
     .science-block h3::after {
       content: '';
       display: block;
       width: 50px;
-      margin-top: 5px;
       height: 3px;
       background: #00f7ff;
-      box-shadow:
-        0 0 5px #00f7ff,
-        0 0 10px #00f7ff,
-        0 0 15px #00f7ff;
+      box-shadow: 0 0 5px #00f7ff;
       border-radius: 2px;
-    }
-
-    @keyframes neonPulse {
-      0%, 100% {
-        text-shadow:
-          0 0 5px #00f7ff,
-          0 0 10px #00f7ff,
-          0 0 20px #00f7ff,
-          0 0 40px #00f7ff;
-      }
-      50% {
-        text-shadow:
-          0 0 2px #00f7ff,
-          0 0 5px #00f7ff,
-          0 0 10px #00f7ff,
-          0 0 20px #00f7ff;
-      }
+      margin-top: 5px;
     }
 
     .science-block p {
-      font-size: 1.0rem;
+      font-size: 1rem;
       line-height: 1.6;
-      margin: 10;
       color: white;
     }
 
-    /*color: #ccc;*/
+    .open-link {
+      color: #00f7ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .open-link:hover {
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      color: white;
+      text-align: center;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid white;
+    }
+
+    th {
+      background: #1f1f1f;
+    }
 
     footer {
       text-align: center;
-      padding: 10px 20px;
+      padding: 10px;
       background: #1a1a1a;
       color: white;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 
     #cookieConsent {
@@ -279,57 +236,29 @@
       width: 100%;
       background: #222;
       color: #fff;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
-      padding: 5px;
-      font-family: sans-serif;
-      font-size: 0.6rem;
+      padding: 10px;
+      font-size: 0.9rem;
       flex-wrap: wrap;
       gap: 10px;
-      text-align: center;
       z-index: 1000;
     }
 
     #cookieConsent button {
-      margin-left: 10px;
-      padding: 5px 10px;
+      padding: 8px 15px;
       background: #f1d600;
       border: none;
       cursor: pointer;
+      border-radius: 5px;
     }
-
- .body-text {
-      color: white;
-      font-family: 'PT Serif', serif;
-      font-size: 0.8rem;
-      text-align: left;
-      padding: 0 20px;
-      margin: 0 auto 1rem;
-      max-width: 600px;
-    }
-
-    .custom-glow {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.8rem;
-  color: white;
-  text-align: center;
-  text-shadow:
-    0 0 5px #A576E0,
-    0 0 10px #A576E0,
-    0 0 20px #A576E0,
-    0 0 40px #A576E0;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-    
   </style>
 </head>
 <body>
-
   <header>
     <div class="top-bar">
-      <a href="index.html" class="home-brand" aria-label="Home">
+      <a href="index.html" class="home-brand" aria-label="Finding Dopa Home">
         <i class="fas fa-brain"></i>
         <span class="logo-text">Finding Dopa</span>
       </a>
@@ -346,95 +275,72 @@
     </div>
   </header>
 
-<div class="main-content">
-
-<div class="main-content">
-  <section class="hero-section">
-    <img src="images/Clinical Trials Disco 1.jpg" class="hero-img" alt="Finding Dopa">
-     </section>
-  
-<main id="main">
-
-  
-<section>
-   <!-- <div class="science-block">-->
-   <section class="intro">
-    <!--<p class="tagline">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>-->
-      <p class="hero-line custom-glow">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
- <!-- <h2>Clinical Trials</h2>-->
+  <div class="main-content">
+    <section class="hero-section">
+      <img src="images/Clinical-Trials-Disco-1.jpg" class="hero-img" alt="Parkinson’s Disease Clinical Trials">
     </section>
+    <main id="main">
+      <section class="intro">
+        <p class="hero-line">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
+        <h2>Clinical Trials</h2>
+      </section>
 
-  <div class="science-block">
-    <h3>Find Trials</h3>
-        <p><strong>exPDite-2</strong>: "Phase 3 study evaluating the potential efficacy and safety of an investigational cell therapy." - <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" target="_blank"><strong>Open Here</strong></a>
-        </p>
-        <p><strong>ClinicalTrials.gov</strong>: "Worlwide, Stem Cells, Recruiting" - <a href="https://clinicaltrials.gov/search?cond=Parkinson%20Disease&intr=stem%20cells&aggFilters=status:rec" target="_blank"><strong>Open Here</strong></a>
-        </p>
-         <p><strong>Fox Trial Finder</strong>: "For individuals interested in participating in research." - <a href="https://www.michaeljfox.org/trial-finder" target="_blank"><strong>Open Here</strong></a>
-        </p>
-        <p><strong>ctv.veeva.com</strong>: "An Exploratory Clinical Study of UX-DA001 in Subjects with Idiopathic Parkinson's Disease" - <a href="https://ctv.veeva.com/study/an-exploratory-clinical-study-of-ux-da001-in-subjects-with-idiopathic-parkinsons-disease" target="_blank"><strong>Open Here</strong></a>
-        </p>
+      <div class="science-block">
+        <h3>Find Trials</h3>
+        <p><strong>exPDite-2</strong>: Phase 3 study evaluating the efficacy and safety of bemdaneprocel, an investigational cell therapy aimed at replacing dopamine-producing neurons. <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" class="open-link" target="_blank">Learn More</a></p>
+        <p><strong>ClinicalTrials.gov</strong>: Search for worldwide stem cell trials for Parkinson’s disease (recruiting). <a href="https://clinicaltrials.gov/search?cond=Parkinson%20Disease&intr=stem%20cells&aggFilters=status:rec" class="open-link" target="_blank">Search Trials</a></p>
+        <p><strong>Fox Trial Finder</strong>: Connect with Parkinson’s research studies based on location and health history. <a href="https://www.michaeljfox.org/trial-finder" class="open-link" target="_blank">Find a Trial</a></p>
+        <p><strong>UX-DA001 Study</strong>: Phase 1 exploratory study of UX-DA001, a cell therapy using patient-derived cells to improve motor function. <a href="https://ctv.veeva.com/study/an-exploratory-clinical-study-of-ux-da001-in-subjects-with-idiopathic-parkinsons-disease" class="open-link" target="_blank">Explore Study</a></p>
       </div>
-    
-  <div class="science-block">
-    <h3>Time to Market</h3
-    <div style="overflow-x:auto; max-width: 100%;">
-  <table style="width:100%; border-collapse: collapse; margin: 20px 0; font-family: Arial, sans-serif; min-width: 300px; color: white; text-align: center;">
-    <thead>
-      <tr>
-        <th style="padding: 12px; border: 1px solid white;">Step</th>
-        <th style="padding: 12px; border: 1px solid white;">Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white;">Preclinical</td>
-        <td style="padding: 10px; border: 1px solid white;">1–2 years</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white;">Phase 1</td>
-        <td style="padding: 10px; border: 1px solid white;">~1 year</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white;">Phase 2</td>
-        <td style="padding: 10px; border: 1px solid white;">~1–2 years</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white;">Phase 3</td>
-        <td style="padding: 10px; border: 1px solid white;">~2–4 years</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white;">Regulatory Review</td>
-        <td style="padding: 10px; border: 1px solid white;">~6–12 months</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; border: 1px solid white; font-weight: bold;">Total</td>
-        <td style="padding: 10px; border: 1px solid white; font-weight: bold;">~6–10 years (sometimes longer)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+      <div class="science-block">
+        <h3>Time to Market</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Preclinical</td><td>1–2 years</td></tr>
+            <tr><td>Phase 1</td><td>~1 year</td></tr>
+            <tr><td>Phase 2</td><td>~1–2 years</td></tr>
+            <tr><td>Phase 3</td><td>~2–4 years</td></tr>
+            <tr><td>Regulatory Review</td><td>~6–12 months</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>~6–10 years</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="science-block">
+        <h3>exPDite-2</h3>
+        <p>Bemdaneprocel, a stem cell-derived therapy, is in Phase 3 as of 2025. If successful, it could reach the market by 2027–2028, aiming to restore dopaminergic function in Parkinson’s patients.</p>
+      </div>
+
+      <div class="science-block">
+        <h3>Phase 1/2 Studies</h3>
+        <p>Phase 1/2 trials combine safety (Phase 1) and preliminary efficacy (Phase 2) assessments. Successful trials, like those for bemdaneprocel, may advance to Phase 3 to further evaluate efficacy and safety.</p>
+      </div>
+
+      <div class="science-block">
+        <h3>NET-PD LS-1 Study</h3>
+        <p>Concluded in 2013, the NET-PD LS-1 trial (NCT00449865) found that creatine supplementation did not slow Parkinson’s progression compared to placebo. Results were published in 2015.</p>
+      </div>
+
+      <div class="science-block">
+        <h3>Join a Trial</h3>
+        <p>Interested in participating? Contact the exPDite-2 team at <a href="tel:+18773803967" class="open-link">+1-877-380-3967</a> or visit the <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" class="open-link" target="_blank">exPDite-2 website</a> to check eligibility.</p>
+        <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" class="cta-button" target="_blank">Join exPDite-2</a>
+      </div>
+    </main>
   </div>
-  <div class="science-block">
-    <h3>exPDite-2</h3>
-    <p>Bemdaneprocel is already entering Phase 3 in 2025, so if successful, it could reach the market by 2027–2028.</p>
-  </div>
-  <div class="science-block">
-    <h3>Clinical Trials</h3>
-    <p>Multiple clinical trials are underway to evaluate stem cell treatments for Parkinson’s. Results so far are promising, with some showing motor improvement and safety.</p>
-  </div>
-  <div class="science-block">
-    <h3>The Future</h3>
-    <p>Combining cell therapies, gene editing, and brain-targeted delivery may offer a cure in the coming years. Research is accelerating toward lasting solutions.</p>
-  </div>
-</main>
-</div>
 
   <footer>
-    &copy; 2025 Finding Dopa. All rights reserved.
+    © 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  <div id="cookieConsent" style="display:none;">
+  <div id="cookieConsent">
     This website uses cookies to enhance your experience.
     <button onclick="handleConsent(true)">Accept</button>
     <button onclick="handleConsent(false)">Decline</button>
@@ -450,16 +356,15 @@
     function loadAnalytics() {
       console.log("Analytics loaded");
     }
- 
+
     window.onload = function() {
       const consent = localStorage.getItem("cookiesAccepted");
       if (consent === null) {
-        document.getElementById("cookieConsent").style.display = "block";
+        document.getElementById("cookieConsent").style.display = "flex";
       } else if (consent === "true") {
         loadAnalytics();
       }
     };
   </script>
-
 </body>
 </html>
