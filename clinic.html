@@ -354,6 +354,16 @@
   </div>
 
   <script>
+
+    // Highlight active menu item
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+    
     function handleConsent(consent) {
       localStorage.setItem("cookiesAccepted", consent);
       document.getElementById("cookieConsent").style.display = "none";
