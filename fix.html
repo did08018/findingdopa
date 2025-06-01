@@ -244,20 +244,18 @@
   function animateParagraphs() {
     const paragraphs = document.querySelectorAll('.body-text-section p');
 
+    // Force a reflow by reading offsetHeight before adding class
     paragraphs.forEach(p => {
       p.classList.remove('visible');
-      p.style.opacity = '0';
-      p.style.transform = 'translateY(20px)';
+      void p.offsetHeight; // <-- this forces a reflow
     });
 
-    // Add a slight delay to ensure styles reset before re-adding animation
-    setTimeout(() => {
-      paragraphs.forEach((p, index) => {
-        setTimeout(() => {
-          p.classList.add('visible');
-        }, index * 300);
-      });
-    }, 50);
+    // Animate in with stagger
+    paragraphs.forEach((p, index) => {
+      setTimeout(() => {
+        p.classList.add('visible');
+      }, index * 300);
+    });
   }
 
   function highlightActiveSlide() {
@@ -269,15 +267,19 @@
     });
   }
 
-  // First load
+  // First page load
   document.addEventListener('DOMContentLoaded', () => {
     highlightActiveSlide();
     animateParagraphs();
   });
 
-  // Handle back/forward cache (bfcache)
+  // On bfcache restore (back/forward nav)
   window.addEventListener('pageshow', (event) => {
-    animateParagraphs(); // Always re-run
+    if (event.persisted) {
+      requestAnimationFrame(() => {
+        animateParagraphs();
+      });
+    }
   });
 </script>
 </body>
