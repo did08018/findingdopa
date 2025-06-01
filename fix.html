@@ -293,15 +293,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animate paragraphs in body-text-section
   const paragraphs = document.querySelectorAll('.body-text-section p');
+
+  // Reset animation state
   paragraphs.forEach(p => {
-    p.classList.remove('visible'); // Remove visible class to reset
+    p.classList.remove('visible'); // Remove visible class
+    p.style.transition = 'none'; // Temporarily disable transitions
+    p.style.opacity = '0'; // Force initial state
+    p.style.transform = 'translateY(20px)'; // Force initial state
   });
 
-  // Force reflow to restart animation
+  // Force reflow
   void document.body.offsetWidth;
 
-  // Re-add visible class with delay
+  // Re-enable transitions and trigger animation
   paragraphs.forEach((p, index) => {
+    p.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; // Restore transitions
     setTimeout(() => {
       p.classList.add('visible');
     }, index * 300); // 300ms delay between each paragraph
