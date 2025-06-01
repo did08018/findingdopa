@@ -2,136 +2,296 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Finding Dopa – Scientific Insights</title>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Finding Dopa – Yes We Will</title>
+  <meta name="description" content="Stem cell therapy offers new hope for Parkinson’s disease. A fix is on the way. Keep fighting!">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f8fa;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+ .main-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 0;
+    }
+    
     body {
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #121212;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 6px 10px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2rem;
+    }
+
+    .logo-text {
       font-family: 'PT Serif', serif;
-      background: linear-gradient(to bottom, #0c0f1c, #1b203a);
-      color: #eaeaea;
-      line-height: 1.6;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
     }
 
-    header, footer {
-      background: #0a0c14;
-      padding: 20px;
+    .slider-container {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      text-decoration: none;
       text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      color: #90e0ef;
-      border-bottom: 2px solid #3a3f5c;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2em;
+    .slide:hover {
+      color: #00bfff;
     }
 
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
     }
 
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6em;
-      color: #00f5d4;
-      margin-top: 60px;
-      margin-bottom: 20px;
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
-    p {
-      margin-bottom: 20px;
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.hero p {
+  font-size: 0.8rem;
+  max-width: 600px;
+  margin: 0 0 5px 0;
+  padding: 0;
+  color: #2e2a89;
+}
+    
+/*  font-family: 'PT Serif', serif;
+*/
+
+.hero:first-of-type {
+  margin-top: 5px;        /* Reduce top margin to pull it closer */
+}
+    
+.welcome-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: green;
+  font-family: 'PT Serif', serif;
+  margin: 5px 0 0 0;
+}
+    
+   /* .hero p::after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -8px;
+      border-bottom: 1px solid pink;
+    }*/
+
+    /*.welcome-text {
+      font-size: 2.5rem;
+      margin: 0 auto;
+      color: green;
+      font-family: 'PT Serif', serif;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }*/
+
+    .legend-section {
+      text-align: center;
+      margin-bottom: 5px;
     }
 
-    a {
-      color: #ffcc00;
+    .legend-image {
+      max-width: 700px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #2e2a89;
+    }
+
+    .body-text-section {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      margin-top: 5px;
+    }
+
+   .body-text-section p {
+  margin: 1em 0;
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Start slightly below */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth transition */
+}
+
+.body-text-section p.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Move to original position */
+}
+
+    .source {
+      font-style: italic;
+      color: #007acc;
+    }
+
+    .source a {
+      color: #2e2a89;
+      font-weight: bold;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .science-block {
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 5px solid #00f5d4;
-      padding: 20px;
-      margin-bottom: 40px;
-      border-radius: 5px;
-    }
-
-    .cta {
+    footer {
       text-align: center;
-      margin-top: 60px;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .cta a {
-      background: #00f5d4;
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 5px;
-      font-weight: bold;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Finding Dopa</h1>
-    <p>A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+
+    <div class="slider-container">
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+    
   </header>
 
-  <div class="container">
-    <div class="science-block">
-      <h2 class="section-title">Understanding Cell Therapy in Parkinson's</h2>
-      <p>
-        Parkinson’s Disease (PD) is marked by the degeneration of dopaminergic neurons in the substantia nigra. One approach to reversing this involves transplanting cells that can replace the lost neurons and restore dopamine production.
-      </p>
-      <p>
-        Sources of these cells include fetal midbrain tissue, embryonic stem cells, induced pluripotent stem cells (iPSCs), and mesenchymal stromal cells (MSCs). Each source has benefits and risks, particularly concerning immune response, ethical considerations, and scalability.
-      </p>
-    </div>
+  <main>
 
-    <div class="science-block">
-      <h2 class="section-title">Mesenchymal Stromal Cells (MSCs)</h2>
-      <p>
-        MSCs offer immunomodulatory benefits and can be harvested from adult tissues like bone marrow, adipose tissue, and umbilical cord. In PD, MSCs are explored not just for their regenerative properties but for their ability to deliver neuroprotective factors.
-      </p>
-      <p>
-        Ongoing trials are investigating their safety and efficacy. Results so far suggest MSCs are well-tolerated, with potential to slow disease progression.
-      </p>
-    </div>
+    <div class="main-content">
 
-    <div class="science-block">
-      <h2 class="section-title">Clinical Trial Insights</h2>
-      <p>
-        Several clinical trials are underway assessing stem cell therapies in PD. While earlier fetal tissue trials showed variable outcomes, newer approaches using iPSCs or MSCs are more standardized and ethically sound.
-      </p>
-      <p>
-        For example, Takahashi et al. in Japan have successfully transplanted dopaminergic neurons derived from iPSCs in a PD patient, showing promise for long-term integration and function.
-      </p>
-    </div>
+    <section class="hero">
+      <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
+    </section>
+      
+    <section class="legend-section">
+      <img src="images/Happy Brain 169.JPG" alt="Happy Brain" class="legend-image">
+    </section>
 
-    <div class="science-block">
-      <h2 class="section-title">Key Challenges</h2>
-      <p>
-        Major hurdles include ensuring the cells survive post-transplant, integrate functionally with host brain tissue, and do not cause immune rejection or tumor formation. Long-term monitoring and refinement of delivery techniques remain essential.
+ <section class="hero">
+      <h1 class="welcome-text">Yes We Will</h1>
+    </section>
+      
+    <section class="body-text-section">
+      <p>Today, a range of cutting-edge technologies—like gene therapies, neuroprotective strategies, and targeted drug delivery systems—are offering new hope for Parkinson’s disease, with stem cell therapy standing out as one of the most promising approaches.</p>
+      <p>Current clinical trials are yielding positive results, with many patients experiencing significant improvements in motor function and quality of life.</p>
+      <p>While it doesn’t reverse the disease, stem cell therapy can help repair damaged neurons, providing meaningful relief.</p>
+      <p>The progress in stem cell therapy and other treatments is encouraging, the potential for significant improvements—and possibly even a fix for Parkinson’s in the future—remains strong.</p>
+      <p>So, yes, we will fix it!</p>
+      <p class="source">
+        <strong>hPSC-derived DA neurons trial, 2024</strong>: “This data has shown that developing dopamine cells when transplanted in the brain of a PwP (Person with Parkinson's) can survive long term with clinical benefits lasting decades and with restoration of normal dopaminergic innervation in the grafted striatum.” –
+        <a href="https://pubmed.ncbi.nlm.nih.gov/39058892/" target="_blank">National Library of Medicine, click here</a>
+        <!--<a href="pdf/BioEssays - 2024 - Barker - The history and status of dopamine cell therapies for Parkinson s disease.pdf" download>(Download PDF here if link is broken)</a>-->
       </p>
-    </div>
+    </section>
+    
+    <!--<section class="legend-section">
+      <img src="images/2035.jpeg" alt="2035" class="legend-image">
+    </section>
+    
+    <section class="body-text-section">
+      <section class="hero">
+    <p><i>"We are aiming for practical use by around 2035”</i><br>- <strong>Jun Takahashi M.D., Ph.D. on iPSCs for PD</strong></p>
+    </section>-->
 
-    <div class="cta">
-      <p>Learn more and join the fight:</p>
-      <a href="#clinical-trials">Explore Clinical Trials</a>
     </div>
-  </div>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Finding Dopa. All rights reserved.</p>
+    &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
+ document.addEventListener('DOMContentLoaded', () => {
+  // Highlight active slide
+  const currentPage = window.location.pathname.split('/').pop();
+  document.querySelectorAll('.slide').forEach(slide => {
+    if (slide.getAttribute('href') === currentPage) {
+      slide.classList.add('active');
+    }
+  });
+
+  // Animate paragraphs in body-text-section
+  const paragraphs = document.querySelectorAll('.body-text-section p');
+  paragraphs.forEach((p, index) => {
+    setTimeout(() => {
+      p.classList.add('visible');
+    }, index * 300); // 300ms delay between each paragraph
+  });
+});
 </body>
 </html>
