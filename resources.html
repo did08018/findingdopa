@@ -372,6 +372,24 @@
       </section>
       
     <section id="papers">
+
+       <section id="papers">
+      
+<!-- Add more ARTICLES entries below -->
+
+      <div class="resource-entry">
+        <div class="date-and-image">
+        <img src="images/keto-diet.jpg" alt="Keto Diet" />
+        <div class="resource-date">February 23, 2015</div>
+        </div>
+        <div class="resource-content">
+          <h3>Did Grief Give Him Parkinson’s?</h3>
+          <p>It is plausible and safe for PD patients to maintain a low‐fat or ketogenic diet for 8 weeks... The ketogenic group showed greater improvements in nonmotor symptoms.</i></p>
+        </div>
+        <a class="resource-link" href="https://nautil.us/did-grief-give-him-parkinsons-235310/" target="_blank">
+          <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
       
 <!-- Add more papers entries below -->
 
@@ -525,7 +543,7 @@
 
         // Toggle off if same button clicked
         if (activeButton === btn) {
-          ['podcasts', 'papers', 'organizations', 'videos', 'interviews'].forEach(id => {
+          ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
             document.getElementById(id).style.display = 'block';
           });
 
@@ -543,7 +561,7 @@
             b.style.color = '#2e2a89';
           });
 
-          ['podcasts', 'papers', 'organizations', 'videos', 'interviews'].forEach(id => {
+          ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
             document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
           });
 
@@ -556,7 +574,7 @@
     });
 
     // Show all sections on initial load
-    ['podcasts', 'papers', 'organizations', 'videos', 'interviews'].forEach(id => {
+    ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
       document.getElementById(id).style.display = 'block';
     });
   });
