@@ -282,7 +282,7 @@
   </footer>
 
   <script>
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Highlight active slide
   const currentPage = window.location.pathname.split('/').pop();
   document.querySelectorAll('.slide').forEach(slide => {
@@ -291,28 +291,21 @@
     }
   });
 
-  // Animate paragraphs when they enter the viewport
+  // Animate paragraphs in body-text-section
   const paragraphs = document.querySelectorAll('.body-text-section p');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        paragraphs.forEach((p, index) => {
-          p.classList.remove('visible'); // Reset animation
-          setTimeout(() => {
-            p.classList.add('visible'); // Trigger animation
-          }, index * 300);
-        });
-        // Optionally, unobserve after first trigger to avoid repeated animations
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  paragraphs.forEach(p => {
+    p.classList.remove('visible'); // Remove visible class to reset
+  });
 
-  // Observe the body-text-section
-  const bodyTextSection = document.querySelector('.body-text-section');
-  if (bodyTextSection) {
-    observer.observe(bodyTextSection);
-  }
+  // Force reflow to restart animation
+  void document.body.offsetWidth;
+
+  // Re-add visible class with delay
+  paragraphs.forEach((p, index) => {
+    setTimeout(() => {
+      p.classList.add('visible');
+    }, index * 300); // 300ms delay between each paragraph
+  });
 });
   </script>
 </body>
