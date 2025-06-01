@@ -240,24 +240,44 @@
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Highlight active slide
-      const currentPage = window.location.pathname.split('/').pop();
-      document.querySelectorAll('.slide').forEach(slide => {
-        if (slide.getAttribute('href') === currentPage) {
-          slide.classList.add('active');
-        }
-      });
+<script>
+  function animateParagraphs() {
+    const paragraphs = document.querySelectorAll('.body-text-section p');
 
-      // Animate paragraphs in body-text-section
-      const paragraphs = document.querySelectorAll('.body-text-section p');
-      paragraphs.forEach((p, index) => {
-        setTimeout(() => {
-          p.classList.add('visible');
-        }, index * 300);
-      });
+    // Reset animation state
+    paragraphs.forEach(p => {
+      p.classList.remove('visible');
+      p.style.opacity = '0';
+      p.style.transform = 'translateY(20px)';
     });
-  </script>
+
+    // Trigger animation
+    paragraphs.forEach((p, index) => {
+      setTimeout(() => {
+        p.classList.add('visible');
+      }, index * 300);
+    });
+  }
+
+  // Trigger on normal load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Highlight active slide
+    const currentPage = window.location.pathname.split('/').pop();
+    document.querySelectorAll('.slide').forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+
+    animateParagraphs();
+  });
+
+  // Also trigger on back/forward navigation (bfcache restore)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      animateParagraphs();
+    }
+  });
+</script>
 </body>
 </html>
