@@ -244,39 +244,40 @@
   function animateParagraphs() {
     const paragraphs = document.querySelectorAll('.body-text-section p');
 
-    // Reset animation state
     paragraphs.forEach(p => {
       p.classList.remove('visible');
       p.style.opacity = '0';
       p.style.transform = 'translateY(20px)';
     });
 
-    // Trigger animation
-    paragraphs.forEach((p, index) => {
-      setTimeout(() => {
-        p.classList.add('visible');
-      }, index * 300);
-    });
+    // Add a slight delay to ensure styles reset before re-adding animation
+    setTimeout(() => {
+      paragraphs.forEach((p, index) => {
+        setTimeout(() => {
+          p.classList.add('visible');
+        }, index * 300);
+      });
+    }, 50);
   }
 
-  // Trigger on normal load
-  document.addEventListener('DOMContentLoaded', () => {
-    // Highlight active slide
+  function highlightActiveSlide() {
     const currentPage = window.location.pathname.split('/').pop();
     document.querySelectorAll('.slide').forEach(slide => {
       if (slide.getAttribute('href') === currentPage) {
         slide.classList.add('active');
       }
     });
+  }
 
+  // First load
+  document.addEventListener('DOMContentLoaded', () => {
+    highlightActiveSlide();
     animateParagraphs();
   });
 
-  // Also trigger on back/forward navigation (bfcache restore)
+  // Handle back/forward cache (bfcache)
   window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      animateParagraphs();
-    }
+    animateParagraphs(); // Always re-run
   });
 </script>
 </body>
