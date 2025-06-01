@@ -177,16 +177,16 @@
       margin-top: 5px;
     }
 
-  .body-text-section p {
+ .body-text-section p {
   margin: 1em 0;
   opacity: 0; /* Start hidden */
   transform: translateY(20px); /* Start slightly below */
   transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth transition */
-  background: #ffffff; /* Subtle white background */
-  border: 0px solid #e0e0e0; /* Light gray border for subtlety */
-  border-radius: 8px; /* Rounded corners */
-  padding: 15px; /* Inner spacing for content */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Very subtle shadow for depth */
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .body-text-section p.visible {
@@ -293,24 +293,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animate paragraphs in body-text-section
   const paragraphs = document.querySelectorAll('.body-text-section p');
+  console.log('Found paragraphs:', paragraphs.length); // Debug: Check if paragraphs are found
 
   // Reset animation state
   paragraphs.forEach(p => {
-    p.classList.remove('visible'); // Remove visible class
-    p.style.transition = 'none'; // Temporarily disable transitions
-    p.style.opacity = '0'; // Force initial state
-    p.style.transform = 'translateY(20px)'; // Force initial state
+    p.classList.remove('visible');
+    p.style.opacity = '0'; // Ensure initial hidden state
+    p.style.transform = 'translateY(20px)';
   });
 
-  // Force reflow
-  void document.body.offsetWidth;
-
-  // Re-enable transitions and trigger animation
+  // Trigger animation
   paragraphs.forEach((p, index) => {
-    p.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; // Restore transitions
     setTimeout(() => {
       p.classList.add('visible');
-    }, index * 300); // 300ms delay between each paragraph
+      console.log('Added visible class to paragraph:', index); // Debug: Confirm class addition
+    }, index * 300);
   });
 });
   </script>
