@@ -291,13 +291,28 @@
     }
   });
 
-  // Animate paragraphs in body-text-section
+  // Animate paragraphs when they enter the viewport
   const paragraphs = document.querySelectorAll('.body-text-section p');
-  paragraphs.forEach((p, index) => {
-    setTimeout(() => {
-      p.classList.add('visible');
-    }, index * 300); // 300ms delay between each paragraph
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        paragraphs.forEach((p, index) => {
+          p.classList.remove('visible'); // Reset animation
+          setTimeout(() => {
+            p.classList.add('visible'); // Trigger animation
+          }, index * 300);
+        });
+        // Optionally, unobserve after first trigger to avoid repeated animations
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe the body-text-section
+  const bodyTextSection = document.querySelector('.body-text-section');
+  if (bodyTextSection) {
+    observer.observe(bodyTextSection);
+  }
 });
   </script>
 </body>
