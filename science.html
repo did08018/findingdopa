@@ -257,7 +257,6 @@ section.hero:first-of-type {
       </a>
     </div>
     <div class="slider-container">
-      <!--<a href="welcome.html" class="slide">Welcome</a>-->
       <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
       <a href="science.html" class="slide">The Science</a>
       <a href="actors.html" class="slide">The Actors</a>
@@ -276,12 +275,12 @@ section.hero:first-of-type {
   </section>
 
       <section class="hero">
-      <!--<p>A fix for Parkinson's disease is on the way. Keep fighting!</p>-->
       <p>This page lists the building blocks and mechanisms forming the backbone of Parkinson’s research.</p>
       <p>From stem cells to CRISPR gene editing, each entry highlights a key element in how the disease is understood and treated.</p>
       </section>
       
     <section class="orb-grid">
+      <div class="orb" onclick="openModal('modal8')">REGENERATE-PD</div>
       <div class="orb" onclick="openModal('modal7')">CRISPR Gene Editing</div>
       <div class="orb" onclick="openModal('modal6')">Fetal vs. Embryonic Stem Cells</div>
       <div class="orb" onclick="openModal('modal5')">hESCs</div>
@@ -291,6 +290,16 @@ section.hero:first-of-type {
       <div class="orb" onclick="openModal('modal3')">ANPD001</div>
     </section>
   </main>
+
+    <div id="modal8" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal8')">&times;</span>
+      <p><strong>REGENERATE-PD</strong></p>
+      <p>- A new gene therapy approach for Parkinson’s disease is being tested in a Phase 2 clinical trial called REGENERATE-PD, which is currently recruiting participants. The treatment involves delivering the GDNF gene (Glial cell line-Derived Neurotrophic Factor) into the putamen, a brain region severely affected in Parkinson’s, using a viral vector called AAV2 (Adeno-Associated Virus serotype 2). The trial is randomized, double-blind, and surgically controlled, meaning that some participants undergo a sham surgery to help researchers assess true effectiveness while maintaining scientific rigor.</p>
+      <p>- AAV2 serves as a delivery vehicle, inserting the GDNF gene into living brain cells. Once inside, these cells begin producing GDNF, a protein known to support the survival, function, and potential regeneration of dopamine-producing neurons. The therapy aims to protect these vulnerable cells and enhance their performance in moderate-stage Parkinson’s patients—those who still retain enough living dopaminergic neurons to benefit from the treatment. It’s not a cure, but a strategy to slow progression or restore some motor function by keeping neurons alive and working longer.</p>
+      <p>- Importantly, gene therapy only works on living cells—it cannot revive neurons that have already died. That’s why the trial targets moderate-stage patients, where enough viable neurons remain to respond to GDNF. Previous attempts to use GDNF in Parkinson’s faced delivery challenges, but this study improves on past designs by using direct brain surgery to infuse the therapy precisely into the putamen. Early trials have shown promising safety data, and this Phase 2 study is now testing whether it actually helps patients in real-world clinical terms.</p>
+    </div>
+  </div>
 
     <div id="modal7" class="modal">
     <div class="modal-content">
