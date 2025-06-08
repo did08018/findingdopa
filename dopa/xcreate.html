@@ -132,13 +132,12 @@ body {
     }
 
     .hero img {
-      max-width: 300px;
-      border-radius: 50%;
-      margin: 20px auto 0.5rem;
-      display: block;
-      border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
+  max-width: 100%; /* UPDATED: make image responsive */
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid white;
+  margin-top: 3px;
     }
 
     .cta-button {
@@ -353,7 +352,7 @@ body {
     <section class="hero">
       <div>
         <img 
-          src="logos/DopaVOX.jpg"
+          src="../logos/DopaVOX.jpg"
         >
       </div>
     </section>
