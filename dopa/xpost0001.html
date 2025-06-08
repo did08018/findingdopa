@@ -134,6 +134,25 @@
       margin-top: 5px;
     }
 
+    .fade-box {
+  opacity: 0;
+  animation: fadeInBox 2.5s ease-in forwards;
+  background: #fff;
+  border: 1px solid var(--deep-purple);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: #2e2a89;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes fadeInBox {
+  to {
+    opacity: 1;
+  }
+}
+
     .source {
       font-style: italic;
       color: var(--blue);
@@ -420,13 +439,17 @@
       <section class="hero">
         <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
         <img src="../logos/DopaVOX.jpg">
-         <section class="hero1">
-        <p>02 June 2025 - did08018: I'm told Levodopa Carbidopa doesn't precipitate the emergence of dyskinesia but I still won't start taking it.</p>
-         </section>
+ 
+
+        <section class="hero1">
+  <div class="fade-box">
+    02 June 2025 - did08018: I'm told Levodopa Carbidopa doesn't precipitate the emergence of dyskinesia but I still won't start taking it.
+  </div>
+</section>
   
 
  <!-- Giscus comments for Post 1 -->
-    <section>
+    
       <script src="https://giscus.app/client.js"
         data-repo="did08018/dopa"
         data-repo-id="REPO_ID"
