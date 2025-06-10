@@ -28,8 +28,6 @@
       color: #222;
       overflow-x: hidden;
     }
-
-/*font-family: 'Segoe UI', sans-serif;*/
     
     body {
       display: flex;
@@ -159,29 +157,47 @@
       background-color: yellow;
       font-weight: bold;
     }
-
+    
     .diagonal-hero {
+  overflow: hidden;
+  width: 100vw;
+  background: linear-gradient(10deg,
+    #6d28a3 0%, #8e44ad 12.5%, #b05afc 25%, #c77dff 37.5%,
+    #c77dff 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 80%);
+  min-height: 200px;
+  margin: 0;
+  padding: 0; /* ← Add this */
+  display: flex; /* ← Add for alignment */
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+    /*.diagonal-hero {
       overflow: hidden;
       width: 100vw;
-      background: linear-gradient(45deg,
-        #2d033b 0%, #4f0670 12.5%, #6d28a3 25%, #8e44ad 37.5%,
-        #b05afc 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);
+      background: linear-gradient(10deg,
+        #6d28a3 0%, #8e44ad 12.5%, #b05afc 25%, #c77dff 37.5%,
+        #c77dff 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);
       text-align: left;
       color: white;
       font-family: 'Inter', sans-serif;
-      clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 0 80%);
       min-height: 200px;
       margin: 0;
-    }
-
+    }*/
+/*#2d033b 0%, #4f0670 12.5%, #6d28a3 25%, #8e44ad 37.5%,
+        #b05afc 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);*/
+    
     .hero-title-left,
     .diagonal-hero h1,
     .diagonal-hero h2 {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-size: clamp(3rem, 6vw, 4.5rem);
       font-weight: 900;
       line-height: 1.1;
-      margin: 50px 0 0 20px;
+      margin: 30px 0 0 20px;
       color: var(--white-text);
       text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       max-width: 300px;
@@ -191,19 +207,18 @@
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
-      padding: 0px 20px 20px 20px;
       position: relative;
       text-align: right;
     }
-    
+
         .hero1 h1 {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(0.8rem, 6vw, 4.5rem); 
+      font-size: clamp(1rem, 6vw, 4rem); 
       font-weight: 200;
       line-height: 0.8;
       justify-content:right;
       align-items: right;
-      margin: -50px 0 0 20px;
+      margin: -100px 0 0 0;
       color: var(--black-text);
       text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
       max-width: 700px;
@@ -211,28 +226,28 @@
 
 .hero-title-right {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1rem, 6vw, 4rem);
+  font-size: clamp(1rem, 6vw, 2rem);
   font-weight: 800;
   white-space: normal;
   text-align: right;
   position: absolute;
-  right: 20vw;
+  right: 10vw;
   top: 2%;
   color: var(--white-text);
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   opacity: 0;
-  animation: fadeInRight 2.5s ease-out 0.6s forwards;
+  animation: fadeInRight 3.0s ease-out 1.0s forwards;
   line-height: 1.1;
 }
 
     @keyframes fadeInRight {
       from {
         opacity: 0;
-        transform: translate(30px, -50%);
+        transform: translate(25%, 0%);
       }
       to {
         opacity: 1;
-        transform: translate(0, -50%);
+        transform: translate(0%, 0%);
       }
     }
 
@@ -242,7 +257,6 @@
       margin: 5px 0;
       color: black;
     }
-     /*color: var(--deep-purple);*/
 
     input[type="text"] {
       padding: 12px 15px;
@@ -290,13 +304,6 @@
       font-weight: 500;
     }
 
-   /* #email-text {
-  color: var(--purple);
-  text-decoration: none !important;
-  font-weight: 500;
-  cursor: text;
-}*/
-
 #email-text {
   text-decoration: none !important;
   color: var(--purple);
@@ -313,32 +320,34 @@
 <body>
   <header>
     <div class="top-bar">
-      <a href="../index.html" class="home-brand" aria-label="Home">
+      <a href="index.html" class="home-brand" aria-label="Home">
         <i class="fas fa-brain"></i>
         <span class="logo-text">Finding Dopa</span>
       </a>
     </div>
 
     <div class="slider-container">
-      <a href="vox.html" class="slide">Dopa VOX</a>
-      <a href="../news.html" class="slide">Latest News</a>
-      <a href="../resources.html" class="slide">Resources</a>
-      <a href="../actors.html" class="slide">The Actors</a>
-      <a href="../fix-or-cure.html" class="slide">Fix or Cure?</a>
-      <a href="../science.html" class="slide">The Science</a>
-      <a href="../clinical-trials.html" class="slide">Clinical Trials</a>
-      <a href="../about.html" class="slide">About</a>
-      <a href="../disclaimer.html" class="slide">Disclaimer</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
 
-  <main>
+
     <section class="diagonal-hero">
       <h1 class="hero-title-left">Dopa VOX</h1>
     </section>
+    
+  <main>
+
 
     <section class="hero1">
-      <h1 class="hero-title-right"><strong><span style="color: white;">P</span></strong>rofound<br><strong><span style="color: white;">D</span></strong>iscussions<br>on the<br>Surface</h1>
+      <h1 class="hero-title-right"><strong><span style="color: #f5f8fa;">P</strong></span>rofound <strong><span style="color: #f5f8fa;">D</strong></span>iscussions<br>on the Surface</h1>
     </section>
 
     <div class="main-content">
@@ -369,6 +378,10 @@
       </article>
     </div>
   </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
 
   <script>
     function searchPosts(query) {
