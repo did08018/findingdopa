@@ -333,6 +333,19 @@
   -webkit-touch-callout: none;
   -webkit-text-decoration-skip: objects;
 }
+
+        .fade-box {
+  opacity: 0;
+  animation: fadeInBox 2.5s ease-in forwards;
+  background: #fff;
+  border: 1px solid var(--deep-purple);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: #2e2a89;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
     
   </style>
 </head>
@@ -376,7 +389,9 @@
 
     <div class="main-content">
       <section class="hero">
-        <p><strong>Dopa VOX</strong> — because it’s all about giving a voice to anyone dealing with Parkinson’s. Whether it’s questions, stories, tips, or random thoughts — this is your space to share.</p>
+        <div class="fade-box">
+          <p><strong>Dopa VOX</strong> — because it’s all about giving a voice to anyone dealing with Parkinson’s. Whether it’s questions, stories, tips, or random thoughts — this is your space to share.</p>
+        </div>
         <p>Click on any post to comment.</p>
         <p>Create a post by <a href="xcreate.html">clicking here</a>.</p>
 
