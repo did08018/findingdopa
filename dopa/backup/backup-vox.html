@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Finding Dopa – Dopa VOX</title>
+  <meta name="description" content="Let's talk about hope for Parkinson’s disease. A fix is on the way. Keep fighting!">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Inter:wght@300;400;500;600;700;800;900&family=Raleway+Dots&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --purple: #6a0dad;
+      --blue: #007acc;
+      --light-purple: #b05afc;
+      --deep-purple: #2e2a89;
+      --white-text: #ffffff;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f5f8fa;
+      color: #222;
+      overflow-x: hidden;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #121212;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 6px 10px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--blue);
+      font-size: 1.2rem;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .slider-container {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .slide:hover {
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: var(--deep-purple);
+      border: 2px solid var(--deep-purple);
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .main-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    .main-content a, .body-text-section a {
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .main-content p, .body-text-section p {
+      line-height: 1.6;
+      color: black;
+      margin: 1em 0;
+    }
+
+    .body-text-section {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      margin-top: 5px;
+    }
+
+    .source {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .source a {
+      color: var(--deep-purple);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    mark {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    
+    .hero-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+    
+    .diagonal-hero {
+  overflow: hidden;
+  width: 100vw;
+  background: linear-gradient(10deg,
+    #6d28a3 0%, #8e44ad 12.5%, #b05afc 25%, #c77dff 37.5%,
+    #c77dff 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  min-height: 200px;
+  margin: 0;
+  padding: 0; /* ← Add this */
+  display: flex; /* ← Add for alignment */
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+    /*.diagonal-hero {
+      overflow: hidden;
+      width: 100vw;
+      background: linear-gradient(10deg,
+        #6d28a3 0%, #8e44ad 12.5%, #b05afc 25%, #c77dff 37.5%,
+        #c77dff 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);
+      text-align: left;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 0 80%);
+      min-height: 200px;
+      margin: 0;
+    }*/
+/*#2d033b 0%, #4f0670 12.5%, #6d28a3 25%, #8e44ad 37.5%,
+        #b05afc 50%, #c77dff 62.5%, #7bdff2 75%, #f48fb1 87.5%, #fff1fb 100%);*/
+    
+    .hero-title-left,
+    .diagonal-hero h1,
+    .diagonal-hero h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 20px 0 0 5px;
+      color: var(--white-text);
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      max-width: 300px;
+    }
+
+    .hero1 {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      position: relative;
+      text-align: right;
+    }
+
+        .hero1 h1 {
+      font-family: 'Inter', sans-serif; 
+      font-weight: 200;
+      line-height: 0.8;
+      justify-content:right;
+      align-items: right;
+      margin 0;
+      color: var(--black-text);
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+      max-width: 700px;
+}
+/*font-size: clamp(1rem, 6vw, 4rem);*/
+.hero-title-right {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 6vw, 2rem);
+  font-weight: 800;
+  text-align: right;
+  margin: -100px 0 0 0;
+  color: var(--white-text);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: fadeInRight 3.0s ease-out 1.0s forwards;
+  line-height: 1.1;
+  padding-right: 5px;
+}
+
+/* .hero-title-right {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 6vw, 1rem);
+  font-weight: 800;
+  white-space: normal;
+  text-align: right;
+  position: absolute;
+  right: 10vw;
+  top: 2%;
+  color: var(--white-text);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: fadeInRight 3.0s ease-out 1.0s forwards;
+  line-height: 1.1;
+}*/
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translate(25%, 0%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0%, 0%);
+      }
+    }
+
+    .hero p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 5px 0;
+      color: black;
+    }
+
+    input[type="text"] {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: calc(100% - 130px);
+      max-width: 150px;
+      margin-right: 10px;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+      transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: var(--purple);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #noResultsMessage {
+      font-size: 0.8rem;
+      color: #dc3545;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+#email-text {
+  text-decoration: none !important;
+  color: var(--purple);
+  font-weight: 500;
+  cursor: text;
+  -webkit-user-select: all;
+  -webkit-touch-callout: none;
+  -webkit-text-decoration-skip: objects;
+}
+
+.vox-intro-box {
+  border: 1px solid #6a0dad;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background-color: #ffffff;
+  color: #2e2a89;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+
+    <div class="slider-container">
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+
+
+    <section class="diagonal-hero">
+      <div class="hero-wrapper">
+      <h1 class="hero-title-left">Dopa VOX</h1>
+    </div>
+    </section>
+    
+  <main>
+
+
+    <section class="hero1">
+      <div class="hero-wrapper">
+      <h1 class="hero-title-right"><strong><span style="color: #f5f8fa;">P</strong></span>rofound <strong><span style="color: #f5f8fa;">D</strong></span>iscussions<br>on the Surface</h1>
+    </div>
+    </section>
+
+    <div class="main-content">
+      <section class="hero">
+        <div class="vox-intro-box">
+          <p><strong>Dopa VOX</strong> — because it’s all about giving a voice to anyone dealing with Parkinson’s. Whether it’s questions, stories, tips, or random thoughts — this is our space to share.</p>
+        </div>
+        <p>Click on any post to comment.</p>
+        <p>Create a post by <a href="xcreate.html">clicking here</a>.</p>
+
+ <div id="contact-email" style="text-align: left;">
+ Anything else: <span id="email-text">fix@findingdopa.com</span>
+ <i class="fa-regular fa-clone" id="copy-icon" style="cursor: pointer; margin-left: 8px;" title="Copy to clipboard"></i>
+ <span id="copied-popup" style="display:none; margin-left: 10px; color: var(--purple); font-size: 0.9rem;">Copied!</span>
+ </div>
+        
+        <div style="display: flex; align-items: center; margin-top: 15px; margin-bottom: 20px;">
+          <input type="text" id="searchInput" placeholder="Search Posts...">
+          <button onclick="handleSearch()">Search</button>
+        </div>
+        <div id="noResultsMessage" style="display: none;">No results found.</div>
+      </section>
+
+      <article>
+        <div class="post">
+          <h2>Latest Posts:</h2>
+          <p>07 June 2025 - did08018: <a href="xpost9997.html">When I go for a run very early in the morning, I don't get dystonia in my left toes!</a></p>
+          <p>03 June 2025 - did08018: <a href="xpost9998.html">I take propanolol sometimes and it helps with the tremors.</a></p>
+          <p>02 June 2025 - did08018: <a href="xpost9999.html">I'm told Levodopa Carbidopa doesn't precipitate the emergence of dyskinesia but I still won't start taking it.</a></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    function searchPosts(query) {
+      const posts = document.querySelectorAll('.post');
+      let matchFound = false;
+      let firstMatch = null;
+      const regex = new RegExp(`(${query})`, 'gi');
+
+      posts.forEach(post => {
+        const paragraphs = post.querySelectorAll('p');
+        paragraphs.forEach(p => {
+          p.innerHTML = p.textContent;
+          if (query && p.textContent.toLowerCase().includes(query.toLowerCase())) {
+            p.innerHTML = p.textContent.replace(regex, '<mark>$1</mark>');
+            if (!firstMatch) firstMatch = p;
+            matchFound = true;
+          }
+        });
+      });
+
+      const messageBox = document.getElementById('noResultsMessage');
+      messageBox.style.display = query && !matchFound ? 'block' : 'none';
+
+      if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.trim();
+      searchPosts(query);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSearch();
+        }
+      });
+    });
+  </script>
+
+<script>
+  const copyIcon = document.getElementById("copy-icon");
+  const emailText = document.getElementById("email-text").textContent;
+  const copiedPopup = document.getElementById("copied-popup");
+
+  copyIcon.addEventListener("click", () => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      copiedPopup.style.display = "inline";
+      setTimeout(() => {
+        copiedPopup.style.display = "none";
+      }, 1500);
+    });
+  });
+</script>
+  
+</body>
+</html>
