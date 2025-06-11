@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 2rem 0;
+      width: 100%;
+    }
+
+    html {
+  height: 100%;
+    }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #b2fab4, #81d4fa);
+  background-attachment: fixed;
+  color: #004d40;
+}
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .slider-container {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      user-select: none;
+      font-family: 'PT Serif', serif;
+      border: 1px solid #333;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide:hover {
+      background: #333;
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hero p {
+      font-size: 0.8rem;
+      max-width: 600px;
+      margin: 4 0 10px;
+      padding: 0;
+      margin: 5;
+      color: #2e2a89;
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -8px;
+      border-bottom: 1px solid #FFFFFF;
+    }
+
+    .hero img {
+      max-width: 300px;
+      border-radius: 50%;
+      margin: 20px auto 0.5rem;
+      display: block;
+      border: 2px solid white;
+      transform: scale(1.0);
+      transition: transform 0.3s ease;
+    }
+
+    .cta-button {
+      background: #2e2a89;
+      color: #fdfdfd;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.3s ease, color 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .cta-button:hover {
+      background: #fdfdfd;
+      color: #2e2a89;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 4px 0;
+      height: 40px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2rem;
+      height: 32px;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .body-text {
+      color: #222222;
+      font-size: 1rem;
+      text-align: left;
+      padding: 0 20px;
+      margin: 0 auto 1rem;
+      max-width: 800px;
+    }
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    .form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem 0.5rem;
+}
+
+#contact-form,
+#thankyou {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-family: 'PT Serif', serif;
+  text-align: center;
+}
+
+#contact-form h2 {
+  margin-top: 0;
+  color: #2e2a89;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#contact-form button {
+  background: #2e2a89;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+#contact-form button:hover {
+  background: #007acc;
+}
+
+    #copy-icon:hover {
+  color: #2e2a89;
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
+
+#feedback-wall {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-family: 'PT Serif', serif;
+  font-size: 1.8rem;
+  color: #2e2a89;
+  margin-bottom: 1rem;
+}
+
+.feedback-section {
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.feedback-title {
+  font-family: 'PT Serif', serif;
+  font-size: 2rem;
+  color: #2e2a89;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feedback-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.feedback-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+
+    <div class="slider-container">
+      <!--<a href="welcome.html" class="slide">Welcome</a>-->
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
+      <h1 class="welcome-text">Stay Focused</h1>
+    </section>
+
+    <section class="hero">
+      <div>
+        <img 
+          src="images/Monkey.JPG"
+        >
+      </div>
+    </section>
+    
+    <section>
+      <div class="body-text">
+        <p>In December 2022, at 49 years old, I began experiencing symptoms that led to my diagnosis of early onset Parkinson’s disease.</p>
+        <p>Since then, I’ve often felt frustrated by how hard it is to find clear, easy-to-understand information. It’s not that there’s a lack of information out there, but navigating it can be overwhelming, and it often feels like there’s not enough time for doctors to really explain things in a way that makes sense.</p>
+        <p>What I also find challenging is the medical community’s cautious approach. Sometimes it feels a bit too focused on limitations, and honestly, that can be discouraging.</p>
+        <p>That’s why I’ve created this space—to gather and share the most up-to-date, cutting-edge information that could really make a difference.</p>
+        <p style="color: #007acc;">
+        <i>"Currently, stem cell research for Parkinson’s disease remains with therapies being tested in the brains of monkeys." - <strong>My neurologist, 10 April 2025</strong> - (with a hint of pity for my lack of knowledge, and my hope being misplaced.)
+        </i></p>
+        <p style="color: #007acc;">
+        <i><strong>Me, after spending 5 minutes on the Internet:</strong>
+        </i></p>
+        <p style="color: #007acc;">
+        <i><strong>May 08, 2024</strong>: "Parkinson’s patient moves freely again after world-first implant of lab-grown cells into his brain" - <a href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" target="_blank"><strong>Euro News Article Here</strong></a>
+        </i></p>
+        
+        <p>Ask your neurologist and let me know their response, I'll paste it below.</p>
+      </div>
+      
+      <div id="contact-email" style="text-align: center; margin-top: 1rem;">
+       Use the form below or send me an email - <span id="email-text">fix@findingdopa.com</span>
+  <i class="fa-regular fa-clone" id="copy-icon" style="cursor: pointer; margin-left: 8px;" title="Copy to clipboard"></i>
+   <span id="copied-popup" style="display:none; margin-left: 10px; color: green; font-size: 0.9rem;">Copied!</span>
+      </div>
+
+    </section>
+
+<section class="form-wrapper">
+  <form id="contact-form">
+   <!-- <h2>Got Thoughts?</h2> -->
+    <input type="text" name="name" required placeholder="Your Name">
+    <textarea name="feedback" required placeholder="Your Feedback"></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <div id="thankyou" style="display: none;">
+    <p>Thank you for your feedback!</p>
+  </div>
+</section>
+
+ <section class="feedback-section">
+  <h2 class="feedback-title">Responses:</h2>
+  <div class="feedback-grid">
+    <div class="feedback-card">
+      <p><strong>E. Norma S.</strong> – "I showed your website to my Neurologist and I was told that monkeys can't read."</p>
+    </div>
+    <div class="feedback-card">
+      <p><strong>James T.</strong> – "My Neurologist says that when life gives you lemons, make Paper Planes (https://www.cocktailmag.fr/en/cocktail-recipe/whisky/paper-plane)"</p>
+    </div>
+    <div class="feedback-card">
+      <p><strong>Web Admin.</strong> – "The two previous responses are not real as I haven't received any feedback yet."</p>
+    </div>
+    <!-- Add more feedback entries here -->
+  </div>
+</section>
+    
+  </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+</script>
+  
+  <!-- <script>
+  const form = document.getElementById("contact-form");
+  const thankYou = document.getElementById("thankyou");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch("https://formspree.io/f/xnndbdyk", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.style.display = "none";
+      thankYou.style.display = "block";
+    } else {
+      alert("There was a problem submitting the form. Please try again.");
+    }
+  });
+
+   document.getElementById("copy-icon").addEventListener("click", function () {
+  const email = document.getElementById("email-text").textContent;
+  navigator.clipboard.writeText(email).then(() => {
+    alert("Email copied to clipboard!");
+  });
+});
+</script>-->
+
+  <!-- script>
+  const form = document.getElementById("contact-form");
+  const thankYou = document.getElementById("thankyou");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch("https://formspree.io/f/xnndbdyk", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.style.display = "none";
+      thankYou.style.display = "block";
+    } else {
+      alert("There was a problem submitting the form. Please try again.");
+    }
+  });
+
+  document.getElementById("copy-icon").addEventListener("click", function () {
+    const email = document.getElementById("email-text").textContent;
+    navigator.clipboard.writeText(email).then(() => {
+      const popup = document.createElement("div");
+      popup.textContent = "Copied!";
+      popup.style.position = "fixed";
+      popup.style.bottom = "20px";
+      popup.style.right = "20px";
+      popup.style.backgroundColor = "#2e2a89";
+      popup.style.color = "white";
+      popup.style.padding = "8px 12px";
+      popup.style.borderRadius = "4px";
+      popup.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+      popup.style.fontSize = "0.9rem";
+      popup.style.zIndex = "9999";
+      document.body.appendChild(popup);
+      setTimeout(() => {
+        popup.remove();
+      }, 2000);
+    });
+  });
+</script>-->
+
+  <!--<script>
+  const copyIcon = document.getElementById("copy-icon");
+  const emailText = document.getElementById("email-text").textContent;
+  const copiedPopup = document.getElementById("copied-popup");
+
+  copyIcon.addEventListener("click", () => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      copiedPopup.style.display = "inline";
+      setTimeout(() => {
+        copiedPopup.style.display = "none";
+      }, 1500);
+    });
+  });
+</script>-->
+  
+  <script>
+  const form = document.getElementById("contact-form");
+  const thankYou = document.getElementById("thankyou");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch("https://formspree.io/f/xnndbdyk", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.style.display = "none";
+      thankYou.style.display = "block";
+    } else {
+      alert("There was a problem submitting the form. Please try again.");
+    }
+  });
+
+  const copyIcon = document.getElementById("copy-icon");
+  const emailText = document.getElementById("email-text").textContent;
+  const copiedPopup = document.getElementById("copied-popup");
+
+  copyIcon.addEventListener("click", () => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      copiedPopup.style.display = "inline";
+      setTimeout(() => {
+        copiedPopup.style.display = "none";
+      }, 1500);
+    });
+  });
+</script>
+  
+</body>
+</html>
