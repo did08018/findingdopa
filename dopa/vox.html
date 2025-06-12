@@ -480,6 +480,37 @@
     });
   });
 </script>
+
+   <script>
+
+    // Highlight active menu item
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+    
+    function handleConsent(consent) {
+      localStorage.setItem("cookiesAccepted", consent);
+      document.getElementById("cookieConsent").style.display = "none";
+      if (consent) loadAnalytics();
+    }
+
+    function loadAnalytics() {
+      console.log("Analytics loaded");
+    }
+
+    window.onload = function() {
+      const consent = localStorage.getItem("cookiesAccepted");
+      if (consent === null) {
+        document.getElementById("cookieConsent").style.display = "flex";
+      } else if (consent === "true") {
+        loadAnalytics();
+      }
+    };
+  </script>
   
 </body>
 </html>
