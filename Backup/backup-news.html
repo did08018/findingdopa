@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #004d40;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    
+    header {
+      background-color: #121212;
+      padding: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    a {
+  text-decoration: none;
+  color: inherit;
+    }
+    
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 4px 0;
+      height: 40px;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2rem;
+      height: 32px;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .home-brand i {
+      font-size: 1.3rem;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+    
+      .slider-container {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+     .slider-container a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      border: 1px solid #333;
+      text-align: center;
+    }
+
+    .slide:hover {
+      background: #333;
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
+    }
+
+    main {
+      flex: 1;
+    }
+    
+     .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+     .hero p {
+      font-size: 0.8rem;
+      max-width: 600px;
+      margin: 4 0 10px;
+      padding: 0;
+      margin: 5;
+      color: #2e2a89;
+      position: relative;
+    }
+/*height: 300px;*/
+    /*.hero img {
+      width: 500px;
+      object-fit: cover;
+      border-radius: 12px;
+      /*border: 2px solid #2e2a89;*/
+      margin-top: 10px;
+    }*/
+
+   /* .hero img {
+  max-width: 100%;
+  width: 100%;
+  max-width: 700px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 10px;
+}*/
+
+   /* .hero img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;       /* maintain aspect ratio */
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 10px;
+  display: block;     /* helps with responsiveness */
+  max-height: none;   /* remove any height constraints */
+}*/
+
+    .hero img {
+  width: 100%;
+  max-width: 700px;        /* max size on bigger screens */
+  max-height: 90vh;        /* limit image height to 90% viewport height */
+  height: auto;
+  object-fit: contain;     /* contain the entire image, no cropping */
+  border-radius: 12px;
+  margin-top: 10px;
+  display: block;
+}
+
+    @media (max-width: 480px) {
+  .hero img {
+    max-width: 100vw;      /* let image fill full viewport width */
+    max-height: 60vh;      /* smaller max height for portrait */
+    margin-top: 8px;
+  }
+}
+
+    .welcome-text {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      color: #2e2a89;
+      margin-top: 0.5rem;
+    }
+
+    .articles {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .article-entry {
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .article-date {
+      font-size: 0.85rem;
+      color: #333;
+      margin-bottom: 0.2rem;
+    }
+
+    .article-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0.3rem 0;
+    }
+
+    .article-link {
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .article-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+    <div class="slider-container">
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
+      <img src="images/news 169.jpg" alt="Booo" />
+    </section>
+
+    <section class="articles">
+
+       <div class="article-entry">
+        <p class="article-date">June 05, 2025</p>
+        <p class="article-title">The Allure of Stem Cell Therapy</p>
+        <a href="https://www.nytimes.com/2025/06/05/well/stem-cell-therapy-health.html" target="_blank">New York Times Article Here</a>
+         <p><i>Note: if you don't have a paid subscription to the NYT and can't read this article, don't bother, it brings nothing.</i></p>
+      </div>
+      
+      <div class="article-entry">
+        <p class="article-date">May 28, 2025</p>
+        <p class="article-title">First Parkinson’s patient dosed in Unixell stem cell therapy study</p>
+        <a href="https://parkinsonsnewstoday.com/news/first-parkinsons-trial-participant-dosed-unixell-stem-cell-therapy-study/" target="_blank">Parkinson's News Today Article Here</a>
+      </div>
+       
+      <div class="article-entry">
+        <p class="article-date">May 20, 2025</p>
+        <p class="article-title">Gaining Ground: The Pursuit of Improving and Introducing New Parkinson’s Medications</p>
+        <a href="https://www.parkinson.org/blog/awareness/new-parkinsons-medications" class="article-link" target="_blank">Parkinson's Foundation Article Here</a>
+      </div>
+      
+      <div class="article-entry">
+        <p class="article-date">May 14, 2025</p>
+        <p class="article-title">The stem cell race for Parkinson’s disease: Recent studies show significant promise</p>
+        <a href="https://www.labiotech.eu/in-depth/stem-cell-therapy-parkinsons-disease/#progressmadeinclinicaltrialsrecentstemcelltherapystudiesshowsignificantpromiseforparkinsonstreatment" class="article-link" target="_blank">Labiotech Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">May 08, 2025</p>
+        <p class="article-title">Two New Trials Explore Stem-Cell Therapy for Parkinson's</p>
+        <a href="https://www.parkinson.org/blog/science-news/cell-replacement" class="article-link" target="_blank">Parkinson's Foundation Article Here</a>
+      </div>
+      
+      <div class="article-entry">
+        <p class="article-date">April 30, 2025</p>
+        <p class="article-title">iPSC Technology Overcomes Cell Therapy Manufacturing Hurdles</p>
+        <a href="https://www.technologynetworks.com/tn/blog/ipsc-technology-overcomes-cell-therapy-manufacturing-hurdles-399137" class="article-link" target="_blank">Technology Networks Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 28, 2025</p>
+        <p class="article-title">betaSENSE GmbH Finds Biomarker for Pre-Onset Diagnosis</p>
+        <a href="https://european-biotechnology.com/latest-news/betasense-gmbh-identifies-new-diagnostic-biomarker-for-parkinsons/" class="article-link" target="_blank">European Biotechnology Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 09, 2025</p>
+        <p class="article-title">Embryo-destroying Research Should Shift to Ethical Treatments</p>
+        <a href="https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=413617" class="article-link" target="_blank">Rep. Chris Smith Press Release Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 09, 2025</p>
+        <p class="article-title">Human Neural Graft Shows Immune Evasion in Rodent Models</p>
+        <a href="https://www.sciencedirect.com/science/article/pii/S1934590925000980?via%3Dihub" class="article-link" target="_blank">ScienceDirect News Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">April 01, 2025</p>
+        <p class="article-title">Why is Philadelphia Called the Cellicon Valley?</p>
+        <a href="https://www.pennmedicine.org/news/news-blog/2025/april/why-is-philadelphia-called-the-cellicon-valley" class="article-link" target="_blank">Penn Medicine News Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">November 19, 2024</p>
+        <p class="article-title">A New Stem Cell Therapy for Parkinson's Disease Has Been Confirmed Safe and Effective for the First Time</p>
+        <a href="https://www.accessnewswire.com/newsroom/en/biotechnology/a-new-stem-cell-therapy-for-parkinsons-disease-has-been-confirmed-safe-and-effective-f-944706" class="article-link" target="_blank">Access Newswire Article Here</a>
+      </div>
+
+      <div class="article-entry">
+        <p class="article-date">May 8, 2024</p>
+        <p class="article-title">Parkinson’s patient moves freely again after world-first implant of lab-grown cells into his brain</p>
+        <a href="https://www.euronews.com/health/2024/05/08/parkinsons-patient-moves-freely-again-after-world-first-implant-of-lab-grown-cells-into-hi?utm" class="article-link" target="_blank">euronews Article Here</a>
+      </div>
+      
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const colors = [
+  '#ffe0e0', // light pink
+  '#e0f7fa', // light cyan
+  '#e6e6fa', // lavender
+  '#fce4ec', // blush pink
+  '#e8f5e9', // mint green
+  '#fff3e0', // peach
+  '#dcedc8', // pale lime green (replaces #ede7f6)
+  '#fff9c4'  // soft yellow (replaces #f3e5f5)
+];
+
+    const entries = document.querySelectorAll('.article-entry');
+    entries.forEach((entry, index) => {
+      entry.style.backgroundColor = colors[index % colors.length];
+    });
+
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+  });
+</script>
+  
+</body>
+</html>
