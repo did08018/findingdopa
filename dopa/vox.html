@@ -511,6 +511,33 @@
       }
     };
   </script>
+
+<script>
+  document.getElementById("copy-icon").addEventListener("click", function () {
+    const email = document.getElementById("email-text").innerText;
+
+    // Create temporary input
+    const tempInput = document.createElement("input");
+    tempInput.style.position = "absolute";
+    tempInput.style.left = "-9999px";
+    tempInput.value = email;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // for mobile
+
+    try {
+      document.execCommand("copy");
+      document.getElementById("copied-popup").style.display = "inline";
+      setTimeout(() => {
+        document.getElementById("copied-popup").style.display = "none";
+      }, 2000);
+    } catch (err) {
+      alert("Copy failed, please copy manually.");
+    }
+
+    document.body.removeChild(tempInput);
+  });
+</script>
   
 </body>
 </html>
