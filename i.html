@@ -384,6 +384,41 @@ strong {
 <div class="message-block animated-message">Message 1</div>
 <div class="message-block animated-message">Message 2</div>
 <div class="message-block animated-message">Message 3</div>
+
+.glow-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* optional rounded corners */
+}
+
+/* Animated sheen overlay */
+.glow-sheen {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: sweep 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
     
   </style>
 </head>
@@ -408,10 +443,18 @@ strong {
       <a href="disclaimer.html" class="slide">Disclaimer</a>
     </div>
   </header>
-<div class="main-content">
+
+<section class="hero-section">
+  <div class="glow-container">
+    <img src="logos/Welcome to Finding Dopa 169.jpeg" class="hero-img" alt="Finding Dopa">
+    <div class="glow-sheen"></div>
+  </div>
+</section>
+  
+<!--<div class="main-content">
   <section class="hero-section">
     <img src="logos/Welcome to Finding Dopa 169.jpeg" class="hero-img" alt="Finding Dopa">
-  </section>
+  </section>-->
 
 <section class="motivational-line">
   A fix for Parkinson's disease is on the way. Keep fighting!
