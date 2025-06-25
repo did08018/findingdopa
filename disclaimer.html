@@ -260,6 +260,23 @@
   border: 2px solid white;
   margin-bottom: 5px;
 }
+
+    .responsive-iframe {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 640px; /* LIMIT width here */
+  margin: 0 auto;    /* Center it */
+}
+
+.responsive-iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
     
   </style>
 </head>
@@ -309,10 +326,18 @@
       
       <section class="legend-section">
          <p>If you don't know, now you know:</p>
-     <!-- </section> -->
+     </section> 
+
+   <div class="responsive-iframe">
+  <iframe 
+    src="https://www.youtube.com/embed/cRLB7WqX0fU"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
       
-      
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<!--<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe 
     src="https://www.youtube.com/embed/cRLB7WqX0fU"
     style="position: absolute; top:0; left: 0; width: 100%; height: 100%;"
@@ -320,9 +345,9 @@
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
   </iframe>
-</div>
+</div>-->
 
-<!--<section class="legend-section">-->
+<section class="legend-section">
       <img src="images/Booo.jpg" alt="Booo" class="legend-image" />
     </section>
     
