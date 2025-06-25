@@ -261,13 +261,13 @@
   margin-bottom: 5px;
 }
 
-    .responsive-iframe {
+   /* .responsive-iframe {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  max-width: 640px; /* LIMIT width here */
-  margin: 0 auto;    /* Center it */
+  max-width: 640px; 
+  margin: 0 auto;    
 }
 
 .responsive-iframe iframe {
@@ -276,6 +276,25 @@
   left: 0;
   width: 100%;
   height: 100%;
+}*/
+
+    .video-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
     
   </style>
@@ -328,14 +347,23 @@
          <p>If you don't know, now you know:</p>
      </section> 
 
-   <div class="responsive-iframe">
+<div class="video-container">
+  <iframe 
+    src="https://www.youtube.com/embed/cRLB7WqX0fU"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+   
+   <!--<div class="responsive-iframe">
   <iframe> 
     src="https://www.youtube.com/embed/cRLB7WqX0fU"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
   </iframe>
-</div>
+</div>-->
       
 <!--<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe 
