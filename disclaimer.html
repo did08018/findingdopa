@@ -279,16 +279,34 @@ p<!DOCTYPE html>
   height: 100%;
 }*/
 
-    .video-container {
+   /* .video-container {
   position: relative;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+}*/
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 30px auto;
   padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
   overflow: hidden;
+  border-radius: 16px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(0, 255, 128, 0.5),
+    0 0 18px rgba(255, 105, 180, 0.4);
+  background-color: #000; /* fallback behind iframe */
 }
-
+    
 .video-container iframe {
   position: absolute;
   top: 0;
