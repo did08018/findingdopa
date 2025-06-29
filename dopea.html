@@ -451,6 +451,21 @@ strong {
   </footer>
 
   <script>
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+</script>
+  
+  <script>
     const sliderLinks = document.querySelectorAll('.slider-container .slide-link');
     sliderLinks.forEach(link => {
       if (link.textContent.trim() === 'Welcome') {
