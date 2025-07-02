@@ -1,0 +1,683 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Finding Dopa – The Science</title>
+  <meta name="description" content="Stem cell therapy offers new hope for Parkinson’s disease. A fix is on the way. Keep fighting!">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+   <style>
+
+   html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: rgba(0, 0, 0, 0.6);
+      color: #222;
+      overflow-x: hidden;
+    }
+
+	   /*color: #004d40;*/
+	   
+     .main-content {
+  max-width: 700px;
+  margin: 0 auto;
+    }
+	   
+    /* Canvas Background */
+    #nebula-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: #121212;
+    }
+
+	   /*background-color: #121212;*/
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #222;
+      padding: 6px 10px;
+    }
+
+	   /*      flex-wrap: wrap;
+
+	   background: #1a1a1a;*/
+
+     .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2rem;
+      margin-right: 12px;
+    }
+
+    .home-brand:hover {
+      color: #00bfff;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+.slider-container {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-sizing: border-box;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #1f1f1f;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      text-decoration: none;
+      display: block;
+    }
+
+	   /*        text-align: center;
+    */
+	   
+    .slide:hover {
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+    }
+
+/*border: 2px solid #2e2a89;*/
+	   
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero {
+      font-family: 'Raleway';
+      padding: 0 20px;
+      margin: -10px 0 1px 0; /* Adjusted margin to move catchphrase higher */
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1rem;
+      padding: 0px 0px 10px 0px;
+      color: white;
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+section.hero:first-of-type {
+  margin-top: -5px;  /* or adjust to your needs */
+}
+       
+       /*      color: #29ff7a;*/
+
+   /* .hero p::after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -12px;
+      border-bottom: 1px solid white;
+    }*/
+
+    .welcome-text {
+      font-size: 2rem;
+      color: #29ff7a;
+    }
+
+    .orb-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 10px 0;
+      font-family: 'Raleway';
+    }
+
+    .orb {
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid #29ff7a;
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+
+    .orb:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #29ff7a;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.85);
+    }
+
+    .modal-content {
+      background-color: #1a1a1a;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      max-width: 600px;
+      color: white;
+      font-size: 0.95rem;
+      font-family: 'Raleway';
+      text-align: left;
+      border-radius: 8px;
+    }
+    
+    /*font-family: 'Orbitron', sans-serif;*/
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: white;
+    }
+
+ .hero-section {
+   max-width: 500px;
+      margin: 0 auto;
+  display: flex;
+  justify-content: center; /* NEW: ensures image is centered */
+  padding: 0 5px; /* NEW: add padding for mobile spacing */
+  box-sizing: border-box;
+}
+
+.hero-img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin-top: 3px;
+}
+
+     /* Optional: Add to global stylesheet if tables need formatting */
+.lrrk2-modal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.lrrk2-modal th, .lrrk2-modal td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.lrrk2-modal th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.lrrk2-modal h2 {
+  margin-top: 0;
+}
+
+.lrrk2-modal ul {
+  margin: 8px 0 16px 20px;
+}
+
+.lrrk2-modal section {
+  margin-bottom: 20px;
+}
+
+.responsive-table {
+  overflow-x: auto;
+}
+       
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas for Particle Animation -->
+  <canvas id="nebula-canvas"></canvas>
+
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+    <div class="slider-container">
+      <a href="/dopa/vox.html" class="slide">Dopa VOX</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+<div class="main-content">
+  <main>
+      
+  <section class="hero-section">
+    <img src="images/The Science.png" class="hero-img" alt="The Science">
+  </section>
+
+      <section class="hero">
+      <p>This page lists the building blocks and mechanisms forming the backbone of Parkinson’s research.</p>
+      <p>From stem cells to CRISPR gene editing, each entry highlights a key element in how the disease is understood and treated.</p>
+      </section>
+      
+    <section class="orb-grid">
+      <div class="orb" onclick="openModal('modal13')">LRRK2</div>
+      <div class="orb" onclick="openModal('modal12')">Tyrosine Hydroxylase Inhibition</div>
+      <div class="orb" onclick="openModal('modal6')">Fetal vs. Embryonic Stem Cells</div>
+      <div class="orb" onclick="openModal('modal5')">hESCs</div>
+      <div class="orb" onclick="openModal('modal4')">iPSCs</div>
+      <div class="orb" onclick="openModal('modal2')">MSCs</div>
+      <div class="orb" onclick="openModal('modal1')">Nerve Grafts</div>
+      <div class="orb" onclick="openModal('modal9')">Metabolic Therapy</div>
+      <div class="orb" onclick="openModal('modal7')">CRISPR Gene Editing</div>
+      <div class="orb" onclick="openModal('modal11')">TED-A9</div>
+      <div class="orb" onclick="openModal('modal10')">Propanolol</div>
+      <div class="orb" onclick="openModal('modal3')">ANPD001</div>
+      <div class="orb" onclick="openModal('modal8')">REGENERATE-PD</div>
+    </section>
+  </main>
+
+  <div id="modal13" class="modal">
+  <div class="modal-content lrrk2-modal">
+    <span class="close" onclick="closeModal('modal13')">&times;</span>
+    <h2>LRRK2 Inhibitor Treatments: 2025 Strategic Overview</h2>
+
+    <section>
+      <p>LRRK2 inhibitors are an emerging class of treatments aimed at slowing Parkinson’s disease (PD) progression. Originally designed for patients with LRRK2 gene mutations, these therapies are now being tested in the broader PD population. Below is a summary of key compounds, their development status, and future outlook.</p>
+    </section>
+
+    <h3>Pipeline Summary</h3>
+    <div class="responsive-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Treatment</th>
+            <th>Company</th>
+            <th>Development Stage</th>
+            <th>Distinctive Feature</th>
+            <th>Target Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BIIB122</strong></td>
+            <td>Biogen / Denali</td>
+            <td>Phase 2b (LUMA)</td>
+            <td>Most advanced; Biogen partnership</td>
+            <td>All PD patients (originally LRRK2 carriers)</td>
+          </tr>
+          <tr>
+            <td><strong>DNL201</strong></td>
+            <td>Denali</td>
+            <td>Phase 2</td>
+            <td>Earlier version of BIIB122</td>
+            <td>LRRK2 carriers + general PD</td>
+          </tr>
+          <tr>
+            <td><strong>DNL151</strong></td>
+            <td>Denali</td>
+            <td>Phase 2</td>
+            <td>Alternative to DNL201; different PK</td>
+            <td>Similar to DNL201</td>
+          </tr>
+          <tr>
+            <td><strong>NEU-723</strong></td>
+            <td>Neuron23</td>
+            <td>Launching Phase 2 (NEULARK)</td>
+            <td>Uses digital biomarkers</td>
+            <td>All PD patients</td>
+          </tr>
+          <tr>
+            <td><strong>ARV-102</strong></td>
+            <td>Arvinas</td>
+            <td>Phase 1 (2025)</td>
+            <td>Degrades LRRK2 protein (not just inhibition)</td>
+            <td>All PD patients</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2025 Key Milestones</h3>
+    <ul>
+      <li><strong>Early 2025</strong> – <em>NEULARK trial launch</em> (NEU-723, digital biomarker integration)</li>
+      <li><strong>Mid 2025</strong> – <em>ARV-102 Phase 1 results</em> (validates degradation strategy)</li>
+      <li><strong>August 2025</strong> – <em>LUMA trial results</em> (BIIB122 – field-defining outcome)</li>
+    </ul>
+
+    <h3>Strategic Competition</h3>
+    <ul>
+      <li><strong>BIIB122</strong> vs <strong>NEU-723</strong>: Lead inhibitor vs digital-native challenger</li>
+      <li><strong>DNL201 / DNL151</strong>: Internal backup options for Denali</li>
+      <li><strong>ARV-102</strong>: New degradation-based mechanism</li>
+    </ul>
+
+    <h3>Future Scenarios</h3>
+    <p><strong>If LUMA Succeeds:</strong></p>
+    <ul>
+      <li>BIIB122 advances to Phase 3 for all PD patients</li>
+      <li>Validation of LRRK2 inhibition as a universal approach</li>
+      <li>Surge in investment and development of backup compounds</li>
+    </ul>
+    <p><strong>If LUMA Fails:</strong></p>
+    <ul>
+      <li>Return to LRRK2 mutation-only focus</li>
+      <li>NEU-723 and ARV-102 become more central</li>
+      <li>Field explores combination or alternate targets</li>
+    </ul>
+    <p><strong>Most Likely:</strong> Mixed results leading to refined patient targeting and diversified strategies.</p>
+
+    <h3>Background: What is LRRK2?</h3>
+    <p>LRRK2 is a kinase enzyme involved in cellular regulation. Mutations in the LRRK2 gene are the most common known genetic cause of Parkinson’s. Even without mutations, LRRK2 overactivity may drive disease progression, making it a viable target in a broader population.</p>
+
+    <h3>Mechanisms: Inhibit vs. Degrade</h3>
+    <p>Traditional inhibitors block the enzyme’s activity. Degraders like ARV-102 remove the LRRK2 protein entirely, offering a more complete shutdown but raising new safety and delivery challenges.</p>
+  </div>
+</div>
+
+	<div id="modal12" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal12')">&times;</span>
+      <p><strong>Tyrosine Hydroxylase Inhibition</strong></p>
+      <p>- Tyrosine hydroxylase (TH) inhibition works by slowing down the body's natural factory for making vital brain chemicals called catecholamines, which include dopamine, norepinephrine, and epinephrine. These chemicals are essential for many bodily functions, from mood to movement. By blocking the first step in their production, TH inhibitors effectively turn down the overall "volume knob" on how much of these substances the body produces. The drug metyrosine is a well-known example, successfully used in medicine to control situations where the body makes too much of these chemicals.</p>
+      <p>- What's truly surprising is how this idea applies to Parkinson's disease (PD). Traditionally, PD is seen as a problem of too little dopamine. However, a newer theory suggests that for some people, especially those in early stages or with certain genetic types of PD, the remaining dopamine-producing brain cells might actually be overwhelmed by making too much dopamine internally. This excess can become toxic, leading to damage and the eventual death of these crucial cells. Therefore, TH inhibitors offer a radical approach: by carefully reducing this internal dopamine production, they could protect the precious remaining brain cells from self-destruction. In preclinical studies, this strategy has even shown the ability to "reverse" some of the disease's damaging effects at a cellular level, offering a glimmer of hope for truly changing the disease's course.</p>
+      <p>- Looking ahead, the development of TH inhibitors for Parkinson's disease, while still in its early stages, holds significant promise. While no TH inhibitor is yet approved for PD, ongoing research and clinical trials are actively exploring their potential. A 5-10 year timeline for a breakthrough treatment for a complex neurological disorder like PD is actually quite encouraging, representing a relatively swift pace in drug development. If successful, these therapies could move beyond merely managing symptoms to fundamentally protecting the brain, offering a more profound hope for individuals living with Parkinson's and potentially leading to a brighter future where the disease's progression could be substantially slowed or even halted.</p>
+      <p>did08018's 2¢: "REVERSE" <--- this is HUGE! ---> Click <a href="resources.html#tyrosine-hydroxylase"><span style="color: #FF69B4;">here</span></a> to learn more</p>
+    </div>
+  </div>
+	
+<div id="modal11" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal11')">&times;</span>
+      <p><strong>TED-A9</strong></p>
+      <p>- TED-A9, an investigational cell therapy for Parkinson's disease developed by S. BIOMEDICS, has recently completed the dosing phase of its Phase 1/2a clinical trial in South Korea, with the final of 12 participants receiving the transplant in February 2024. The trial has yielded promising initial results, particularly from 12-month and 18-month follow-up data. Key findings include a strong safety profile with no serious adverse events linked to the transplanted cells, evidence of successful cell engraftment and survival in the brain through imaging, and significant improvements in both motor symptoms (like freezing of gait and Hoehn and Yahr scale scores) and non-motor symptoms. These positive outcomes suggest the therapy is not only safe but also potentially effective in replacing lost dopamine-producing neurons.</p>
+      <p>- Looking ahead, S. BIOMEDICS plans to present more comprehensive data from the Phase 1/2a trial at the 2025 International Conference on Parkinson's Disease and Movement Disorders in October 2025. The company is also actively preparing an Investigational New Drug (IND) application to expand clinical trials into the United States. Following the successful completion and analysis of the current phase, the next critical steps will be to initiate larger, more extensive Phase 2 and then Phase 3 clinical trials, which are essential for further demonstrating efficacy and safety in a broader patient population.</p>
+      <p>- The journey to market for a novel cell therapy like TED-A9 is typically a long and rigorous process. Assuming continued positive results through all trial phases and successful regulatory submissions, it is estimated that TED-A9 could be at least 8-10 years away from potential market availability. This timeline includes the lengthy duration of Phase 2 and Phase 3 trials, which can each span several years, followed by regulatory review periods. While current results are encouraging, the path to a widespread commercial product is contingent on overcoming significant scientific, clinical, and regulatory hurdles.</p>
+    </div>
+  </div>
+
+  <div id="modal9" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal9')">&times;</span>
+      <p><strong>Metabolic Therapy</strong></p>
+      <p>- Metabolic therapy is a treatment approach that targets the fundamental cellular processes responsible for energy production and cellular maintenance within the body. Unlike traditional medications that primarily address symptoms or replace missing substances (like dopamine replacement in Parkinson’s), metabolic therapies work at the cellular level to enhance or restore normal metabolic function. These treatments focus on improving mitochondrial function, ATP (cellular energy) production, antioxidant systems, and key metabolic pathways like glycolysis and the pentose phosphate pathway. The underlying principle is that many diseases stem from or are worsened by cellular energy deficits and metabolic dysfunction, so by restoring proper cellular metabolism, the therapy can potentially address root causes rather than just managing symptoms.</p>
+      <p>- In Parkinson’s disease, metabolic therapy represents a paradigm shift from traditional dopamine-focused treatments. Research has increasingly shown that Parkinson’s involves significant mitochondrial dysfunction and cellular energy deficits in brain cells, particularly in the substantia nigra region where dopamine-producing neurons are lost. Metabolic therapies for Parkinson’s aim to boost cellular ATP production, enhance antioxidant defenses, and support overall neuronal health through improved energy metabolism. This approach is considered potentially disease-modifying because it targets the cellular dysfunction that may contribute to neuronal death, rather than simply replacing the dopamine that’s lost as a result. By supporting the cellular machinery that keeps neurons healthy and functional, metabolic therapies like ENERGI-F705PD could theoretically slow disease progression, protect remaining neurons, and potentially improve cellular function in ways that traditional treatments cannot achieve.​​​​​​​​​​​​​​​​</p>
+    </div>
+  </div>
+
+    <div id="modal8" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal8')">&times;</span>
+      <p><strong>REGENERATE-PD</strong></p>
+      <p>- A new gene therapy approach for Parkinson’s disease is being tested in a Phase 2 clinical trial called REGENERATE-PD, which is currently recruiting participants. The treatment involves delivering the GDNF gene (Glial cell line-Derived Neurotrophic Factor) into the putamen, a brain region severely affected in Parkinson’s, using a viral vector called AAV2 (Adeno-Associated Virus serotype 2). The trial is randomized, double-blind, and surgically controlled, meaning that some participants undergo a sham surgery to help researchers assess true effectiveness while maintaining scientific rigor.</p>
+      <p>- AAV2 serves as a delivery vehicle, inserting the GDNF gene into living brain cells. Once inside, these cells begin producing GDNF, a protein known to support the survival, function, and potential regeneration of dopamine-producing neurons. The therapy aims to protect these vulnerable cells and enhance their performance in moderate-stage Parkinson’s patients—those who still retain enough living dopaminergic neurons to benefit from the treatment. It’s not a cure, but a strategy to slow progression or restore some motor function by keeping neurons alive and working longer.</p>
+      <p>- Importantly, gene therapy only works on living cells—it cannot revive neurons that have already died. That’s why the trial targets moderate-stage patients, where enough viable neurons remain to respond to GDNF. Previous attempts to use GDNF in Parkinson’s faced delivery challenges, but this study improves on past designs by using direct brain surgery to infuse the therapy precisely into the putamen. Early trials have shown promising safety data, and this Phase 2 study is now testing whether it actually helps patients in real-world clinical terms.</p>
+    </div>
+  </div>
+
+    <div id="modal7" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal7')">&times;</span>
+      <p><strong>CRISPR Gene Editing</strong></p>
+      <p>- CRISPR gene editing is a revolutionary tool that allows scientists to precisely modify DNA within living cells. It works like molecular scissors, guided by RNA to a specific DNA sequence, where it can cut and either disable a gene, correct a mutation, or insert new genetic material. This technology has rapidly advanced genetic research and therapy development due to its accuracy, efficiency, and versatility.</p>
+      <p>- In relation to Parkinson’s disease (PD), CRISPR offers promising avenues for both research and treatment. PD is often associated with the loss of dopamine-producing neurons and, in some cases, with specific genetic mutations like those in the LRRK2 or SNCA genes. By using CRISPR to correct or silence these mutations in cells or even in the brain, scientists may be able to halt or slow the progression of the disease at its root, rather than just treating symptoms.</p>
+      <p>- While this approach is still largely experimental, early studies in lab models have shown success in using CRISPR to correct PD-related mutations and protect neurons. If safety and precision challenges can be fully addressed, CRISPR-based therapies could one day offer a curative, gene-targeted solution to certain forms of Parkinson’s disease.</p>
+      <p>- The complexity of brain-targeted gene editing and the need for safe delivery systems means that human clinical trials for CRISPR in Parkinson’s disease are likely still several years away.</p>
+    </div>
+  </div>
+
+<div id="modal6" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal6')">&times;</span>
+      <p><strong>Fetal vs. Embryonic Stem Cells</strong></p>
+      <p>- Embryonic stem cells are derived from blastocysts (early-stage embryos, typically 4–5 days old). Since they are pluripotent, they can become any type of cell in the body, making them incredibly valuable for regenerative medicine.</p> 
+      <p>- Fetal stem cells, on the other hand, are obtained from a developing fetus, usually from tissue discarded after abortion procedures or miscarriages. These cells are more specialized (multipotent), meaning their potential to transform is somewhat limited compared to embryonic stem cells.</p>
+      <p>The main ethical concern surrounding embryonic stem cells is the destruction of embryos to obtain them, which raises moral debates about the status of early-stage life. Some believe that this process is equivalent to taking human life, while others argue that using embryos for medical progress outweighs this concern, especially if the embryos were never going to develop into full-term pregnancies. Fetal stem cells are generally less controversial because they are sourced from tissues that would otherwise be discarded, but ethical concerns still exist, particularly surrounding consent and sourcing practices.</p>
+      <p>Mass Production & Therapeutic Applications</p>
+      <p>- Embryonic stem cells can be grown and reproduced extensively in laboratories, making them ideal for large-scale therapies.</p>
+      <p>- Fetal stem cells are harder to mass-produce, as they have already begun differentiating into specific cell types. Nonetheless, they are used in research for treating conditions like Parkinson’s disease, spinal cord injuries, and degenerative disorders.</p>
+    </div>
+  </div>
+
+<div id="modal5" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal5')">&times;</span>
+      <p><strong>hESCs</strong></p>
+      <p>Human embryonic stem cells (hESCs) are pluripotent cells derived from early-stage embryos, meaning they have the ability to develop into any cell type in the body, including dopamine-producing neurons lost in Parkinson’s Disease (PD). This makes them a powerful tool for regenerative therapies aimed at replacing the damaged or dead neurons in the brains of PD patients.</p>
+      <p>In PD, researchers can guide hESCs in the lab to become dopaminergic neurons—the specific type of neuron that degenerates in the disease. Once transplanted into the brain, these lab-grown neurons can potentially integrate into the patient’s neural circuitry and restore lost dopamine signaling, which is critical for movement control. Preclinical studies in animals have shown that hESC-derived neurons can survive, connect to existing brain structures, and improve motor function.</p>
+      <p>Clinical trials are now underway to test the safety and effectiveness of these transplants in humans. While promising, hESC-based therapies come with ethical considerations due to their embryonic origin, and technical challenges such as preventing immune rejection or uncontrolled growth. Still, if successful, hESC-derived cell replacement could represent a true disease-modifying treatment for Parkinson’s Disease.</p>
+    </div>
+  </div>
+    
+<div id="modal4" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal4')">&times;</span>
+      <p><strong>iPSCs</strong></p>
+      <p>Induced pluripotent stem cells (iPSCs) have become a powerful tool in Parkinson’s disease (PD) research due to their ability to generate patient-specific neurons. Scientists can take a small sample of skin or blood from a person with Parkinson’s and reprogram those cells into iPSCs. These iPSCs can then be directed to become dopamine-producing neurons—the very type of cells that degenerate in PD. This allows researchers to study the patient’s specific form of the disease in a dish, offering valuable insights into the underlying causes and progression of PD at a cellular level.</p>
+      <p>Beyond disease modeling, iPSCs hold promise for drug discovery and personalized medicine. By testing potential drugs on neurons derived from a patient’s own iPSCs, researchers can identify which treatments are most effective for that individual, potentially leading to more targeted therapies. Moreover, this platform enables the screening of compounds to find new drugs that protect or restore dopamine neurons, reducing reliance on animal models and speeding up the research process.</p>
+      <p>Looking forward, iPSCs may also revolutionize treatment through regenerative medicine. There is ongoing research into transplanting dopamine neurons derived from iPSCs into the brains of people with Parkinson’s. Early trials are exploring whether these lab-grown neurons can integrate into the brain and restore lost function. While challenges remain—such as ensuring safety, preventing immune rejection, and controlling cell behavior—iPSCs represent a hopeful path toward reversing the effects of PD, not just managing its symptoms.</p>
+    </div>
+  </div>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal1')">&times;</span>
+      <p><strong>Nerve Grafts</strong></p>
+      <p>The dopaminergic cells being used in research for Parkinson’s Disease usually come from stem cells — either embryonic stem cells or induced pluripotent stem cells (iPSCs). iPSCs are adult cells (often skin or blood cells) that scientists reprogram to become stem cells, then guide them to become dopamine-producing neurons, similar to the ones lost in Parkinson’s.</p>
+      <p></p>These lab-grown cells are promising because they can be made in large numbers and function like real dopamine neurons. However, since they often come from sources other than the patient, they could be attacked by the immune system. That’s why researchers are testing nerve grafts — to protect these new cells and help them survive once implanted in the brain.</p>
+      <p></p>This combined approach is still in the clinical trial and experimental stage, but early results are encouraging, and it’s considered one of the most exciting frontiers in Parkinson’s therapy.</p>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal2')">&times;</span>
+      <p><strong>MSCs (Mesenchymal Stem/Stromal Cells)</strong></p>
+      <p>MSCs are multipotent cells typically derived from bone marrow, fat tissue, or umbilical cord blood. They have gained attention for their regenerative and immunomodulatory properties, making them a promising candidate for treating neurodegenerative diseases like Parkinson’s Disease (PD). Unlike neural stem cells, MSCs do not naturally become neurons in large numbers, but they can still influence the brain environment in beneficial ways.</p>
+      <p>In PD, MSCs are thought to help primarily through their secretion of protective molecules—called trophic factors—that support neuron survival and reduce inflammation. These cells can home in on damaged brain areas and release signals that promote repair, protect dopamine-producing neurons, and modulate immune responses. Studies have shown that MSCs can reduce microglial activation (a marker of neuroinflammation), which is a significant contributor to ongoing neuronal loss in PD.</p>
+      <p>Although MSCs are not a direct replacement for lost dopamine neurons, early trials suggest they may slow progression or improve symptoms by creating a more favorable brain environment. Researchers are continuing to explore ways to enhance their effects, such as by engineering MSCs to produce more dopamine-supporting factors or deliver genes.</p>
+    </div>
+  </div>
+
+   <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal3')">&times;</span>
+      <p><strong>ANPD001</strong></p>
+      <p>ANPD001 is an investigational autologous dopaminergic neuronal precursor cell (DANPC) therapy being developed by Aspen Neuroscience for the treatment of Parkinson's disease.</p>
+<p>•	August 8, 2023:
+The U.S. Food and Drug Administration (FDA) clears Aspen’s Investigational New Drug (IND) application, allowing the initiation of clinical trials for ANPD001.  
+	<br>•	October 19, 2023:
+ANPD001 receives Fast Track Designation from the FDA, facilitating expedited development and review processes.
+	<br>•	January 23, 2024:
+Launch of the ASPIRO Phase 1/2a clinical trial, the first multicenter study of an autologous iPSC-derived therapy in the U.S., aimed at assessing safety, tolerability, and preliminary efficacy in patients with moderate to severe Parkinson’s disease.  
+	<br>•	January 13, 2025:
+Aspen announces the successful completion of dose escalation and the first two patient cohorts in the ASPIRO trial, with no serious adverse events reported.  
+	<br>•	May 2025:
+Six-month interim results indicate that ANPD001 is well-tolerated, with early improvements observed in motor function and quality of life measures.  
+	<br>•	October 30, 2025 (estimated):
+Primary completion date for the ASPIRO Phase 1/2a trial, marking the end of the main study period.
+	<br>•	Late 2026 – Early 2027 (projected):
+Potential initiation of a Phase 3 clinical trial, contingent upon positive outcomes from the Phase 1/2a trial and subsequent regulatory discussions.
+	<br>•	2029–2030 (projected):
+Possible FDA approval and market entry for ANPD001, assuming successful completion of clinical trials and regulatory review.
+	<br>•	April 30, 2030 (estimated):
+Final completion date for the ASPIRO Phase 1/2a trial, including long-term follow-up assessments.</p>
+    </div>
+  </div>
+
+  <div id="modal10" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal10')">&times;</span>
+      <p><strong>Propanolol</strong></p>
+      <p>- Propranolol is a medication primarily recognized for its effects on the heart and circulatory system. As a non-selective beta-blocker, it works by blocking certain receptors throughout the body, which can lower blood pressure and heart rate. Originally developed to treat conditions like hypertension and certain heart rhythm disorders, it has also been used for decades to help manage symptoms of anxiety and, more recently, certain types of tremors</p>
+      <p>- Recent research suggests that propranolol may offer benefits for people with Parkinson’s disease, particularly when it comes to reducing tremor. Studies involving individuals with prominent resting tremor in Parkinson’s have shown that a single dose of propranolol can significantly decrease tremor severity, both at rest and during stressful situations. These effects are reflected in objective measurements of tremor power as well as reduced activity in the motor cortex of the brain, indicating that propranolol may help calm the circuits involved in tremor generation.​​​​​​​​​​​​​​​​</p>
+      <p>- While propranolol appears to be effective for tremor management in the short term, there are some considerations regarding long-term use. Observational studies have suggested that chronic use of beta-blockers might be associated with a slightly increased risk of developing Parkinson’s disease, though this does not necessarily mean that propranolol worsens the condition in people who already have Parkinson’s. In clinical trials, propranolol has not been shown to worsen Parkinson’s symptoms at the doses and durations typically used for tremor, but more research is needed to fully understand the implications of long-term administration.</p>
+    </div>
+  </div>
+	
+</div>
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+  
+  <script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  // Highlight current page
+  const currentPage = window.location.pathname.split("/").pop();
+  document.querySelectorAll('.slider-container .slide').forEach(slide => {
+    if (slide.getAttribute('href') === currentPage) {
+      slide.classList.add('active');
+    }
+  });
+
+  // Particle Animation
+  const canvas = document.getElementById('nebula-canvas');
+  const ctx = canvas.getContext('2d');
+  let particlesArray;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Fill with solid black once at the beginning
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 1;
+      this.speedX = Math.random() * 0.5 - 0.25;
+      this.speedY = Math.random() * 0.5 - 0.25;
+      this.opacity = Math.random();
+      this.color = `rgba(41, 255, 122, ${this.opacity})`; // green glow
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particlesArray = [];
+    const numberOfParticles = 150;
+    for (let i = 0; i < numberOfParticles; i++) {
+      particlesArray.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    // Instead of clearing, paint a semi-transparent black layer
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particlesArray.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+</script>
+</body>
+</html>
