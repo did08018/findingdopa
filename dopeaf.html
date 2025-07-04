@@ -107,15 +107,15 @@
       font-family: 'PT Serif', serif;
     }
 
-    .slide-link {
+     .slide-link {
       color: white;
       text-decoration: none;
       display: block;
-    }
+      }
 
-    .slide-link:hover {
+     .slide-link:hover {
       color: #00bfff;
-    }
+      }
 
     .hero-section {
      max-width: 700px;
@@ -140,7 +140,7 @@
       }
 
     
-    .hero-line {
+     .hero-line {
       max-width: 800px;
       margin: 0 auto;
       background-color: rgba(0, 0, 0, 0.55);
@@ -151,9 +151,9 @@
       font-size: clamp(1.2rem, 3vw, 2.2rem);
       text-align: center;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    }
+      }
 
-    main {
+      main {
       flex: 1;
       max-width: 900px;
       margin: 0 auto;
@@ -161,7 +161,7 @@
       box-sizing: border-box;
     }
 
-    .cta-button {
+     .cta-button {
       background: green;
       color: white;
       padding: 0.8rem 1.8rem;
@@ -175,15 +175,15 @@
       margin: 5px auto;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-    }
+      }
 
-    .cta-button:hover {
+     .cta-button:hover {
       background: #005f99;
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
+      }
 
-.cta-button1 {
+     .cta-button1 {
       background: #fa88dd;
       color: white;
       padding: 0.8rem 1.8rem;
@@ -197,27 +197,27 @@
       margin: 5px auto;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-    }
+      }
 
-    .cta-button1:hover {
+     .cta-button1:hover {
       background: #005f99;
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
+      }
     
-    .body-text-section {
+     .body-text-section {
       max-width: 800px;
       margin: 5px auto;
       text-align: center;
-    }
+      }
 
-    .animated-text {
+     .animated-text {
       font-style: italic;
       margin-bottom: 1.2rem;
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
       line-height: 1.5;
-    }
+      }
 
     .animated-text:nth-child(1) { animation-delay: 0.3s; }
     .animated-text:nth-child(2) { animation-delay: 0.6s; }
@@ -239,15 +239,15 @@
       }
     }
 
-    footer {
+      footer {
       text-align: center;
       padding: 10px 20px;
       background: #1a1a1a;
       color: white;
       font-size: 1.5rem;
-    }
+      }
 
-    #cookieConsent {
+      #cookieConsent {
       position: fixed;
       bottom: 0;
       width: 100%;
@@ -263,7 +263,7 @@
       gap: 10px;
       text-align: center;
       z-index: 1000;
-    }
+      }
 
     #cookieConsent button {
       margin-left: 10px;
@@ -368,10 +368,10 @@ strong {
   gap: 30px;
   padding: 0 20px;
   box-sizing: border-box;
-  font-size: clamp(3rem, 4vw, 5rem);
+  font-size: clamp(3rem, 3vw, 4rem);
 }
     
-.message-block {
+ .message-block {
   font-family: 'Road Rage', cursive;
   lined-height: 1.4;
   color: #21c520;
@@ -511,33 +511,5 @@ strong {
       }
     });
   </script>
-
-  <div id="cookieConsent" style="display:none;">
-    This website uses cookies to enhance your experience.
-    <button onclick="handleConsent(true)">Accept</button>
-    <button onclick="handleConsent(false)">Decline</button>
-  </div>
-
-  <script>
-    function handleConsent(consent) {
-      localStorage.setItem("cookiesAccepted", consent);
-      document.getElementById("cookieConsent").style.display = "none";
-      if (consent) loadAnalytics();
-    }
-
-    function loadAnalytics() {
-      console.log("Analytics loaded");
-    }
-
-    window.onload = function() {
-      const consent = localStorage.getItem("cookiesAccepted");
-      if (consent === null) {
-        document.getElementById("cookieConsent").style.display = "block";
-      } else if (consent === "true") {
-        loadAnalytics();
-      }
-    };
-  </script>
-
-</body>
+ </body>
 </html>
