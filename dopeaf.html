@@ -405,6 +405,13 @@ strong {
     .blended-background h1, .blended-background p {
   text-shadow: 0 0 10px #00f0ff, 0 0 20px #ff0033;
 }*/
+
+.fade-top-bottom {
+  position: relative;
+  display: inline-block;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
     
   </style>
 </head>
@@ -437,7 +444,8 @@ strong {
 </div>-->
   
  <<section class="hero-section">
-    <img src="images/DopeAF.jpg" class="hero-img" alt="Finding Dopa">
+    <!--<img src="images/DopeAF.jpg" class="hero-img" alt="Finding Dopa">-->
+   <img src="images/DopeAF.jpg" class="fade-top-bottom" alt="DopeAF">
   </section> 
 
 <section class="motivational-line">
