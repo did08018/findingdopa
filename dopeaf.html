@@ -24,10 +24,12 @@
       touch-action: manipulation;       /* Prevent pinch zoom/gesture */
       overflow-x: hidden;
     }
+    
       .main-content {
   max-width: 700px;
   margin: 0 auto;
     }
+    
   .hero-gradient-overlay {
   position: absolute;
   top: 0;
@@ -62,7 +64,7 @@
       padding: 6px 10px;
       flex-wrap: wrap;
     }
-/*background: #1a1a1a;*/
+    
     .home-brand {
       display: flex;
       align-items: center;
@@ -106,7 +108,7 @@
       font-size: 0.95rem;
       font-family: 'PT Serif', serif;
     }
-/*background: #1f1f1f;*/
+
     .slide-link {
       color: white;
       text-decoration: none;
@@ -368,9 +370,8 @@ strong {
   gap: 30px;
   padding: 0 20px;
   box-sizing: border-box;
+  font-size: clamp(1.5rem, 2vw, 4rem);
 }
-
-    /*font-size: clamp(1.5rem, 2.5vw, 2rem);*/
     
 .message-block {
   font-family: 'Road Rage', cursive;
@@ -383,10 +384,9 @@ strong {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   text-align: left;
-
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
-}
+  }
 
 .message-block:nth-child(1) { animation-delay: 0.3s; }
 .message-block:nth-child(2) { animation-delay: 0.6s; }
@@ -479,7 +479,7 @@ strong {
 <section class="hero-message-blocks">
   <!--<div class="message-block">-->
     <div class="message-block animated-message">
-    <span style="color: #007acc;">Finding Dopa</span> is a platform dedicated to providing the latest research, resources, hope, and a <span style="color: #007acc;">voice</span> to individuals affected by Parkinson's disease.
+    After three months on the LRRK2-blocking drug MLi-2, damaged circuits revived and early signs of neuronal recovery emerged, hinting that timely treatment could not only halt but reverse disease progression—and perhaps benefit other Parkinson’s forms.
   </div>
   <div class="message-block">
     <span style="color: #007acc;">I believe</span> in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
