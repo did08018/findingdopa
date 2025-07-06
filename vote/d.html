@@ -432,29 +432,87 @@ strong {
     <p>
       Dope<span style="color: #21c520;">A</span>ce
       <span style="font-size: 0.4em; color: #FF69B4;"> (upvote)</span>
-      <div id="upvote-count" style="font-size: 0.7em; color: #21c520; margin-top: -10px;">loading...</div>
       <br>
       Dope<span style="color: #21c520;">F</span>lat
       <span style="font-size: 0.4em; color: #FF69B4;"> (downvote)</span>
-      <div id="downvote-count" style="font-size: 0.7em; color: #FF69B4; margin-top: -10px;">loading...</div>
     </p>
+
+       <input type="text" id="new-sentence" placeholder="New sentence">
+<button onclick="addSentence()">Add</button>
+<script type="module">
+  window.addSentence = async function () {
+    const input = document.getElementById("new-sentence");
+    if (input.value.trim()) {
+      await addDoc(sentencesCol, {
+        text: input.value.trim(),
+        votes: 0
+      });
+      input.value = "";
+    }
+  };
+</script>
+
+       <div id="content-list">
+
+         test 001
+         test 002
+         
+       </div>
   </section>
 
-  <script>
-    fetch('voteCount.json')
-      .then(response => {
-        if (!response.ok) throw new Error("Vote count not available");
-        return response.json();
-      })
-      .then(data => {
-        document.getElementById('upvote-count').textContent = `${data.upvotes} votes`;
-        document.getElementById('downvote-count').textContent = `${data.downvotes} votes`;
-      })
-      .catch(error => {
-        document.getElementById('upvote-count').textContent = 'Unavailable';
-        document.getElementById('downvote-count').textContent = 'Unavailable';
-        console.error('Error fetching vote counts:', error);
-      });
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDnNa9_QBBgiz3xxVdwN5tzJohTQiIBUhA",
+  authDomain: "dopeaf-1c0a8.firebaseapp.com",
+  databaseURL: "https://dopeaf-1c0a8-default-rtdb.firebaseio.com",
+  projectId: "dopeaf-1c0a8",
+  storageBucket: "dopeaf-1c0a8.firebasestorage.app",
+  messagingSenderId: "778846029268",
+  appId: "1:778846029268:web:ab59bb62f605029d950241",
+  measurementId: "G-QBRNV4ZGRC"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+  
+  const sentencesCol = collection(db, "sentences");
+
+async function loadSentences() {
+  const q = query(sentencesCol, orderBy("votes", "desc"));
+  onSnapshot(q, (snapshot) => {
+    const container = document.getElementById("content-list");
+    container.innerHTML = "";
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p>${data.text}</p>
+        <button onclick="vote('${docSnap.id}', 1)">👍</button>
+        <button onclick="vote('${docSnap.id}', -1)">👎</button>
+        <span>Votes: ${data.votes}</span>
+        <hr/>
+      `;
+      container.appendChild(div);
+    });
+  });
+}
+
+window.vote = async function (id, value) {
+  const ref = doc(db, "sentences", id);
+  await updateDoc(ref, { votes: increment(value) });
+};
+
+loadSentences();
+  
   </script>
     
   </main>
