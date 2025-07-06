@@ -22,11 +22,29 @@
       touch-action: manipulation;       /* Prevent pinch zoom/gesture */
       overflow-x: hidden;
       }
+
+
+    main {
+  flex: 1;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  max-width: 700px;
+}
+
+  /*  main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      }
     
    .main-content {
     max-width: 700px;
     margin: 0 auto;
-    }
+    }*/
     
   .hero-gradient-overlay {
   position: absolute;
@@ -44,11 +62,12 @@
   }
     
   body {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
-  min-height: 100vh;
+  align-items: center;
+  /*min-height: 100vh;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden;*/
   }
 
     header {
@@ -123,6 +142,7 @@
      margin: 0 auto;
      display: flex;
      justify-content: center;
+     align-items: center;
      text-align: center;
      padding: 0;
      box-sizing: border-box;
@@ -136,6 +156,7 @@
       max-width: 100%;
       height: auto;
       display: block;
+      margin: 0 auto;
       margin-bottom: 2px;
       mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
       -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
@@ -161,6 +182,7 @@
      margin: 0 auto;
      display: flex;
      justify-content: center;
+     align-items: center;
      text-align: center;
      padding: 0;
      box-sizing: border-box;
@@ -173,18 +195,11 @@
       max-width: 100%;
       height: auto;
       display: block;
+      margin: 0 auto;
       margin-bottom: 2px;
       mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
       margin: 0 auto;
-      }
-    
-      main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 10px 20px;
-      box-sizing: border-box;
       }
 
      /*.cta-button {
@@ -286,8 +301,8 @@
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  /*margin-left: -50vw;
+  margin-right: -50vw;*/
   background: #f5f8fa;
   color: green;
   padding: 10px 10px;        /* less vertical padding */
@@ -317,7 +332,13 @@
   margin-right: auto;
   margin-top: -35px;
   padding-top: 0;
-  }
+ }
+
+ .motivational-line1 p {
+  margin: 0;
+  padding: 0;
+ }
+
 
     .motivational-line p {
   margin: 5px 0;
@@ -399,7 +420,7 @@ strong {
     
  .message-block {
   font-family: 'Road Rage', cursive;
-  lined-height: 1.4;
+  line-height: 1.4;
   color: #21c520;
   background: #fff;
   padding: 20px 25px;
@@ -443,7 +464,9 @@ strong {
       <a href="dopeaf.html" class="slide"><span style="color: #FF69B4;">DopeAF</a>
     </div>
   </header>
-<div class="main-content">
+
+  <main>
+<!-- <div class="main-content"> -->
  
 <!--<div class="blended-background">
   <img src="images/DopeAF.jpg" alt="Electric neurons" style="max-width:100%; display:block; margin:auto;">
@@ -471,7 +494,7 @@ strong {
   <p>Dope <span style="color: #21c520;">F</span>lat</p>
 </section>
   
-  <main>
+ <!-- <main> -->
     <section class="body-text-section">
      <!-- <a href="news.html" class="cta-button">Latest News</a>
       <br><a href="resources.html" class="cta-button1">Resources</a> -->
@@ -507,7 +530,7 @@ strong {
        <br> — <strong>Scientific American, 2021</strong></p>
     </section>
   </main>
-</div>
+<!-- </div> -->
   <footer>
     &copy; 2025 Finding Dopa. All rights reserved.
   </footer>
