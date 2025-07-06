@@ -156,6 +156,30 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
       }
 
+    .arrow-section {
+     max-width: 700px;
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+     text-align: center;
+     padding: 0;
+     box-sizing: border-box;
+     /*margin-top: 10px;*/
+     margin-top: -10px;
+     padding-bottom: 0;
+     padding-top: 0;
+     }
+
+     .arrow-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 2px;
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      margin: 0 auto;
+      }
+    
       main {
       flex: 1;
       max-width: 900px;
@@ -435,7 +459,7 @@ strong {
   <p>A fix for Parkinson's disease is <span style="color: white;">NOT</span> on the way</p>
 </section>
   
-<section class="hero-section">
+<section class="arrow-section">
     <img src="images/arrow-down.jpg" class="hero-img" alt="Finding Dope A">
   </section>
   
