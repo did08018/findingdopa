@@ -437,6 +437,23 @@ strong {
       <span style="font-size: 0.4em; color: #FF69B4;"> (downvote)</span>
     </p>
 
+       <section class="dopeaf">
+  <p>
+    Dope<span style="color: #21c520;">A</span>ce
+    <span style="font-size: 0.4em; color: #FF69B4;"> (upvote)</span>
+    <br>
+    Dope<span style="color: #21c520;">F</span>lat
+    <span style="font-size: 0.4em; color: #FF69B4;"> (downvote)</span>
+  </p>
+
+  <div style="margin: 1em 0;">
+    <input type="text" id="new-sentence" placeholder="Add a sentence…" style="width: 80%; padding: 0.5em;">
+    <button onclick="addSentence()">Add</button>
+  </div>
+
+  <div id="content-list"></div>
+</section>
+
        <input type="text" id="new-sentence" placeholder="New sentence">
 <button onclick="addSentence()">Add</button>
 <script type="module">
@@ -547,5 +564,50 @@ loadSentences();
       }
     });
   </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, updateDoc, doc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // Your Firebase config (as provided)
+  const firebaseConfig = { /* your config here */ };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const colRef = collection(db, "sentences");
+
+  // Load and render sentences sorted by votes
+  const q = query(colRef, orderBy("votes", "desc"));
+  onSnapshot(q, snapshot => {
+    const list = document.getElementById("content-list");
+    list.innerHTML = "";
+    snapshot.forEach(docSnap => {
+      const { text, votes } = docSnap.data();
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p>${text}</p>
+        <button onclick="vote('${docSnap.id}', 1)">👍</button>
+        <button onclick="vote('${docSnap.id}', -1)">👎</button>
+        <span> Votes: ${votes}</span>
+        <hr/>
+      `;
+      list.appendChild(div);
+    });
+  });
+
+  window.vote = async (id, val) => {
+    const ref = doc(db, "sentences", id);
+    await updateDoc(ref, { votes: increment(val) });
+  };
+
+  window.addSentence = async () => {
+    const inp = document.getElementById("new-sentence");
+    const txt = inp.value.trim();
+    if (!txt) return;
+    await addDoc(colRef, { text: txt, votes: 0 });
+    inp.value = "";
+  };
+</script>
+  
  </body>
 </html>
