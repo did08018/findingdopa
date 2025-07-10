@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Finding Dopa – DopeAF - This is the STUPENDOUS page</title>
+  <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope: a fix is on the way, keep fighting!.">
+  <link rel="icon" href="/favicon.webp" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.webp">
+  <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=Road+Rage&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+      html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Road Rage', cursive;
+      background: #121212;
+      color: #222;
+      overscroll-behavior: none;        /* Prevent scroll chaining */
+      touch-action: manipulation;       /* Prevent pinch zoom/gesture */
+      overflow-x: hidden;
+      }
+
+    main {
+    flex: 1;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    max-width: 700px;
+    }
+    
+  .hero-gradient-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(to bottom, #f5f8fa 0%, rgba(245, 248, 250, 0.4) 20%, transparent 60%);
+   pointer-events: none;
+   }
+
+  .hero-wrapper {
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+    
+ body {
+  flex-direction: column;
+  align-items: center;
+  /*min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;*/
+ }
+
+  header {
+   background-color: #121212;
+  }
+
+     .top-bar {
+      display: flex;
+      align-items: center;
+      background: #121212;
+      padding: 6px 10px;
+      flex-wrap: wrap;
+      }
+    
+     .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #FF69B4;
+      font-size: 1.2rem;
+      margin-right: 12px;
+      }
+
+     .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #FF69B4;
+      }
+
+     .slider-container {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      padding-bottom: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-sizing: border-box;
+      }
+
+     .slider-container::-webkit-scrollbar {
+      display: none;
+      }
+
+     .slide {
+      flex: 0 0 auto;
+      background: #121212;
+      color: #121212;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid #0159a3; /*#21c520*/
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-family: 'PT Serif', serif;
+      }
+
+     .slide-link {
+      color: white;
+      text-decoration: none;
+      display: block;
+      }
+
+     .slide-link:hover {
+      color: #00bfff;
+      }
+
+    .slider-divider {
+     width: 100%;
+     height: 1px;
+     background-color: #21c520;
+     margin: 0;
+     }
+
+.hero-section {
+  background-color: #f0f0f0; /* Match your page background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  /* Outward fade via mask-image */
+  -webkit-mask-image: linear-gradient(to right, transparent 0px, black 80px, black calc(100% - 80px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0px, black 80px, black calc(100% - 80px), transparent 100%);
+  
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+
+     .hero-line {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: 'Road Rage', cursive;
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      }
+
+  .arrow-section {
+  max-width: 700px;
+  margin: 10px auto 0; /* Moves it down by 10px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.arrow-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 0px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+}
+    
+     .body-text-section {
+      max-width: 800px;
+      margin: 5px auto;
+      text-align: center;
+      }
+
+     .animated-text {
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      line-height: 1.5;
+      }
+
+    .animated-text:nth-child(1) { animation-delay: 0.3s; }
+    .animated-text:nth-child(2) { animation-delay: 0.6s; }
+    .animated-text:nth-child(3) { animation-delay: 0.9s; }
+    .animated-text:nth-child(4) { animation-delay: 1.2s; }
+    .animated-text:nth-child(5) { animation-delay: 1.5s; }
+    .animated-text:nth-child(6) { animation-delay: 1.8s; }
+    .animated-text:nth-child(7) { animation-delay: 2.1s; }
+    .animated-text:nth-child(8) { animation-delay: 2.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+      footer {
+      font-family: 'PT Serif', serif;
+      text-align: center;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 1rem;
+      }
+    
+    @media (max-width: 700px) {
+      .hero-line {
+        font-size: 1.5rem;
+        padding: 8px 12px;
+      }
+    }
+
+ .mission-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  /*margin-left: -50vw;
+  margin-right: -50vw;*/
+  background: #f5f8fa;
+  color: green;
+  padding: 10px 10px;        /* less vertical padding */
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Road Rage', cursive;
+  font-size: clamp(2rem, 5vw, 4rem); /* way bigger font, responsive */
+  line-height: 1.3;
+ }
+
+ .mission-section p {
+  margin: 20px 0;
+ }
+
+ .motivational-line1 {
+  width: 100%;
+  text-align: center;
+  font-family: 'Road Rage', cursive;
+  font-size: clamp(3rem, 3vw, 9rem);
+  color: #FF69B4;
+  box-sizing: border-box;
+  white-space: normal; /* allows wrapping on small screens */
+  line-height: 1.1;
+  margin: 0 auto 5px auto;
+  padding: 5px 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding-top: 0;
+ }
+
+ .motivational-line1 p {
+  margin: 0;
+  padding: 0;
+ }
+
+
+.motivational-line p {
+  margin: 5px 0;
+  padding: 0;
+}
+
+    .motivational-line1 span {
+  background-color: #FF69B4;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.already {
+  width: 100%;
+  text-align: center;
+  margin: 0px 5px 15px 5px;
+  font-family: 'Road Rage', cursive;
+  font-size: clamp(0.8rem, 0.8vw, 0.8rem);
+  color: white;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  white-space: normal; /* allows wrapping on small screens */
+  line-height: 1;
+}
+
+ .already p {
+  margin: 0px 0;
+  padding: 0;
+ }
+
+.dopeaf {
+  width: 100%;
+  text-align: center;
+  margin: -90px 5px 0px 5px;
+  font-family: 'Road Rage', cursive;
+  font-size: clamp(5rem, 5vw, 9rem);
+  color: white;
+  padding: 0px 0px;
+  box-sizing: border-box;
+  white-space: normal; /* allows wrapping on small screens */
+  /*line-height: 1.3;*/
+}
+    
+.dopeaf span {
+  padding: 0 0px;
+  white-space: nowrap;
+}
+
+.mission-box {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px 25px;
+  background-color: #e4f9e7;
+  color: #222;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  border: 1.5px solid green; /* thin green border all around */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  font-family: 'Road Rage', cursive;
+  text-align: center;
+}
+
+    .quote {
+  color: #007acc;
+  font-style: italic;
+}
+
+strong {
+  color: #000;
+  font-weight: bold;
+  font-style: normal;
+}
+.hero-message-blocks {
+  max-width: 900px;
+  margin: 20px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: clamp(2rem, 2vw, 3rem);
+}
+    
+ .message-block {
+  font-family: 'Road Rage', cursive;
+  line-height: 1.4;
+  color: #21c520;
+  background: #fff;
+  padding: 20px 25px;
+  /*border: 0.5px solid #228B22;*/
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  text-align: left;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  }
+
+.message-block:nth-child(1) { animation-delay: 0.3s; }
+.message-block:nth-child(2) { animation-delay: 0.6s; }
+.message-block:nth-child(3) { animation-delay: 0.9s; }
+
+<div class="message-block animated-message">Message 1</div>
+<div class="message-block animated-message">Message 2</div>
+<div class="message-block animated-message">Message 3</div>
+  
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">
+      <a href="../index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+    <div class="slider-container">
+      <a href="../dopa/vox.html" class="slide">Dopa VOX</a>
+      <a href="../news.html" class="slide">Latest News</a>
+      <a href="../resources.html" class="slide">Resources</a>
+      <a href="../actors.html" class="slide">The Actors</a>
+      <a href="../fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="../science.html" class="slide">The Science</a>
+      <a href="../clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="../about.html" class="slide">About</a>
+      <a href="../disclaimer.html" class="slide">Disclaimer</a>
+      <a href="/vote/dopeaf.html" class="slide"><span style="color: #FF69B4;">DopeAF</a>
+    </div>
+    <!--<div class="slider-divider"></div>-->
+  </header>
+
+  <main>
+  
+ <section class="hero-section">
+    <img src="../images/DopeAF.jpg" class="hero-img" alt="DopeA-DopeF">
+   <!--<img src="images/DopeAF.jpg" class="fade-top-bottom" alt="DopeAF"> -->
+  </section> 
+
+<section class="motivational-line1">
+  <p>A fix for Parkinson's disease is <span style="color: white;">NOT</span> on the way</p>
+</section>
+  
+<section class="arrow-section">
+    <img src="../images/arrow-down.jpg" class="arrow-img" alt="Finding Dope A">
+  </section>
+  
+  <section class="already">
+  <p>(it's already here)</p>
+</section>
+
+    <section class="arrow-section">
+    <img src="../images/arrow-down.jpg" class="arrow-img" alt="Finding Dope A">
+  </section>
+  
+  <section class="dopeaf">
+  <p>Dope<span style="color: #21c520;">A</span>ce<span style="font-size: 0.4em; color: #FF69B4;"> (upvote)</span><br>
+     Dope<span style="color: #21c520;">F</span>lat<span style="font-size: 0.4em; color: #FF69B4;"> (downvote)</span></p>
+</section>
+  
+    <section class="body-text-section">
+     <!-- <a href="news.html" class="cta-button">Latest News</a>
+      <br><a href="resources.html" class="cta-button1">Resources</a> -->
+ 
+<section class="hero-message-blocks">
+    <div class="message-block animated-message">
+    After three months on the LRRK2-blocking drug MLi-2, damaged circuits revived and early signs of neuronal recovery emerged, hinting that timely treatment could not only halt but reverse disease progression—and perhaps benefit other Parkinson’s forms.
+  </div>
+  <div class="message-block">
+    <span style="color: #007acc;">I believe</span> in a future where Parkinson's can be fixed or significantly improved through scientific breakthroughs and innovative therapies.
+  </div>
+  <div class="message-block">
+    <span style="color: #007acc;">Stay informed</span>, stay strong, and join me in the journey towards a brighter tomorrow.
+  </div>
+</section>
+       
+      <p class="animated-text">
+  <span class="quote">"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."</span>
+  <br> — <strong>Dr. Roger Barker, University of Cambridge, 2021</strong>
+</p>
+      <p class="animated-text">
+      <span class="quote">"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."</span>
+       <br> — <strong>Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</strong></p>
+      <p class="animated-text">
+       <span class="quote">"We are finally reaching the stage where real regenerative medicine for Parkinson’s is not science fiction—it's in clinical trials."</span>
+        <br> — <strong>Dr. Claire Henchcliffe, UC Irvine, 2020</strong></p>
+      <p class="animated-text">
+       <span class="quote">"This is not just a treatment—this is an attempt at a true biological fix."</span>
+       <br>  — <strong>The New York Times, 2022</strong></p>
+      <p class="animated-text">
+       <span class="quote">"Scientists may be on the verge of turning back time for Parkinson’s patients—cell by cell."</span>
+       <br> — <strong>Scientific American, 2021</strong></p>
+    </section>
+  </main>
+<!-- </div> -->
+  <footer>
+    &copy; 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <script>
+    // Get the current file name from the URL
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Get all the slider links
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    slides.forEach(slide => {
+      // Check if the link href matches the current page
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+</script>
+  
+  <script>
+    const sliderLinks = document.querySelectorAll('.slider-container .slide-link');
+    sliderLinks.forEach(link => {
+      if (link.textContent.trim() === 'Welcome') {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  </script>
+ </body>
+</html>
