@@ -385,7 +385,39 @@ strong {
 <div class="message-block animated-message">Message 1</div>
 <div class="message-block animated-message">Message 2</div>
 <div class="message-block animated-message">Message 3</div>
-  
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  background-color: #f0f0f0; /* Match your site background */
+}
+
+.hero-img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.fade-side {
+  position: absolute;
+  top: 0;
+  width: 100px; /* Width of the fade area */
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+.fade-side.left {
+  left: -100px;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.fade-side.right {
+  right: -100px;
+  background: linear-gradient(to left, white, transparent);
+}
+
+    
   </style>
 </head>
 <body>
@@ -414,10 +446,12 @@ strong {
 
   <main>
   
- <section class="hero-section">
-    <img src="../images/DopeAF.jpg" class="hero-img" alt="DopeA-DopeF">
-   <!--<img src="images/DopeAF.jpg" class="fade-top-bottom" alt="DopeAF"> -->
-  </section> 
+<div class="image-wrapper">
+  <div class="fade-side left"></div>
+  <img src="../images/DopeAF.jpg" alt="Finding Dopa" class="hero-img" />
+  <div class="fade-side right"></div>
+</div>
+
 
 <section class="motivational-line1">
   <p>A fix for Parkinson's disease is <span style="color: white;">NOT</span> on the way</p>
