@@ -208,23 +208,24 @@
       color: white;
     }
 
-.table-wrapper {
+.science-table-wrapper {
   overflow-x: auto;
   max-width: 100%;
 }
 
 .science-table {
   width: 100%;
-  min-width: 700px; /* Adjust based on how wide your columns are */
+  min-width: 700px;
   border-collapse: collapse;
+  font-size: 0.85rem; /* Scoped only to the table */
 }
 
-.science-table th, .science-table td {
+.science-table th,
+.science-table td {
   border: 1px solid rgba(0, 255, 255, 0.2);
   padding: 8px;
   color: white;
   text-align: left;
-  font-size: 0.9rem;
 }
 
 .science-table th {
@@ -375,10 +376,11 @@
         <p><strong>UX-DA001 Study</strong>: Phase 1 exploratory study of UX-DA001, a cell therapy using patient-derived cells to improve motor function. <a href="https://ctv.veeva.com/study/an-exploratory-clinical-study-of-ux-da001-in-subjects-with-idiopathic-parkinsons-disease" class="open-link" target="_blank">Explore Study</a></p>
       </div>
       
-     <div class="science-block">
+<div class="science-block">
   <h3>Some Ongoing Trials</h3>
-  <div class="table-wrapper">
-    <table class="science-table small-text-table">
+
+  <div class="science-table-wrapper">
+    <table class="science-table">
       <thead>
         <tr>
           <th>Organization</th>
@@ -387,7 +389,6 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Phase 3 -->
         <tr>
           <td>BlueRock Therapeutics</td>
           <td>Bemdaneprocel (iPSC-derived dopaminergic neurons)</td>
