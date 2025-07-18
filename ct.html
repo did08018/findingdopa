@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finding Dopa – Parkinson’s Disease Research and Clinical Trials</title>
+  <meta name="description" content="Explore the latest in Parkinson’s disease research, treatments, and clinical trials. Finding Dopa offers resources and hope for a cure.">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#000000">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'PT Serif', serif;
+      color: #222;
+      background: radial-gradient(ellipse at top, #0b0f1a, #000);
+      overscroll-behavior: none;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #121212;
+    }
+
+    .main-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: #121212;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2rem;
+      margin-right: 15px;
+    }
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: white;
+    }
+
+    .slider-container {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      background: #121212;
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      white-space: nowrap;
+      font-size: 0.95rem;
+    }
+
+    .slide-link {
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    .slide-link:hover {
+      color: #00bfff;
+    }
+
+    .slide.active {
+      background: #fdfdfd;
+      color: #2e2a89;
+      border: 2px solid #2e2a89;
+    }
+    
+    h1, h2, h3, .hero-line, .cta-button {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #00f7ff;
+      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
+    }
+
+    p, .hero-line {
+      color: white;
+      text-shadow: 0 0 5px #A576E0, 0 0 10px #A576E0;
+    }
+
+/*color: #A576E0;*/
+    
+    .cta-button {
+      background: #ff00c8;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8;
+    }
+
+    .cta-button:hover {
+      background: #880088;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+    }
+
+    .hero-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #0b0f1a, #000);
+}
+
+    .hero-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    #main {
+      padding: 20px 0;
+      color: #e0e0e0;
+      display: grid;
+      gap: 20px;
+    }
+
+    .intro {
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #b2fefa;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    .science-block {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .science-block:hover {
+      transform: translateY(-5px);
+    }
+
+    .science-block h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .science-block h3::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #00f7ff;
+      box-shadow: 0 0 5px #00f7ff;
+      border-radius: 2px;
+      margin-top: 5px;
+    }
+
+    .science-block p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: white;
+    }
+
+/*.science-table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.science-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  font-size: 0.85rem; 
+}
+
+.science-table th,
+.science-table td {
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 8px;
+  color: white;
+  text-align: left;
+}
+
+.science-table th {
+  background: rgba(0, 255, 255, 0.1);
+  font-weight: bold;
+}*/
+    
+    .open-link {
+      color: #00f7ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .open-link:hover {
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    }
+
+   /* table {
+  width: 100%;
+  max-width: 700px;
+  border-collapse: collapse;
+  margin: 20px 0;
+  color: white;
+  text-align: center;
+}
+
+    th, td {
+      padding: 12px;
+      border: 1px solid white;
+    }
+
+    th {
+      background: #1f1f1f;
+    }*/
+    
+    .small-text-table {
+  font-size: 0.8em;
+}
+
+    footer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #222;
+      color: #fff;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    #cookieConsent button {
+      padding: 8px 15px;
+      background: #f1d600;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+.table-container {
+  max-width: 700px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+table {
+  max-width: 2000px;
+  border-collapse: collapse;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="home-brand" aria-label="Finding Dopa Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+    <div class="slider-container">
+      <a href="/dopa/vox.html" class="slide">Dopa VOX</a>
+      <a href="news.html" class="slide">Latest News</a>
+      <a href="resources.html" class="slide">Resources</a>
+      <a href="actors.html" class="slide">The Actors</a>
+      <a href="fix-or-cure.html" class="slide">Fix or Cure?</a>
+      <a href="science.html" class="slide">The Science</a>
+      <a href="clinical-trials.html" class="slide">Clinical Trials</a>
+      <a href="about.html" class="slide">About</a>
+      <a href="disclaimer.html" class="slide">Disclaimer</a>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <section class="hero-section">
+      <img src="images/Clinical-Trials-Disco.jpg" class="hero-img" alt="Parkinson’s Disease Clinical Trials">
+    </section>
+    <main id="main">
+      <section class="intro">
+        <p class="hero-line">A fix for Parkinson’s Disease is on the way. Keep fighting!</p>
+      </section>
+
+      <div class="science-block">
+        <h3>How New Treatments Are Tested</h3>
+        <p>Clinical trials are research studies in humans that assess the safety and effectiveness of new treatments. They progress through three phases: Phase 1 tests safety in a small group, Phase 2 evaluates effectiveness and side effects, and Phase 3 confirms results in a larger population. If successful, the treatment may be approved for market use.</p>
+      </div>
+
+            <div class="science-block">
+        <h3>Phase 1/2 Studies</h3>
+        <p>Phase 1/2 trials combine safety (Phase 1) and preliminary efficacy (Phase 2) assessments. Successful trials, like those for bemdaneprocel, may advance to Phase 3 to further evaluate efficacy and safety.</p>
+      </div>
+
+            <div class="science-block">
+        <h3>Phase 3 Studies</h3>
+              <p>Phase 3 trials confirm efficacy and monitor side effects in larger patient populations. Building on Phase 1/2 results, these trials compare the new treatment to standard care, helping determine if it should be approved for widespread use.</p>
+              <p>If Phase 3 is conclusive, meaning the treatment shows strong efficacy and acceptable safety, the sponsoring company can submit a marketing authorization application to regulatory agencies (like the FDA in the U.S. or EMA in Europe).</p>
+              <p>If approved, the treatment can then be marketed and prescribed to the general public. This is the final step before widespread clinical use—turning a promising therapy into a real-world option for patients.</p>
+      </div>
+
+            <div class="science-block">
+        <h3>Time to Market</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Preclinical</td><td>1–2 years</td></tr>
+            <tr><td>Phase 1</td><td>~1 year</td></tr>
+            <tr><td>Phase 2</td><td>~1–2 years</td></tr>
+            <tr><td>Phase 3</td><td>~2–4 years</td></tr>
+            <tr><td>Regulatory Review</td><td>~6–12 months</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>~6–10 years</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="science-block">
+        <h3>Find Trials</h3>
+        <!--<p><strong>exPDite-2</strong>: Phase 3 study evaluating the efficacy and safety of bemdaneprocel, an investigational cell therapy aimed at replacing dopamine-producing neurons. <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" class="open-link" target="_blank">Learn More</a></p>/-->
+        <p><strong>ClinicalTrials.gov</strong>: Search for worldwide stem cell trials for Parkinson’s disease (recruiting). <a href="https://clinicaltrials.gov/search?cond=Parkinson%27s%20Disease&aggFilters=phase:0%201%202%203%204" class="open-link" target="_blank">Search Trials</a></p>
+        <p><strong>Fox Trial Finder</strong>: Connect with Parkinson’s research studies based on location and health history. <a href="https://www.michaeljfox.org/trial-finder" class="open-link" target="_blank">Find a Trial</a></p>
+        <p><strong>Be Part of Research - NIHR HNS UK</strong>: Current Studies relating to Parkinson's disease. <a href="https://bepartofresearch.nihr.ac.uk/results/search-results?search=%257B%2522facetDef%2522%253A%257B%2522Health%2520Tag%2522%253A%255B%2522Parkinson%27s%2520Disease%2522%255D%252C%2522Study%2520Status%2522%253A%255B%2522Recruiting%2522%255D%257D%257D" class="open-link" target="_blank">See Ongoing Trials</a></p>
+        <p><strong>UX-DA001 Study</strong>: Phase 1 exploratory study of UX-DA001, a cell therapy using patient-derived cells to improve motor function. <a href="https://ctv.veeva.com/study/an-exploratory-clinical-study-of-ux-da001-in-subjects-with-idiopathic-parkinsons-disease" class="open-link" target="_blank">Explore Study</a></p>
+      </div>
+      
+<div class="science-block">
+  <h3>Some Ongoing Trials</h3>
+<table class="small-text-table">
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Treatment(s)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>BlueRock Therapeutics</td>
+          <td>Bemdaneprocel (iPSC-derived dopaminergic neurons)</td>
+          <td>Entering Phase 3</td>
+        </tr>
+        <tr>
+          <td>Kyoto University Hospital</td>
+          <td>Tacrolimus + iPSC-derived dopaminergic progenitors</td>
+          <td>Phase 3 (Suspended) *</td>
+        </tr>
+
+        <!-- Phase 2 / Phase 1/2a -->
+        <tr>
+          <td>Aspen Neuroscience</td>
+          <td>ANPD001 (autologous iPSC-derived dopamine neurons)</td>
+          <td>Phase 1/2a (Ongoing)</td>
+        </tr>
+        <tr>
+          <td>Sumitomo Pharma / CiRA</td>
+          <td>CT1-DAP001 (allogeneic dopaminergic progenitor cells)</td>
+          <td>Phase 1/2 (US & Japan)</td>
+        </tr>
+        <tr>
+          <td>iRegene Therapeutics</td>
+          <td>NouvNeu001 (iPSC-derived neurons for early-onset Parkinson’s)</td>
+          <td>Phase 1/2 (China & US)</td>
+        </tr>
+        <tr>
+          <td>S. Biomedics</td>
+          <td>TED-A9 (hESC-derived dopaminergic progenitors)</td>
+          <td>Phase 1/2a (Korea)</td>
+        </tr>
+
+        <!-- Phase 1 -->
+        <tr>
+          <td>Novo Nordisk / Lund University</td>
+          <td>NN-9001 (iPSC-derived therapy)</td>
+          <td>Phase 1</td>
+        </tr>
+        <tr>
+          <td>XellSmart Biomedical</td>
+          <td>XS-411 (allogeneic dopaminergic neural progenitors)</td>
+          <td>Phase 1 (China & US)</td>
+        </tr>
+        <tr>
+          <td>Oryon Cell Therapies</td>
+          <td>Autologous iPSC-derived dopamine neurons</td>
+          <td>Phase 1 (US)</td>
+        </tr>
+        <tr>
+          <td>Shanghai Yuesai Biotech</td>
+          <td>UX-DA001 (autologous iPSC-derived therapy)</td>
+          <td>Entering Phase 1 (China)</td>
+        </tr>
+        <tr>
+          <td>iCamuno Biotherapeutics</td>
+          <td>ICA07 (autologous iPSC-derived dopamine progenitors)</td>
+          <td>Phase 1 (China)</td>
+        </tr>
+
+        <!-- Preclinical -->
+        <tr>
+          <td>TreeFrog Therapeutics</td>
+          <td>TFG 001 (iPSC-derived therapy)</td>
+          <td>Preclinical (Phase 1 planned for 2027)</td>
+        </tr>
+        <tr>
+          <td>Kenai Therapeutics</td>
+          <td>RNDP-001 (iPSC-derived dopamine progenitors)</td>
+          <td>Preclinical (IND planned)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>* The Kyoto University Phase 3 trial involving iPSC-derived dopaminergic progenitor cells and tacrolimus was suspended due to logistical and regulatory adjustments, not safety concerns. The trial had shown promising early results: no serious adverse events, stable graft integration, and improved motor function in several participants.</p>
+
+  <p>However, the suspension appears to be temporary and related to transitioning from an investigator-initiated study to a broader, possibly multi-center trial framework. The team, led by Professor Jun Takahashi at CiRA, is reportedly preparing for future trials with expanded scope and international collaboration.</p>
+</div>
+
+<div class="science-block">
+  <h3>Parkinson’s Treatments in Development</h3>
+ <div class="table-container">
+  <table class="small-text-table">
+    <thead>
+      <tr>
+        <th>Drug Name / Class</th>
+        <th>Administration</th>
+        <th>Goal / Target</th>
+        <th>Trial Phase</th>
+        <th>Countries / Regions</th>
+        <th>NCT Number / Registry</th>
+        <th>Likely Market Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Levodopa/Carbidopa</td><td>Oral (tablet/capsule)</td><td>Symptom control (dopamine replacement)</td><td>Approved</td><td>Global</td><td>N/A</td><td>Marketed</td></tr>
+      <tr><td>Extended-release Levodopa/Carbidopa</td><td>Oral (tablet/capsule)</td><td>Reduce "off" time, improved symptom control</td><td>Approved</td><td>Global</td><td>N/A</td><td>Marketed</td></tr>
+      <tr><td>Ambroxol</td><td>Oral (tablet)</td><td>Enhance GCase, reduce alpha-synuclein</td><td>Phase 3</td><td>UK, Europe</td><td>NCT05778617; ISRCTN93097821</td><td>2027+</td></tr>
+      <tr><td>CVN424 (Solengepras)</td><td>Oral (tablet)</td><td>GPR6 inhibitor, improve motor symptoms</td><td>Phase 3</td><td>USA, Philippines</td><td>NCT06553027</td><td>2026+</td></tr>
+      <tr><td>LRRK2 inhibitors (DNL151/BIIB122)</td><td>Oral (tablet)</td><td>Slow progression in LRRK2 mutation carriers</td><td>Phase 3</td><td>Global</td><td>NCT05348785</td><td>2027+</td></tr>
+      <tr><td>Tavapadon</td><td>Oral (tablet)</td><td>D1/D5 partial agonist, motor symptom control</td><td>Phase 3</td><td>Global</td><td>NCT04201093</td><td>2027+</td></tr>
+      <tr><td>GLP-1 agonists (Lixisenatide)</td><td>Oral (tablet)</td><td>Slow progression, neuroprotection</td><td>Phase 2</td><td>France, Europe</td><td>NCT03439943</td><td>2027+</td></tr>
+      <tr><td>GLP-1 agonists (Exenatide)</td><td>Injection / Oral (in dev)</td><td>Slow progression, neuroprotection</td><td>Phase 3</td><td>UK, Europe</td><td>NCT04232969</td><td>2027+</td></tr>
+      <tr><td>GZ/SAR402671 (Venglustat)</td><td>Oral (tablet)</td><td>Target GBA mutation, slow progression</td><td>Phase 2</td><td>Global</td><td>NCT02906020</td><td>Unknown</td></tr>
+      <tr><td>NE3107 (Bezisterim)</td><td>Oral (tablet)</td><td>Reduce neuroinflammation, early therapy</td><td>Phase 2</td><td>USA</td><td>NCT06757010</td><td>2026+</td></tr>
+      <tr><td>Energi-F705PD</td><td>Oral (tablet)</td><td>Boost ATP, antioxidant, reduce α-synuclein</td><td>Phase 2</td><td>Taiwan</td><td>-</td><td>Unknown</td></tr>
+      <tr><td>Copper supplements</td><td>Oral (tablet)</td><td>Restore copper balance, antioxidant effect</td><td>Early research</td><td>-</td><td>-</td><td>Unknown</td></tr>
+      <tr><td>Apomorphine (Onapgo, Apokyn)</td><td>Oral film, sublingual</td><td>Reduce "off" episodes</td><td>Approved</td><td>USA, EU</td><td>N/A</td><td>Marketed</td></tr>
+      <tr><td>Alpha-synuclein immunotherapy</td><td>Injection/Infusion</td><td>Remove toxic alpha-synuclein</td><td>Phase 2/3</td><td>Global</td><td>NCT04658186; others</td><td>2028+</td></tr>
+      <tr><td>SOD1 modulators</td><td>Injection (not oral)</td><td>Reduce oxidative stress (mainly ALS focus)</td><td>Early research</td><td>-</td><td>-</td><td>Unknown</td></tr>
+      <tr><td>Bemnapredocel (cell therapy)</td><td>Not oral (cell infusion)</td><td>Replace lost dopamine neurons</td><td>Phase 1/2</td><td>USA, EU</td><td>NCT05448462</td><td>2028+</td></tr>
+    </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="science-block">
+  <h3>Repurposed Drugs</h3>
+  <div class="table-container">
+    <table class="small-text-table">
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>Original Use</th>
+          <th>PD Target / Effect</th>
+          <th>Trial Stage / Status</th>
+          <th>How to Take</th>
+          <th>Likely Market Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Exenatide</strong></td>
+          <td>Type 2 Diabetes (GLP-1 agonist)</td>
+          <td>Neuroprotection</td>
+          <td><strong>Phase 3 ongoing (Exenatide-PD3)</strong></td>
+          <td>Injection (Subcutaneous)</td>
+          <td>2027–2028 if successful</td>
+        </tr>
+        <tr>
+          <td><strong>Isradipine</strong></td>
+          <td>Hypertension (Calcium channel blocker)</td>
+          <td>Mitochondrial protection</td>
+          <td><strong>Phase 3 completed (FAILED)</strong></td>
+          <td>Oral</td>
+          <td>Unlikely (development stopped)</td>
+        </tr>
+        <tr>
+          <td><strong>Liraglutide</strong></td>
+          <td>Type 2 Diabetes (GLP-1 agonist)</td>
+          <td>Neuroprotection</td>
+          <td><strong>Phase 2 completed (some promise)</strong></td>
+          <td>Injection (Subcutaneous)</td>
+          <td>2030+ unless Phase 3 starts soon</td>
+        </tr>
+        <tr>
+          <td><strong>Nilotinib</strong></td>
+          <td>Leukemia (BCR-ABL inhibitor)</td>
+          <td>α-synuclein clearance / autophagy</td>
+          <td><strong>Phase 2 completed (mixed results)</strong></td>
+          <td>Oral</td>
+          <td>Unlikely (needs new trials)</td>
+        </tr>
+        <tr>
+          <td><strong>Pioglitazone</strong></td>
+          <td>Type 2 Diabetes (PPARγ agonist)</td>
+          <td>Neuroprotection</td>
+          <td><strong>Phase 2 completed (negative)</strong></td>
+          <td>Oral</td>
+          <td>Unlikely</td>
+        </tr>
+        <tr>
+          <td><strong>Ambroxol</strong></td>
+          <td>Mucolytic (cough)</td>
+          <td>GBA1 enhancer / lysosomal function</td>
+          <td><strong>Phase 2 trials</strong></td>
+          <td>Oral</td>
+          <td>2028–2029 if Phase 3 starts ~2026</td>
+        </tr>
+        <tr>
+          <td><strong>UDCA</strong></td>
+          <td>Biliary disease</td>
+          <td>Mitochondrial function</td>
+          <td><strong>Phase 2/3 underway in some studies</strong></td>
+          <td>Oral</td>
+          <td>2027–2028 if confirmed in trials</td>
+        </tr>
+        <tr>
+          <td><strong>Lixisenatide</strong></td>
+          <td>Type 2 Diabetes (GLP-1 agonist)</td>
+          <td>Neuroprotection</td>
+          <td><strong>Phase 2 ongoing</strong></td>
+          <td>Injection (Subcutaneous)</td>
+          <td>2029–2030 if Phase 3 follows</td>
+        </tr>
+        <tr>
+          <td><strong>Sunrise-PD (ulotaront)</strong></td>
+          <td>Schizophrenia (TAAR1 agonist)</td>
+          <td>Non-motor symptoms</td>
+          <td><strong>Phase 2 (PD)</strong></td>
+          <td>Oral</td>
+          <td>2029–2030 if trials succeed</td>
+        </tr>
+        <tr>
+          <td><strong>RB-190 (roscovitine)</strong></td>
+          <td>Cancer (CDK inhibitor)</td>
+          <td>LRRK2 kinase inhibition</td>
+          <td><strong>Phase 1 (PD)</strong></td>
+          <td>Oral</td>
+          <td>2035+ (very early)</td>
+        </tr>
+        <tr>
+          <td><strong>Semaglutide</strong></td>
+          <td>Type 2 Diabetes (GLP-1 agonist)</td>
+          <td>Neuroprotection</td>
+          <td>Preclinical / Early trials</td>
+          <td>Injection (Subcutaneous) or Oral</td>
+          <td>2032+ if developed</td>
+        </tr>
+        <tr>
+          <td><strong>Imatinib</strong></td>
+          <td>Leukemia</td>
+          <td>LRRK2 modulation, autophagy</td>
+          <td>Preclinical / Derivatives in early trials</td>
+          <td>Oral</td>
+          <td>2035+ unless fast-tracked</td>
+        </tr>
+        <tr>
+          <td><strong>Terazosin</strong></td>
+          <td>Hypertension (α1-blocker)</td>
+          <td>Enhances glycolysis</td>
+          <td>Preclinical / Observational studies</td>
+          <td>Oral</td>
+          <td>2035+ unless strong data emerges</td>
+        </tr>
+        <tr>
+          <td><strong>Empagliflozin</strong></td>
+          <td>Type 2 Diabetes (SGLT2 inhibitor)</td>
+          <td>Neuroprotection (preclinical models)</td>
+          <td>Preclinical</td>
+          <td>Oral</td>
+          <td>2035+</td>
+        </tr>
+        <tr>
+          <td><strong>Rapamycin (Sirolimus)</strong></td>
+          <td>Immunosuppressant</td>
+          <td>Autophagy activator</td>
+          <td>Preclinical / Early PD studies</td>
+          <td>Oral</td>
+          <td>2032–2035</td>
+        </tr>
+        <tr>
+          <td><strong>Metformin</strong></td>
+          <td>Type 2 Diabetes</td>
+          <td>Mixed data in PD models</td>
+          <td>Preclinical / Observational</td>
+          <td>Oral</td>
+          <td>Unlikely</td>
+        </tr>
+        <tr>
+          <td><strong>Ibuprofen</strong></td>
+          <td>NSAID</td>
+          <td>Neuroprotection potential (controversial)</td>
+          <td>Epidemiology / Preclinical</td>
+          <td>Oral</td>
+          <td>Unlikely</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+      
+<!--   NEW   TRIALS   HERE   -->
+
+      <div class="science-block">
+        <h3>Luma Trial [BIIB122]</h3>
+        <p>The Luma trial is a Phase 2b, international, randomized, double‑blind, placebo‑controlled study investigating the safety and efficacy of BIIB122 (also known as DNL151), an oral, CNS-penetrant LRRK2 kinase inhibitor, in early-stage Parkinson’s disease. Enrolling ~640–650 participants aged 30–80, diagnosed within the past 2 years and with mild motor disability (Hoehn and Yahr stage 1–2), the trial began in April 2022 and is expected to complete around December 2025. Participants are randomized to receive 225 mg BIIB122 or placebo once daily for 48 to 144 weeks, with periodic symptom assessments using MDS‑UPDRS and Schwab & England ADL scales, plus safety monitoring including adverse events. The study protocol was recently amended to include individuals with and without LRRK2 mutations, broadening its scope to both genetically defined and idiopathic PD. <a href="https://clinicaltrials.gov/study/NCT05348785" class="open-link" target="_blank">NCT05348785 here</a></p>
+      </div>
+
+       <div class="science-block">
+        <h3>SUNRISE‑PD</h3>
+        <p>SUNRISE‑PD is a Phase 2, randomized, double‑blind, placebo‑controlled multicenter trial evaluating the safety and efficacy of bezisterim (NE3107) — an orally available, blood‑brain–barrier‑permeable compound with both anti‑inflammatory and insulin‑sensitizing properties — in approximately 60 participants with early-stage, levodopa‑naïve Parkinson’s disease. The study features a 12-week double‑blind treatment phase (20 mg bezisterim twice daily vs. placebo) within a 20-week timeline including screening and follow‑up. Its innovative hybrid decentralized design allows for fully at‑home participation, with study nurses and remote neurologist supervision via telemedicine overseeing modified MDS‑UPDRS Part III motor assessments, later centrally rated. Primary outcomes focus on motor improvements at week 12, while secondary and exploratory endpoints evaluate non‑motor symptoms, patient-reported outcomes, biomarkers (e.g., DNA methylation, plasma inflammation markers), and pharmacodynamics. Fully funded and supported by major foundations, the trial began enrollment in Q1 2025, with topline data expected in late 2025 or early 2026. <a href="https://sunrisepd.com/prequalify/participate-at-home/#!/study/2120" class="open-link" target="_blank">See if you Qualify</a></p>
+      </div>
+      
+      <div class="science-block">
+        <h3>exPDite-2</h3>
+        <p>Bemdaneprocel, a stem cell-derived therapy, is in Phase 3 as of 2025. If successful, it could reach the market by 2027–2028, aiming to restore dopaminergic function in Parkinson’s patients. <a href="https://expditestudy.com/?utm_source=brt&utm_medium=referral&utm_campaign=brt_corporate-website&utm_content=eng" class="open-link" target="_blank">Learn More</a></p>
+      </div>
+
+      <div class="science-block">
+        <h3>NE3107 / Bezisterim</h3>
+        <p>In animal studies, the trial drug showed that the reduction of neuroinflammation led to improved movement, a decrease in the levodopa side effects, as well as a decrease in the loss of brain cells, which means it has the potential to slow disease progression. <a href="https://sunrisepd.com/" class="open-link" target="_blank">Check Here</a></p>
+      </div>
+      
+      <div class="science-block">
+        <h3>ASPro-PD</h3>
+        <p>The ASPro-PD trial is a world-first phase 3 trial of ambroxol, currently recruiting (2025). <a href="https://clinicaltrials.gov/study/NCT05778617?titles=Nct05778617&rank=1" class="open-link" target="_blank">Clinical Trial NCT05778617 here</a></p>
+      </div>
+
+      <div class="science-block">
+        <h3>REGENERATE-PD</h3>
+        <p>A new gene therapy approach for Parkinson’s disease is being tested in a Phase 2 clinical trial called REGENERATE-PD, which is currently recruiting participants (2025). <a href="https://mytomorrows.com/ask-bio/regenerate-pd/en-us/" class="open-link" target="_blank">Learn more here</a></p>
+      </div>
+
+            <div class="science-block">
+        <h3>ENERGI-F705PD</h3>
+        <p>ENERGI-F705PD is an experimental oral sustained-release medication for Parkinson’s disease. The treatment aims to support overall cellular health rather than just managing symptoms. The therapy recently entered Phase 1 clinical trials in February 2025 with the first patient enrolled.</p>
+      </div>
+
+            <div class="science-block">
+        <h3>Exenatide-PD3</h3>
+        <p>The full results of the Exenatide-PD3 study, a phase 3 clinical trial of Type 2 diabetes drug exenatide (Bydureon), have now been published. They report that the study unfortunately did not meet its primary or secondary endpoints (2025).</p>
+      </div>
+
+      <div class="science-block">
+        <h3>NET-PD LS-1 Study</h3>
+        <p>Concluded in 2013, the NET-PD LS-1 trial (NCT00449865) found that creatine supplementation did not slow Parkinson’s progression compared to placebo. Results were published in 2015.</p>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    © 2025 Finding Dopa. All rights reserved.
+  </footer>
+
+  <div id="cookieConsent">
+    This website uses cookies to enhance your experience.
+    <button onclick="handleConsent(true)">Accept</button>
+    <button onclick="handleConsent(false)">Decline</button>
+  </div>
+
+  <script>
+
+    // Highlight active menu item
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+    slides.forEach(slide => {
+      if (slide.getAttribute('href') === currentPage) {
+        slide.classList.add('active');
+      }
+    });
+    
+    function handleConsent(consent) {
+      localStorage.setItem("cookiesAccepted", consent);
+      document.getElementById("cookieConsent").style.display = "none";
+      if (consent) loadAnalytics();
+    }
+
+    function loadAnalytics() {
+      console.log("Analytics loaded");
+    }
+
+    window.onload = function() {
+      const consent = localStorage.getItem("cookiesAccepted");
+      if (consent === null) {
+        document.getElementById("cookieConsent").style.display = "flex";
+      } else if (consent === "true") {
+        loadAnalytics();
+      }
+    };
+  </script>
+</body>
+</html>
