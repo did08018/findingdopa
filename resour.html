@@ -371,7 +371,7 @@
     </section>
 
     <div class="section-buttons">
-      <a href="#" data-filter="ai" id="aiFilterButton">AI</a>
+      <a href="#" data-filter="ai">AI</a>
       <a href="#" data-filter="podcasts">Podcasts</a>
       <a href="#" data-filter="papers">Papers</a>
       <a href="#" data-filter="organizations">Organizations</a>
@@ -380,7 +380,7 @@
       <a href="#" data-filter="articles">Articles</a>
     </div>
 
-<section id="ai">
+<section id="ai" class="section">
 <div class="resource-entry">
   <div class="date-and-image">
     <img src="images/ai-for-pd.jpeg" alt="Jun Takahashi M.D., Ph.D. Thumbnail" />
@@ -390,10 +390,13 @@
     <h3>AI in PD Research</h3>
     <p><i>“AI is dramatically accelerating the search for treatments that could slow or even reverse Parkinson’s disease. Here are the most promising developments.”</i></p>
   </div>
-  </div>
+  <a class="resource-link" id="openModal">
+    <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+</div>
 </section>
       
-    <section id="interviews">
+    <section id="interviews" class="section">
       
 <div class="resource-entry">
   <div class="date-and-image">
@@ -412,7 +415,7 @@
     </section>
 
 
-       <section id="podcasts">
+       <section id="podcasts" class="section">
       
 <div class="resource-entry">
   <div class="date-and-image">
@@ -472,7 +475,7 @@
       </div> 
       </section>
 
-       <section id="articles">
+       <section id="articles" class="section">
       
 <div class="resource-entry">
         <div class="date-and-image">
@@ -488,7 +491,7 @@
         </a>
       </div>
     </section> 
-         <section id="papers">
+         <section id="papers" class="section">
            
 <div class="resource-entry">
         <div class="date-and-image">
@@ -562,7 +565,7 @@
       </div>
     </section> 
     
-    <section id="organizations">
+    <section id="organizations" class="section">
       
 <div class="resource-entry">
         <div class="date-and-image">
@@ -579,7 +582,7 @@
       </div>
     </section>
 
-<section id="videos">
+<section id="videos" class="section">
       
 <div class="resource-entry">
   <div class="date-and-image">
@@ -616,194 +619,174 @@
     © 2025 Finding Dopa. All rights reserved.
   </footer>
 
-  
-  
   <div id="aiModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModal">×</span>
-    <h2>AI Breakthroughs in Parkinson’s Treatment & Research</h2>
-    <div class="table-container">
-      <table class="small-text-table">
-      <thead>
-        <tr>
-          <th>Project / Initiative</th>
-          <th>Key Features</th>
-          <th>Goal</th>
-          <th>Timeline / Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Cambridge AI Drug Discovery</td>
-          <td>AI screens millions of compounds to block alpha-synuclein aggregation</td>
-          <td>Slow or halt disease progression</td>
-          <td>Published 2023; preclinical trials ongoing</td>
-        </tr>
-        <tr>
-          <td>Cleveland Clinic Genome Mapping</td>
-          <td>AI maps non-coding DNA to Parkinson’s genes; identifies repurposable drugs</td>
-          <td>Target inflammation and genetic drivers</td>
-          <td>Published 2022; drug repurposing underway</td>
-        </tr>
-        <tr>
-          <td>DeepMind AlphaFold Protein Modeling</td>
-          <td>Predicts structure of PINK1 protein linked to early-onset Parkinson’s</td>
-          <td>Enable targeted drug design</td>
-          <td>Released 2021; used in ongoing research</td>
-        </tr>
-        <tr>
-          <td>Stanford Adaptive DBS Trials</td>
-          <td>AI adjusts brain stimulation in real time based on neural signals</td>
-          <td>Improve motor control, reduce side effects</td>
-          <td>Clinical trials 2022–2024; promising results</td>
-        </tr>
-        <tr>
-          <td>Charco Neurotech CUE1 Device</td>
-          <td>Wearable device delivers vibration therapy to reduce tremors and rigidity</td>
-          <td>Non-invasive symptom relief</td>
-          <td>Commercial launch 2023; expanding globally</td>
-        </tr>
-        <tr>
-          <td>AI-PROGNOSIS (EU Horizon Project)</td>
-          <td>Uses smartphone/smartwatch data to predict onset and personalize care</td>
-          <td>Early detection and tailored treatment</td>
-          <td>Active 2021–2025; pilot studies underway</td>
-        </tr>
-        <tr>
-          <td>MIT Breathing Sensor AI</td>
-          <td>Detects Parkinson’s from nocturnal breathing using WiFi-like sensor</td>
-          <td>Non-invasive early diagnosis</td>
-          <td>Published 2022; clinical validation ongoing</td>
-        </tr>
-        <tr>
-          <td>UCSF Video-Based Symptom Tracker</td>
-          <td>Smartphone videos analyzed by AI to assess motor symptoms</td>
-          <td>Remote monitoring and progression tracking</td>
-          <td>Published 2023; clinical rollout planned</td>
-        </tr>
-        <tr>
-          <td>CareYaya AI Art Therapy</td>
-          <td>Personalized creative sessions to stimulate motor and cognitive function</td>
-          <td>Slow progression and improve engagement</td>
-          <td>Pilot launched 2023; expanding in 2024</td>
-        </tr>
-        <tr>
-          <td>Scrolling Therapy App</td>
-          <td>Facial gesture-based interaction to exercise facial muscles</td>
-          <td>Delay progression of facial motor symptoms</td>
-          <td>Experimental phase; early trials in 2024</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="modal-content">
+      <span class="close" id="closeModal">×</span>
+      <h2>AI Breakthroughs in Parkinson’s Treatment & Research</h2>
+      <div class="table-container">
+        <table class="small-text-table">
+          <thead>
+            <tr>
+              <th>Project / Initiative</th>
+              <th>Key Features</th>
+              <th>Goal</th>
+              <th>Timeline / Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cambridge AI Drug Discovery</td>
+              <td>AI screens millions of compounds to block alpha-synuclein aggregation</td>
+              <td>Slow or halt disease progression</td>
+              <td>Published 2023; preclinical trials ongoing</td>
+            </tr>
+            <tr>
+              <td>Cleveland Clinic Genome Mapping</td>
+              <td>AI maps non-coding DNA to Parkinson’s genes; identifies repurposable drugs</td>
+              <td>Target inflammation and genetic drivers</td>
+              <td>Published 2022; drug repurposing underway</td>
+            </tr>
+            <tr>
+              <td>DeepMind AlphaFold Protein Modeling</td>
+              <td>Predicts structure of PINK1 protein linked to early-onset Parkinson’s</td>
+              <td>Enable targeted drug design</td>
+              <td>Released 2021; used in ongoing research</td>
+            </tr>
+            <tr>
+              <td>Stanford Adaptive DBS Trials</td>
+              <td>AI adjusts brain stimulation in real time based on neural signals</td>
+              <td>Improve motor control, reduce side effects</td>
+              <td>Clinical trials 2022–2024; promising results</td>
+            </tr>
+            <tr>
+              <td>Charco Neurotech CUE1 Device</td>
+              <td>Wearable device delivers vibration therapy to reduce tremors and rigidity</td>
+              <td>Non-invasive symptom relief</td>
+              <td>Commercial launch 2023; expanding globally</td>
+            </tr>
+            <tr>
+              <td>AI-PROGNOSIS (EU Horizon Project)</td>
+              <td>Uses smartphone/smartwatch data to predict onset and personalize care</td>
+              <td>Early detection and tailored treatment</td>
+              <td>Active 2021–2025; pilot studies underway</td>
+            </tr>
+            <tr>
+              <td>MIT Breathing Sensor AI</td>
+              <td>Detects Parkinson’s from nocturnal breathing using WiFi-like sensor</td>
+              <td>Non-invasive early diagnosis</td>
+              <td>Published 2022; clinical validation ongoing</td>
+            </tr>
+            <tr>
+              <td>UCSF Video-Based Symptom Tracker</td>
+              <td>Smartphone videos analyzed by AI to assess motor symptoms</td>
+              <td>Remote monitoring and progression tracking</td>
+              <td>Published 2023; clinical rollout planned</td>
+            </tr>
+            <tr>
+              <td>CareYaya AI Art Therapy</td>
+              <td>Personalized creative sessions to stimulate motor and cognitive function</td>
+              <td>Slow progression and improve engagement</td>
+              <td>Pilot launched 2023; expanding in 2024</td>
+            </tr>
+            <tr>
+              <td>Scrolling Therapy App</td>
+              <td>Facial gesture-based interaction to exercise facial muscles</td>
+              <td>Delay progression of facial motor symptoms</td>
+              <td>Experimental phase; early trials in 2024</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.section-buttons a');
+      const sections = document.querySelectorAll('.main-content .section');
+      let currentActiveFilter = null;
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.section-buttons a');
-    let activeButton = null;
-    const aiModal = document.getElementById("aiModal");
-    const closeModal = document.getElementById("closeModal");
-    const aiFilterButton = document.getElementById("aiFilterButton"); // Get the AI filter button
+      // Modal elements
+      const openModalButton = document.getElementById("openModal");
+      const closeModalButton = document.getElementById("closeModal");
+      const aiModal = document.getElementById("aiModal");
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = btn.dataset.filter;
+      // Function to show all sections
+      const showAllSections = () => {
+        sections.forEach(section => {
+          section.style.display = 'block';
+        });
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.backgroundColor = 'white';
+          btn.style.color = '#2e2a89';
+        });
+        currentActiveFilter = null;
+      };
 
-        // Toggle off if same button clicked
-        if (activeButton === btn) {
-          ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
-            document.getElementById(id).style.display = 'block';
-          });
+      // Initial state: show all sections
+      showAllSections();
 
-          buttons.forEach(b => {
-            b.classList.remove('active');
-            b.style.backgroundColor = 'white';
-            b.style.color = '#2e2a89';
-          });
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const filter = btn.dataset.filter;
 
-          activeButton = null;
-          aiModal.style.display = "none"; // Close modal if toggling off AI filter
-        } else {
-          buttons.forEach(b => {
-            b.classList.remove('active');
-            b.style.backgroundColor = 'white';
-            b.style.color = '#2e2a89';
-          });
-
-          ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
-            document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
-          });
-
-          btn.classList.add('active');
-          btn.style.backgroundColor = '#2e2a89';
-          btn.style.color = 'white';
-          activeButton = btn;
-
-          // Open modal if the AI filter button is clicked
-          if (filter === 'ai') {
-            aiModal.style.display = "block";
+          if (currentActiveFilter === filter) {
+            // Clicking the active filter again: show all sections
+            showAllSections();
+            aiModal.style.display = "none"; // Close modal if AI filter was active
           } else {
-            aiModal.style.display = "none"; // Close modal if another filter is selected
+            // Activate the clicked filter
+            filterButtons.forEach(b => {
+              b.classList.remove('active');
+              b.style.backgroundColor = 'white';
+              b.style.color = '#2e2a89';
+            });
+            btn.classList.add('active');
+            btn.style.backgroundColor = '#2e2a89';
+            btn.style.color = 'white';
+            currentActiveFilter = filter;
+
+            // Hide all sections, then show only the filtered one
+            sections.forEach(section => {
+              section.style.display = 'none';
+            });
+            document.getElementById(filter).style.display = 'block';
+            
+            aiModal.style.display = "none"; // Ensure modal is closed when filtering
           }
+        });
+      });
+
+      // Modal logic for the specific "AI in PD Research" entry
+      if (openModalButton) {
+        openModalButton.onclick = function() {
+          aiModal.style.display = "block";
+        }
+      }
+
+      if (closeModalButton) {
+        closeModalButton.onclick = function() {
+          aiModal.style.display = "none";
+        }
+      }
+
+      window.onclick = function(event) {
+        if (event.target === aiModal) {
+          aiModal.style.display = "none";
+        }
+      }
+
+      // Slider active state logic
+      const currentPage = window.location.pathname.split("/").pop();
+      const slides = document.querySelectorAll('.slider-container .slide');
+
+      slides.forEach(slide => {
+        if (slide.getAttribute('href').endsWith(currentPage)) {
+          slide.classList.add('active');
         }
       });
-    });
-
-    // Close modal when the close button is clicked
-    closeModal.onclick = function() {
-      aiModal.style.display = "none";
-      // If the AI filter was active, deactivate it when modal is closed manually
-      if (activeButton === aiFilterButton) {
-        aiFilterButton.classList.remove('active');
-        aiFilterButton.style.backgroundColor = 'white';
-        aiFilterButton.style.color = '#2e2a89';
-        activeButton = null;
-        // Show all sections again
-        ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
-            document.getElementById(id).style.display = 'block';
-        });
-      }
-    }
-
-    // Close modal when clicking outside of it
-    window.onclick = function(event) {
-      if (event.target === aiModal) {
-        aiModal.style.display = "none";
-        // If the AI filter was active, deactivate it when modal is closed by clicking outside
-        if (activeButton === aiFilterButton) {
-          aiFilterButton.classList.remove('active');
-          aiFilterButton.style.backgroundColor = 'white';
-          aiFilterButton.style.color = '#2e2a89';
-          activeButton = null;
-          // Show all sections again
-          ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
-              document.getElementById(id).style.display = 'block';
-          });
-        }
-      }
-    }
-
-    // Show all sections on initial load
-    ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
-      document.getElementById(id).style.display = 'block';
-    });
-  });
-</script>
-  
- <script>
-    // Get the current file name from the URL
-    const currentPage = window.location.pathname.split("/").pop();
-
-    // Get all the slider links
-    const slides = document.querySelectorAll('.slider-container .slide');
-
-    slides.forEach(slide => {
-      // Check if the link href matches the current page
-      if (slide.getAttribute('href') === currentPage) {
-        slide.classList.add('active');
-      }
     });
   </script>
 </body>
