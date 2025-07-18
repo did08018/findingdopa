@@ -778,7 +778,7 @@
 
         // Toggle off if same button clicked
         if (activeButton === btn) {
-          ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
+          ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
             document.getElementById(id).style.display = 'block';
           });
 
@@ -796,7 +796,7 @@
             b.style.color = '#2e2a89';
           });
 
-          ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
+          ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
             document.getElementById(id).style.display = (id === filter) ? 'block' : 'none';
           });
 
@@ -809,7 +809,7 @@
     });
 
     // Show all sections on initial load
-    ['podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
+    ['ai', 'podcasts', 'papers', 'organizations', 'videos', 'interviews', 'articles'].forEach(id => {
       document.getElementById(id).style.display = 'block';
     });
   });
