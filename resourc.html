@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI in Parkinson’s Research</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7fa;
+      padding: 40px;
+    }
+
+    .resource-link {
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #2c3e50;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .resource-link:hover {
+      background-color: #34495e;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #e0e6ed;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f0f8ff;
+    }
+
+    td {
+      color: #34495e;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Trigger Button -->
+<a class="resource-link" id="openModal">
+  <i class="fas fa-arrow-up-right-from-square"></i> View AI Table
+</a>
+
+<!-- Modal -->
+<div id="aiModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>AI Breakthroughs in Parkinson’s Treatment & Research</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Project / Initiative</th>
+          <th>Key Features</th>
+          <th>Goal</th>
+          <th>Timeline / Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cambridge AI Drug Discovery</td>
+          <td>AI screens millions of compounds to block alpha-synuclein aggregation</td>
+          <td>Slow or halt disease progression</td>
+          <td>Published 2023; preclinical trials ongoing</td>
+        </tr>
+        <tr>
+          <td>Cleveland Clinic Genome Mapping</td>
+          <td>AI maps non-coding DNA to Parkinson’s genes; identifies repurposable drugs</td>
+          <td>Target inflammation and genetic drivers</td>
+          <td>Published 2022; drug repurposing underway</td>
+        </tr>
+        <tr>
+          <td>DeepMind AlphaFold Protein Modeling</td>
+          <td>Predicts structure of PINK1 protein linked to early-onset Parkinson’s</td>
+          <td>Enable targeted drug design</td>
+          <td>Released 2021; used in ongoing research</td>
+        </tr>
+        <tr>
+          <td>Stanford Adaptive DBS Trials</td>
+          <td>AI adjusts brain stimulation in real time based on neural signals</td>
+          <td>Improve motor control, reduce side effects</td>
+          <td>Clinical trials 2022–2024; promising results</td>
+        </tr>
+        <tr>
+          <td>Charco Neurotech CUE1 Device</td>
+          <td>Wearable device delivers vibration therapy to reduce tremors and rigidity</td>
+          <td>Non-invasive symptom relief</td>
+          <td>Commercial launch 2023; expanding globally</td>
+        </tr>
+        <tr>
+          <td>AI-PROGNOSIS (EU Horizon Project)</td>
+          <td>Uses smartphone/smartwatch data to predict onset and personalize care</td>
+          <td>Early detection and tailored treatment</td>
+          <td>Active 2021–2025; pilot studies underway</td>
+        </tr>
+        <tr>
+          <td>MIT Breathing Sensor AI</td>
+          <td>Detects Parkinson’s from nocturnal breathing using WiFi-like sensor</td>
+          <td>Non-invasive early diagnosis</td>
+          <td>Published 2022; clinical validation ongoing</td>
+        </tr>
+        <tr>
+          <td>UCSF Video-Based Symptom Tracker</td>
+          <td>Smartphone videos analyzed by AI to assess motor symptoms</td>
+          <td>Remote monitoring and progression tracking</td>
+          <td>Published 2023; clinical rollout planned</td>
+        </tr>
+        <tr>
+          <td>CareYaya AI Art Therapy</td>
+          <td>Personalized creative sessions to stimulate motor and cognitive function</td>
+          <td>Slow progression and improve engagement</td>
+          <td>Pilot launched 2023; expanding in 2024</td>
+        </tr>
+        <tr>
+          <td>Scrolling Therapy App</td>
+          <td>Facial gesture-based interaction to exercise facial muscles</td>
+          <td>Delay progression of facial motor symptoms</td>
+          <td>Experimental phase; early trials in 2024</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const openModal = document.getElementById("openModal");
+  const closeModal = document.getElementById("closeModal");
+  const modal = document.getElementById("aiModal");
+
+  openModal.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
