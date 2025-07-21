@@ -380,7 +380,8 @@
       <a href="#" data-filter="articles">Articles</a>
     </div>
 
-<section id="podcasts" class="section">
+<!--<section id="podcasts" class="section">-->
+<section class="section podcasts">
 <div class="resource-entry">
   <div class="date-and-image">
     <img src="images/nosilverbullet4pd.jpg" alt="No Sivler Bullet 4 PD Thumbnail" />
@@ -745,8 +746,94 @@
       </div>
     </div>
   </div>
-  
+
+<script>
   <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.section-buttons a');
+    const sections = document.querySelectorAll('.main-content .section');
+    let currentActiveFilter = null;
+
+    const openModalButton = document.getElementById("openModal");
+    const closeModalButton = document.getElementById("closeModal");
+    const aiModal = document.getElementById("aiModal");
+
+    const showAllSections = () => {
+      sections.forEach(section => {
+        section.style.display = 'block';
+      });
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.backgroundColor = 'white';
+        btn.style.color = '#2e2a89';
+      });
+      currentActiveFilter = null;
+    };
+
+    showAllSections();
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filter = btn.dataset.filter;
+
+        if (currentActiveFilter === filter) {
+          showAllSections();
+          aiModal.style.display = "none";
+        } else {
+          filterButtons.forEach(b => {
+            b.classList.remove('active');
+            b.style.backgroundColor = 'white';
+            b.style.color = '#2e2a89';
+          });
+          btn.classList.add('active');
+          btn.style.backgroundColor = '#2e2a89';
+          btn.style.color = 'white';
+          currentActiveFilter = filter;
+
+          sections.forEach(section => {
+            if (section.classList.contains(filter)) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+
+          aiModal.style.display = "none";
+        }
+      });
+    });
+
+    if (openModalButton) {
+      openModalButton.onclick = function() {
+        aiModal.style.display = "block";
+      }
+    }
+
+    if (closeModalButton) {
+      closeModalButton.onclick = function() {
+        aiModal.style.display = "none";
+      }
+    }
+
+    window.onclick = function(event) {
+      if (event.target === aiModal) {
+        aiModal.style.display = "none";
+      }
+    }
+
+    const currentPage = window.location.pathname.split("/").pop();
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    slides.forEach(slide => {
+      if (slide.getAttribute('href').endsWith(currentPage)) {
+        slide.classList.add('active');
+      }
+    });
+  });
+</script>
+  
+  <!--<script>
     document.addEventListener('DOMContentLoaded', () => {
       const filterButtons = document.querySelectorAll('.section-buttons a');
       const sections = document.querySelectorAll('.main-content .section');
@@ -834,6 +921,6 @@
         }
       });
     });
-  </script>
+  </script> -->
 </body>
 </html>
