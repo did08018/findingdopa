@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Feature Page</title>
+  <link rel="stylesheet" href="style.css"/>
+
+<style>
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f6f6f6;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  grid-template-areas:
+    "customization customization customization customization scheduling scheduling scheduling scheduling wallet wallet wallet wallet"
+    "send-gifts send-gifts send-gifts inbox inbox inbox reminders reminders reminders reminders reminders reminders";
+}
+
+.card {
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  max-height: 160px;
+  object-fit: cover;
+}
+
+/* Background colors for each card */
+.customization { background-color: #dcd3f1; grid-area: customization; }
+.scheduling    { background-color: #f8b7c6; grid-area: scheduling; }
+.wallet        { background-color: #d8f3c8; grid-area: wallet; }
+.inbox         { background-color: #ffe97f; grid-area: inbox; }
+.send-gifts    { background-color: #ffc7a6; grid-area: send-gifts; }
+.reminders     { background-color: #c9e2ef; grid-area: reminders; }
+
+/* 📱 Responsive for smaller screens */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "customization"
+      "scheduling"
+      "wallet"
+      "inbox"
+      "send-gifts"
+      "reminders";
+    padding: 20px;
+  }
+
+  .card img {
+    max-height: 200px;
+  }
+}
+  
+</style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="card customization"> 
+      <h2>Customization</h2>
+      <img src="images/customization.jpg" alt="Customization"/>
+      <p>Use a pre-designed template or personalize with video, stickers, fonts, and more.</p>
+    </div>
+
+    <div class="card scheduling"> 
+      <h2>Scheduling</h2>
+      <img src="images/scheduling.jpg" alt="Scheduling"/>
+      <p>Schedule all your cards and gifts now and we'll send them later.</p>
+    </div>
+
+    <div class="card wallet"> 
+      <h2>Wallet</h2>
+      <img src="images/wallet.jpg" alt="Wallet"/>
+      <p>Access all your gifts and save up your Givingli Cash.</p>
+    </div>
+
+    <div class="card inbox"> 
+      <h2>Inbox</h2>
+      <img src="images/inbox.jpg" alt="Inbox"/>
+      <p>Track your gifts, group chats, and sent cards.</p>
+    </div>
+
+    <div class="card send-gifts"> 
+      <h2>Send Gifts</h2>
+      <img src="images/gifts.jpg" alt="Send Gifts"/>
+      <p>Send as a group with friends or individually.</p>
+    </div>
+
+    <div class="card reminders"> 
+      <h2>Reminders</h2>
+      <img src="images/reminders.jpg" alt="Reminders"/>
+      <p>Never miss a birthday again.</p>
+    </div>
+  </div>
+</body>
+</html>
