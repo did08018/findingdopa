@@ -17,17 +17,14 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(180px, auto);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 40px;
   max-width: 1200px;
   margin: auto;
-  grid-template-areas:
-    "customization customization customization customization scheduling scheduling scheduling scheduling wallet wallet wallet wallet"
-    "send-gifts send-gifts send-gifts inbox inbox inbox reminders reminders reminders reminders reminders reminders";
 }
 
+/* Base card style */
 .card {
   border-radius: 20px;
   padding: 20px;
@@ -36,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: white;
 }
 
 .card h2 {
@@ -52,34 +50,72 @@ body {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 15px;
-  max-height: 160px;
   object-fit: cover;
 }
 
-/* Background colors for each card */
-.customization { background-color: #dcd3f1; grid-area: customization; }
-.scheduling    { background-color: #f8b7c6; grid-area: scheduling; }
-.wallet        { background-color: #d8f3c8; grid-area: wallet; }
-.inbox         { background-color: #ffe97f; grid-area: inbox; }
-.send-gifts    { background-color: #ffc7a6; grid-area: send-gifts; }
-.reminders     { background-color: #c9e2ef; grid-area: reminders; }
+/* Custom layout per card */
+.customization {
+  background-color: #dcd3f1;
+  grid-column: span 2;
+  grid-row: span 2;
+}
 
-/* 📱 Responsive for smaller screens */
+.scheduling {
+  background-color: #f8b7c6;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.wallet {
+  background-color: #d8f3c8;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.inbox {
+  background-color: #ffe97f;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.send-gifts {
+  background-color: #ffc7a6;
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.reminders {
+  background-color: #c9e2ef;
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Specific image height tweaks to match visual balance */
+.customization img { max-height: 200px; }
+.scheduling img { max-height: 120px; }
+.wallet img { max-height: 100px; }
+.inbox img { max-height: 100px; }
+.send-gifts img { max-height: 120px; }
+.reminders img { max-height: 160px; }
+
+/* 📱 Responsive layout */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "customization"
-      "scheduling"
-      "wallet"
-      "inbox"
-      "send-gifts"
-      "reminders";
-    padding: 20px;
+  }
+
+  .customization,
+  .scheduling,
+  .wallet,
+  .inbox,
+  .send-gifts,
+  .reminders {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 
   .card img {
-    max-height: 200px;
+    max-height: 180px;
   }
 }
   
