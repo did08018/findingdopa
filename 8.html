@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            grid-template-rows: repeat(3, 1fr); /* 3 rows */
+            gap: 0; /* No gaps between boxes */
+            width: 320px; /* Fits most phones */
+            height: 100vh; /* Full screen height */
+        }
+        .box {
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5px;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-size: 0.8em;
+        }
+        .box:hover {
+            transform: scale(1.05);
+        }
+        .box img {
+            max-width: 100%;
+            height: auto;
+            display: none; /* Hide images to save space on small screens */
+        }
+        .box h2 {
+            margin: 0;
+            font-size: 0.9em;
+        }
+        .box p {
+            margin: 5px 0 0;
+            font-size: 0.6em;
+            display: none; /* Hide descriptions to save space */
+        }
+        /* Custom colors and grid spans */
+        .box1 { background: #D4A5E1; grid-column: 1; grid-row: 1 / span 2; } /* Customization (2x1) */
+        .box2 { background: #F5A3B2; grid-column: 2 / span 2; grid-row: 1; } /* Scheduling (1x2) */
+        .box3 { background: #C4D6A4; grid-column: 1; grid-row: 2; } /* Wallet (1x1) */
+        .box4 { background: #F7E47A; grid-column: 1; grid-row: 3; } /* Inbox (1x1) */
+        .box5 { background: #F4C589; grid-column: 2 / span 2; grid-row: 3; } /* Send Gifts (1x2) */
+        .box6 { background: #A8D5E2; grid-column: 3; grid-row: 3; } /* Reminders (1x1) */
+        @media (min-width: 321px) {
+            .container {
+                width: 100%;
+                max-width: 600px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+            .box {
+                padding: 10px;
+            }
+            .box img, .box p { display: block; } /* Show images and text */
+            .box h2 { font-size: 1.2em; }
+            .box p { font-size: 0.9em; }
+            /* Same spans for larger screens */
+            .box1 { grid-column: 1; grid-row: 1 / span 2; }
+            .box2 { grid-column: 2 / span 2; grid-row: 1; }
+            .box3 { grid-column: 1; grid-row: 2; }
+            .box4 { grid-column: 1; grid-row: 3; }
+            .box5 { grid-column: 2 / span 2; grid-row: 3; }
+            .box6 { grid-column: 3; grid-row: 3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="customization.html" class="box box1">
+            <h2>Customization</h2>
+            <img src="customization-image.jpg" alt="Customization">
+            <p>Use a pre-designed template or personalize</p>
+        </a>
+        <a href="scheduling.html" class="box box2">
+            <h2>Scheduling</h2>
+            <img src="scheduling-image.jpg" alt="Scheduling">
+            <p>Schedule all your cards and gifts</p>
+        </a>
+        <a href="wallet.html" class="box box3">
+            <h2>Wallet</h2>
+            <img src="wallet-image.jpg" alt="Wallet">
+            <p>Access all your gifts and save up</p>
+        </a>
+        <a href="inbox.html" class="box box4">
+            <h2>Inbox</h2>
+            <img src="inbox-image.jpg" alt="Inbox">
+            <p>Track your gifts, group chats</p>
+        </a>
+        <a href="send-gifts.html" class="box box5">
+            <h2>Send Gifts</h2>
+            <img src="send-gifts-image.jpg" alt="Send Gifts">
+            <p>Send as a group with friends</p>
+        </a>
+        <a href="reminders.html" class="box box6">
+            <h2>Reminders</h2>
+            <img src="reminders-image.jpg" alt="Reminders">
+            <p>Never miss a birthday again</p>
+        </a>
+    </div>
+</body>
+</html>
