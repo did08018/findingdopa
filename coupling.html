@@ -3,248 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Latest Parkinson’s Disease treatments, including stem cell therapies and inflammation reduction.">
-  <title>Latest PD Treatments</title>
+  <title>PD Research News</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: #fef6f5; /* Light coral background */
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #FFF5E1; /* Light yellow-cream for background */
+      color: #000000; /* Black for body text */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 10px;
     }
     h1 {
-      text-align: center;
-      color: #EF9280; /* Primary coral color */
-      margin-bottom: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #000000; /* Black for header */
     }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-      justify-content: center;
-    }
-    select, input {
+    .article {
+      background-color: #FFE8A3; /* Slightly darker yellow for article background */
+      color: #000000; /* Black for article text */
+      margin: 10px auto;
       padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-      background: #fff;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    input {
-      flex: 1;
-      min-width: 200px;
-    }
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #EF9280; /* Coral for buttons */
-      color: white;
-    }
-    button:hover {
-      background: #d87a6b; /* Darker coral on hover */
-    }
-    .search-container {
-      position: relative;
-      flex: 1;
-      min-width: 200px;
-    }
-    .search-container input {
-      width: 100%;
-      padding-right: 40px; /* Space for magnifier */
-    }
-    .search-container button {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 40px;
-      background: #EF9280;
-      border-radius: 0 5px 5px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .search-container button::before {
-      content: '🔍'; /* Magnifier emoji */
-      font-size: 16px;
-    }
-    .table-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    table {
-      width: 100%;
-      min-width: 800px;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    th {
-      background: #EF9280; /* Coral for table headers */
-      color: white;
-      cursor: pointer;
-    }
-    th:hover {
-      background: #d87a6b; /* Darker coral on hover */
-    }
-    tr:nth-child(even) {
-      background: #fff5f3; /* Very light coral for even rows */
-    }
-    tr:hover {
-      background: #ffe6e2; /* Light coral on row hover */
-    }
-    a {
-      color: #EF9280; /* Coral for links */
+    .article a {
+      color: #000000; /* Black for links */
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
+    .article a:hover {
+      color: #FAC46E; /* Base yellow on hover */
     }
-    @media (max-width: 600px) {
-      th, td {
-        font-size: 14px;
-        padding: 8px;
-      }
-      .controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .search-container {
-        min-width: auto;
-      }
+    .home-button {
+      display: inline-block;
+      padding: 10px 10px;
+      background-color: #FAC46E; /* Base yellow for button */
+      color: #000000; /* Black for button text */
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+    .home-button:hover {
+      background-color: #D4A017; /* Darker yellow on hover */
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Latest PD Treatments</h1>
-    <div class="controls">
-      <div class="search-container">
-        <input id="search" type="text" placeholder="Search treatments...">
-        <button id="searchBtn"></button>
-      </div>
-      <select id="filterCategory">
-        <option value="">All Categories</option>
-        <option value="Stem Cell">Stem Cell</option>
-        <option value="Inflammation Reduction">Inflammation Reduction</option>
-        <option value="Gene Therapy">Gene Therapy</option>
-      </select>
-      <select id="sortKey">
-        <option value="name">Sort by Drug Name</option>
-        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
-      </select>
-      <button id="sortOrder">↓ Desc</button>
-    </div>
-    <div class="table-wrapper">
-      <table id="treatmentsTable">
-        <thead>
-          <tr>
-            <th>Drug Name</th>
-            <th>Administration</th>
-            <th>Goal</th>
-            <th>Trial Phase</th>
-            <th>Link</th>
-            <th>Tentative Market Date</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+  <h1>Coupling (les news)</h1>
+  <a href="index.html" class="home-button">Home</a>
+
+ <!--<div class="article">
+    <a href="https" target="_blank"><strong>Shynia</strong> Yamanaka</a>
+  </div>-->
+
+   <div class="article">
+    <a href="https://hlthforward.buzzsprout.com/1984227/episodes/16033462-mitochondria-unlocked-taking-care-of-your-health-at-a-cellular-level-rob-fried-ceo-chromadex" target="_blank"><strong>Podcast</strong>: Mitochondria Unlocked: Taking Care Of Your Health at a Cellular Level, Rob Fried, CEO @Chromadex</a>
   </div>
-
-  <script>
-    // Data: Edit this array to add new treatments
-    const treatments = [
-      {
-        id: 1,
-        name: "MSC-NTF Stem Cells",
-        administration: "Injection",
-        goal: "Improve motor function",
-        trialPhase: "Phase 2",
-        link: "https://example.com/study",
-        tentativeMarketDate: "2027-06-15",
-        category: "Stem Cell"
-      },
-      {
-        id: 2,
-        name: "Turmeric Derivative",
-        administration: "Oral",
-        goal: "Reduce inflammation",
-        trialPhase: "Phase 1",
-        link: "https://example.com/article",
-        tentativeMarketDate: "2028-01-10",
-        category: "Inflammation Reduction"
-      }
-    ];
-
-    // DOM elements
-    const searchInput = document.getElementById('search');
-    const searchBtn = document.getElementById('searchBtn');
-    const filterCategory = document.getElementById('filterCategory');
-    const sortKey = document.getElementById('sortKey');
-    const sortOrderBtn = document.getElementById('sortOrder');
-    const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
-
-    // State
-    let currentSortKey = 'tentativeMarketDate';
-    let currentSortOrder = 'desc';
-    let currentFilter = '';
-    let currentSearch = '';
-
-    // Render table
-    function renderTable() {
-      let filtered = treatments
-        .filter(t => !currentFilter || t.category === currentFilter)
-        .filter(t => t.name.toLowerCase().includes(currentSearch.toLowerCase()));
-      
-      filtered.sort((a, b) => {
-        if (currentSortKey === 'tentativeMarketDate') {
-          return currentSortOrder === 'desc'
-            ? new Date(b.tentativeMarketDate) - new Date(a.tentativeMarketDate)
-            : new Date(a.tentativeMarketDate) - new Date(b.tentativeMarketDate);
-        }
-        return currentSortOrder === 'desc'
-          ? b[currentSortKey].localeCompare(a[currentSortKey])
-          : a[currentSortKey].localeCompare(b[currentSortKey]);
-      });
-
-      tableBody.innerHTML = '';
-      filtered.forEach(t => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${t.name}</td>
-          <td>${t.administration}</td>
-          <td>${t.goal}</td>
-          <td>${t.trialPhase}</td>
-          <td><a href="${t.link}" target="_blank">Link</a></td>
-          <td>${t.tentativeMarketDate}</td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-
-    // Event listeners
-    searchInput.addEventListener('input', e => {
-      currentSearch = e.target.value;
-      renderTable();
-    });
-
-    searchBtn.addEventListener('click', () => {
-      currentSearch = searchInput.value;
+  
+  <div class="article">
+    <a href="https://biz.chosun.com/en/en-science/2025/08/06/TPNGFRUOLFAGNGIZJBZW3D7BBY/" target="_blank"><strong>Article</strong>: Sumitomo Pharma seeks approval for world's first Parkinson's iPS cell therapy (Shinya Yamanaka)</a>
+  </div>
+</body>
+</html>
