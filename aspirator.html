@@ -53,8 +53,13 @@
     button:hover {
       background: #0056b3;
     }
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     table {
       width: 100%;
+      min-width: 800px; /* Ensures table is wide enough to require scrolling on smaller screens */
       border-collapse: collapse;
       margin-top: 20px;
     }
@@ -108,25 +113,26 @@
         <option value="Gene Therapy">Gene Therapy</option>
       </select>
       <select id="sortKey">
-        <option value="name">Sort by Name</option>
-        <option value="date">Sort by Date</option>
+        <option value="name">Sort by Drug Name</option>
+        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
       </select>
       <button id="sortOrder">↓ Desc</button>
     </div>
-    <table id="treatmentsTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Method</th>
-          <th>Date</th>
-          <th>Effect</th>
-          <th>Status</th>
-          <th>Category</th>
-          <th>Source</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="table-wrapper">
+      <table id="treatmentsTable">
+        <thead>
+          <tr>
+            <th>Drug Name</th>
+            <th>Administration</th>
+            <th>Goal</th>
+            <th>Trial Phase</th>
+            <th>Link</th>
+            <th>Tentative Market Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 
   <script>
@@ -135,22 +141,22 @@
       {
         id: 1,
         name: "MSC-NTF Stem Cells",
-        method: "Injection",
-        date: "2024-06-15",
-        effect: "Improves motor function by 30%",
-        status: "In Trials",
-        category: "Stem Cell",
-        source: "https://example.com/study"
+        administration: "Injection",
+        goal: "Improve motor function",
+        trialPhase: "Phase 2",
+        link: "https://example.com/study",
+        tentativeMarketDate: "2027-06-15",
+        category: "Stem Cell"
       },
       {
         id: 2,
         name: "Turmeric Derivative",
-        method: "Oral",
-        date: "2025-01-10",
-        effect: "Reduces inflammation by 25%",
-        status: "Experimental",
-        category: "Inflammation Reduction",
-        source: "https://example.com/article"
+        administration: "Oral",
+        goal: "Reduce inflammation",
+        trialPhase: "Phase 1",
+        link: "https://example.com/article",
+        tentativeMarketDate: "2028-01-10",
+        category: "Inflammation Reduction"
       }
     ];
 
@@ -162,7 +168,7 @@
     const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
 
     // State
-    let currentSortKey = 'date';
+    let currentSortKey = 'tentativeMarketDate';
     let currentSortOrder = 'desc';
     let currentFilter = '';
     let currentSearch = '';
@@ -174,10 +180,10 @@
         .filter(t => t.name.toLowerCase().includes(currentSearch.toLowerCase()));
       
       filtered.sort((a, b) => {
-        if (currentSortKey === 'date') {
+        if (currentSortKey === 'tentativeMarketDate') {
           return currentSortOrder === 'desc'
-            ? new Date(b.date) - new Date(a.date)
-            : new Date(a.date) - new Date(b.date);
+            ? new Date(b.tentativeMarketDate) - new Date(a.tentativeMarketDate)
+            : new Date(a.tentativeMarketDate) - new Date(b.tentativeMarketDate);
         }
         return currentSortOrder === 'desc'
           ? b[currentSortKey].localeCompare(a[currentSortKey])
@@ -189,12 +195,11 @@
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${t.name}</td>
-          <td>${t.method}</td>
-          <td>${t.date}</td>
-          <td>${t.effect}</td>
-          <td>${t.status}</td>
-          <td>${t.category}</td>
-          <td><a href="${t.source}" target="_blank">Link</a></td>
+          <td>${t.administration}</td>
+          <td>${t.goal}</td>
+          <td>${t.trialPhase}</td>
+          <td><a href="${t.link}" target="_blank">Link</a></td>
+          <td>${t.tentativeMarketDate}</td>
         `;
         tableBody.appendChild(row);
       });
