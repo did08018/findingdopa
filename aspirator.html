@@ -10,44 +10,62 @@
       font-family: 'Arial', sans-serif;
       background: #fef6f5;
       margin: 0;
-      padding: 20px;
+      padding: 10px; /* Reduced body padding */
       color: #333;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
       background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 10px; /* Reduced container padding */
+      border-radius: 8px; /* Slightly smaller radius */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     h1 {
       text-align: center;
       color: #EF9280;
-      margin-bottom: 20px;
+      margin-bottom: 10px; /* Reduced margin */
+      font-size: 24px; /* Smaller heading */
+    }
+    .home-button {
+      display: block;
+      text-align: center;
+      margin: 10px auto;
+      padding: 6px 12px;
+      background: #EF9280;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100px; /* Fixed width for button */
+    }
+    .home-button:hover {
+      background: #d87a6b;
     }
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px; /* Reduced gap */
+      margin-bottom: 10px; /* Reduced margin */
       justify-content: center;
     }
     select, input, button {
-      padding: 8px; /* Reduced padding for tighter controls */
+      padding: 6px; /* Further reduced padding */
       border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px; /* Smaller font for tighter appearance */
+      border-radius: 4px; /* Smaller radius */
+      font-size: 13px; /* Smaller font for controls */
       background: #fff;
       box-sizing: border-box;
     }
     select, button {
-      width: 150px; /* Consistent width for select and buttons */
+      width: 130px; /* Reduced width for controls */
     }
     input {
       flex: 1;
-      min-width: 200px;
-      padding-right: 80px; /* Space for magnifier and clear button */
+      min-width: 180px; /* Reduced min-width */
+      padding-right: 70px; /* Adjusted for buttons */
     }
     button {
       border: none;
@@ -61,34 +79,34 @@
     .search-container {
       position: relative;
       flex: 1;
-      min-width: 200px;
+      min-width: 180px;
     }
     .search-container #searchBtn {
       position: absolute;
       right: 0;
       top: 0;
       bottom: 0;
-      width: 40px; /* Fixed width for search button */
-      border-radius: 0 5px 5px 0;
+      width: 35px; /* Smaller search button */
+      border-radius: 0 4px 4px 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .search-container #searchBtn::before {
       content: '🔍';
-      font-size: 14px; /* Smaller magnifier */
+      font-size: 13px;
     }
     .search-container #clearBtn {
       position: absolute;
-      right: 40px; /* Position to the left of search button */
+      right: 35px; /* Adjusted for smaller search button */
       top: 0;
       bottom: 0;
-      width: 40px;
+      width: 35px;
       border-radius: 0;
       background: transparent;
       color: #333;
-      font-size: 14px; /* Smaller clear button */
-      display: none; /* Hidden by default */
+      font-size: 13px;
+      display: none;
     }
     .search-container #clearBtn:hover {
       background: #f0f0f0;
@@ -99,20 +117,22 @@
     }
     table {
       width: 100%;
-      min-width: 600px; /* Reduced min-width for tighter table */
+      min-width: 500px; /* Further reduced min-width */
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 10px; /* Reduced margin */
     }
     th, td {
-      padding: 8px; /* Reduced padding for tighter table */
+      padding: 5px; /* Minimized padding */
       text-align: left;
       border-bottom: 1px solid #ddd;
-      font-size: 14px; /* Smaller font for tighter appearance */
+      font-size: 13px; /* Smaller font for readability */
+      line-height: 1.2; /* Reduced line height */
     }
     th {
       background: #EF9280;
       color: white;
       cursor: pointer;
+      white-space: nowrap; /* Prevent text wrapping */
     }
     th:hover {
       background: #d87a6b;
@@ -130,17 +150,42 @@
     a:hover {
       text-decoration: underline;
     }
+    /* Minimize column widths while ensuring readability */
+    th:nth-child(1), td:nth-child(1) { /* Drug Name */
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    th:nth-child(2), td:nth-child(2) { /* Administration */
+      width: 100px;
+    }
+    th:nth-child(3), td:nth-child(3) { /* Goal */
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    th:nth-child(4), td:nth-child(4) { /* Trial Phase */
+      width: 80px;
+    }
+    th:nth-child(5), td:nth-child(5) { /* Link */
+      width: 50px;
+    }
+    th:nth-child(6), td:nth-child(6) { /* Tentative Market Date */
+      width: 110px;
+    }
     @media (max-width: 600px) {
       th, td {
-        font-size: 12px; /* Even smaller font on mobile */
-        padding: 6px; /* Tighter padding on mobile */
+        font-size: 12px; /* Smallest readable font on mobile */
+        padding: 4px; /* Tighter padding */
       }
       .controls {
         flex-direction: column;
         align-items: stretch;
       }
       select, button {
-        width: 100%; /* Full width on small screens */
+        width: 100%;
       }
       .search-container {
         min-width: auto;
@@ -151,6 +196,7 @@
 <body>
   <div class="container">
     <h1>Latest PD Treatments</h1>
+    <a href="/" class="home-button">Home</a>
     <div class="controls">
       <div class="search-container">
         <input id="search" type="text" placeholder="Search treatments...">
