@@ -65,7 +65,8 @@
     input {
       flex: 1;
       min-width: 180px;
-      padding-right: 80px; /* Increased to fit both buttons */
+      padding-right: 60px; /* Adjusted for tighter fit */
+      position: relative;
     }
     button {
       border: none;
@@ -83,11 +84,11 @@
     }
     .search-container #searchBtn {
       position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 30px; /* Smaller button for better fit */
-      border-radius: 0 4px 4px 0;
+      right: 2px; /* Moved closer to edge */
+      top: 2px;
+      bottom: 2px;
+      width: 28px; /* Slightly smaller */
+      border-radius: 0 3px 3px 0;
       background: #EF9280;
       display: flex;
       align-items: center;
@@ -99,11 +100,11 @@
     }
     .search-container #clearBtn {
       position: absolute;
-      right: 30px; /* Positioned to left of search button */
-      top: 0;
-      bottom: 0;
-      width: 30px; /* Matching width */
-      border-radius: 0;
+      right: 32px; /* Adjusted to sit inside input, left of search button */
+      top: 2px;
+      bottom: 2px;
+      width: 28px;
+      border-radius: 3px 0 0 3px;
       background: transparent;
       color: #333;
       font-size: 13px;
