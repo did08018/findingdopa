@@ -78,6 +78,21 @@
       content: '🔍';
       font-size: 16px;
     }
+    .search-container #clearBtn {
+  position: absolute;
+  right: 40px; /* Position to the left of search button */
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  border-radius: 0;
+  background: transparent;
+  color: #333;
+  font-size: 16px;
+  display: none; /* Hidden by default */
+}
+.search-container #clearBtn:hover {
+  background: #f0f0f0;
+  
     .table-wrapper {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -135,23 +150,25 @@
 <body>
   <div class="container">
     <h1>Latest PD Treatments</h1>
-    <div class="controls">
-      <div class="search-container">
-        <input id="search" type="text" placeholder="Search treatments...">
-        <button id="searchBtn"></button>
-      </div>
-      <select id="filterCategory">
-        <option value="">All Categories</option>
-        <option value="Stem Cell">Stem Cell</option>
-        <option value="Inflammation Reduction">Inflammation Reduction</option>
-        <option value="Gene Therapy">Gene Therapy</option>
-      </select>
-      <select id="sortKey">
-        <option value="name">Sort by Drug Name</option>
-        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
-      </select>
-      <button id="sortOrder">↓ Desc</button>
-    </div>
+<div class="controls">
+  <div class="search-container">
+    <input id="search" type="text" placeholder="Search treatments...">
+    <button id="clearBtn" style="display: none;">✕</button>
+    <button id="searchBtn"></button>
+  </div>
+  <select id="filterCategory">
+    <option value="Stem Cell">Stem Cell</option>
+    <option value="Inflammation Reduction">Inflammation Reduction</option>
+    <option value="Gene Therapy">Gene Therapy</option>
+  </select>
+  <select id="sortKey">
+    <option value="name">Sort by Drug Name</option>
+    <option value="administration">Sort by Administration</option>
+    <option value="trialPhase">Sort by Trial Phase</option>
+    <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
+  </select>
+  <button id="sortOrder">↓ Desc</button>
+</div>
     <div class="table-wrapper">
       <table id="treatmentsTable">
         <thead>
@@ -170,6 +187,55 @@
   </div>
 
   <script>
+
+// DOM elements (add to existing)
+const clearBtn = document.getElementById('clearBtn');
+
+// Event listeners (add to existing)
+searchInput.addEventListener('input', () => {
+  updateSearch();
+  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
+});
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  currentSearch = '';
+  clearBtn.style.display = 'none';
+  renderTable();
+});
+
+// Modify renderTable function (replace existing sort logic)
+function renderTable() {
+  let filtered = treatments
+    .filter(t => !currentFilter || t.category === currentFilter)
+    .filter(t => t.name.toLowerCase().includes(currentSearch.toLowerCase()));
+  
+  filtered.sort((a, b) => {
+    if (currentSortKey === 'tentativeMarketDate') {
+      return currentSortOrder === 'desc'
+        ? new Date(b.tentativeMarketDate) - new Date(a.tentativeMarketDate)
+        : new Date(a.tentativeMarketDate) - new Date(b.tentativeMarketDate);
+    }
+    return currentSortOrder === 'desc'
+      ? b[currentSortKey].localeCompare(a[currentSortKey])
+      : a[currentSortKey].localeCompare(b[currentSortKey]);
+  });
+
+  tableBody.innerHTML = '';
+  filtered.forEach(t => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${t.name}</td>
+      <td>${t.administration}</td>
+      <td>${t.goal}</td>
+      <td>${t.trialPhase}</td>
+      <td><a href="${t.link}" target="_blank">Link</a></td>
+      <td>${t.tentativeMarketDate}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+    
     // Data: Edit this array to add new treatments
     const treatments = [
       {
