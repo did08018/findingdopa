@@ -17,12 +17,14 @@
         }
         .nav {
             margin-bottom: 20px;
+            display: flex; /* Use flexbox to align buttons horizontally */
+            justify-content: center; /* Center the buttons */
+            gap: 10px; /* Optional: Add space between buttons */
         }
         .nav button {
             background: none;
             border: 1px solid #333;
             padding: 8px 16px;
-            margin: 5px;
             cursor: pointer;
             font-size: 14px;
             color: #333;
@@ -58,7 +60,7 @@
 </head>
 <body>
     <div class="nav">
-        <button onclick="window.location.href='index.html'">Home</button><br>
+        <button onclick="window.location.href='index.html'">Home</button>
         <button onclick="showContent('about')">About</button>
         <button onclick="showContent('disclaimer')">Disclaimer</button>
     </div>
