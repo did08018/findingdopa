@@ -78,44 +78,56 @@
       background: #d87a6b;
     }
     .search-container {
-      position: relative;
-      flex: 1;
-      min-width: 180px;
-    }
-    .search-container #searchBtn {
-      position: absolute;
-      right: 0; /* Flush with right edge */
-      top: 1px;
-      bottom: 1px;
-      width: 30px;
-      border-radius: 0 3px 3px 0;
-      background: #EF9280;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .search-container #searchBtn::before {
-      content: '🔍';
-      font-size: 13px;
-    }
-    .search-container #clearBtn {
-      position: absolute;
-      right: 30px; /* Immediately left of search button */
-      top: 1px;
-      bottom: 1px;
-      width: 30px;
-      border-radius: 3px 0 0 3px;
-      background: transparent;
-      color: #333;
-      font-size: 13px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid #ddd;
-    }
-    .search-container #clearBtn:hover {
-      background: #f0f0f0;
-    }
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-container input {
+  width: 100%;
+  padding-right: 64px; /* space for both buttons */
+  height: 30px; /* ensures buttons align */
+  box-sizing: border-box;
+}
+
+.search-container #clearBtn,
+.search-container #searchBtn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 0;
+}
+
+.search-container #clearBtn {
+  right: 30px; /* just left of search button */
+  background: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  border-right: 1px solid #ddd;
+}
+
+.search-container #searchBtn {
+  right: 0;
+  background: #EF9280;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  color: white;
+  cursor: pointer;
+}
+
+.search-container #searchBtn::before {
+  content: '🔍';
+}
+
+.search-container #clearBtn:hover {
+  background: #f0f0f0;
+}
     .table-wrapper {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
