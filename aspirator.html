@@ -10,22 +10,22 @@
       font-family: 'Arial', sans-serif;
       background: #fef6f5;
       margin: 0;
-      padding: 10px; /* Reduced body padding */
+      padding: 10px;
       color: #333;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
       background: #fff;
-      padding: 10px; /* Reduced container padding */
-      border-radius: 8px; /* Slightly smaller radius */
+      padding: 10px;
+      border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     h1 {
       text-align: center;
       color: #EF9280;
-      margin-bottom: 10px; /* Reduced margin */
-      font-size: 24px; /* Smaller heading */
+      margin-bottom: 10px;
+      font-size: 24px;
     }
     .home-button {
       display: block;
@@ -39,7 +39,7 @@
       font-size: 14px;
       cursor: pointer;
       text-decoration: none;
-      width: 100px; /* Fixed width for button */
+      width: 100px;
     }
     .home-button:hover {
       background: #d87a6b;
@@ -47,25 +47,25 @@
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px; /* Reduced gap */
-      margin-bottom: 10px; /* Reduced margin */
+      gap: 8px;
+      margin-bottom: 10px;
       justify-content: center;
     }
     select, input, button {
-      padding: 6px; /* Further reduced padding */
+      padding: 6px;
       border: 1px solid #ddd;
-      border-radius: 4px; /* Smaller radius */
-      font-size: 13px; /* Smaller font for controls */
+      border-radius: 4px;
+      font-size: 13px;
       background: #fff;
       box-sizing: border-box;
     }
     select, button {
-      width: 130px; /* Reduced width for controls */
+      width: 130px;
     }
     input {
       flex: 1;
-      min-width: 180px; /* Reduced min-width */
-      padding-right: 70px; /* Adjusted for buttons */
+      min-width: 180px;
+      padding-right: 80px; /* Increased to fit both buttons */
     }
     button {
       border: none;
@@ -86,8 +86,9 @@
       right: 0;
       top: 0;
       bottom: 0;
-      width: 35px; /* Smaller search button */
+      width: 30px; /* Smaller button for better fit */
       border-radius: 0 4px 4px 0;
+      background: #EF9280;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -98,15 +99,17 @@
     }
     .search-container #clearBtn {
       position: absolute;
-      right: 35px; /* Adjusted for smaller search button */
+      right: 30px; /* Positioned to left of search button */
       top: 0;
       bottom: 0;
-      width: 35px;
+      width: 30px; /* Matching width */
       border-radius: 0;
       background: transparent;
       color: #333;
       font-size: 13px;
       display: none;
+      align-items: center;
+      justify-content: center;
     }
     .search-container #clearBtn:hover {
       background: #f0f0f0;
@@ -117,22 +120,22 @@
     }
     table {
       width: 100%;
-      min-width: 500px; /* Further reduced min-width */
+      min-width: 500px;
       border-collapse: collapse;
-      margin-top: 10px; /* Reduced margin */
+      margin-top: 10px;
     }
     th, td {
-      padding: 5px; /* Minimized padding */
+      padding: 5px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-      font-size: 13px; /* Smaller font for readability */
-      line-height: 1.2; /* Reduced line height */
+      font-size: 13px;
+      line-height: 1.2;
     }
     th {
       background: #EF9280;
       color: white;
       cursor: pointer;
-      white-space: nowrap; /* Prevent text wrapping */
+      white-space: nowrap;
     }
     th:hover {
       background: #d87a6b;
@@ -150,7 +153,6 @@
     a:hover {
       text-decoration: underline;
     }
-    /* Minimize column widths while ensuring readability */
     th:nth-child(1), td:nth-child(1) { /* Drug Name */
       max-width: 150px;
       overflow: hidden;
@@ -177,8 +179,8 @@
     }
     @media (max-width: 600px) {
       th, td {
-        font-size: 12px; /* Smallest readable font on mobile */
-        padding: 4px; /* Tighter padding */
+        font-size: 12px;
+        padding: 4px;
       }
       .controls {
         flex-direction: column;
