@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Boxes</title>
+    <title>Dopa Box</title>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,9 +20,10 @@
             grid-template-rows: repeat(3, 1fr); /* 3 rows */
             gap: 5px; /* Gap between boxes */
             width: 320px; /* Fits most phones */
-            height: 100vh; /* Full screen height */
+            height: 85vh; /* Full screen height */
             padding: 5px; /* Optional padding around the entire grid */
         }
+        
         .box {
             border-radius: 10px;
             overflow: hidden;
@@ -30,7 +32,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 5px;
+            padding: 4px;
             box-sizing: border-box;
             text-decoration: none;
             font-size: 0.8em;
@@ -51,37 +53,38 @@
             position: relative; /* Ensures text stays above background */
             z-index: 1; /* Brings text to the foreground */
         }
-        /* Custom colors and grid spans with background images and overlay */
+        /* Custom colors and grid spans with background images */
         .box1 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('customization-image.jpg') no-repeat center; 
+            background: #FAC46E url('coupling...') no-repeat center; 
             background-size: cover; 
             grid-column: 1; grid-row: 1 / span 2; 
         } /* Customization (2x1) */
         .box5 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('send-gifts-image.jpg') no-repeat center; 
+            background: #BB93C8 url('dopavox') no-repeat center; 
             background-size: cover; 
             grid-column: 2 / span 2; grid-row: 1; 
         } /* Send Gifts (1x2) */
         .box2 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('scheduling-image.jpg') no-repeat center; 
+            background: #EF9280 url('aspirator') no-repeat center; 
             background-size: cover; 
             grid-column: 2; grid-row: 2; 
         } /* Scheduling (1x1) */
         .box3 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('wallet-image.jpg') no-repeat center; 
+            background: #A7CB8C url('dopeaf') no-repeat center; 
             background-size: cover; 
             grid-column: 3; grid-row: 2; 
         } /* Wallet (1x1) */
         .box4 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('inbox-image.jpg') no-repeat center; 
+            background: #FFD1DC url('Pri...') no-repeat center; 
             background-size: cover; 
             grid-column: 1 / span 2; grid-row: 3; 
         } /* Inbox (1x2) */
         .box6 { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('reminders-image.jpg') no-repeat center; 
+            background: #A8D5E2 url('legacy') no-repeat center; 
             background-size: cover; 
             grid-column: 3; grid-row: 3; 
         } /* Reminders (1x1) */
+        
         @media (min-width: 321px) {
             .container {
                 width: 100%;
@@ -109,35 +112,35 @@
 </head>
 <body>
     <div class="container">
-        <a href="customization.html" class="box box1">
-            <h2>Customization</h2>
-            <img src="customization-image.jpg" alt="Customization">
-            <p>Use a pre-designed template or personalize with video, stickers, fonts, and more</p>
+        <a href="coupling.html" class="box box1">
+            <h2>Coupling</h2>
+            <img src="images/coupling.jpeg" alt="Customization">
+            <p>I recall Central Park in Summer...</p>
         </a>
-        <a href="send-gifts.html" class="box box5">
-            <h2>Send Gifts</h2>
-            <img src="send-gifts-image.jpg" alt="Send Gifts">
-            <p>Send as a group with friends or individually</p>
+        <a href="/dopa/voxx.html" class="box box5">
+            <h2>Dopa VOX</h2>
+            <img src="images/dopavox.jpeg" alt="Send Gifts">
+            <p>A voice for PD — to share, ask, and connect.</p>
         </a>
-        <a href="scheduling.html" class="box box2">
-            <h2>Scheduling</h2>
-            <img src="scheduling-image.jpg" alt="Scheduling">
-            <p>Schedule all your cards and gifts now and we'll send them later</p>
+        <a href="aspirator.html" class="box box2">
+            <h2>Aspirator</h2>
+            <img src="/images/aspirator.jpeg" alt="Aspirator">
+            <p>A fix is on the way!</p>
         </a>
         <a href="wallet.html" class="box box3">
-            <h2>Wallet</h2>
-            <img src="wallet-image.jpg" alt="Wallet">
-            <p>Access all your gifts and save up your Givingli Cash</p>
+            <h2>DopeAF</h2>
+            <img src="images/dopeaf3.jpeg" alt="DopeAF">
+            <p>Ace or Flat?</p>
         </a>
         <a href="inbox.html" class="box box4">
-            <h2>Inbox</h2>
-            <img src="inbox-image.jpg" alt="Inbox">
-            <p>Track your gifts, group chats, and sent cards</p>
+            <h2>Prisencolinensinainciusol</h2>
+            <img src="images/monkey3.jpeg" alt="Inbox">
+            <p>Days Like This</p>
         </a>
-        <a href="reminders.html" class="box box6">
-            <h2>Reminders</h2>
-            <img src="reminders-image.jpg" alt="Reminders">
-            <p>Never miss a birthday again</p>
+        <a href="legacy.html" class="box box6">
+            <h2>Legacy</h2>
+            <img src="images/legacy.JPG" alt="Legacy">
+            <p>Unexpectad Error</p>
         </a>
     </div>
 </body>
