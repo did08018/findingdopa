@@ -34,10 +34,10 @@
       justify-content: center;
     }
     select, input, button {
-      padding: 10px;
+      padding: 8px; /* Reduced padding for tighter controls */
       border: 1px solid #ddd;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 14px; /* Smaller font for tighter appearance */
       background: #fff;
       box-sizing: border-box;
     }
@@ -76,7 +76,7 @@
     }
     .search-container #searchBtn::before {
       content: '🔍';
-      font-size: 16px;
+      font-size: 14px; /* Smaller magnifier */
     }
     .search-container #clearBtn {
       position: absolute;
@@ -87,7 +87,7 @@
       border-radius: 0;
       background: transparent;
       color: #333;
-      font-size: 16px;
+      font-size: 14px; /* Smaller clear button */
       display: none; /* Hidden by default */
     }
     .search-container #clearBtn:hover {
@@ -99,14 +99,15 @@
     }
     table {
       width: 100%;
-      min-width: 800px;
+      min-width: 600px; /* Reduced min-width for tighter table */
       border-collapse: collapse;
       margin-top: 20px;
     }
     th, td {
-      padding: 12px;
+      padding: 8px; /* Reduced padding for tighter table */
       text-align: left;
       border-bottom: 1px solid #ddd;
+      font-size: 14px; /* Smaller font for tighter appearance */
     }
     th {
       background: #EF9280;
@@ -131,8 +132,8 @@
     }
     @media (max-width: 600px) {
       th, td {
-        font-size: 14px;
-        padding: 8px;
+        font-size: 12px; /* Even smaller font on mobile */
+        padding: 6px; /* Tighter padding on mobile */
       }
       .controls {
         flex-direction: column;
@@ -156,11 +157,6 @@
         <button id="clearBtn" style="display: none;">✕</button>
         <button id="searchBtn"></button>
       </div>
-      <select id="filterCategory">
-        <option value="Stem Cell">Stem Cell</option>
-        <option value="Inflammation Reduction">Inflammation Reduction</option>
-        <option value="Gene Therapy">Gene Therapy</option>
-      </select>
       <select id="sortKey">
         <option value="name">Sort by Drug Name</option>
         <option value="administration">Sort by Administration</option>
@@ -215,7 +211,6 @@
     const searchInput = document.getElementById('search');
     const searchBtn = document.getElementById('searchBtn');
     const clearBtn = document.getElementById('clearBtn');
-    const filterCategory = document.getElementById('filterCategory');
     const sortKey = document.getElementById('sortKey');
     const sortOrderBtn = document.getElementById('sortOrder');
     const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
@@ -223,13 +218,11 @@
     // State
     let currentSortKey = 'tentativeMarketDate';
     let currentSortOrder = 'desc';
-    let currentFilter = '';
     let currentSearch = '';
 
     // Render table
     function renderTable() {
       let filtered = treatments
-        .filter(t => !currentFilter || t.category === currentFilter)
         .filter(t => t.name.toLowerCase().includes(currentSearch.toLowerCase()));
       
       filtered.sort((a, b) => {
@@ -273,11 +266,6 @@
       searchInput.value = '';
       currentSearch = '';
       clearBtn.style.display = 'none';
-      renderTable();
-    });
-
-    filterCategory.addEventListener('change', e => {
-      currentFilter = e.target.value;
       renderTable();
     });
 
