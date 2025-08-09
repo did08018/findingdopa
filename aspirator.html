@@ -65,8 +65,8 @@
     input {
       flex: 1;
       min-width: 180px;
-      padding-right: 60px; /* Adjusted for tighter fit */
-      position: relative;
+      padding-right: 70px; /* Increased to fit buttons */
+      border: 1px solid #ccc; /* Clearer border */
     }
     button {
       border: none;
@@ -84,10 +84,10 @@
     }
     .search-container #searchBtn {
       position: absolute;
-      right: 2px; /* Moved closer to edge */
-      top: 2px;
-      bottom: 2px;
-      width: 28px; /* Slightly smaller */
+      right: 1px; /* Tighter to right edge */
+      top: 1px;
+      bottom: 1px;
+      width: 30px; /* Consistent size */
       border-radius: 0 3px 3px 0;
       background: #EF9280;
       display: flex;
@@ -100,10 +100,10 @@
     }
     .search-container #clearBtn {
       position: absolute;
-      right: 32px; /* Adjusted to sit inside input, left of search button */
-      top: 2px;
-      bottom: 2px;
-      width: 28px;
+      right: 31px; /* Immediately left of search button */
+      top: 1px;
+      bottom: 1px;
+      width: 30px;
       border-radius: 3px 0 0 3px;
       background: transparent;
       color: #333;
@@ -111,6 +111,7 @@
       display: none;
       align-items: center;
       justify-content: center;
+      border-right: 1px solid #ddd; /* Separator for clarity */
     }
     .search-container #clearBtn:hover {
       background: #f0f0f0;
@@ -192,6 +193,16 @@
       }
       .search-container {
         min-width: auto;
+      }
+      .search-container #searchBtn,
+      .search-container #clearBtn {
+        width: 28px; /* Slightly smaller on mobile */
+      }
+      .search-container #clearBtn {
+        right: 29px; /* Adjusted for smaller width */
+      }
+      input {
+        padding-right: 66px; /* Adjusted for mobile */
       }
     }
   </style>
