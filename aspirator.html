@@ -311,96 +311,114 @@ const treatments = [
   { id: 33, name: "Ibuprofen", administration: "Oral", goal: "Neuroprotection potential", trialPhase: "Epidemiology / Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unlikely" }
 ];
 
-    // DOM elements
-    const searchInput = document.getElementById('search');
-    const searchBtn = document.getElementById('searchBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const sortKey = document.getElementById('sortKey');
-    const sortOrderBtn = document.getElementById('sortOrder');
-    const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
+// DOM elements
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('searchBtn');
+const clearBtn = document.getElementById('clearBtn');
+const sortKey = document.getElementById('sortKey');
+const sortOrderBtn = document.getElementById('sortOrder');
+const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
 
-    // State
-    let currentSortKey = 'tentativeMarketDate';
-    let currentSortOrder = 'desc';
-    let currentSearch = '';
+// State
+let currentSortKey = 'tentativeMarketDate';
+let currentSortOrder = 'desc';
+let currentSearch = '';
 
-sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+// Helper: Parse market date for sorting
+function parseMarketDate(val) {
+  if (!val) return Infinity;
+  val = val.trim();
+  if (val.startsWith("Marketed")) return -Infinity;   // comes first
+  if (val.startsWith("TBD")) return Infinity;
+  if (val.startsWith("Unknown")) return Infinity;
+  // Range, e.g. "2027–2028"
+  if (/^\d{4}–\d{4}$/.test(val)) {
+    return parseInt(val.split("–")[0], 10);
+  }
+  // "2027+" case
+  if (/^\d{4}\+$/.test(val)) {
+    return parseInt(val, 10);
+  }
+  // "2027–2028" with en dash
+  if (/^\d{4}–\d{4}$/.test(val)) {
+    return parseInt(val.split("–")[0], 10);
+  }
+  // Simple year
+  if (/^\d{4}$/.test(val)) {
+    return parseInt(val, 10);
+  }
+  // Try normal date parse
+  let d = new Date(val);
+  return isNaN(d) ? Infinity : d.getTime();
+}
 
-  
-    // Render table
-    function renderTable() {
-      let filtered = treatments
-        .filter(t => t.name.toLowerCase().includes(currentSearch.toLowerCase()));
-      
-      filtered.sort((a, b) => {
-        if (currentSortKey === 'tentativeMarketDate') {
-          return currentSortOrder === 'desc'
-            ? new Date(b.tentativeMarketDate) - new Date(a.tentativeMarketDate)
-            : new Date(a.tentativeMarketDate) - new Date(b.tentativeMarketDate);
-        }
-        return currentSortOrder === 'desc'
-          ? b[currentSortKey].localeCompare(a[currentSortKey])
-          : a[currentSortKey].localeCompare(b[currentSortKey]);
-      });
+// Render table
+function renderTable() {
+  let filtered = treatments.filter(t =>
+    t.name.toLowerCase().includes(currentSearch.toLowerCase())
+  );
 
-      tableBody.innerHTML = '';
-      filtered.forEach(t => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${t.name}</td>
-          <td>${t.administration}</td>
-          <td>${t.goal}</td>
-          <td>${t.trialPhase}</td>
-          <td><a href="${t.link}" target="_blank">Link</a></td>
-          <td>${t.tentativeMarketDate}</td>
-        `;
-        tableBody.appendChild(row);
-      });
+  filtered.sort((a, b) => {
+    if (currentSortKey === 'tentativeMarketDate') {
+      const aDate = parseMarketDate(a.tentativeMarketDate);
+      const bDate = parseMarketDate(b.tentativeMarketDate);
+      return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
     }
+    // All others compared as strings (case-insensitive)
+    return currentSortOrder === 'desc'
+      ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
+      : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
+  });
 
-    // Event listeners
-    function updateSearch() {
-      currentSearch = searchInput.value;
-      clearBtn.style.display = searchInput.value ? 'flex' : 'none';
-      renderTable();
-    }
+  tableBody.innerHTML = '';
+  filtered.forEach(t => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${t.name}</td>
+      <td>${t.administration}</td>
+      <td>${t.goal}</td>
+      <td>${t.trialPhase}</td>
+      <td><a href="${t.link}" target="_blank">Link</a></td>
+      <td>${t.tentativeMarketDate}</td>
+    `;
+    tableBody.appendChild(row);
+  });
 
-    searchInput.addEventListener('input', updateSearch);
+  // Keep sort button label in sync after each render
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+}
 
-    searchBtn.addEventListener('click', updateSearch);
+function updateSearch() {
+  currentSearch = searchInput.value;
+  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
+  renderTable();
+}
 
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      currentSearch = '';
-      clearBtn.style.display = 'none';
-      renderTable();
-    });
+searchInput.addEventListener('input', updateSearch);
+searchBtn.addEventListener('click', updateSearch);
 
-    sortKey.addEventListener('change', e => {
-  currentSortKey = e.target.value;
-  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc'; // <-- add this line
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  currentSearch = '';
+  clearBtn.style.display = 'none';
   renderTable();
 });
 
-  // After you get references to sortOrderBtn and before initial render
-sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-
-// When sort key changes
 sortKey.addEventListener('change', e => {
   currentSortKey = e.target.value;
-  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
   renderTable();
 });
 
+// Sort order button toggles direction
+sortOrderBtn.addEventListener('click', () => {
+  currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
+  renderTable();
+});
 
-    sortOrderBtn.addEventListener('click', () => {
-      currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
-      sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-      renderTable();
-    });
+// Initial: Sync button text and render
+sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+renderTable();
+</script>
 
-    // Initial render
-    renderTable();
-  </script>
 </body>
 </html>
