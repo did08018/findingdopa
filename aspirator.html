@@ -254,30 +254,42 @@
     </div>
   </div>
 
-  <script>
-    // Data: Edit this array to add new treatments
-    const treatments = [
-      {
-        id: 1,
-        name: "MSC-NTF Stem Cells",
-        administration: "Injection",
-        goal: "Improve motor function",
-        trialPhase: "Phase 2",
-        link: "https://example.com/study",
-        tentativeMarketDate: "2027-06-15",
-        category: "Stem Cell"
-      },
-      {
-        id: 2,
-        name: "Turmeric Derivative",
-        administration: "Oral",
-        goal: "Reduce inflammation",
-        trialPhase: "Phase 1",
-        link: "https://example.com/article",
-        tentativeMarketDate: "2028-01-10",
-        category: "Inflammation Reduction"
-      }
-    ];
+<script>
+const treatments = [
+  { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" },
+  { id: 2, name: "Extended-release Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Reduce 'off' time, improved symptom control", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" },
+  { id: 3, name: "Ambroxol", administration: "Oral (tablet)", goal: "Enhance GCase, reduce alpha-synuclein", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Ambroxol+Parkinson", tentativeMarketDate: "2027+" },
+  { id: 4, name: "CVN424 (Solengepras)", administration: "Oral (tablet)", goal: "GPR6 inhibitor, improve motor symptoms", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=CVN424", tentativeMarketDate: "2026+" },
+  { id: 5, name: "LRRK2 inhibitors (DNL151/BIIB122)", administration: "Oral (tablet)", goal: "Slow progression in LRRK2 mutation carriers", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=DNL151+Parkinson", tentativeMarketDate: "2027+" },
+  { id: 6, name: "Tavapadon", administration: "Oral (tablet)", goal: "D1/D5 partial agonist, motor symptom control", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Tavapadon", tentativeMarketDate: "2027+" },
+  { id: 7, name: "GLP-1 agonists (Lixisenatide)", administration: "Oral (tablet)", goal: "Slow progression, neuroprotection", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Lixisenatide+Parkinson", tentativeMarketDate: "2027+" },
+  { id: 8, name: "GLP-1 agonists (Exenatide)", administration: "Injection / Oral (in dev)", goal: "Slow progression, neuroprotection", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Exenatide+Parkinson", tentativeMarketDate: "2027+" },
+  { id: 9, name: "GZ/SAR402671 (Venglustat)", administration: "Oral (tablet)", goal: "Target GBA mutation, slow progression", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Venglustat", tentativeMarketDate: "Unknown" },
+  { id: 10, name: "NE3107 (Bezisterim)", administration: "Oral (tablet)", goal: "Reduce neuroinflammation, early therapy", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=NE3107", tentativeMarketDate: "2026+" },
+  { id: 11, name: "Energi-F705PD", administration: "Oral (tablet)", goal: "Boost ATP, antioxidant, reduce α-synuclein", trialPhase: "Phase 2", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown" },
+  { id: 12, name: "Copper supplements", administration: "Oral (tablet)", goal: "Restore copper balance, antioxidant effect", trialPhase: "Early research", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown" },
+  { id: 13, name: "Apomorphine (Onapgo, Apokyn)", administration: "Oral film, sublingual", goal: "Reduce 'off' episodes", trialPhase: "Approved", link: "https://clinicaltrials.gov/search?term=Apomorphine+Parkinson", tentativeMarketDate: "Marketed" },
+  { id: 14, name: "Alpha-synuclein immunotherapy", administration: "Injection/Infusion", goal: "Remove toxic alpha-synuclein", trialPhase: "Phase 2/3", link: "https://clinicaltrials.gov/search?term=alpha-synuclein+immunotherapy+Parkinson", tentativeMarketDate: "2028+" },
+  { id: 15, name: "SOD1 modulators", administration: "Injection", goal: "Reduce oxidative stress", trialPhase: "Early research", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown" },
+  { id: 16, name: "Bemnapredocel (cell therapy)", administration: "Cell infusion", goal: "Replace lost dopamine neurons", trialPhase: "Phase 1/2", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2028+" },
+  { id: 17, name: "Exenatide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Exenatide+PD3", tentativeMarketDate: "2027–2028" },
+  { id: 18, name: "Isradipine", administration: "Oral", goal: "Mitochondrial protection", trialPhase: "Phase 3 completed", link: "https://clinicaltrials.gov/search?term=Isradipine+Parkinson", tentativeMarketDate: "Unlikely" },
+  { id: 19, name: "Liraglutide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 2 completed", link: "https://clinicaltrials.gov/search?term=Liraglutide+Parkinson", tentativeMarketDate: "2030+" },
+  { id: 20, name: "Nilotinib", administration: "Oral", goal: "α-synuclein clearance / autophagy", trialPhase: "Phase 2 completed", link: "https://clinicaltrials.gov/search?term=Nilotinib+Parkinson", tentativeMarketDate: "Unlikely" },
+  { id: 21, name: "Pioglitazone", administration: "Oral", goal: "Neuroprotection", trialPhase: "Phase 2 completed", link: "https://clinicaltrials.gov/search?term=Pioglitazone+Parkinson", tentativeMarketDate: "Unlikely" },
+  { id: 22, name: "Ambroxol", administration: "Oral", goal: "GBA1 enhancer / lysosomal function", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Ambroxol+Parkinson", tentativeMarketDate: "2028–2029" },
+  { id: 23, name: "UDCA", administration: "Oral", goal: "Mitochondrial function", trialPhase: "Phase 2/3", link: "https://clinicaltrials.gov/search?term=UDCA+Parkinson", tentativeMarketDate: "2027–2028" },
+  { id: 24, name: "Lixisenatide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Lixisenatide+Parkinson", tentativeMarketDate: "2029–2030" },
+  { id: 25, name: "Sunrise-PD (ulotaront)", administration: "Oral", goal: "Non-motor symptoms", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=ulotaront+Parkinson", tentativeMarketDate: "2029–2030" },
+  { id: 26, name: "RB-190 (roscovitine)", administration: "Oral", goal: "LRRK2 kinase inhibition", trialPhase: "Phase 1", link: "https://clinicaltrials.gov/search?term=roscovitine+Parkinson", tentativeMarketDate: "2035+" },
+  { id: 27, name: "Semaglutide", administration: "Injection (Subcutaneous) or Oral", goal: "Neuroprotection", trialPhase: "Preclinical / Early trials", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2032+" },
+  { id: 28, name: "Imatinib", administration: "Oral", goal: "LRRK2 modulation, autophagy", trialPhase: "Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2035+" },
+  { id: 29, name: "Terazosin", administration: "Oral", goal: "Enhances glycolysis", trialPhase: "Preclinical / Observational", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2035+" },
+  { id: 30, name: "Empagliflozin", administration: "Oral", goal: "Neuroprotection", trialPhase: "Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2035+" },
+  { id: 31, name: "Rapamycin (Sirolimus)", administration: "Oral", goal: "Autophagy activator", trialPhase: "Preclinical / Early PD studies", link: "https://clinicaltrials.gov/search?term=Rapamycin+Parkinson", tentativeMarketDate: "2032–2035" },
+  { id: 32, name: "Metformin", administration: "Oral", goal: "Mixed data in PD models", trialPhase: "Preclinical / Observational", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unlikely" },
+  { id: 33, name: "Ibuprofen", administration: "Oral", goal: "Neuroprotection potential", trialPhase: "Epidemiology / Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unlikely" }
+];
 
     // DOM elements
     const searchInput = document.getElementById('search');
