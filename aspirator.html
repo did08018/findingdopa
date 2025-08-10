@@ -132,7 +132,7 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
-    table {
+   /* table {
       width: 100%;
       min-width: 500px;
       border-collapse: collapse;
@@ -144,7 +144,22 @@
       border-bottom: 1px solid #ddd;
       font-size: 13px;
       line-height: 1.2;
-    }
+    }*/
+
+table {
+  table-layout: auto;       /* Let columns adjust to content */
+  width: 100%;              /* Or set a specific width if needed */
+  border-collapse: collapse;
+}
+
+td, th {
+  white-space: normal;      /* Allow text wrapping */
+  word-wrap: break-word;    /* Break long words if needed */
+  vertical-align: top;      /* Keep text aligned at the top */
+  padding: 8px;             /* Add space for readability */
+  border: 1px solid #ccc;   /* Optional border */
+}
+    
     th {
       background: #EF9280;
       color: white;
