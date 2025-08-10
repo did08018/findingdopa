@@ -324,6 +324,9 @@ const treatments = [
     let currentSortOrder = 'desc';
     let currentSearch = '';
 
+sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+
+  
     // Render table
     function renderTable() {
       let filtered = treatments
@@ -374,9 +377,21 @@ const treatments = [
     });
 
     sortKey.addEventListener('change', e => {
-      currentSortKey = e.target.value;
-      renderTable();
-    });
+  currentSortKey = e.target.value;
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc'; // <-- add this line
+  renderTable();
+});
+
+  // After you get references to sortOrderBtn and before initial render
+sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+
+// When sort key changes
+sortKey.addEventListener('change', e => {
+  currentSortKey = e.target.value;
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+  renderTable();
+});
+
 
     sortOrderBtn.addEventListener('click', () => {
       currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
