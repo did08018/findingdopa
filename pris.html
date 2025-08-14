@@ -192,6 +192,28 @@
   transform: scale(1.03);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
+
+        .hero-section-with-bg {
+  position: relative;
+  z-index: 1;
+}
+
+        .legend-section {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional, for vertical centering if needed */
+}
+
+.legend-section img.legend-image {
+  max-width: 300px;
+  width: 100%; /* This will scale down to max-width */
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid white;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
         
     </style>
 </head>
