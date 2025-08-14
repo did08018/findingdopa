@@ -196,9 +196,27 @@
         .hero-section-with-bg {
   position: relative;
   z-index: 1;
-position: relative;
   padding: 0px 20px;
   overflow: hidden;
+}
+
+        .background-bolt {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 400px;
+  opacity: 0.15; /* softer on small screens */
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .background-bolt {
+    width: 300px;
+    opacity: 0.2;
+  }
 }
 
         .legend-section {
