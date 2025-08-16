@@ -65,7 +65,7 @@
     input {
       flex: 1;
       min-width: 180px;
-      padding-right: 64px; /* Adjusted for both buttons */
+      padding-right: 64px;
       border: 1px solid #ccc;
     }
     button {
@@ -84,8 +84,8 @@
     }
     .search-container input {
       width: 100%;
-      padding-right: 64px; /* space for both buttons */
-      height: 30px; /* ensures buttons align */
+      padding-right: 64px;
+      height: 30px;
       box-sizing: border-box;
     }
     .search-container #clearBtn,
@@ -101,7 +101,7 @@
       padding: 0;
     }
     .search-container #clearBtn {
-      right: 30px; /* just left of search button */
+      right: 30px;
       background: transparent;
       color: #333;
       border: none;
@@ -160,7 +160,7 @@
     a:hover {
       text-decoration: underline;
     }
-    th:nth-child(1), td:nth-child(1) { /* Drug Name */
+    th:nth-child(1), td:nth-child(1) { /* Treatment */
       max-width: 150px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -169,6 +169,7 @@
     }
     th:nth-child(2), td:nth-child(2) { /* Tentative Market Date */
       width: 110px;
+      white-space: pre-line; /* Ensure line breaks display */
     }
     th:nth-child(3), td:nth-child(3) { /* Administration */
       width: 100px;
@@ -220,7 +221,7 @@
     <a href="/" class="home-button">Home</a>
     <div class="controls">
       <div class="search-container">
-        <input id="search" type="text" placeholder="Search Drug Name...">
+        <input id="search" type="text" placeholder="Search Treatment...">
         <button id="clearBtn" style="display: none;">✕</button>
         <button id="searchBtn"></button>
       </div>
@@ -251,13 +252,15 @@
 
 <script>
 const treatments = [
+  { id: 42, name: "GT-02287", administration: "Oral", goal: "Allosteric activator of glucocerebrosidase (GCase) enzyme to restore activity and reduce alpha-synuclein aggregation", trialPhase: "Phase 1b ongoing", link: "https://clinicaltrials.gov/search?term=GT-02287+Parkinson", tentativeMarketDate: "2030\nPhase 1b ongoing. Positive data in 2025 could initiate Phase 2 in 2026, Phase 3 in 2028, market in 2030." },
+  { id: 41, name: "ABL301", administration: "Intravenous (antibody)", goal: "Bispecific antibody targeting aggregated alpha-synuclein and IGF1R for enhanced brain delivery", trialPhase: "Phase 1", link: "https://clinicaltrials.gov/search?term=ABL301+Parkinson", tentativeMarketDate: "2032\nPhase 1 ongoing. Phase 2 expected 2026, Phase 3 in 2028, market in 2032." },
   { id: 40, name: "HER-096", administration: "Subcutaneous injection", goal: "Mimic the effects of cerebral dopamine neurotrophic factor (CDNF) to provide neuroprotection, promote dopamine neuron survival, reduce α-synuclein aggregation and neuroinflammation, to slow or halt Parkinson’s disease progression", trialPhase: "Phase 1b ongoing (NCT06659562, Parkinson’s disease patients, 2 doses per week for 4 weeks)", link: "https://clinicaltrials.gov/study/NCT06659562", tentativeMarketDate: "2031\nPhase 1b topline data expected September 2025. Positive results could lead to Phase 2 in 2026, Phase 3 in 2028, potential market entry in 2031 if successful." },
   { id: 39, name: "Buntanetap / Posiphen / ANVS-401", administration: "Oral tablet", goal: "Reduce the production of multiple neurotoxic proteins, including α-synuclein, tau, and amyloid precursor protein, to slow or halt Parkinson’s disease progression and improve both motor and cognitive symptoms", trialPhase: "Phase 3 completed (NCT05357989, early-stage PD, 10 mg & 20 mg daily dosing)", link: "https://clinicaltrials.gov/study/NCT05357989", tentativeMarketDate: "2027\nPhase 3 completed. NDA planned for 2026, potential approval and market entry in 2027." },
   { id: 38, name: "ENERGI-F705PD", administration: "Oral, sustained-release tablet", goal: "Enhance cellular ATP and antioxidant production, reduce α-synuclein aggregation, boost tyrosine hydroxylase activity for dopamine synthesis", trialPhase: "Phase 1 completed (healthy volunteers, safety/tolerability), preparing for Phase 2", link: "https://www.biospace.com/press-releases/energenesis-biomedical-announces-positive-phase-i-results-for-energi-f705pd-a-potential-disease-modifying-treatment-for-parkinsons-disease", tentativeMarketDate: "2030\nPhase 1 completed. Phase 2 planned 2025, Phase 3 2027, market 2030." },
   { id: 37, name: "VTX3232", administration: "Oral", goal: "NLRP3 inflammasome inhibition to reduce neuroinflammation", trialPhase: "Phase 2a completed, planning Phase 2", link: "https://clinicaltrials.gov/search?term=VTX3232+Parkinson", tentativeMarketDate: "2032\nPhase 2a ongoing, data 2025. Phase 2b 2026, Phase 3 2028, market 2032." },
   { id: 36, name: "UCB0022 (Glovadalen)", administration: "Oral", goal: "Symptom control via D₁ receptor positive allosteric modulation", trialPhase: "Phase 1 completed, Phase 2 ongoing (ATLANTIS)", link: "https://clinicaltrials.gov/study/NCT06055985", tentativeMarketDate: "2028\nPhase 2 completed. Phase 3 expected 2025, market 2028." },
   { id: 35, name: "Nicotinamide Riboside (NR, NOPARK)", administration: "Oral", goal: "Disease-modifying (NAD⁺ replenishment, neuroprotection)", trialPhase: "Phase 1 completed, Phase 2/3 ongoing (NOPARK)", link: "https://clinicaltrials.gov/study/NCT03568968", tentativeMarketDate: "2029\nPhase 2 ongoing. Phase 3 2026, market 2029." },
-  { id: 34, name: "RB-190 (repurposed metyrosine)", administration: "Oral", goal: "Disease-modifying (reduce dopamine-induced neurotoxicity)", trialPhase: "Preclinical, preparing Phase 2 (IND ready)", link: "https://www.prnewswire.com/...RB-190-manufacturing-agreement...", tentativeMarketDate: "2032\nPhase 1 planned. Phase 2 2026, Phase 3 2028, market 2032." },
+  { id: 34, name: "RB-190 (metyrosine)", administration: "Oral", goal: "Disease-modifying (reduce dopamine-induced neurotoxicity)", trialPhase: "Preclinical, preparing Phase 2 (IND ready)", link: "https://www.prnewswire.com/...RB-190-manufacturing-agreement...", tentativeMarketDate: "2032\nPhase 1 planned. Phase 2 2026, Phase 3 2028, market 2032." },
   { id: 33, name: "Ibuprofen", administration: "Oral", goal: "Neuroprotection potential", trialPhase: "Epidemiology / Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, limited evidence for PD application." },
   { id: 32, name: "Metformin", administration: "Oral", goal: "Mixed data in PD models", trialPhase: "Preclinical / Observational", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unlikely\nMixed preclinical data, no clear path to approval." },
   { id: 31, name: "Rapamycin (Sirolimus)", administration: "Oral", goal: "Autophagy activator", trialPhase: "Preclinical / Early PD studies", link: "https://clinicaltrials.gov/search?term=Rapamycin+Parkinson", tentativeMarketDate: "2032\nPreclinical, early studies. Phase 1/2 2026, Phase 3 2028, market 2032." },
@@ -284,7 +287,6 @@ const treatments = [
   { id: 9, name: "GZ/SAR402671 (Venglustat)", administration: "Oral (tablet)", goal: "Target GBA mutation, slow progression", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Venglustat", tentativeMarketDate: "Discontinued\nPhase 2 negative, no further development." },
   { id: 6, name: "Tavapadon", administration: "Oral (tablet)", goal: "D1/D5 partial agonist, motor symptom control", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Tavapadon", tentativeMarketDate: "2025\nPhase 3 positive. Launch 2025." },
   { id: 5, name: "LRRK2 inhibitors (DNL151/BIIB122)", administration: "Oral (tablet)", goal: "Slow progression in LRRK2 mutation carriers", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=DNL151+Parkinson", tentativeMarketDate: "2028\nPhase 2/3 ongoing. Phase 3 data 2025, market 2028." },
-  { id: 4, name: "CVN424 (Solengepras)", administration: "Oral (tablet)", goal: "GPR6 inhibitor, improve motor symptoms", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=CVN424", tentativeMarketDate: "2027\nPhase 3 ongoing. Market 2027." },
   { id: 2, name: "Extended-release Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Reduce 'off' time, improved symptom control", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" },
   { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" }
 ];
@@ -305,29 +307,20 @@ let currentSearch = '';
 // Helper: Parse market date for sorting
 function parseMarketDate(val) {
   if (!val) return Infinity;
-  val = val.trim();
-  if (val.startsWith("Marketed")) return -Infinity;   // comes first
-  if (val.startsWith("TBD")) return Infinity;
-  if (val.startsWith("Unknown")) return Infinity;
-  // Range, e.g. "2027–2028"
-  if (/^\d{4}–\d{4}$/.test(val)) {
-    return parseInt(val.split("–")[0], 10);
-  }
-  // "2027+" case
-  if (/^\d{4}\+$/.test(val)) {
-    return parseInt(val, 10);
-  }
-  // "2027–2028" with en dash
-  if (/^\d{4}–\d{4}$/.test(val)) {
-    return parseInt(val.split("–")[0], 10);
-  }
-  // Simple year
-  if (/^\d{4}$/.test(val)) {
-    return parseInt(val, 10);
-  }
-  // Try normal date parse
-  let d = new Date(val);
-  return isNaN(d) ? Infinity : d.getTime();
+
+  // Extract the first line (before \n)
+  const firstLine = val.split('\n')[0].trim();
+
+  // Handle special cases
+  if (firstLine === "Marketed") return -Infinity; // Sort first
+  if (firstLine === "Unlikely" || firstLine === "Unknown" || firstLine === "Discontinued") return Infinity; // Sort last
+
+  // Parse numeric year (e.g., "2027")
+  const year = parseInt(firstLine, 10);
+  if (!isNaN(year)) return year;
+
+  // Fallback for any unexpected format
+  return Infinity;
 }
 
 // Render table
@@ -397,6 +390,5 @@ sortOrderBtn.addEventListener('click', () => {
 sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
 renderTable();
 </script>
-
 </body>
 </html>
