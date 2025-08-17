@@ -41,13 +41,13 @@
       /*background-color: #121212;*:
     }
 
-.top-bar {
+/*.top-bar {
   display: flex;
   align-items: center;
-  justify-content: center; /* Add this to center horizontally */
+  justify-content: center; 
   background: white;
   padding: 6px 10px;
-  width: 100%; /* Ensure it takes full width */
+  width: 100%; 
 }
 
     .home-brand {
@@ -57,7 +57,26 @@
       text-decoration: none;
       color: var(--light-purple);
       font-size: 1.2rem;
-    }
+    }*/
+
+      .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* keeps contents centered */
+  background: white;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* <-- new */
+  gap: 6px;
+  text-decoration: none;
+  color: var(--light-purple);
+  font-size: 1.2rem;
+}
 
     .logo-text {
       font-family: 'PT Serif', serif;
