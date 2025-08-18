@@ -23,25 +23,6 @@
       justify-content: flex-start;
         }
 
-/*.hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .hero img {
-      max-width: 200px;
-      border-radius: 20%;
-      margin: 10px auto 0.5rem;
-      display: block;
-      border: 2px solid white;
-      transform: scale(1.0);
-      transition: transform 0.3s ease;
-    }*/
-
 .hero {
     display: flex;
     flex-direction: column;
@@ -233,20 +214,16 @@
   pointer-events: none;
 }
 
-/*@media (min-width: 768px) {
-  .background-bolt {
-    width: 300px;
-    opacity: 0.2;
-  }
-}*/
-
 .video-container {
-    position: relative;     /* Required for aspect ratio hack */
-    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     max-width: 560px;
-    margin: 0 auto;
+    margin: 20px auto; /* adds breathing room */
+    border-radius: 12px; /* rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* soft shadow */
+    background: #000; /* fallback background while video loads */
 }
 
 .video-container iframe {
@@ -256,6 +233,7 @@
     width: 100%;
     height: 100%;
     border: none;
+    border-radius: 12px; /* match container */
 }
         
         @media (max-width: 600px) {
@@ -267,7 +245,9 @@
         max-width: 90%; /* Match .content’s mobile width */
     }
     .video-container {
-        max-width: 90%; /* Match .content’s mobile width */
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
     .hero img {
         max-width: 90%; /* Match .content’s mobile width */
@@ -277,24 +257,6 @@
         max-width: 100%; /* Fit within .form-wrapper */
     }
 }
-
-      /*  .legend-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.legend-section img.legend-image {
-  max-width: 300px;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid white;
-  margin-top: 5px;
-  margin-bottom: 15px;
-} */
-        
     </style>
 </head>
 <body>
