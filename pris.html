@@ -68,6 +68,7 @@
             padding: 20px;
             border-radius: 4px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
         .content-section {
             display: none;
@@ -214,11 +215,25 @@
   pointer-events: none;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .background-bolt {
     width: 300px;
     opacity: 0.2;
   }
+}*/
+
+        @media (max-width: 600px) {
+    .content {
+        max-width: 90%;
+        padding: 15px; /* Reduced padding for mobile */
+    }
+    .form-wrapper {
+        max-width: 90%; /* Match .content’s mobile width */
+    }
+    #contact-form,
+    #thankyou {
+        max-width: 100%; /* Fit within .form-wrapper */
+    }
 }
 
         .legend-section {
