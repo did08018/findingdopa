@@ -468,10 +468,10 @@ strong {
 </script>
   
 <!-- Firebase App -->
+
 <script type="module">
-  // Import the Firebase functions you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } 
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
     from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -489,41 +489,37 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // ✅ Function to vote
+  // ✅ Voting function
   async function vote(contentId, type) {
     const ref = doc(db, "votes", contentId);
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
-      await updateDoc(ref, {
-        [type]: increment(1)
-      });
+      await updateDoc(ref, { [type]: increment(1) });
     } else {
       await setDoc(ref, { up: 0, down: 0, [type]: 1 });
     }
-
-    // Refresh the displayed votes
-    showVotes(contentId);
   }
 
-  // ✅ Function to display votes
-  async function showVotes(contentId) {
+  // ✅ Real-time listener
+  function listenVotes(contentId) {
     const ref = doc(db, "votes", contentId);
-    const snap = await getDoc(ref);
 
-    let up = 0, down = 0;
-    if (snap.exists()) {
-      up = snap.data().up || 0;
-      down = snap.data().down || 0;
-    }
-
-    document.getElementById(`up-${contentId}`).innerText = up;
-    document.getElementById(`down-${contentId}`).innerText = down;
+    onSnapshot(ref, (docSnap) => {
+      let up = 0, down = 0;
+      if (docSnap.exists()) {
+        up = docSnap.data().up || 0;
+        down = docSnap.data().down || 0;
+      }
+      document.getElementById(`up-${contentId}`).innerText = up;
+      document.getElementById(`down-${contentId}`).innerText = down;
+    });
   }
 
   // Expose functions globally
   window.vote = vote;
-  window.showVotes = showVotes;
+  window.listenVotes = listenVotes;
 </script>
+  
  </body>
 </html>
