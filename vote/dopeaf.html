@@ -454,6 +454,11 @@ strong {
   <button onclick="vote('sentence1','down')">👎 Downvote</button>
   <span id="down-sentence1">0</span>
 </div>
+
+<script>
+  // Start realtime listener for this item
+  listenVotes("sentence1");
+</script>
     
     <!--<section class="body-text-section">
      <!-- <a href="news.html" class="cta-button">Latest News</a>
