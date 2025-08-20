@@ -498,6 +498,17 @@ strong {
     <img src="../images/arrow-down.jpg" class="arrow-img" alt="Finding Dope A">
   </section>-->
 
+<div class="votable" id="sentence2">
+  <p>"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
+— Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</p>
+  <div>
+    <button onclick="vote('sentence2','up')">🪩 Ace</button>
+    <span id="up-sentence2">0</span>
+    <button onclick="vote('sentence2','down')">💀 Flat</button>
+    <span id="down-sentence2">0</span>
+  </div>
+</div>
+    
 <div class="votable" id="sentence1">
   <p>"Stem cell therapy offers perhaps the most promising hope for a cure to Parkinson’s disease."
 — Dr. Roger Barker, University of Cambridge, 2021</p>
@@ -578,6 +589,7 @@ strong {
 
   // Initialize vote listener for sentence1
   listenVotes("sentence1");
+  listenVotes("sentence2");
 
   // Expose functions globally
   window.vote = vote;
