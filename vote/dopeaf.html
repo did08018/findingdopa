@@ -403,44 +403,52 @@ strong {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 15px 0;
-  width: 100%;
+  margin: 15px auto;
+  max-width: 600px; /* Matches the max-width of other centered elements like .mission-box */
+  padding: 20px;
+  background: #fff; /* White background to match .message-block */
+  border: 1.5px solid #21c520; /* Green border to match theme */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'PT Serif', serif;
+  color: #222;
 }
 
 .votable p {
-  margin: 0 0 10px 0;
-  font-family: 'PT Serif', serif;
-  font-size: 1.1rem;
-  color: #fff;
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  color: #222; /* Matches .mission-box text color */
 }
 
 .votable div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px; /* Spacing between buttons and vote counts */
 }
 
 .votable button {
-  background: #21c520;
+  background: #21c520; /* Green background to match theme */
   color: #fff;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 8px 15px;
+  border-radius: 6px;
   font-family: 'PT Serif', serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .votable button:hover {
-  background: #00bfff;
+  background: #00bfff; /* Hover effect to match .slide-link:hover */
 }
 
 .votable span {
   display: inline-block;
-  min-width: 30px;
+  min-width: 35px;
   text-align: center;
   font-family: 'PT Serif', serif;
-  color: #fff;
+  font-size: 1rem;
+  color: #222;
 }
     
   </style>
