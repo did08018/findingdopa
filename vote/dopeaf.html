@@ -401,9 +401,24 @@ strong {
   text-align: center;
   margin: 15px 0;
 }
+.votable span {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+  font-family: 'PT Serif', serif;
+  color: #fff;
+}
 .votable button {
-  margin: 0 5px;
-  cursor: pointer;
+  background: #21c520;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'PT Serif', serif;
+  font-size: 0.9rem;
+}
+.votable button:hover {
+  background: #00bfff;
 }
     
   </style>
@@ -454,135 +469,80 @@ strong {
   <button onclick="vote('sentence1','down')">👎 Downvote</button>
   <span id="down-sentence1">0</span>
 </div>
-
-<script>
-  // Start realtime listener for this item
-  listenVotes("sentence1");
-</script>
-    
-    <!--<section class="body-text-section">
-     <!-- <a href="news.html" class="cta-button">Latest News</a>
-      <br><a href="resources.html" class="cta-button1">Resources</a> -->
-       
-   <!-- </section>-->
   </main>
-
-<script>
-  // Load initial votes
-  showVotes("sentence1");
-</script>
-  
-<!-- Firebase App -->
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
   import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
     from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
-  authDomain: "dopeaf-57bc2.firebaseapp.com",
-  projectId: "dopeaf-57bc2",
-  storageBucket: "dopeaf-57bc2.firebasestorage.app",
-  messagingSenderId: "326131174073",
-  appId: "1:326131174073:web:07698162567c5c9c0d6968",
-  measurementId: "G-2VF4XB1HVF"
-};
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
+    authDomain: "dopeaf-57bc2.firebaseapp.com",
+    projectId: "dopeaf-57bc2",
+    storageBucket: "dopeaf-57bc2.firebasestorage.app",
+    messagingSenderId: "326131174073",
+    appId: "1:326131174073:web:07698162567c5c9c0d6968",
+    measurementId: "G-2VF4XB1HVF"
+  };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // ✅ Voting function
+  // Voting function with localStorage
   async function vote(contentId, type) {
-    const ref = doc(db, "votes", contentId);
-    const snap = await getDoc(ref);
+    try {
+      // Check if user has already voted
+      if (localStorage.getItem(`voted-${contentId}`)) {
+        alert("You have already voted!");
+        return;
+      }
 
-    if (snap.exists()) {
-      await updateDoc(ref, { [type]: increment(1) });
-    } else {
-      await setDoc(ref, { up: 0, down: 0, [type]: 1 });
+      const ref = doc(db, "votes", contentId);
+      const snap = await getDoc(ref);
+
+      if (snap.exists()) {
+        await updateDoc(ref, { [type]: increment(1) });
+      } else {
+        await setDoc(ref, { up: 0, down: 0, [type]: 1 });
+      }
+
+      // Store vote in localStorage
+      localStorage.setItem(`voted-${contentId}`, type);
+    } catch (error) {
+      console.error("Error voting:", error);
+      alert("Failed to record vote. Please try again.");
     }
   }
 
-  // ✅ Real-time listener
+  // Real-time listener for vote counts
   function listenVotes(contentId) {
-    const ref = doc(db, "votes", contentId);
-
-    onSnapshot(ref, (docSnap) => {
-      let up = 0, down = 0;
-      if (docSnap.exists()) {
-        up = docSnap.data().up || 0;
-        down = docSnap.data().down || 0;
-      }
-      document.getElementById(`up-${contentId}`).innerText = up;
-      document.getElementById(`down-${contentId}`).innerText = down;
-    });
+    try {
+      const ref = doc(db, "votes", contentId);
+      onSnapshot(ref, (docSnap) => {
+        let up = 0, down = 0;
+        if (docSnap.exists()) {
+          up = docSnap.data().up || 0;
+          down = docSnap.data().down || 0;
+        }
+        document.getElementById(`up-${contentId}`).innerText = up;
+        document.getElementById(`down-${contentId}`).innerText = down;
+      }, (error) => {
+        console.error("Error in vote listener:", error);
+      });
+    } catch (error) {
+      console.error("Error setting up vote listener:", error);
+    }
   }
+
+  // Initialize vote listener for sentence1
+  listenVotes("sentence1");
 
   // Expose functions globally
   window.vote = vote;
   window.listenVotes = listenVotes;
 </script>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
-    from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
-  authDomain: "dopeaf-57bc2.firebaseapp.com",
-  projectId: "dopeaf-57bc2",
-  storageBucket: "dopeaf-57bc2.firebasestorage.app",
-  messagingSenderId: "326131174073",
-  appId: "1:326131174073:web:07698162567c5c9c0d6968",
-  measurementId: "G-2VF4XB1HVF"
-};
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // ✅ Voting function with localStorage
-  async function vote(contentId, type) {
-    // Check if this user already voted on this item
-    if (localStorage.getItem(`voted-${contentId}`)) {
-      alert("You already voted!");
-      return;
-    }
-
-    const ref = doc(db, "votes", contentId);
-    const snap = await getDoc(ref);
-
-    if (snap.exists()) {
-      await updateDoc(ref, { [type]: increment(1) });
-    } else {
-      await setDoc(ref, { up: 0, down: 0, [type]: 1 });
-    }
-
-    // Remember the vote in this browser
-    localStorage.setItem(`voted-${contentId}`, type);
-  }
-
-  // ✅ Real-time listener
-  function listenVotes(contentId) {
-    const ref = doc(db, "votes", contentId);
-
-    onSnapshot(ref, (docSnap) => {
-      let up = 0, down = 0;
-      if (docSnap.exists()) {
-        up = docSnap.data().up || 0;
-        down = docSnap.data().down || 0;
-      }
-      document.getElementById(`up-${contentId}`).innerText = up;
-      document.getElementById(`down-${contentId}`).innerText = down;
-    });
-  }
-
-  window.vote = vote;
-  window.listenVotes = listenVotes;
-</script>
-  
  </body>
 </html>
