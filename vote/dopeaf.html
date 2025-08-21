@@ -534,7 +534,7 @@ strong {
     </div>
   </main>
 
-<script type="module">
+<!--<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
   import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
     from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
@@ -645,7 +645,139 @@ function sortVotables() {
 
   items.forEach(item => container.appendChild(item)); // re-append in sorted order
 }
+</script> -->
 
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
+    from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // --- Firebase config (unchanged) ---
+  const firebaseConfig = {
+    apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
+    authDomain: "dopeaf-57bc2.firebaseapp.com",
+    projectId: "dopeaf-57bc2",
+    storageBucket: "dopeaf-57bc2.firebasestorage.app",
+    messagingSenderId: "326131174073",
+    appId: "1:326131174073:web:07698162567c5c9c0d6968",
+    measurementId: "G-2VF4XB1HVF"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // --- Sorting state ---
+  const scores = {};
+  let containerEl = null;
+
+  function ensureVoteContainer() {
+    // Try to find an existing wrapper
+    containerEl = document.getElementById("vote-container");
+    if (containerEl) return containerEl;
+
+    // If none, create one and move all .votable into it
+    const main = document.querySelector("main");
+    const firstVotable = document.querySelector(".votable");
+    if (!main || !firstVotable) return null;
+
+    containerEl = document.createElement("div");
+    containerEl.id = "vote-container";
+    main.insertBefore(containerEl, firstVotable);
+
+    // Move all votables in
+    document.querySelectorAll(".votable").forEach(el => containerEl.appendChild(el));
+
+    return containerEl;
+  }
+
+  function sortVotables() {
+    // Be defensive: no crashes if container missing
+    if (!containerEl) containerEl = ensureVoteContainer();
+    if (!containerEl) return;
+
+    const items = Array.from(containerEl.children).filter(el => el.classList.contains("votable"));
+    items.sort((a, b) => (scores[b.id] || 0) - (scores[a.id] || 0));
+
+    // Re-append using a fragment to avoid layout thrash
+    const frag = document.createDocumentFragment();
+    items.forEach(el => frag.appendChild(el));
+    containerEl.appendChild(frag);
+  }
+
+  // --- Voting ---
+  async function vote(contentId, type) {
+    try {
+      if (localStorage.getItem(`voted-${contentId}`)) {
+        alert("You have already voted!");
+        return;
+      }
+
+      const ref = doc(db, "votes", contentId);
+      const snap = await getDoc(ref);
+
+      if (snap.exists()) {
+        await updateDoc(ref, { [type]: increment(1) });
+      } else {
+        await setDoc(ref, { up: 0, down: 0, [type]: 1 });
+      }
+
+      localStorage.setItem(`voted-${contentId}`, type);
+    } catch (error) {
+      console.error("Error voting:", error);
+      alert("Failed to record vote. Please try again.");
+    }
+  }
+
+  function listenVotes(contentId) {
+    try {
+      const ref = doc(db, "votes", contentId);
+      onSnapshot(ref, (docSnap) => {
+        let up = 0, down = 0;
+        if (docSnap.exists()) {
+          up = docSnap.data().up || 0;
+          down = docSnap.data().down || 0;
+        }
+        const upEl = document.getElementById(`up-${contentId}`);
+        const downEl = document.getElementById(`down-${contentId}`);
+        if (upEl) upEl.innerText = up;
+        if (downEl) downEl.innerText = down;
+
+        scores[contentId] = up - down;
+        sortVotables();
+      }, (error) => {
+        console.error("Error in vote listener:", error);
+      });
+    } catch (error) {
+      console.error("Error setting up vote listener:", error);
+    }
+  }
+
+  function init() {
+    // Make sure the container exists (or auto-create it)
+    ensureVoteContainer();
+
+    // Find all votable IDs automatically
+    const ids = Array.from(document.querySelectorAll(".votable")).map(el => el.id);
+
+    // Start listeners
+    ids.forEach(listenVotes);
+
+    // Initial sort (in case some docs already have votes)
+    sortVotables();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Expose globally so inline onclick handlers work with type="module"
+  window.vote = vote;
+  window.listenVotes = listenVotes;
+</script>
+
+  <script>
   // Listen to each vote
 
   listenVotes("sentence1");
