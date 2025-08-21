@@ -511,6 +511,16 @@ strong {
 
     <div id="vote-container">
 
+      <div class="votable" id="sentence4">
+  <p>Recent research suggests that propranolol may offer benefits for people with Parkinson’s disease, particularly when it comes to reducing tremor.</p>
+  <div>
+    <button onclick="vote('sentence4','up')">🪩 Ace</button>
+    <span id="up-sentence4">0</span>
+    <button onclick="vote('sentence4','down')">💀 Flat</button>
+    <span id="down-sentence4">0</span>
+  </div>
+</div>
+
 <div class="votable" id="sentence3">
   <p>“Keto diet absolutely improves multiple non-motor symptoms across the board..."</p>
   <div>
@@ -544,119 +554,6 @@ strong {
 </div>
     </div>
   </main>
-
-<!--<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
-    from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
-    authDomain: "dopeaf-57bc2.firebaseapp.com",
-    projectId: "dopeaf-57bc2",
-    storageBucket: "dopeaf-57bc2.firebasestorage.app",
-    messagingSenderId: "326131174073",
-    appId: "1:326131174073:web:07698162567c5c9c0d6968",
-    measurementId: "G-2VF4XB1HVF"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Voting function with localStorage
-  async function vote(contentId, type) {
-    try {
-      // Check if user has already voted
-      if (localStorage.getItem(`voted-${contentId}`)) {
-        alert("You have already voted!");
-        return;
-      }
-
-      const ref = doc(db, "votes", contentId);
-      const snap = await getDoc(ref);
-
-      if (snap.exists()) {
-        await updateDoc(ref, { [type]: increment(1) });
-      } else {
-        await setDoc(ref, { up: 0, down: 0, [type]: 1 });
-      }
-
-      // Store vote in localStorage
-      localStorage.setItem(`voted-${contentId}`, type);
-    } catch (error) {
-      console.error("Error voting:", error);
-      alert("Failed to record vote. Please try again.");
-    }
-  }
-
-  // Real-time listener for vote counts
-  function listenVotes(contentId) {
-    try {
-      const ref = doc(db, "votes", contentId);
-      onSnapshot(ref, (docSnap) => {
-        let up = 0, down = 0;
-        if (docSnap.exists()) {
-          up = docSnap.data().up || 0;
-          down = docSnap.data().down || 0;
-        }
-        document.getElementById(`up-${contentId}`).innerText = up;
-        document.getElementById(`down-${contentId}`).innerText = down;
-      }, (error) => {
-        console.error("Error in vote listener:", error);
-      });
-    } catch (error) {
-      console.error("Error setting up vote listener:", error);
-    }
-  }
-
-  // Initialize vote listener for sentence1
-  listenVotes("sentence1");
-  listenVotes("sentence2");
-
-  // Expose functions globally
-  window.vote = vote;
-  window.listenVotes = listenVotes;
-
-  // Dynamic sort 
-
-  const scores = {}; // store live scores for each contentId
-
-function listenVotes(contentId) {
-  try {
-    const ref = doc(db, "votes", contentId);
-    onSnapshot(ref, (docSnap) => {
-      let up = 0, down = 0;
-      if (docSnap.exists()) {
-        up = docSnap.data().up || 0;
-        down = docSnap.data().down || 0;
-      }
-      document.getElementById(`up-${contentId}`).innerText = up;
-      document.getElementById(`down-${contentId}`).innerText = down;
-
-      // Save net score
-      scores[contentId] = up - down;
-      sortVotables();
-    });
-  } catch (error) {
-    console.error("Error setting up vote listener:", error);
-  }
-}
-
-function sortVotables() {
-  const container = document.getElementById("vote-container");
-  const items = Array.from(container.getElementsByClassName("votable"));
-
-  items.sort((a, b) => {
-    const scoreA = scores[a.id] || 0;
-    const scoreB = scores[b.id] || 0;
-    return scoreB - scoreA; // highest score first
-  });
-
-  items.forEach(item => container.appendChild(item)); // re-append in sorted order
-}
-</script> -->
 
   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
@@ -795,6 +692,7 @@ function sortVotables() {
   listenVotes("sentence1");
   listenVotes("sentence2");
   listenVotes("sentence3");
+  listenVotes("sentence4");
 
 </script>
  </body>
