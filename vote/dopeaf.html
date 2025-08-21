@@ -509,6 +509,7 @@ strong {
     <img src="../images/arrow-down.jpg" class="arrow-img" alt="Finding Dope A">
   </section>-->
 
+    <div id="vote-container">
 <div class="votable" id="sentence2">
   <p>"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
 — Dr. Lorenz Studer, Memorial Sloan Kettering, 2019</p>
@@ -530,6 +531,7 @@ strong {
     <span id="down-sentence1">0</span>
   </div>
 </div>
+    </div>
   </main>
 
 <script type="module">
@@ -605,6 +607,51 @@ strong {
   // Expose functions globally
   window.vote = vote;
   window.listenVotes = listenVotes;
+
+  // Dynamic sort 
+
+  const scores = {}; // store live scores for each contentId
+
+function listenVotes(contentId) {
+  try {
+    const ref = doc(db, "votes", contentId);
+    onSnapshot(ref, (docSnap) => {
+      let up = 0, down = 0;
+      if (docSnap.exists()) {
+        up = docSnap.data().up || 0;
+        down = docSnap.data().down || 0;
+      }
+      document.getElementById(`up-${contentId}`).innerText = up;
+      document.getElementById(`down-${contentId}`).innerText = down;
+
+      // Save net score
+      scores[contentId] = up - down;
+      sortVotables();
+    });
+  } catch (error) {
+    console.error("Error setting up vote listener:", error);
+  }
+}
+
+function sortVotables() {
+  const container = document.getElementById("vote-container");
+  const items = Array.from(container.getElementsByClassName("votable"));
+
+  items.sort((a, b) => {
+    const scoreA = scores[a.id] || 0;
+    const scoreB = scores[b.id] || 0;
+    return scoreB - scoreA; // highest score first
+  });
+
+  items.forEach(item => container.appendChild(item)); // re-append in sorted order
+}
+
+  // Listen to each vote
+
+  listenVotes("sentence1");
+  listenVotes("sentence2");
+
+
 </script>
  </body>
 </html>
