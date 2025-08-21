@@ -509,6 +509,16 @@ strong {
     <img src="../images/arrow-down.jpg" class="arrow-img" alt="Finding Dope A">
   </section>-->
 
+<div class="votable" id="sentence3">
+  <p>“Keto diet absolutely improves multiple non-motor symptoms across the board..."</p>
+  <div>
+    <button onclick="vote('sentence3','up')">🪩 Ace</button>
+    <span id="up-sentence3">0</span>
+    <button onclick="vote('sentence3','down')">💀 Flat</button>
+    <span id="down-sentence3">0</span>
+  </div>
+</div>
+    
     <div id="vote-container">
 <div class="votable" id="sentence2">
   <p>"The goal is no longer just to treat symptoms, but to replace the damaged cells themselves."
@@ -778,11 +788,12 @@ function sortVotables() {
 </script>
 
   <script>
+    
   // Listen to each vote
 
   listenVotes("sentence1");
   listenVotes("sentence2");
-
+  listenVotes("sentence3");
 
 </script>
  </body>
