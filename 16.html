@@ -21,12 +21,6 @@
     </script>
     
     <style>
-
-header {
-      background-color: white;
-      width: 100%;
-      /*background-color: #121212;*/
-    }
         
         body {
             font-family: Arial, sans-serif;
@@ -131,10 +125,18 @@ header {
             .box6 { grid-column: 3; grid-row: 3; }
         }
 
-      .top-bar {
+header {
+  background-color: white;
+  width: 100%;
+  position: sticky;   /* optional: keep on top while scrolling */
+  top: 0;             /* optional with sticky */
+  z-index: 1000;      /* optional: stay above content */
+}
+
+.top-bar {
   display: flex;
   align-items: center;
-  justify-content: left; /* keeps contents centered */
+  justify-content: left;
   background: white;
   padding: 6px 10px;
   width: 100%;
@@ -146,25 +148,25 @@ header {
   gap: 6px;
   text-decoration: none;
   color: #7bdff2;
-    /*var(--light-purple);*/
   font-size: 1.2rem;
+  white-space: nowrap;       /* <-- keeps brain + text on one line */
 }
 
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #7bdff2;
-        /*#b05afc;*/
-    }
+.home-brand i {              /* optional: give the brain a consistent size */
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #7bdff2;
+}
         
     </style>
 </head>
 <body>
-
-
-    
-    <div class="container">
 
   <header>
     <div class="top-bar">
@@ -174,7 +176,8 @@ header {
       </a>
     </div>
   </header>
-        
+    
+    <div class="container">
         <a href="coupling.html" class="box box1">
             <h2>Coupling</h2>
             <img src="images/coupling.jpeg" alt="Customization">
