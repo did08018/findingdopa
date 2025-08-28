@@ -45,9 +45,47 @@
     .home-button:hover {
       background-color: #D4A017; /* Darker yellow on hover */
     }
+
+      .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #7bdff2;
+    /*var(--light-purple);*/
+  font-size: 1.2rem;
+}
+
+    .logo-text {
+      font-family: 'PT Serif', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #7bdff2;
+        /*#b05afc;*/
+    }
+    
   </style>
 </head>
 <body>
+
+  <header>
+    <div class="top-bar">
+      <a href="../index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">Finding Dopa</span>
+      </a>
+    </div>
+  </header>
+  
   <h1>Gossip Hill</h1>
   <a href="index.html" class="home-button">Home</a>
 
