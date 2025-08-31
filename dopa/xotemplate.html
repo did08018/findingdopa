@@ -3,37 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Inter:wght@300;400;500;600;700;800;900&family=Raleway+Dots&display=swap" rel="stylesheet">
-  
-  <title>TEMPLATE</title>
-  
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <title>Finding Dopa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-
-  :root {
-      --purple: #6a0dad;
-      --blue: #007acc;
-      --light-purple: #b05afc;
-      --deep-purple: #2e2a89;
-      --white-text: #ffffff;
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 2rem 0;
+      width: 100%;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f5f8fa;
-      color: #222;
-      overflow-x: hidden;
+    html {
+  height: 100%;
     }
 
-/*font-family: 'Segoe UI', sans-serif;*/
-    
-    body {
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f8fa;
+  background-attachment: fixed;
+  color: #2e2a89;
+}
+
+    main {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      justify-content: flex-start;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     header {
@@ -44,247 +49,30 @@
       align-items: center;
     }
 
-    .slider-container {
-      width: 100%;
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .slider-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slide {
-      flex: 0 0 auto;
-      background: #121212;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 8px;
-      border: 1px solid #333;p
-      white-space: nowrap;
-      font-size: 0.95rem;
-      font-family: 'PT Serif', serif;
+    a {
       text-decoration: none;
-      text-align: center;
+      color: inherit;
     }
 
-    .slide:hover {
-      color: #00bfff;
-    }
-
-    .slide.active {
-      background: #fdfdfd;
-      color: var(--deep-purple);
-      border: 2px solid var(--deep-purple);
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    .main-content {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 20px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-    }
-
-    .main-content a, .body-text-section a {
-      color: var(--purple);
-      text-decoration: none;
-      font-weight: 500;
-      line-height: 1.6;
-    }
-
-    .main-content p, .body-text-section p {
-      line-height: 1.6;
-      color: var(--purple);
-      margin: 1em 0;
-    }
-
-    .body-text-section {
-      text-align: left;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #333;
-      margin-top: 5px;
-    }
-
-    .fade-box {
-  opacity: 0;
-  animation: fadeInBox 2.5s ease-in forwards;
-  background: #fff;
-  border: 1px solid var(--deep-purple);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  margin: 1rem 0;
-  font-size: 1rem;
-  color: #2e2a89;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-@keyframes fadeInBox {
-  to {
-    opacity: 1;
-  }
-}
-
-    .source {
-      font-style: italic;
-      color: var(--blue);
-    }
-
-    .source a {
-      color: var(--deep-purple);
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px 20px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-    }
-
-    mark {
-      background-color: yellow;
-      font-weight: bold;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 20px;
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-     .hero p {
-      font-size: 0.75rem;
-      max-width: 600px;
-      margin: 5px 0;
-      color: black;
-    }
-
-.hero1 {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: left;
-      padding: 0 20px;
-      margin-bottom: 25px;
-      text-align: left;
-    }
-
-     .hero1 p {
-      font-size: 1rem;
-      color: var(--deep-purple);
-      max-width: 600px;
-      margin: 25px 0;
-      color: black;
-    }
-
-    .hero img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  border: 2px solid white;
-  margin-top: 3px;
-    }
-
-    .cta-button {
-      background: #2e2a89;
-      color: #fdfdfd;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: background 0.3s ease, color 0.3s ease;
-      margin-bottom: 20px;
-    }
-
-    .cta-button:hover {
-      background: #fdfdfd;
-      color: #2e2a89;
-    }
-
-        .top-bar {
-      display: flex;
-      align-items: center;
-      background: #f5f8fa;
-      justify-content: center;
-      padding: 4px 0;
-      height: 30px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 2px 8px;
-      text-decoration: none;
-      color: #b05afc;
-      font-size: 1.2rem;
-      height: 32px;
-    }
-
-    .home-brand i {
-      font-size: 1.3rem;
-    }
-
-    .home-brand:hover {
-      color: #00bfff;
-    }
-
-    .logo-text {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #b05afc;
-    }
-
-    .body-text {
-      color: #2e2a89
-      font-size: 1rem;
-      text-align: left;
-      padding: 0 20px;
-      margin: 0 auto 1rem;
-      max-width: 800px;
-    }
-
-    .welcome-text {
-      font-family: 'PT Serif', serif;
-      font-size: 2rem;
-      color: #2e2a89;
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 0px;
-    }
-
-    .form-wrapper {
+.hero {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1rem 1rem 0.5rem;
+  padding: 0 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#contact-form,
-#thankyou {
-  background: white;
+    .hero p {
+      font-size: 0.8rem;
+      max-width: 600px;
+      margin: 7px 0 3px;
+      padding: 0;
+      color: #2e2a89;
   border-radius: 10px;
   padding: 1.5rem;
   max-width: 500px;
@@ -312,7 +100,7 @@
 }
 
 #contact-form button {
-  background: #2e2a89;
+  background-color: #2e2a89;  /* Purple */
   color: white;
   padding: 0.6rem 1.2rem;
   border: none;
@@ -320,12 +108,17 @@
   font-size: 1rem;
   cursor: pointer;
   margin-top: 0.5rem;
+  transition: background 0.3s ease;
 }
 
 #contact-form button:hover {
-  background: #2e2a89;
+  background-color: #1d1a70; /* Darker purple for hover effect */
 }
 
+form#contact-form button {
+  background-color: #2e2a89 !important;
+}
+    
     #copy-icon:hover {
   color: #2e2a89;
   transform: scale(1.2);
@@ -385,6 +178,7 @@
     
   </style>
 </head>
+
 
 <body>
   <header>
