@@ -3,145 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Inter:wght@300;400;500;600;700;800;900&family=Raleway+Dots&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
   
   <title>I’ve now been using NR 1000 mg and TMG 900 mg for a month. I even bought Tru Niagen 500 mg and alternate between the two NR brands…</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-
-  :root {
-      --purple: #6a0dad;
-      --blue: #007acc;
-      --light-purple: #b05afc;
-      --deep-purple: #2e2a89;
-      --white-text: #ffffff;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f5f8fa;
-      color: #222;
-      overflow-x: hidden;
-    }
-
-/*font-family: 'Segoe UI', sans-serif;*/
-    
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background-color: #121212;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      background: #121212;
-      padding: 6px 10px;
-    }
-
-    .home-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--blue);
-      font-size: 1.2rem;
-    }
-
-    .logo-text {
-      font-family: 'PT Serif', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-    }
-
-    .slider-container {
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 2rem 0;
       width: 100%;
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
     }
 
-    .slider-container::-webkit-scrollbar {
-      display: none;
+    html {
+  height: 100%;
     }
 
-    .slide {
-      flex: 0 0 auto;
-      background: #121212;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 8px;
-      border: 1px solid #333;p
-      white-space: nowrap;
-      font-size: 0.95rem;
-      font-family: 'PT Serif', serif;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .slide:hover {
-      color: #00bfff;
-    }
-
-    .slide.active {
-      background: #fdfdfd;
-      color: var(--deep-purple);
-      border: 2px solid var(--deep-purple);
-    }
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f8fa;
+  background-attachment: fixed;
+  color: #2e2a89;
+}
 
     main {
       flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
       max-width: 700px;
       margin: 0 auto;
-      padding: 0 20px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+      width: 100%;
     }
 
-    .main-content a, .body-text-section a {
-      color: var(--purple);
+    header {
+      background-color: #f5f8fa;
+      padding: 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    a {
       text-decoration: none;
-      font-weight: 500;
-      line-height: 1.6;
+      color: inherit;
     }
 
-    .main-content p, .body-text-section p {
-      line-height: 1.6;
-      color: var(--purple);
-      margin: 1em 0;
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+    .hero p {
+      font-size: 0.8rem;
+      max-width: 600px;
+      margin: 7px 0 3px;
+      padding: 0;
+      color: #2e2a89;
+      position: relative;
     }
 
-    .body-text-section {
-      text-align: left;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #333;
-      margin-top: 5px;
+    .hero img {
+  max-width: 100%; /* UPDATED: make image responsive */
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid white;
+  margin-top: 3px;
     }
 
-    .fade-box {
+
+   .fade-box {
   opacity: 0;
   animation: fadeInBox 2.5s ease-in forwards;
   background: #fff;
-  border: 1px solid var(--deep-purple);
+  border: 1px solid #2e2a89;
   border-radius: 12px;
   padding: 1rem 1.5rem;
   margin: 1rem 0;
@@ -155,48 +106,8 @@
     opacity: 1;
   }
 }
-
-    .source {
-      font-style: italic;
-      color: var(--blue);
-    }
-
-    .source a {
-      color: var(--deep-purple);
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px 20px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.8rem;
-    }
-
-    mark {
-      background-color: yellow;
-      font-weight: bold;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 20px;
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-     .hero p {
-      font-size: 0.75rem;
-      max-width: 600px;
-      margin: 5px 0;
-      color: black;
-    }
-
-.hero1 {
+    
+    .hero1 {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -208,31 +119,12 @@
 
      .hero1 p {
       font-size: 1rem;
-      color: var(--deep-purple);
+      color: #2e2a89;
       max-width: 600px;
       margin: 25px 0;
       color: black;
     }
     
-   /* .hero p::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: -8px;
-      border-bottom: 1px solid #FFFFFF;
-    }*/
-
-    .hero img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  border: 2px solid white;
-  margin-top: 3px;
-    }
-
     .cta-button {
       background: #2e2a89;
       color: #fdfdfd;
@@ -253,19 +145,20 @@
     .top-bar {
       display: flex;
       align-items: center;
-      background: #1a1a1a;
+      background: #f5f8fa;
+      justify-content: center;
       padding: 4px 0;
-      height: 40px;
+      height: 30px;
     }
 
     .home-brand {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       padding: 2px 8px;
-      margin-left: 8px;
       text-decoration: none;
-      color: #007acc;
+      color: #b05afc;
       font-size: 1.2rem;
       height: 32px;
     }
@@ -279,19 +172,18 @@
     }
 
     .logo-text {
-      font-family: 'PT Serif', serif;
       font-weight: 700;
       font-size: 1.3rem;
-      color: white;
+      color: #b05afc;
     }
 
     .body-text {
-      color: #2e2a89
+      color: #2e2a89;
       font-size: 1rem;
-      text-align: left;
+      text-align: center;
       padding: 0 20px;
       margin: 0 auto 1rem;
-      max-width: 800px;
+      max-width: 500px;
     }
 
     .welcome-text {
@@ -309,7 +201,7 @@
   align-items: center;
   padding: 1rem 1rem 0.5rem;
 }
-
+    
 #contact-form,
 #thankyou {
   background: white;
@@ -367,7 +259,7 @@
   margin-top: 2rem;
 }
 
-.section-title {
+    .section-title {
   font-family: 'PT Serif', serif;
   font-size: 1.8rem;
   color: #2e2a89;
@@ -430,9 +322,11 @@
     <div class="main-content">
       <section class="hero">
         <p>A fix for Parkinson's disease is on the way. Keep fighting!</p>
+      </section>
+          <section class="hero">
+      <div>
         <img src="../logos/DopaVOX.jpg">
- 
-
+         
         <section class="hero1">
   <div class="fade-box">
     31 August 2025 - did08018: I’ve now been using NR 1000 mg and TMG 900 mg for a month. I even bought Tru Niagen 500 mg and alternate between the two NR brands…
