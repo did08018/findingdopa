@@ -78,12 +78,22 @@
 }
 
 /* Asc/Desc */
-#sortOrder {
-  /*min-width: 50px;*/
+/*#sortOrder {
   max-width: 200px;
-  height: 25px; /* same as search */
+  height: 25px;
   font-size: 14px;
   text-align: center;
+}*/
+
+#sortOrder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  height: 25px;
+  font-size: 14px;
+  text-align: center;
+  padding: 0; /* optional: prevents shifting */
 }
     
     select, input, button {
