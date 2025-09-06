@@ -59,10 +59,16 @@
      flex-wrap: wrap;           /* allows wrapping on smaller screens */
     }
 
-.controls input[type="text"],
-.controls select,
+.controls input[type="text"] {
+  width: 200px;
+}
+
+.controls select {
+  width: 160px;
+}
+
 .controls button {
-  display: inline-block;     /* keep them side by side */
+  min-width: 100px;
 }
 
 /*
