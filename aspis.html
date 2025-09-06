@@ -65,12 +65,18 @@
   display: inline-block;     /* keep them side by side */
 }
 
-/* Search */
+/*
 .search-container {
   flex: 0 1 auto;
   max-width: 200px
-  height: 25px; /* unified height */
+  height: 25px;
   position: relative;
+}*/
+
+    .search-container {
+  position: relative;
+  min-width: 200px;  /* keeps input from shrinking too much */
+  max-width: 300px;  /* lets it grow a bit if you want */
 }
 
 /* Sort */
