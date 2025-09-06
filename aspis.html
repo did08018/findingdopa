@@ -28,9 +28,9 @@
       margin-bottom: 10px;
       font-size: 24px;
     }
-.search-container, #sortKey, #sortOrder {
-  min-width: 0;
-}
+    .search-container, #sortKey, #sortOrder {
+      min-width: 0;
+    }
     
     .home-button {
       display: block;
@@ -51,12 +51,27 @@
     }
 
     .controls {
+     display: flex;
+     justify-content: center;   /* centers the whole group */
+     align-items: center;       /* vertically aligns them */
+     gap: 12px;                 /* space between items */
+     margin-bottom: 10px;
+     flex-wrap: wrap;           /* allows wrapping on smaller screens */
+    }
+
+.controls input[type="text"],
+.controls select,
+.controls button {
+  display: inline-block;     /* keep them side by side */
+}
+    
+/*.controls {
   display: flex;
   justify-content: center;
-  align-items: center; /* ensures same vertical height alignment */
+  align-items: center;
   gap: 12px;
   margin-bottom: 10px;
-}
+  }*/
 
 /* Search */
 .search-container {
@@ -93,7 +108,7 @@
   padding: 0; /* optional: prevents shifting */
 }
     
-    select, input, button {
+    /*select, input, button {
       padding: 6px;
       border: 1px solid #ddd;
       border-radius: 4px;
@@ -101,12 +116,8 @@
       background: #fff;
       box-sizing: border-box;
     }
-    select, button {
-      /*width: 130px;*/
-    }
     input {
       flex: 1;
-      /*min-width: 180px;*/
       padding-right: 64px;
       border: 1px solid #ccc;
     }
@@ -115,7 +126,7 @@
       cursor: pointer;
       background: #EF9280;
       color: white;
-    }
+    }*/
     button:hover {
       background: #d87a6b;
     }
