@@ -289,7 +289,7 @@
   </div>
 
 <script>
-const data = [
+const treatments = [
 { id:169, name: "AG01", administration: "Oral / microbial capsule (investigational)", goal: "Microbiome modulation to reduce PD-associated GI inflammation / alpha-syn spread (investigational)", trialPhase: "Early-stage / exploratory (investigational; verify source)", link: "", tentativeMarketDate: "Unknown — limited public data; timeline depends on demonstrable clinical benefit and regulatory path" },
 { id:168, name: "BARI", administration: "Focused ultrasound / device or acronym for a procedure (context-dependent)", goal: "Device-based tremor reduction (if referring to thalamotomy/ focused ultrasound)", trialPhase: "Device-approved uses exist (essential tremor, PD tremor) — not a pharma trial", link: "", tentativeMarketDate: "Already in clinical use for selected indications (device-dependent)" },
 { id:167, name: "Pimaxiren", administration: "Oral (small molecule; investigational)", goal: "Modulate target X to improve motor / non-motor PD symptoms (investigational; verify)", trialPhase: "Preclinical / early clinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — preclinical/early-stage with no public timeline" },
@@ -461,103 +461,110 @@ const data = [
   { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" }
 ];
 
-  let currentSortKey = "name";
-  let sortAscending = false;
+// DOM elements
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('searchBtn');
+const clearBtn = document.getElementById('clearBtn');
+const sortKey = document.getElementById('sortKey');
+const sortOrderBtn = document.getElementById('sortOrder');
+const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
 
-  const searchInput = document.getElementById("search");
-  const clearBtn = document.getElementById("clearBtn");
-  const searchBtn = document.getElementById("searchBtn");
-  const sortKeySelect = document.getElementById("sortKey");
-  const sortOrderBtn = document.getElementById("sortOrder");
+// State
+let currentSortKey = 'name';
+let currentSortOrder = 'asc';
+let currentSearch = '';
 
-  function renderTable(dataToRender) {
-    const tbody = document.querySelector("#treatmentsTable tbody");
-    tbody.innerHTML = "";
+// Helper: Parse market date for sorting
+function parseMarketDate(val) {
+  if (!val) return Infinity;
 
-    const total = dataToRender.length;
+  // Extract the first line (before \n)
+  const firstLine = val.split('\n')[0].trim();
 
-    dataToRender.forEach((item, index) => {
-      const tr = document.createElement("tr");
+  // Handle special cases
+  if (firstLine === "Marketed") return -Infinity; // Sort first
+  if (firstLine === "Unlikely" || firstLine === "Unknown" || firstLine === "Discontinued") return Infinity; // Sort last
 
-      // numbering from bottom to top (1 at bottom)
-      const reverseIndex = total - index;
+  // Parse numeric year (e.g., "2027")
+  const year = parseInt(firstLine, 10);
+  if (!isNaN(year)) return year;
 
-      tr.innerHTML = `
-        <td>${reverseIndex}</td>
-        <td>${item.name}</td>
-        <td>${item.tentativeMarketDate}</td>
-        <td>${item.administration}</td>
-        <td>${item.goal}</td>
-        <td>${item.trialPhase}</td>
-        <td>${item.link ? `<a href="${item.link}" target="_blank">Link</a>` : ""}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
+  // Fallback for any unexpected format
+  return Infinity;
+}
 
-  function sortData(dataToSort) {
-    return dataToSort.sort((a, b) => {
-      let valA = a[currentSortKey] || "";
-      let valB = b[currentSortKey] || "";
+// Render table
+function renderTable() {
+  let filtered = treatments.filter(t =>
+    t.name.toLowerCase().includes(currentSearch.toLowerCase())
+  );
 
-      // handle date-ish values as strings
-      if (typeof valA === "string") valA = valA.toLowerCase();
-      if (typeof valB === "string") valB = valB.toLowerCase();
-
-      if (valA < valB) return sortAscending ? -1 : 1;
-      if (valA > valB) return sortAscending ? 1 : -1;
-      return 0;
-    });
-  }
-
-  function filterData() {
-    const searchTerm = searchInput.value.toLowerCase();
-    return data.filter(item =>
-      item.name.toLowerCase().includes(searchTerm) ||
-      (item.administration && item.administration.toLowerCase().includes(searchTerm)) ||
-      (item.goal && item.goal.toLowerCase().includes(searchTerm)) ||
-      (item.trialPhase && item.trialPhase.toLowerCase().includes(searchTerm)) ||
-      (item.tentativeMarketDate && item.tentativeMarketDate.toLowerCase().includes(searchTerm))
-    );
-  }
-
-  function updateTable() {
-    const filtered = filterData();
-    const sorted = sortData(filtered);
-    renderTable(sorted);
-  }
-
-  // search button
-  searchBtn.addEventListener("click", updateTable);
-
-  // live typing
-  searchInput.addEventListener("input", () => {
-    clearBtn.style.display = searchInput.value ? "inline-block" : "none";
-    updateTable();
+  filtered.sort((a, b) => {
+    if (currentSortKey === 'tentativeMarketDate') {
+      const aDate = parseMarketDate(a.tentativeMarketDate);
+      const bDate = parseMarketDate(b.tentativeMarketDate);
+      return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
+    }
+    // All others compared as strings (case-insensitive)
+    return currentSortOrder === 'desc'
+      ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
+      : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
   });
 
-  // clear search
-  clearBtn.addEventListener("click", () => {
-    searchInput.value = "";
-    clearBtn.style.display = "none";
-    updateTable();
+  tableBody.innerHTML = '';
+
+  const total = filtered.length;
+
+  filtered.forEach((t, index) => {
+    const reverseIndex = total - index; // numbering from bottom (1) to top (max)
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${reverseIndex}</td>
+      <td>${t.name}</td>
+      <td>${t.tentativeMarketDate}</td>
+      <td>${t.administration}</td>
+      <td>${t.goal}</td>
+      <td>${t.trialPhase}</td>
+      <td><a href="${t.link}" target="_blank">Link</a></td>
+    `;
+    tableBody.appendChild(row);
   });
 
-  // sort key dropdown
-  sortKeySelect.addEventListener("change", e => {
-    currentSortKey = e.target.value;
-    updateTable();
-  });
+  // Keep sort button label in sync after each render
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+}
 
-  // sort order button
-  sortOrderBtn.addEventListener("click", () => {
-    sortAscending = !sortAscending;
-    sortOrderBtn.textContent = sortAscending ? "↑ Asc" : "↓ Desc";
-    updateTable();
-  });
+function updateSearch() {
+  currentSearch = searchInput.value;
+  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
+  renderTable();
+}
 
-  // initial render
-  updateTable();
+searchInput.addEventListener('input', updateSearch);
+searchBtn.addEventListener('click', updateSearch);
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  currentSearch = '';
+  clearBtn.style.display = 'none';
+  renderTable();
+});
+
+sortKey.addEventListener('change', e => {
+  currentSortKey = e.target.value;
+  renderTable();
+});
+
+// Sort order button toggles direction
+sortOrderBtn.addEventListener('click', () => {
+  currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
+  renderTable();
+});
+
+// Initial: Sync button text and render
+sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+renderTable();
   
 <!--// DOM elements
 const searchInput = document.getElementById('search');
