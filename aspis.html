@@ -113,12 +113,6 @@
     button:hover {
       background: #d87a6b;
     }
-   /* .search-container {
-      position: relative;
-      flex: 1;
-      min-width: 200px;
-      max-width: 200px;
-    }*/
     .search-container input {
       width: 100%;
       padding-right: 64px;
@@ -198,31 +192,34 @@
       text-decoration: underline;
     }
     th:nth-child(1), td:nth-child(1) { /* Treatment */
-      width: 80px;
+      width: 70px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
       word-wrap: break-word;
     }
     th:nth-child(2), td:nth-child(2) { /* Tentative Market Date */
-      width: 137px;
+      width: 70px;
       white-space: pre-line; /* Ensure line breaks display */
     }
     th:nth-child(3), td:nth-child(3) { /* Administration */
-      width: 108px;
+      width: 95px;
     }
     th:nth-child(4), td:nth-child(4) { /* Goal */
-      width: 160px;
+      width: 90px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
       word-wrap: break-word;
     }
     th:nth-child(5), td:nth-child(5) { /* Trial Phase */
-      width: 80px;
+      width: 185px;
     }
     th:nth-child(6), td:nth-child(6) { /* Link */
-      width: 35px;
+      width: 85px;
+    }
+    th:nth-child(7), td:nth-child(6) { /* Link */
+      width: 30px;
     }
     @media (max-width: 600px) {
       th, td {
@@ -250,6 +247,27 @@
         padding-right: 60px;
       }
     }
+    /* First column (#) */
+#treatmentsTable th:first-child,
+#treatmentsTable td:first-child {
+  width: 4ch;         /* enough for 3 digits */
+  max-width: 4ch;
+  text-align: center; /* center the numbers */
+  white-space: nowrap;
+}
+    /* Allow wrapping only for headers */
+#treatmentsTable th {
+  white-space: normal;   /* allow multi-line */
+  word-wrap: break-word; /* wrap long words if needed */
+  text-align: center;    /* keep headers centered */
+  padding: 4px 6px;      /* tighter padding so wrapped text looks neat */
+}
+
+/* Keep cells constrained with ellipsis */
+#treatmentsTable td {
+  white-space: normal;   /* let row text wrap */
+  word-wrap: break-word;
+}
   </style>
 </head>
 <body>
@@ -313,7 +331,7 @@ const treatments = [
 { id:149, name: "Doxycycline", administration: "Oral", goal: "Antibiotic with reported anti-inflammatory / anti-aggregant effects in experimental neuro models — repurposing interest", trialPhase: "Small trials / preclinical studies; investigational in neurodegeneration", link: "", tentativeMarketDate: "Marketed for infections; PD use investigational" },
 { id:148, name: "Lenitrodon", administration: "Investigational (name suggests small molecule or biologic)", goal: "Company/compound-specific investigational agent for PD (verify)", trialPhase: "Preclinical / early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — limited public information / company-coded" },
 { id:147, name: "CT-413", administration: "Investigational (likely oral/IV)", goal: "Company-coded investigational PD candidate (verify)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded, no public timeline" },
-{ id:146, name: "A-opamine", administration: "Oral or parenteral (brand/compound name ambiguous)", goal: "Dopamine agonist / dopaminergic agent candidate (investigational or alternative name)", trialPhase: "Unclear; verify exact identity", link: "", tentativeMarketDate: "Unknown — ambiguous name / needs verification" },
+/*{ id:146, name: "A-opamine", administration: "Oral or parenteral (brand/compound name ambiguous)", goal: "Dopamine agonist / dopaminergic agent candidate (investigational or alternative name)", trialPhase: "Unclear; verify exact identity", link: "", tentativeMarketDate: "Unknown — ambiguous name / needs verification" },*/
 { id:145, name: "Nicergoline", administration: "Oral", goal: "Ergot-derived vasoactive agent historically used for cognitive symptoms / cerebrovascular insufficiency; limited and mixed data in neurodegeneration", trialPhase: "Approved in some countries for cognitive disorders historically; PD use investigational/limited", link: "", tentativeMarketDate: "Marketed in some countries (not PD-specific); repurposed PD use investigational" },
 { id:144, name: "NYX-458", administration: "Oral (small molecule NMDA modulator from NeuroNascent/Novartis? / verify)", goal: "NMDA receptor modulator targeting cognitive function; potential for non-motor PD symptoms", trialPhase: "Early clinical / exploratory (investigational; verify)", link: "", tentativeMarketDate: "Unknown — early-stage; timeline depends on trial outcomes" },
 { id:143, name: "AV-101", administration: "Oral prodrug / small molecule (targeting NMDA glycine site)", goal: "Modulate glutamatergic signaling; studied for depression / neuro disorders — potential off-label interest for PD non-motor symptoms", trialPhase: "Clinical trials in depression; PD-specific data limited", link: "", tentativeMarketDate: "Unknown for PD — marketed/advanced in other indications dependent on sponsor plans" },
@@ -565,105 +583,6 @@ sortOrderBtn.addEventListener('click', () => {
 // Initial: Sync button text and render
 sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
 renderTable();
-  
-<!--// DOM elements
-const searchInput = document.getElementById('search');
-const searchBtn = document.getElementById('searchBtn');
-const clearBtn = document.getElementById('clearBtn');
-const sortKey = document.getElementById('sortKey');
-const sortOrderBtn = document.getElementById('sortOrder');
-const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
-
-// State
-let currentSortKey = 'name';
-let currentSortOrder = 'asc';
-let currentSearch = '';
-
-// Helper: Parse market date for sorting
-function parseMarketDate(val) {
-  if (!val) return Infinity;
-
-  // Extract the first line (before \n)
-  const firstLine = val.split('\n')[0].trim();
-
-  // Handle special cases
-  if (firstLine === "Marketed") return -Infinity; // Sort first
-  if (firstLine === "Unlikely" || firstLine === "Unknown" || firstLine === "Discontinued") return Infinity; // Sort last
-
-  // Parse numeric year (e.g., "2027")
-  const year = parseInt(firstLine, 10);
-  if (!isNaN(year)) return year;
-
-  // Fallback for any unexpected format
-  return Infinity;
-}
-
-// Render table
-function renderTable() {
-  let filtered = treatments.filter(t =>
-    t.name.toLowerCase().includes(currentSearch.toLowerCase())
-  );
-
-  filtered.sort((a, b) => {
-    if (currentSortKey === 'tentativeMarketDate') {
-      const aDate = parseMarketDate(a.tentativeMarketDate);
-      const bDate = parseMarketDate(b.tentativeMarketDate);
-      return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
-    }
-    // All others compared as strings (case-insensitive)
-    return currentSortOrder === 'desc'
-      ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
-      : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
-  });
-
-  tableBody.innerHTML = '';
-  filtered.forEach(t => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${t.name}</td>
-      <td>${t.tentativeMarketDate}</td>
-      <td>${t.administration}</td>
-      <td>${t.goal}</td>
-      <td>${t.trialPhase}</td>
-      <td><a href="${t.link}" target="_blank">Link</a></td>
-    `;
-    tableBody.appendChild(row);
-  });
-
-  // Keep sort button label in sync after each render
-  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-}
-
-function updateSearch() {
-  currentSearch = searchInput.value;
-  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
-  renderTable();
-}
-
-searchInput.addEventListener('input', updateSearch);
-searchBtn.addEventListener('click', updateSearch);
-
-clearBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  currentSearch = '';
-  clearBtn.style.display = 'none';
-  renderTable();
-});
-
-sortKey.addEventListener('change', e => {
-  currentSortKey = e.target.value;
-  renderTable();
-});
-
-// Sort order button toggles direction
-sortOrderBtn.addEventListener('click', () => {
-  currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
-  renderTable();
-});
-
-// Initial: Sync button text and render
-sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-renderTable();-->
 </script>
 </body>
 </html>
