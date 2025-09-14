@@ -255,6 +255,20 @@
   text-align: center; /* center the numbers */
   white-space: nowrap;
 }
+    /* Allow wrapping only for headers */
+#treatmentsTable th {
+  white-space: normal;   /* allow multi-line */
+  word-wrap: break-word; /* wrap long words if needed */
+  text-align: center;    /* keep headers centered */
+  padding: 4px 6px;      /* tighter padding so wrapped text looks neat */
+}
+
+/* Keep cells constrained with ellipsis */
+#treatmentsTable td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   </style>
 </head>
 <body>
