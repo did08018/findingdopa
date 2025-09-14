@@ -274,6 +274,7 @@
       <table id="treatmentsTable">
         <thead>
           <tr>
+            <th>#</th>
             <th>Treatment</th>
             <th>Tentative Market Date</th>
             <th>Administration</th>
@@ -460,7 +461,110 @@ const treatments = [
   { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" }
 ];
 
-// DOM elements
+  const data = [
+    // Insert your JSON objects here, e.g.
+    // { id:169, name: "AG01", administration: "...", goal: "...", trialPhase: "...", link: "", tentativeMarketDate: "Unknown" },
+  ];
+
+  let currentSortKey = "name";
+  let sortAscending = false;
+
+  const searchInput = document.getElementById("search");
+  const clearBtn = document.getElementById("clearBtn");
+  const searchBtn = document.getElementById("searchBtn");
+  const sortKeySelect = document.getElementById("sortKey");
+  const sortOrderBtn = document.getElementById("sortOrder");
+
+  function renderTable(dataToRender) {
+    const tbody = document.querySelector("#treatmentsTable tbody");
+    tbody.innerHTML = "";
+
+    const total = dataToRender.length;
+
+    dataToRender.forEach((item, index) => {
+      const tr = document.createElement("tr");
+
+      // numbering from bottom to top (1 at bottom)
+      const reverseIndex = total - index;
+
+      tr.innerHTML = `
+        <td>${reverseIndex}</td>
+        <td>${item.name}</td>
+        <td>${item.tentativeMarketDate}</td>
+        <td>${item.administration}</td>
+        <td>${item.goal}</td>
+        <td>${item.trialPhase}</td>
+        <td>${item.link ? `<a href="${item.link}" target="_blank">Link</a>` : ""}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function sortData(dataToSort) {
+    return dataToSort.sort((a, b) => {
+      let valA = a[currentSortKey] || "";
+      let valB = b[currentSortKey] || "";
+
+      // handle date-ish values as strings
+      if (typeof valA === "string") valA = valA.toLowerCase();
+      if (typeof valB === "string") valB = valB.toLowerCase();
+
+      if (valA < valB) return sortAscending ? -1 : 1;
+      if (valA > valB) return sortAscending ? 1 : -1;
+      return 0;
+    });
+  }
+
+  function filterData() {
+    const searchTerm = searchInput.value.toLowerCase();
+    return data.filter(item =>
+      item.name.toLowerCase().includes(searchTerm) ||
+      (item.administration && item.administration.toLowerCase().includes(searchTerm)) ||
+      (item.goal && item.goal.toLowerCase().includes(searchTerm)) ||
+      (item.trialPhase && item.trialPhase.toLowerCase().includes(searchTerm)) ||
+      (item.tentativeMarketDate && item.tentativeMarketDate.toLowerCase().includes(searchTerm))
+    );
+  }
+
+  function updateTable() {
+    const filtered = filterData();
+    const sorted = sortData(filtered);
+    renderTable(sorted);
+  }
+
+  // search button
+  searchBtn.addEventListener("click", updateTable);
+
+  // live typing
+  searchInput.addEventListener("input", () => {
+    clearBtn.style.display = searchInput.value ? "inline-block" : "none";
+    updateTable();
+  });
+
+  // clear search
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+    updateTable();
+  });
+
+  // sort key dropdown
+  sortKeySelect.addEventListener("change", e => {
+    currentSortKey = e.target.value;
+    updateTable();
+  });
+
+  // sort order button
+  sortOrderBtn.addEventListener("click", () => {
+    sortAscending = !sortAscending;
+    sortOrderBtn.textContent = sortAscending ? "↑ Asc" : "↓ Desc";
+    updateTable();
+  });
+
+  // initial render
+  updateTable();
+  
+<!--// DOM elements
 const searchInput = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -557,7 +661,7 @@ sortOrderBtn.addEventListener('click', () => {
 
 // Initial: Sync button text and render
 sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-renderTable();
+renderTable();-->
 </script>
 </body>
 </html>
