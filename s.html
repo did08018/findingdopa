@@ -265,9 +265,8 @@
 
 /* Keep cells constrained with ellipsis */
 #treatmentsTable td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;   /* let row text wrap */
+  word-wrap: break-word;
 }
   </style>
 </head>
