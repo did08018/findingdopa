@@ -612,12 +612,16 @@ strong {
     </div>
   </main>
 
-  <script type="module">
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
-    from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { 
+    getFirestore, doc, setDoc, collection, onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { 
+    getAuth, signInAnonymously 
+  } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-  // --- Firebase config (unchanged) ---
+  // --- Firebase config ---
   const firebaseConfig = {
     apiKey: "AIzaSyBEg9yQ6NkcbT2xzmJTaZekUenOzyFQ6dE",
     authDomain: "dopeaf-57bc2.firebaseapp.com",
@@ -628,26 +632,24 @@ strong {
     measurementId: "G-2VF4XB1HVF"
   };
 
+  // --- Init Firebase ---
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const auth = getAuth(app);
 
-import { getAuth, signInAnonymously } from "firebase/auth";
+  // --- Anonymous login ---
+  signInAnonymously(auth)
+    .then(() => console.log("✅ Signed in anonymously:", auth.currentUser.uid))
+    .catch((err) => console.error("❌ Anonymous login failed:", err));
 
-const auth = getAuth();
-signInAnonymously(auth)
-  .then(() => console.log("Signed in anonymously"))
-  .catch((err) => console.error("Anonymous login failed:", err));
-    
   // --- Sorting state ---
   const scores = {};
   let containerEl = null;
 
   function ensureVoteContainer() {
-    // Try to find an existing wrapper
     containerEl = document.getElementById("vote-container");
     if (containerEl) return containerEl;
 
-    // If none, create one and move all .votable into it
     const main = document.querySelector("main");
     const firstVotable = document.querySelector(".votable");
     if (!main || !firstVotable) return null;
@@ -656,21 +658,17 @@ signInAnonymously(auth)
     containerEl.id = "vote-container";
     main.insertBefore(containerEl, firstVotable);
 
-    // Move all votables in
     document.querySelectorAll(".votable").forEach(el => containerEl.appendChild(el));
-
     return containerEl;
   }
 
   function sortVotables() {
-    // Be defensive: no crashes if container missing
     if (!containerEl) containerEl = ensureVoteContainer();
     if (!containerEl) return;
 
     const items = Array.from(containerEl.children).filter(el => el.classList.contains("votable"));
     items.sort((a, b) => (scores[b.id] || 0) - (scores[a.id] || 0));
 
-    // Re-append using a fragment to avoid layout thrash
     const frag = document.createDocumentFragment();
     items.forEach(el => frag.appendChild(el));
     containerEl.appendChild(frag);
@@ -679,36 +677,42 @@ signInAnonymously(auth)
   // --- Voting ---
   async function vote(contentId, type) {
     try {
-      if (localStorage.getItem(`voted-${contentId}`)) {
-        alert("You have already voted!");
+      const user = auth.currentUser;
+      if (!user) {
+        alert("You must be signed in to vote.");
         return;
       }
 
-      const ref = doc(db, "votes", contentId);
-      const snap = await getDoc(ref);
+      // store vote under votes/{contentId}/userVotes/{uid}
+      const ref = doc(db, "votes", contentId, "userVotes", user.uid);
 
-      if (snap.exists()) {
-        await updateDoc(ref, { [type]: increment(1) });
-      } else {
-        await setDoc(ref, { up: 0, down: 0, [type]: 1 });
-      }
+      await setDoc(ref, {
+        userId: user.uid,
+        vote: type, // "up" or "down"
+        timestamp: new Date()
+      });
 
-      localStorage.setItem(`voted-${contentId}`, type);
+      console.log("Vote recorded:", contentId, type);
     } catch (error) {
       console.error("Error voting:", error);
       alert("Failed to record vote. Please try again.");
     }
   }
 
+  // --- Listen for votes ---
   function listenVotes(contentId) {
     try {
-      const ref = doc(db, "votes", contentId);
-      onSnapshot(ref, (docSnap) => {
+      const ref = collection(db, "votes", contentId, "userVotes");
+
+      onSnapshot(ref, (snapshot) => {
         let up = 0, down = 0;
-        if (docSnap.exists()) {
-          up = docSnap.data().up || 0;
-          down = docSnap.data().down || 0;
-        }
+
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          if (data.vote === "up") up++;
+          if (data.vote === "down") down++;
+        });
+
         const upEl = document.getElementById(`up-${contentId}`);
         const downEl = document.getElementById(`down-${contentId}`);
         if (upEl) upEl.innerText = up;
@@ -724,17 +728,11 @@ signInAnonymously(auth)
     }
   }
 
+  // --- Init ---
   function init() {
-    // Make sure the container exists (or auto-create it)
     ensureVoteContainer();
-
-    // Find all votable IDs automatically
     const ids = Array.from(document.querySelectorAll(".votable")).map(el => el.id);
-
-    // Start listeners
     ids.forEach(listenVotes);
-
-    // Initial sort (in case some docs already have votes)
     sortVotables();
   }
 
@@ -744,15 +742,13 @@ signInAnonymously(auth)
     init();
   }
 
-  // Expose globally so inline onclick handlers work with type="module"
+  // Expose globally for onclick handlers
   window.vote = vote;
   window.listenVotes = listenVotes;
 </script>
 
-  <script>
-    
-  // Listen to each vote
-
+<script>
+  // Start listeners for your content IDs
   listenVotes("sentence1");
   listenVotes("sentence2");
   listenVotes("sentence3");
@@ -763,7 +759,6 @@ signInAnonymously(auth)
   listenVotes("sentence8");
   listenVotes("sentence9");
   listenVotes("sentence10");
-
 </script>
  </body>
 </html>
