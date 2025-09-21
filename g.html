@@ -205,6 +205,21 @@
         padding-right: 60px;
       }
     }
+
+.table-buttons {
+  display: flex;
+  gap: 8px;
+}
+.table-buttons button {
+  width: auto; /* Allow buttons to size based on content */
+  padding: 6px 12px;
+}
+.table-buttons .active-table-btn {
+  background-color: #d87a6b; /* A slightly different color for the active button */
+  border: 1px solid #d87a6b;
+}
+
+    
   </style>
 </head>
 <body>
@@ -224,7 +239,16 @@
         <option value="trialPhase">Sort by Trial Phase</option>
       </select>
       <button id="sortOrder">↓ Desc</button>
-      <button id="switchTableBtn" data-table="table1">Switch to Table 2</button>
+     <!-- <button id="switchTableBtn" data-table="table1">Switch to Table 2</button>-->
+
+<div class="controls">
+  <div class="table-buttons">
+    <button id="showTable1Btn" class="active-table-btn">Table 1</button>
+    <button id="showTable2Btn">Table 2</button>
+  </div>
+</div>
+
+      
     </div>
     <div class="table-wrapper">
       <table id="treatmentsTable">
@@ -520,17 +544,50 @@ sortOrderBtn.addEventListener('click', () => {
   renderTable();
 });
 
-switchTableBtn.addEventListener('click', () => {
-  const currentTable = switchTableBtn.dataset.table;
-  switchTableBtn.dataset.table = currentTable === 'table1' ? 'table2' : 'table1';
-  // Reset search and sort when switching tables for a clean slate
-  searchInput.value = '';
-  currentSearch = '';
-  currentSortKey = 'name';
-  currentSortOrder = 'asc';
-  sortKey.value = 'name';
+// New DOM elements
+const showTable1Btn = document.getElementById('showTable1Btn');
+const showTable2Btn = document.getElementById('showTable2Btn');
+const switchTableBtn = document.getElementById('switchTableBtn'); // This line is for reference only, you should remove it from your old code.
+
+// Function to handle showing a table and updating button styles
+function showTable(tableId) {
+  // Update the dataset to reflect the current table
+  showTable1Btn.dataset.table = tableId;
+  
+  // Update button active states
+  if (tableId === 'table1') {
+    showTable1Btn.classList.add('active-table-btn');
+    showTable2Btn.classList.remove('active-table-btn');
+  } else {
+    showTable1Btn.classList.remove('active-table-btn');
+    showTable2Btn.classList.add('active-table-btn');
+  }
+  
+  // Re-render the table with the new data
   renderTable();
+}
+
+// Event listeners for the new buttons
+showTable1Btn.addEventListener('click', () => {
+  showTable('table1');
 });
+
+showTable2Btn.addEventListener('click', () => {
+  showTable('table2');
+});
+
+  
+//switchTableBtn.addEventListener('click', () => {
+ // const currentTable = switchTableBtn.dataset.table;
+//  switchTableBtn.dataset.table = currentTable === 'table1' ? 'table2' : 'table1';
+  // Reset search and sort when switching tables for a clean slate
+ // searchInput.value = '';
+  ::currentSearch = '';
+//  currentSortKey = 'name';
+ // currentSortOrder = 'asc';
+ // sortKey.value = 'name';
+ // renderTable();
+/.});-->
 
 // Initial render
 renderTable();
