@@ -442,45 +442,21 @@ const treatments = [
   { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" }
 ];
 
-const treatments_second_table = [
-  // New data for a second table
-  { id: 201, name: "Novel Gene Therapy X", administration: "Intracerebral injection", goal: "Gene-editing to correct PD-related mutations.", trialPhase: "Preclinical", link: "#", tentativeMarketDate: "2035+" },
-  { id: 202, name: "Immunotherapy Y", administration: "Intravenous infusion", goal: "Active immunotherapy to clear alpha-synuclein aggregates.", trialPhase: "Phase 1/2a", link: "#", tentativeMarketDate: "2030+" },
-  { id: 203, name: "Stem Cell Z", administration: "Stereotactic transplantation", goal: "Replace lost dopamine neurons with iPSC-derived cells.", trialPhase: "Phase 1", link: "#", tentativeMarketDate: "2032+" },
-  { id: 204, name: "Anti-inflammatory A", administration: "Oral", goal: "Reduce neuroinflammation to slow disease progression.", trialPhase: "Phase 2b", link: "#", tentativeMarketDate: "2028+" },
-  { id: 205, name: "Wearable Device B", administration: "External device", goal: "Non-invasive tremor reduction via neuromodulation.", trialPhase: "Pilot Study", link: "#", tentativeMarketDate: "2027+" }
-];
+// Remove this line as the button no longer exists:
+// const switchTableBtn = document.getElementById('switchTableBtn');
 
-// DOM elements
-const searchInput = document.getElementById('search');
-const searchBtn = document.getElementById('searchBtn');
-const clearBtn = document.getElementById('clearBtn');
-const sortKey = document.getElementById('sortKey');
-const sortOrderBtn = document.getElementById('sortOrder');
-const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
-//const switchTableBtn = document.getElementById('switchTableBtn');
+// New DOM elements
+const showTable1Btn = document.getElementById('showTable1Btn');
+const showTable2Btn = document.getElementById('showTable2Btn');
 
-// State
-let currentSortKey = 'name';
-let currentSortOrder = 'asc';
-let currentSearch = '';
-
-// Helper: Parse market date for sorting
-function parseMarketDate(val) {
-  if (!val) return Infinity;
-  const firstLine = val.split('\n')[0].trim();
-  if (firstLine === "Marketed" || firstLine.includes("Approved") || firstLine.includes("Available")) return -Infinity;
-  if (firstLine === "Unlikely" || firstLine.includes("Unknown") || firstLine.includes("Discontinued") || firstLine.includes("N/A")) return Infinity;
-  const yearMatch = firstLine.match(/\d{4}/);
-  if (yearMatch) return parseInt(yearMatch[0], 10);
-  return Infinity;
-}
+// A simple state variable to track the current table
+let currentTableId = 'table1'; // Default to Table 1
 
 // Render table
 function renderTable() {
-  const currentTable = switchTableBtn.dataset.table === 'table1' ? treatments : treatments_second_table;
+  const currentTableData = currentTableId === 'table1' ? treatments : treatments_second_table;
 
-  let filtered = currentTable.filter(t =>
+  let filtered = currentTableData.filter(t =>
     t.name.toLowerCase().includes(currentSearch.toLowerCase())
   );
 
@@ -490,7 +466,6 @@ function renderTable() {
       const bDate = parseMarketDate(b.tentativeMarketDate);
       return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
     }
-    // All others compared as strings (case-insensitive)
     return currentSortOrder === 'desc'
       ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
       : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
@@ -515,46 +490,12 @@ function renderTable() {
   });
 
   sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
-  switchTableBtn.textContent = switchTableBtn.dataset.table === 'table1' ? 'Switch to Table 2' : 'Switch to Table 1';
 }
-
-function updateSearch() {
-  currentSearch = searchInput.value;
-  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
-  renderTable();
-}
-
-searchInput.addEventListener('input', updateSearch);
-searchBtn.addEventListener('click', updateSearch);
-
-clearBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  currentSearch = '';
-  clearBtn.style.display = 'none';
-  renderTable();
-});
-
-sortKey.addEventListener('change', e => {
-  currentSortKey = e.target.value;
-  renderTable();
-});
-
-sortOrderBtn.addEventListener('click', () => {
-  currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
-  renderTable();
-});
-
-// New DOM elements
-const showTable1Btn = document.getElementById('showTable1Btn');
-const showTable2Btn = document.getElementById('showTable2Btn');
-//const switchTableBtn = document.getElementById('switchTableBtn'); // This line is for reference only, you should remove it from your old code.
 
 // Function to handle showing a table and updating button styles
 function showTable(tableId) {
-  // Update the dataset to reflect the current table
-  showTable1Btn.dataset.table = tableId;
+  currentTableId = tableId; // Set the new current table ID
   
-  // Update button active states
   if (tableId === 'table1') {
     showTable1Btn.classList.add('active-table-btn');
     showTable2Btn.classList.remove('active-table-btn');
@@ -563,7 +504,6 @@ function showTable(tableId) {
     showTable2Btn.classList.add('active-table-btn');
   }
   
-  // Re-render the table with the new data
   renderTable();
 }
 
@@ -576,21 +516,9 @@ showTable2Btn.addEventListener('click', () => {
   showTable('table2');
 });
 
-  
-//switchTableBtn.addEventListener('click', () => {
- // const currentTable = switchTableBtn.dataset.table;
-//  switchTableBtn.dataset.table = currentTable === 'table1' ? 'table2' : 'table1';
-  // Reset search and sort when switching tables for a clean slate
- // searchInput.value = '';
-  //::currentSearch = '';
-//  currentSortKey = 'name';
- // currentSortOrder = 'asc';
- // sortKey.value = 'name';
- // renderTable();
-/.});-->
-
 // Initial render
-renderTable();
+showTable(currentTableId); // Call showTable on initial load to set up the default
+
 </script>
 </body>
 </html>
