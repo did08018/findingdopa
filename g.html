@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latest Parkinson’s Disease treatments, including stem cell therapies and inflammation reduction.">
+  <title>Latest PD Treatments</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fef6f5;
+      margin: 0;
+      padding: 10px;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #EF9280;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .home-button {
+      display: block;
+      text-align: center;
+      margin: 10px auto;
+      padding: 6px 12px;
+      background: #EF9280;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100px;
+    }
+    .home-button:hover {
+      background: #d87a6b;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .search-container {
+      flex: 0 1 auto;
+      max-width: 200px;
+      width: 100%;
+      height: 25px;
+      position: relative;
+    }
+    #sortKey, #sortOrder, #switchTableBtn {
+      max-width: 200px;
+      height: 25px;
+    }
+    select, input, button {
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    select, button {
+      width: 130px;
+    }
+    input {
+      flex: 1;
+      padding-right: 64px;
+      border: 1px solid #ccc;
+    }
+    button {
+      border: none;
+      cursor: pointer;
+      background: #EF9280;
+      color: white;
+    }
+    button:hover {
+      background: #d87a6b;
+    }
+    .search-container input {
+      width: 100%;
+      padding-right: 64px;
+      height: 25px;
+      box-sizing: border-box;
+    }
+    .search-container #clearBtn, .search-container #searchBtn {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      padding: 0;
+    }
+    .search-container #clearBtn {
+      right: 30px;
+      background: transparent;
+      color: #333;
+      border: none;
+      cursor: pointer;
+      border-right: 1px solid #ddd;
+    }
+    .search-container #searchBtn {
+      right: 0;
+      background: #EF9280;
+      border: none;
+      border-radius: 0 3px 3px 0;
+      color: white;
+      cursor: pointer;
+    }
+    .search-container #searchBtn::before {
+      content: '🔍';
+    }
+    .search-container #clearBtn:hover {
+      background: #f0f0f0;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td, th {
+      white-space: normal;
+      word-wrap: break-word;
+      vertical-align: top;
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #EF9280;
+      color: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    th:hover {
+      background: #d87a6b;
+    }
+    tr:nth-child(even) {
+      background: #fff5f3;
+    }
+    tr:hover {
+      background: #ffe6e2;
+    }
+    a {
+      color: #EF9280;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    th:nth-child(1), td:nth-child(1) {
+      width: 4ch;
+      max-width: 4ch;
+      text-align: center;
+      white-space: nowrap;
+    }
+    #treatmentsTable th {
+      white-space: normal;
+      word-wrap: break-word;
+      text-align: center;
+      padding: 4px 6px;
+    }
+    #treatmentsTable td {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 12px;
+        padding: 4px;
+      }
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      select, button {
+        width: 100%;
+      }
+      .search-container {
+        min-width: auto;
+      }
+      .search-container #searchBtn, .search-container #clearBtn {
+        width: 28px;
+      }
+      .search-container #clearBtn {
+        right: 28px;
+      }
+      input {
+        padding-right: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>The Shield & The Snake *</h1>
+    <a href="/" class="home-button">Finding Dopa</a>
+    <div class="controls">
+      <div class="search-container">
+        <input id="search" type="text" placeholder="Search Treatment...">
+        <button id="clearBtn" style="display: none;">✕</button>
+        <button id="searchBtn"></button>
+      </div>
+      <select id="sortKey">
+        <option value="name">Sort by Treatment</option>
+        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
+        <option value="administration">Sort by Administration</option>
+        <option value="trialPhase">Sort by Trial Phase</option>
+      </select>
+      <button id="sortOrder">↓ Desc</button>
+      <button id="switchTableBtn" data-table="table1">Switch to Table 2</button>
+    </div>
+    <div class="table-wrapper">
+      <table id="treatmentsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Treatment</th>
+            <th>Tentative Market Date</th>
+            <th>Administration</th>
+            <th>Goal</th>
+            <th>Trial Phase</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p>* The Shield & The Snake, I cannot tell them apart, yet I walk with both.</p>
+  </div>
+
+<script>
+const treatments = [
+  // Existing data for Table 1
+  { id: 169, name: "AG01", administration: "Oral / microbial capsule (investigational)", goal: "Microbiome modulation to reduce PD-associated GI inflammation / alpha-syn spread (investigational)", trialPhase: "Early-stage / exploratory (investigational; verify source)", link: "", tentativeMarketDate: "Unknown — limited public data; timeline depends on demonstrable clinical benefit and regulatory path" },
+  { id: 168, name: "BARI", administration: "Focused ultrasound / device or acronym for a procedure (context-dependent)", goal: "Device-based tremor reduction (if referring to thalamotomy/ focused ultrasound)", trialPhase: "Device-approved uses exist (essential tremor, PD tremor) — not a pharma trial", link: "", tentativeMarketDate: "Already in clinical use for selected indications (device-dependent)" },
+  { id: 167, name: "Pimaxiren", administration: "Oral (small molecule; investigational)", goal: "Modulate target X to improve motor / non-motor PD symptoms (investigational; verify)", trialPhase: "Preclinical / early clinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — preclinical/early-stage with no public timeline" },
+  { id: 166, name: "A-oxycodone", administration: "Oral opioid formulation (investigational/variant)", goal: "Analgesia for PD-related pain (non-motor symptom management)", trialPhase: "Not PD-specific approved drug; use limited by opioid risks", link: "", tentativeMarketDate: "N/A (opioids already marketed for pain)" },
+  { id: 165, name: "AAG10", administration: "Oral small molecule (investigational)", goal: "Modifier of pathway X to reduce neurodegeneration (investigational; verify)", trialPhase: "Preclinical / early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — limited public data / preclinical" },
+  { id: 164, name: "DAAI-P", administration: "Oral or parenteral (investigational)", goal: "Dopamine agonist / receptor-targeting strategy to improve motor symptoms (investigational)", trialPhase: "Early-stage (investigational; verify)", link: "", tentativeMarketDate: "Unknown — depends on clinical progression and regulatory filing" },
+  { id: 163, name: "Ondansetron", administration: "Oral, sublingual, IV", goal: "5-HT3 antagonist used for nausea; sometimes studied for PD-related nausea and non-motor symptoms", trialPhase: "Approved for nausea; repurposing studies for PD symptomatic management (small trials / observational)", link: "https://www.ncbi.nlm.nih.gov/pmc/articles/ (various reviews)", tentativeMarketDate: "Marketed (already available for other indications)" },
+  { id: 162, name: "Pyridostigmine", administration: "Oral", goal: "Acetylcholinesterase inhibitor to improve autonomic dysfunction (orthostatic hypotension/gastric motility) in PD", trialPhase: "Already approved for myasthenia gravis; off-label/repurposing use in autonomic symptoms (small studies)", link: "", tentativeMarketDate: "Marketed (available for other indications; PD use is off-label/investigational)" },
+  { id: 161, name: "CLP50036", administration: "Investigational (likely oral/parenteral)", goal: "Company-coded agent; proposed disease-modifying or symptomatic PD candidate (investigational; verify)", trialPhase: "Preclinical/early clinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — company-coded with no public timeline" },
+  { id: 160, name: "SQZ herbal mixtures", administration: "Oral herbal formulations / supplements", goal: "Symptomatic or neuroprotective claims via traditional medicine blends (complementary therapy)", trialPhase: "Supplement / alternative therapy — limited controlled clinical trial data", link: "", tentativeMarketDate: "N/A (supplements available depending on region; not a regulated PD therapeutic)" },
+  { id: 159, name: "Sucvetamide", administration: "Oral (investigational)", goal: "Small molecule modulating neurotransmission/neuroprotection (investigational; verify)", trialPhase: "Early-phase / preclinical (investigational)", link: "", tentativeMarketDate: "Unknown — preclinical/early-stage with no public timeline" },
+  { id: 158, name: "Donepezil", administration: "Oral", goal: "Acetylcholinesterase inhibitor — used for cognitive impairment; sometimes used in PD dementia / cognitive symptoms", trialPhase: "Approved for Alzheimer's dementia; used off-label or indicated in PD dementia in some guidelines", link: "https://www.fda.gov/drugs", tentativeMarketDate: "Marketed (already approved for dementia)" },
+  { id: 157, name: "CST-107", administration: "Investigational (company code; route TBD)", goal: "Likely cellular therapy or biologic (investigational; verify)", trialPhase: "Early/preclinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — company-coded, no public timeline" },
+  { id: 156, name: "CST-103", administration: "Investigational (company code; route TBD)", goal: "Likely cellular therapy / engineered cell candidate (investigational)", trialPhase: "Preclinical / early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — company-coded, timeline unclear" },
+  { id: 155, name: "Montelukast", administration: "Oral", goal: "Leukotriene receptor antagonist with proposed neuroinflammation-modulating properties — investigated as repurposed therapy for neurodegeneration including PD", trialPhase: "Preclinical and small observational/epidemiologic studies; early repurposing interest", link: "PubMed / repurposing reviews", tentativeMarketDate: "Marketed for asthma; PD use investigational (no clear market timeline)" },
+  { id: 154, name: "UC80222", administration: "Investigational (company code; route TBD)", goal: "Company candidate — likely disease-modifying or symptomatic; limited public data (verify)", trialPhase: "Preclinical/early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — limited public information" },
+  { id: 153, name: "Botulinum Toxin", administration: "Local injection (intramuscular)", goal: "Treat focal dystonia, sialorrhea, tremor or dystonic postures in PD (symptomatic)", trialPhase: "Approved for many indications; used in PD symptom management clinically", link: "https://www.fda.gov (various botulinum toxin product pages)", tentativeMarketDate: "Marketed (already in clinical use)" },
+  { id: 152, name: "Methylphenidate", administration: "Oral", goal: "Used for fatigue, apathy, or attention problems in PD (symptomatic/repurposed use)", trialPhase: "Used off-label in PD for selected symptoms; some trials have evaluated benefits", link: "", tentativeMarketDate: "Marketed (for ADHD); PD use investigational/off-label" },
+  { id: 151, name: "Folic Acid", administration: "Oral supplement", goal: "Nutritional support; B-vitamin to reduce homocysteine (theoretical) — supportive, not disease-modifying", trialPhase: "Supplement; not regulated as a PD therapeutic", link: "", tentativeMarketDate: "Marketed as supplement" },
+  { id: 150, name: "SAGE-718", administration: "Oral small molecule (NMDA modulatory agent)", goal: "Cognitive and neuropsychiatric symptom modulation (investigational; SAGE Therapeutics pipeline)", trialPhase: "Clinical trials for cognitive disorders; limited PD-specific data — early trials/phase 2 in other neuro indications (verify PD trials)", link: "https://www.sagerx.com/ (company pipeline)", tentativeMarketDate: "2020s (mid-late, if successful — speculative)" },
+  { id: 149, name: "Doxycycline", administration: "Oral", goal: "Antibiotic with reported anti-inflammatory / anti-aggregant effects in experimental neuro models — repurposing interest", trialPhase: "Small trials / preclinical studies; investigational in neurodegeneration", link: "", tentativeMarketDate: "Marketed for infections; PD use investigational" },
+  { id: 148, name: "Lenitrodon", administration: "Investigational (name suggests small molecule or biologic)", goal: "Company/compound-specific investigational agent for PD (verify)", trialPhase: "Preclinical / early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — limited public information / company-coded" },
+  { id: 147, name: "CT-413", administration: "Investigational (likely oral/IV)", goal: "Company-coded investigational PD candidate (verify)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded, no public timeline" },
+  { id: 145, name: "Nicergoline", administration: "Oral", goal: "Ergot-derived vasoactive agent historically used for cognitive symptoms / cerebrovascular insufficiency; limited and mixed data in neurodegeneration", trialPhase: "Approved in some countries for cognitive disorders historically; PD use investigational/limited", link: "", tentativeMarketDate: "Marketed in some countries (not PD-specific); repurposed PD use investigational" },
+  { id: 144, name: "NYX-458", administration: "Oral small molecule NMDA modulator from NeuroNascent/Novartis? / verify)", goal: "NMDA receptor modulator targeting cognitive function; potential for non-motor PD symptoms", trialPhase: "Early clinical / exploratory (investigational; verify)", link: "", tentativeMarketDate: "Unknown — early-stage; timeline depends on trial outcomes" },
+  { id: 143, name: "AV-101", administration: "Oral prodrug / small molecule (targeting NMDA glycine site)", goal: "Modulate glutamatergic signaling; studied for depression / neuro disorders — potential off-label interest for PD non-motor symptoms", trialPhase: "Clinical trials in depression; PD-specific data limited", link: "", tentativeMarketDate: "Unknown for PD — marketed/advanced in other indications dependent on sponsor plans" },
+  { id: 142, name: "Pimavanserin", administration: "Oral", goal: "5-HT2A inverse agonist/antagonist — treats hallucinations and delusions in Parkinson's disease psychosis", trialPhase: "FDA-approved for Parkinson's disease psychosis (Nuplazid) — post-approval studies ongoing", link: "https://www.fda.gov/news-events/press-announcements/fda-approves-first-drug-to-treat-hallucinations-and-delusions-associated-with-parkinsons-disease", tentativeMarketDate: "2016-2017 (marketed for PDP in US and available in multiple regions)" },
+  { id: 141, name: "ND0612", administration: "Continuous subcutaneous levodopa/carbidopa infusion (device + formulation)", goal: "Provide steady levodopa plasma levels to reduce OFF time and motor fluctuations", trialPhase: "Late-stage clinical development; multiple trials completed (company: NeuroDerm) — regulatory filings pursued", link: "https://www.neuroderm.com/ (company ND0612 program)", tentativeMarketDate: "2020s (mid-late if approved — regulatory dependent)" },
+  { id: 140, name: "GV-AD", administration: "Investigational (gene or cell therapy code name)", goal: "Company code — likely disease-modifying approach (investigational; verify)", trialPhase: "Preclinical / early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — gene/cell therapy program with no public timeline" },
+  { id: 139, name: "LuAF85968", administration: "Investigational viral gene therapy (likely intraparenchymal or intracerebral injection)", goal: "Gene therapy candidate (company-coded); investigational for PD motor restoration or enzyme replacement", trialPhase: "Early clinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — early-stage gene therapy; multi-year if successful" },
+  { id: 138, name: "HNC364", administration: "Investigational (code name — route TBD)", goal: "Company candidate with PD indication (investigational)", trialPhase: "Preclinical/early clinical (verify)", link: "", tentativeMarketDate: "Unknown — limited public data" },
+  { id: 137, name: "VY-AADC", administration: "Stereotactic intracranial AAV gene delivery (putamen injection)", goal: "Deliver AADC gene to enhance local levodopa to dopamine conversion and reduce motor fluctuations", trialPhase: "Early-stage clinical trials historically; investigational programs ongoing (verify specifics and sponsor)", link: "", tentativeMarketDate: "Multi-year timeline — clinical development and regulatory review required (likely several years if successful)" },
+  { id: 136, name: "SER-214", administration: "Intravenous or oral (investigational)", goal: "Immunotherapy / small molecule aiming to reduce alpha-synuclein aggregation (investigational; verify)", trialPhase: "Preclinical/early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — depends on early clinical results" },
+  { id: 135, name: "HESC-DA progenitors", administration: "Stereotactic transplantation of human embryonic stem cell–derived dopaminergic progenitors", goal: "Replace lost nigral dopaminergic neurons — restorative cell therapy", trialPhase: "Clinical trials ongoing / planned by multiple groups (early clinical / Phase 1/2 for safety and proof-of-concept)", link: "", tentativeMarketDate: "2020s (late, contingent on positive safety and efficacy data from current trials)" },
+  { id: 134, name: "HOPA cells", administration: "Investigational cell therapy (route: stereotactic grafting)", goal: "Cell replacement therapy to restore dopamine neurons (investigational)", trialPhase: "Preclinical/early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — preclinical/early-stage with no public timeline" },
+  { id: 133, name: "MSK-DA1", administration: "Stereotactic cell transplantation (investigational)", goal: "Mesencephalic dopaminergic progenitor product (MSK = likely academic/center code) for dopamine restoration", trialPhase: "Early clinical (investigational; verify)", link: "", tentativeMarketDate: "Unknown — early clinical; timeline depends on trial readouts" },
+  { id: 132, name: "A9-DP", administration: "Cell transplantation (intracerebral graft of A9-type DA progenitors)", goal: "Replace A9 nigral dopaminergic neurons specifically to restore motor function", trialPhase: "Preclinical/early clinical (investigational)", link: "", tentativeMarketDate: "Unknown — developer-dependent, multi-year if moved into pivotal trials" },
+  { id: 131, name: "ADMS cells", administration: "Autologous adipose-derived mesenchymal stromal cell transplant (various routes: IV or intracerebral investigational)", goal: "Neuroprotection / immunomodulation / repair (investigational)", trialPhase: "Early clinical / small trials in PD (investigational)", link: "", tentativeMarketDate: "Unknown — small studies only; no clear commercialization timeline" },
+  { id: 130, name: "iNSC cells", administration: "Induced neural stem cell transplantation (intracerebral graft; investigational)", goal: "Cell replacement / support via patient-derived induced NSCs (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — preclinical/early-stage with high development complexity" },
+  { id: 129, name: "PASC transplantation", administration: "Placenta-derived stromal cell transplantation (route dependent)", goal: "Cell therapy for neuroprotection / trophic support (investigational)", trialPhase: "Early clinical/preclinical (investigational)", link: "", tentativeMarketDate: "Unknown — limited data and regulatory complexity" },
+  { id: 128, name: "HAEC", administration: "Investigational cell/ biologic (acronym; verify)", goal: "Likely human amniotic / endothelial cell product for neuroprotection (investigational; verify)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — acronym ambiguous; no public timeline" },
+  { id: 127, name: "Alorx", administration: "Oral small molecule or therapeutic candidate (investigational)", goal: "Company product candidate for PD symptom or modification (investigational)", trialPhase: "Early-stage (investigational)", link: "", tentativeMarketDate: "Unknown — early-stage with no disclosed timeline" },
+  { id: 126, name: "NSC-DA progenitors", administration: "Stereotactic transplantation of neural stem cell–derived dopaminergic progenitors", goal: "Replace lost dopaminergic neurons; restore motor circuits", trialPhase: "Early clinical / Phase 1 safety studies by some groups (investigational)", link: "", tentativeMarketDate: "2020s (late, speculative — depends on trial success and regulatory pathway)" },
+  { id: 125, name: "PDM608", administration: "Investigational small molecule / biologic (route TBD)", goal: "Company-coded candidate for PD (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded, limited public info" },
+  { id: 124, name: "Lithium aspartate", administration: "Oral supplement / salt", goal: "Lithium salts proposed neuroprotective / GSK-3β-modulating effects — limited evidence in PD", trialPhase: "Small trials / repurposing interest; not standard PD therapy", link: "", tentativeMarketDate: "Marketed salts exist; PD use investigational" },
+  { id: 123, name: "ATH-39B", administration: "Investigational (company code)", goal: "Company candidate for PD (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — limited information available publicly" },
+  { id: 122, name: "Rivastigmine", administration: "Oral or transdermal patch", goal: "Acetylcholinesterase inhibitor for cognitive symptoms — approved for Parkinson's disease dementia and dementia with Lewy bodies in many regions", trialPhase: "Approved for PD dementia (symptomatic)", link: "https://www.fda.gov/ (product labels)", tentativeMarketDate: "Marketed (approved for PD dementia/dementia with Lewy bodies in many regions)" },
+  { id: 121, name: "Opicapone", administration: "Oral (once-daily COMT inhibitor)", goal: "COMT inhibitor to prolong levodopa effect and reduce OFF time", trialPhase: "Approved in many countries as adjunct to levodopa for motor fluctuations", link: "EMA/PMDA/FDA product pages (regional)", tentativeMarketDate: "Marketed in multiple countries" },
+  { id: 120, name: "Autologous Peripheral Nerve Graft", administration: "Surgical implantation / grafting", goal: "Nerve grafting approaches for local repair or as scaffold for cell therapies (investigational in PD context)", trialPhase: "Surgical/experimental; early-stage trials or case reports", link: "", tentativeMarketDate: "Procedure-based; investigational for PD — timeline depends on surgical trial outcomes" },
+  { id: 119, name: "ABBV-951", administration: "Subcutaneous infusion or subcutaneous prodrug delivery of levodopa (AbbVie formulation)", goal: "Continuous subcutaneous delivery of levodopa to reduce OFF time and motor fluctuations", trialPhase: "Clinical development (late-stage; AbbVie), phase 3 trials conducted/planned", link: "https://www.abbvie.com/ (program pages)", tentativeMarketDate: "2020s (mid-late if approved — regulatory dependent)" },
+  { id: 118, name: "Aripiprazole", administration: "Oral", goal: "Atypical antipsychotic sometimes used carefully in PD psychosis but with caution due to motor effects (typically not first-line in PDP)", trialPhase: "Approved for psychiatric indications; PD use off-label with risk", link: "", tentativeMarketDate: "Marketed (for other indications)" },
+  { id: 117, name: "E28-155", administration: "Investigational (code; route TBD)", goal: "Company/compound code for investigational PD candidate (verify)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded investigational program" },
+  { id: 116, name: "Tocofisolan", administration: "Oral / formulation of vitamin E derivatives (investigational/ supplement)", goal: "Antioxidant / tocopherol derivative for neuroprotection (investigational)", trialPhase: "Supplement / early-stage studies", link: "", tentativeMarketDate: "Supplement/market depending on region; PD benefit investigational" },
+  { id: 115, name: "PRD01", administration: "Investigational (company code)", goal: "Company product candidate for PD (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — limited public data" },
+  { id: 114, name: "FHL-301", administration: "Investigational (company or code)", goal: "Candidate for PD neuroprotection / symptomatic therapy (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — no clear public timeline" },
+  { id: 113, name: "ATH-17", administration: "Investigational (code)", goal: "Company candidate with unknown exact mechanism vs PD — verify", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded, no public timeline" },
+  { id: 112, name: "Tocovid Suprabio", administration: "Oral supplement (tocotrienol / vitamin E formulation)", goal: "Antioxidant supplement with proposed neuroprotective effects (nutraceutical)", trialPhase: "Supplement / early-stage clinical exploration", link: "", tentativeMarketDate: "Marketed as supplement; PD benefit investigational" },
+  { id: 111, name: "Sulforaphane", administration: "Oral supplement / broccoli extract", goal: "Nrf2 pathway activation, antioxidant / anti-inflammatory effects — investigated for neuroprotection", trialPhase: "Preclinical and small human studies; PD-specific trials limited", link: "", tentativeMarketDate: "Available as supplement; PD efficacy investigational" },
+  { id: 110, name: "FMT", administration: "Fecal microbiota transplantation (delivery: colonoscopy / enema / oral capsules)", goal: "Modulate gut microbiome to alter PD pathophysiology or symptoms", trialPhase: "Early-stage clinical trials exploring safety and symptom effects", link: "Several clinicaltrials.gov entries (search 'Parkinson fecal microbiota transplantation')", tentativeMarketDate: "Unknown — investigational and dependent on controlled trial outcomes" },
+  { id: 109, name: "Istradefylline", administration: "Oral (adenosine A2A receptor antagonist)", goal: "Reduce OFF time as adjunct to levodopa; non-dopaminergic symptomatic therapy", trialPhase: "Approved in some countries (e.g., Japan, U.S. FDA approved 2019)", link: "FDA approval pages / drug labels", tentativeMarketDate: "2019 (U.S. approval) — marketed in multiple regions" },
+  { id: 108, name: "IT-1409B8", administration: "Investigational (code; route TBD)", goal: "Company/compound candidate (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded investigational agent" },
+  { id: 107, name: "Ceftriaxone", administration: "Intravenous", goal: "Antibiotic with proposed neuroprotective / GLT-1 upregulation effects in preclinical models — studied experimentally for neurodegeneration", trialPhase: "Preclinical / small exploratory investigation (not standard PD therapy)", link: "", tentativeMarketDate: "Marketed antibiotic; PD use investigational" },
+  { id: 106, name: "Carvedilol", administration: "Oral", goal: "Beta-blocker with antioxidant properties hypothesized to have neuroprotective effects (repurposing interest)", trialPhase: "Repurposing/preclinical interest; not standard PD therapy", link: "", tentativeMarketDate: "Marketed for cardiovascular indications; PD use investigational" },
+  { id: 105, name: "BIIB094", administration: "Intravenous infusion (antibody; Biogen code)", goal: "Antisense/antibody or biologic targeting alpha-synuclein or related pathways (investigational; verify Biogen pipeline)", trialPhase: "Early-stage clinical (investigational)", link: "Biogen pipeline (verify specific program)", tentativeMarketDate: "Unknown — early-stage biologic; depends on trial progression" },
+  { id: 104, name: "Talnerv", administration: "Investigational/brand name (verify)", goal: "Brand/company code — verify (possible symptomatic agent)", trialPhase: "Unknown (verify)", link: "", tentativeMarketDate: "Unknown — ambiguous name / needs verification" },
+  { id: 103, name: "Citalopram", administration: "Oral", goal: "SSRI antidepressant used for depression/anxiety in PD; may affect some non-motor symptoms", trialPhase: "Approved for depression; PD use symptomatic/supportive", link: "", tentativeMarketDate: "Marketed (approved for depression; PD use off-label)" },
+  { id: 102, name: "MT-519", administration: "Investigational (code)", goal: "Company candidate for PD therapy (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — limited public info" },
+  { id: 101, name: "AC-710458", administration: "Investigational (company code)", goal: "Candidate small molecule/biologic for PD (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — company-coded program" },
+  { id: 100, name: "UCB6093", administration: "Investigational (UCB code)", goal: "UCB Pharmaceuticals candidate for PD symptom or disease modification (investigational; verify pipeline)", trialPhase: "Preclinical/early clinical (investigational)", link: "https://www.ucb.com/ (company pipeline)", tentativeMarketDate: "Unknown — early-stage company program" },
+  { id: 99, name: "Radotinib", administration: "Oral (tyrosine kinase inhibitor repurposing candidate)", goal: "TKI proposed for neuroprotection via modulation of kinase signaling (investigational repurposing)", trialPhase: "Preclinical/early clinical repurposing interest", link: "", tentativeMarketDate: "Unknown — repurposing stage; no clear PD commercialization timeline" },
+  { id: 98, name: "K705", administration: "Investigational (code)", goal: "Likely company candidate (investigational)", trialPhase: "Preclinical/early clinical", link: "", tentativeMarketDate: "Unknown — limited public info" },
+  { id: 97, name: "Rasagiline", administration: "Oral (MAO-B inhibitor)", goal: "Symptomatic therapy; potential modest disease-modifying claims from earlier studies (used to reduce motor symptoms and possibly neuroprotective effects in some studies)", trialPhase: "Approved for PD symptomatic therapy (marketed)", link: "https://www.fda.gov (product label)", tentativeMarketDate: "Marketed (widely used for PD)" },
+  { id: 96, name: "UB-312", administration: "Intramuscular / vaccine-style immunotherapy (peptide vaccine technology; UBI Pharma?)", goal: "Active immunotherapy targeting alpha-synuclein to reduce pathological aggregation (investigational)", trialPhase: "Early clinical trials for alpha-syn targeting vaccines (phase 1/2 depending on program)", link: "", tentativeMarketDate: "Unknown — vaccine programs are early and timelines depend on trial readouts" },
+  { id: 95, name: "Lactobacillus acidophilus", administration: "Oral probiotic", goal: "Modulate gut microbiome to influence PD symptoms / progression (supportive / symptomatic)", trialPhase: "Supplement/ small trials; exploratory microbiome studies", link: "", tentativeMarketDate: "Available as supplement (marketed); PD-specific benefit investigational" },
+  { id: 94, name: "Insulin & Glutathione", administration: "Insulin (intranasal/SC in repurposing studies) + glutathione (IV/IM/oral formulations)", goal: "Insulin: neurotrophic effects (intranasal insulin studied for cognition); Glutathione: antioxidant supplementation to reduce oxidative stress in PD (mixed evidence)", trialPhase: "Small trials / exploratory (repurposing); glutathione has mixed clinical evidence", link: "", tentativeMarketDate: "Existing products for other indications; PD use investigational" },
+  { id: 93, name: "Solengepras (CVN-424)", administration: "Oral tablet, once-daily", goal: "GPR6 inverse agonist — a non-dopaminergic approach to reduce OFF time and improve motor symptoms in Parkinson’s disease", trialPhase: "Phase 3 (ARISE) ongoing; Phase 2 (ASCEND) positive/completed (2024)", link: "https://clinicaltrials.gov/study/NCT06553027", tentativeMarketDate: "2027–2028 (depends on Phase 3 results; topline data expected H1 2026)" },
+  { id: 92, name: "ASPro-PD (Ambroxol)", administration: "Oral", goal: "Evaluate potential to slow Parkinson's disease progression and target GBA-related pathways", trialPhase: "Phase 3 ongoing", link: "https://clinicaltrials.gov/study/NCT05778617", tentativeMarketDate: "2029–2030 (pending Phase 3 results)" },
+  { id: 91, name: "CNM-Au8 (REPAIR-PD)", administration: "Oral daily", goal: "Boost neuronal energy metabolism and reduce oxidative stress in PD", trialPhase: "Phase 2 completed; safe and well tolerated, showing improved brain NAD⁺/NADH ratio", link: "https://clene.com/about-cnm-au8", tentativeMarketDate: "2027–2028 (if further trials succeed)" },
+  { id: 90, name: "allo-hMSC", administration: "Intravenous infusions", goal: "Improve motor function by reducing neuroinflammation in Parkinson’s disease", trialPhase: "Phase 2 (randomized, placebo-controlled)", link: "https://pubmed.ncbi.nlm.nih.gov/40891094/", tentativeMarketDate: "2020s+ / 2030s" },
+  { id: 89, name: "RMAT Designation", administration: "Not a treatment", goal: "FDA regulatory pathway to expedite development of regenerative therapies", trialPhase: "Regulatory status, not clinical phase", link: "https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/regenerative-medicine-advanced-therapy-rmat-designation", tentativeMarketDate: "Not applicable" },
+  { id: 88, name: "ARO-SNCA", administration: "Subcutaneous siRNA delivery (Arrowhead TRiM platform)", goal: "Lower alpha-synuclein production in the brain to slow Parkinson’s progression", trialPhase: "Preclinical (no human trials yet)", link: "https://www.fiercebiotech.com/biotech/novartis-takes-another-shot-alpha-synuclein-22b-arrowhead-deal", tentativeMarketDate: "2030s (early, if successful)" },
+  { id: 87, name: "KM819", administration: "Oral small molecule (LRRK1 inhibitor)", goal: "Reduce alpha-synuclein pathology via LRRK1 inhibition", trialPhase: "Phase 1 completed; Phase 2 planned", link: "https://clinicaltrials.gov/study/NCT03022799", tentativeMarketDate: "2029–2030" },
+  { id: 86, name: "Neuroprosthesis for gait", administration: "Wearable/implantable neurostimulation device", goal: "Restore gait and reduce freezing of gait", trialPhase: "Pilot / early trials", link: "https://clinicaltrials.gov/study/NCT05692714", tentativeMarketDate: "2030+" },
+  { id: 85, name: "Ketamine", administration: "Intravenous / intranasal", goal: "Treat depression and possibly improve motor symptoms", trialPhase: "Phase 2 ongoing (depression in PD)", link: "https://clinicaltrials.gov/study/NCT05437254", tentativeMarketDate: "2020s (late)" },
+  { id: 84, name: "Psilocybin", administration: "Oral / capsule (psychedelic-assisted therapy)", goal: "Improve mood, reduce depression/anxiety in PD", trialPhase: "Phase 2 planned", link: "https://clinicaltrials.gov/study/NCT04932434", tentativeMarketDate: "2020s (late) – 2030s" },
+  { id: 83, name: "CPL'36", administration: "Oral small molecule (unknown class)", goal: "Experimental neuroprotection", trialPhase: "Preclinical", link: "https://cpl.org/research", tentativeMarketDate: "Unknown" },
+  { id: 82, name: "APL-130277 (Kynmobi)", administration: "Sublingual apomorphine film", goal: "Rapid relief of OFF episodes", trialPhase: "Approved (2020, later withdrawn from market)", link: "https://clinicaltrials.gov/study/NCT02469090", tentativeMarketDate: "Approved (withdrawn)" },
+  { id: 81, name: "Vyalev (Produodopa)", administration: "Continuous subcutaneous infusion (levodopa/carbidopa prodrug)", goal: "Reduce motor fluctuations in advanced PD", trialPhase: "Approved in EU (2024)", link: "https://www.ema.europa.eu/en/medicines/human/EPAR/vyalev", tentativeMarketDate: "Marketed (EU)" },
+  { id: 80, name: "NLY01", administration: "Subcutaneous injection (GLP-1 receptor agonist)", goal: "Reduce neuroinflammation by blocking microglial activation", trialPhase: "Phase 2 completed (negative)", link: "https://clinicaltrials.gov/study/NCT04154072", tentativeMarketDate: "Unlikely" },
+  { id: 79, name: "PR001", administration: "Intracerebral AAV gene therapy", goal: "Deliver GBA1 gene to restore glucocerebrosidase activity", trialPhase: "Phase 1/2 ongoing", link: "https://clinicaltrials.gov/study/NCT04127578", tentativeMarketDate: "2030+" },
+  { id: 78, name: "NEU-411", administration: "Oral small molecule (adenosine A2A receptor antagonist)", goal: "Improve motor symptoms and reduce OFF time", trialPhase: "Phase 1 completed; Phase 2 planned", link: "https://clinicaltrials.gov/study/NCT05019879", tentativeMarketDate: "2029–2030" },
+  { id: 77, name: "RO7046015 (UCB0599)", administration: "Oral small molecule", goal: "Inhibit alpha-synuclein misfolding and propagation", trialPhase: "Phase 2 ongoing", link: "https://clinicaltrials.gov/study/NCT04658186", tentativeMarketDate: "2029–2030" },
+  { id: 76, name: "PD01A", administration: "Active immunotherapy (vaccine)", goal: "Induce antibodies against alpha-synuclein", trialPhase: "Phase 1/2 completed", link: "https://clinicaltrials.gov/study/NCT01568099", tentativeMarketDate: "2029–2030" },
+  { id: 75, name: "NPT088", administration: "Intravenous infusion (fusion protein)", goal: "Clear misfolded proteins including alpha-synuclein", trialPhase: "Preclinical / Early clinical", link: "https://www.proclara.com/pipeline", tentativeMarketDate: "2030+" },
+  { id: 74, name: "BIIB054 (Cinpanemab)", administration: "Intravenous antibody", goal: "Remove toxic alpha-synuclein aggregates", trialPhase: "Discontinued (Phase 2 negative)", link: "https://clinicaltrials.gov/study/NCT03318523", tentativeMarketDate: "Discontinued" },
+  { id: 73, name: "Anle138b", administration: "Oral small molecule", goal: "Inhibit alpha-synuclein aggregation", trialPhase: "Phase 1 completed; Phase 2 planned", link: "https://clinicaltrials.gov/study/NCT04685265", tentativeMarketDate: "2030+" },
+  { id: 72, name: "Prasinezumab", administration: "Intravenous infusion (antibody)", goal: "Target and clear aggregated alpha-synuclein", trialPhase: "Phase 2 completed; Phase 2b ongoing", link: "https://clinicaltrials.gov/study/NCT03100149", tentativeMarketDate: "2029–2030" },
+  { id: 71, name: "aDBS", administration: "Adaptive deep brain stimulation", goal: "Optimize DBS by adjusting stimulation in real time", trialPhase: "Clinical trials ongoing", link: "https://clinicaltrials.gov/study/NCT04681534", tentativeMarketDate: "2020s (late)" },
+  { id: 70, name: "DBS", administration: "Implanted electrodes in basal ganglia", goal: "Reduce motor symptoms by electrical modulation", trialPhase: "Approved (widely used)", link: "https://clinicaltrials.gov/study/NCT04314819", tentativeMarketDate: "Marketed" },
+  { id: 69, name: "GBA1 gene", administration: "Gene therapy / oral modulators", goal: "Target GBA1 mutations or enhance glucocerebrosidase to reduce alpha-synuclein aggregation", trialPhase: "Preclinical / Early clinical", link: "https://clinicaltrials.gov/study/NCT02941822", tentativeMarketDate: "2030+" },
+  { id: 7, name: "Dapansutrile", administration: "Oral", goal: "NLRP3 inflammasome inhibition to reduce neuroinflammation in PD", trialPhase: "Phase 2 ongoing", link: "https://clinicaltrials.gov/study/NCT04540120", tentativeMarketDate: "2027–2028 (pending Phase 3)" },
+  { id: 8, name: "Azathioprine", administration: "Oral", goal: "Immunosuppression to slow disease progression in PD", trialPhase: "Phase 2 ongoing", link: "https://clinicaltrials.gov/study/NCT04526686", tentativeMarketDate: "2026–2027 (pending Phase 3)" },
+  { id: 68, name: "NT-0796", administration: "Oral (brain-penetrant NLRP3 inflammasome inhibitor)", goal: "Reduce neuroinflammation and slow PD progression", trialPhase: "Phase 1b/2a completed; further trials planned", link: "https://www.neurologylive.com/view/anti-inflammatory-effects-nt-0796-warrant-future-studies-parkinsons-neurodegeneration", tentativeMarketDate: "2030s (if successful)" },
+  { id: 67, name: "SER-252", administration: "Subcutaneous injection (POZ-enabled apomorphine via wearable delivery)", goal: "Provide continuous dopaminergic stimulation to reduce motor fluctuations in advanced PD", trialPhase: "Phase 1b planned; registrational program ahead", link: "https://www.ainvest.com/news/serina-therapeutics-receives-fda-approval-parkinson-trial-shares-rise-hours-2508/", tentativeMarketDate: "2030+ (earliest, pending subsequent trials)" },
+  { id: 66, name: "Mannitol", administration: "Oral powder or dissolved in water", goal: "Potentially reduce alpha-synuclein aggregation and provide neuroprotective effects in PD", trialPhase: "Experimental/self-experimentation; small Phase 2 study completed showing safety but no significant efficacy", link: "https://parkinsonsnewstoday.com/news/mannitol-safe-ineffective-parkinsons-symptoms-small-clinical-trial/", tentativeMarketDate: "Not established; human efficacy unproven" },
+  { id: 65, name: "ISM8969", administration: "Oral (brain-penetrant small molecule)", goal: "Selective NLRP3 inhibition to reduce neuroinflammation in PD and CNS disorders", trialPhase: "Preclinical (IND submission expected Q4 2025)", link: "https://www.eurekalert.org/news-releases/1094719", tentativeMarketDate: "2030s (early, pending clinical success)" },
+  { id: 64, name: "AAV2-GAD", administration: "Direct brain injection (STN gene therapy)", goal: "Boost GABA production to rebalance motor circuits in PD", trialPhase: "Phase 2 positive; Phase 3 starting 2025", link: "https://clinicaltrials.gov/study/NCT01973543", tentativeMarketDate: "2028–2029 (pending Phase 3)" },
+  { id: 63, name: "Peroneal eTNM® (URIS I™ device)", administration: "Home-based (30 min daily, non-invasive neuromodulation)", goal: "Reduce tremor and improve quality of life as an add-on therapy", trialPhase: "Pilot study completed; 24-month follow-up (NCT06570421) ongoing",  link: "https://clinicaltrials.gov/study/NCT06570421", tentativeMarketDate: "2031\nEarly clinical stage, pending larger RCTs." },
+  { id: 62, name: "AAV2-GDNF", administration: "Direct brain injection (gene therapy)", goal: "Deliver GDNF to protect and restore dopaminergic neurons", trialPhase: "Phase 1 completed (safety shown, modest clinical benefit)", link: "https://clinicaltrials.gov/study/NCT01621581", tentativeMarketDate: "2030+\nStill experimental; more trials needed before approval." },
+  { id: 61, name: "Nilotinib", administration: "Oral", goal: "Potential disease-modifying (modulates α-synuclein aggregation, autophagy)", trialPhase: "Phase II ongoing (PD), Phase IIa completed (DLB)", link: "https://www.michaeljfox.org/grant/phase-iia-safety-and-tolerability-trial-nilotinib-people-parkinsons-disease", tentativeMarketDate: "2029\nDependent on Phase II/III outcomes and regulatory approval"},
+  { id: 60, name: "Fetal/Embryonic Stem Cell Grafts", administration: "Cell infusion", goal: "Replace dopamine neurons with fetal/embryonic stem cell-derived neurons", trialPhase: "Historical/limited trials", link: "https://findingdopa.com/science.html", tentativeMarketDate: "Unlikely\nEthical and sourcing challenges limit future use." },
+  { id: 59, name: "Propranolol", administration: "Oral (tablet)", goal: "Reduce Parkinsonian tremor via beta-adrenergic blockade", trialPhase: "Repurposed, observational/preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "Unknown\nRepurposed, not in formal PD trials." },
+  { id: 58, name: "CREXONT (IPX203)", administration: "Oral (capsule)", goal: "Extended-release carbidopa/levodopa for longer 'on' time", trialPhase: "Phase 3 completed (NCT03877510)", link: "https://clinicaltrials.gov/study/NCT03877510", tentativeMarketDate: "2025\nNDA submitted, market launch expected 2025." },
+  { id: 57, name: "Exosome Therapy", administration: "Injection (intranasal/intravenous)", goal: "Deliver neuroprotective factors and alpha-synuclein clearance via engineered exosomes", trialPhase: "Preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "2035\nPreclinical now. Market ~2035 if successful." },
+  { id: 56, name: "CRISPR Gene Editing", administration: "Gene editing (in vivo/ex vivo)", goal: "Correct PD-causing mutations (e.g., LRRK2, SNCA) with precision editing", trialPhase: "Preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "2035+\nPreclinical only, years from market." },
+  { id: 55, name: "REGENERATE-PD (Gene therapy)", administration: "Intracerebral injection", goal: "Gene therapy to regenerate dopaminergic function and restore motor control", trialPhase: "Preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "2035\nPreclinical, early-stage. Market ~2035 if successful." },
+  { id: 54, name: "RNDP-001 (Kenai Therapeutics)", administration: "Cell infusion", goal: "Allogeneic iPSC-derived dopaminergic progenitors for Parkinson’s treatment", trialPhase: "Preclinical, IND planned", link: "https://kenaitx.com", tentativeMarketDate: "2034\nPreclinical now. Phase 1 ~2026, market ~2034." },
+  { id: 53, name: "TFG 001 (TreeFrog Therapeutics)", administration: "Cell infusion", goal: "Scalable iPSC-derived dopaminergic neuron therapy for PD", trialPhase: "Preclinical, Phase 1 planned for 2027", link: "https://treefrog.fr", tentativeMarketDate: "2035\nPreclinical now. Phase 1 ~2027, market ~2035." },
+  { id: 52, name: "ICA07 (iCamuno Biotherapeutics)", administration: "Cell infusion", goal: "iPSC-derived dopaminergic precursors to replace lost neurons", trialPhase: "Phase 1 ongoing", link: "https://icamuno.com", tentativeMarketDate: "2032\nPhase 1 ongoing. Market ~2032 if successful." },
+  { id: 51, name: "UX-DA001 (Shanghai Yuesai Biotech)", administration: "Cell infusion", goal: "iPSC-derived dopaminergic progenitors for neuronal replacement", trialPhase: "Phase 1 planned (China)", link: "https://yuesai.com", tentativeMarketDate: "2033\nPhase 1 ~2025, Phase 2 ~2027, Phase 3 ~2030, market ~2033." },
+  { id: 50, name: "Oryon Cell Therapies (autologous iPSC)", administration: "Cell infusion (autologous)", goal: "Patient-specific iPSC-derived dopaminergic neurons to restore striatal dopamine", trialPhase: "Phase 1 ongoing (Australia)", link: "https://oryoncell.com", tentativeMarketDate: "2032\nPhase 1 ongoing. Market ~2032 if successful." },
+  { id: 49, name: "XS-411 (XellSmart Biomedical)", administration: "Cell infusion", goal: "Allogeneic iPSC-derived dopaminergic neuron precursors for Parkinson’s treatment", trialPhase: "Phase 1 ongoing", link: "https://xellsmart.com", tentativeMarketDate: "2032\nPhase 1 ongoing. Phase 2 ~2026, Phase 3 ~2029, market ~2032." },
+  { id: 48, name: "NN-9001 (Novo Nordisk / Lund University)", administration: "Cell infusion", goal: "Stem-cell derived dopaminergic neurons for neuron replacement", trialPhase: "Phase 1 ongoing (NCT05114617)", link: "https://clinicaltrials.gov/study/NCT05114617", tentativeMarketDate: "2031\nPhase 1 ongoing. Phase 3 ~2028, market ~2031." },
+  { id: 47, name: "TED-A9 (S. Biomedics)", administration: "Cell infusion", goal: "iPSC-derived dopaminergic progenitors to restore dopamine neurons", trialPhase: "Phase 1/2a ongoing (NCT05565962)", link: "https://clinicaltrials.gov/study/NCT05565962", tentativeMarketDate: "2030\nPhase 1/2a ongoing. Phase 3 ~2027, market ~2030." },
+  { id: 46, name: "NouvNeu 001 (iRegene)", administration: "Cell infusion", goal: "Chemically induced iPSC-derived dopaminergic progenitors for neuron replacement", trialPhase: "Phase 1/2 ongoing (NCT06167681)", link: "https://clinicaltrials.gov/study/NCT06167681", tentativeMarketDate: "2031\nPhase 1/2 ongoing. Phase 3 ~2027, market ~2031." },
+  { id: 45, name: "CT1-DAP001 (Sumitomo Pharma / CiRA)", administration: "Cell infusion", goal: "Allogeneic iPSC-derived dopaminergic progenitor cells for neuron replacement", trialPhase: "Phase 1/2 ongoing (NCT04651873)", link: "https://clinicaltrials.gov/study/NCT04651873", tentativeMarketDate: "2030\nPhase 1/2 ongoing. Phase 3 ~2027, market ~2030." },
+  { id: 44, name: "ANPD001 (Aspen Neuroscience, also called NRG5051)", administration: "Cell infusion (autologous)", goal: "Autologous iPSC-derived dopamine neurons to restore dopaminergic function", trialPhase: "Phase 1/2a ongoing (NCT06381864)", link: "https://clinicaltrials.gov/study/NCT06381864", tentativeMarketDate: "2031\nPhase 1/2a ongoing, market 2031 if successful." },
+  { id: 43, name: "Bemdaneprocel (BlueRock Therapeutics)", administration: "Cell infusion", goal: "Replace lost dopamine neurons with iPSC-derived midbrain dopaminergic neurons", trialPhase: "Phase 2 ongoing (NCT04802733)", link: "https://clinicaltrials.gov/study/NCT04802733", tentativeMarketDate: "2030\nPhase 2 ongoing. Phase 3 planned 2027, market 2030." },
+  { id: 42, name: "GT-02287", administration: "Oral", goal: "Allosteric activator of glucocerebrosidase (GCase) enzyme to restore activity and reduce alpha-synuclein aggregation", trialPhase: "Phase 1b ongoing", link: "https://clinicaltrials.gov/search?term=GT-02287+Parkinson", tentativeMarketDate: "2030\nPhase 1b ongoing. Positive data in 2025 could initiate Phase 2 in 2026, Phase 3 in 2028, market in 2030." },
+  { id: 41, name: "ABL301", administration: "Intravenous (antibody)", goal: "Bispecific antibody targeting aggregated alpha-synuclein and IGF1R for enhanced brain delivery", trialPhase: "Phase 1", link: "https://clinicaltrials.gov/search?term=ABL301+Parkinson", tentativeMarketDate: "2032\nPhase 1 ongoing. Phase 2 expected 2026, Phase 3 in 2028, market in 2032." },
+  { id: 40, name: "HER-096", administration: "Subcutaneous injection", goal: "Mimic the effects of cerebral dopamine neurotrophic factor (CDNF) to provide neuroprotection, promote dopamine neuron survival, reduce α-synuclein aggregation and neuroinflammation, to slow or halt Parkinson’s disease progression", trialPhase: "Phase 1b ongoing (NCT06659562, Parkinson’s disease patients, 2 doses per week for 4 weeks)", link: "https://clinicaltrials.gov/study/NCT06659562", tentativeMarketDate: "2031\nPhase 1b topline data expected September 2025. Positive results could lead to Phase 2 in 2026, Phase 3 in 2028, potential market entry in 2031 if successful." },
+  { id: 39, name: "Buntanetap / Posiphen / ANVS-401", administration: "Oral tablet", goal: "Reduce the production of multiple neurotoxic proteins, including α-synuclein, tau, and amyloid precursor protein, to slow or halt Parkinson’s disease progression and improve both motor and cognitive symptoms", trialPhase: "Phase 3 completed (NCT05357989, early-stage PD, 10 mg & 20 mg daily dosing)", link: "https://clinicaltrials.gov/study/NCT05357989", tentativeMarketDate: "2027\nPhase 3 completed. NDA planned for 2026, potential approval and market entry in 2027." },
+  { id: 38, name: "ENERGI-F705PD", administration: "Oral, sustained-release tablet", goal: "Enhance cellular ATP and antioxidant production, reduce α-synuclein aggregation, boost tyrosine hydroxylase activity for dopamine synthesis", trialPhase: "Phase 1 completed (healthy volunteers, safety/tolerability), preparing for Phase 2", link: "https://www.biospace.com/press-releases/energenesis-biomedical-announces-positive-phase-i-results-for-energi-f705pd-a-potential-disease-modifying-treatment-for-parkinsons-disease", tentativeMarketDate: "2030\nPhase 1 completed. Phase 2 planned 2025, Phase 3 2027, market 2030." },
+  { id: 37, name: "VTX3232", administration: "Oral", goal: "NLRP3 inflammasome inhibition to reduce neuroinflammation", trialPhase: "Phase 2a completed, planning Phase 2", link: "https://clinicaltrials.gov/search?term=VTX3232+Parkinson", tentativeMarketDate: "2032\nPhase 2a ongoing, data 2025. Phase 2b 2026, Phase 3 2028, market 2032." },
+  { id: 36, name: "UCB0022 (Glovadalen)", administration: "Oral", goal: "Symptom control via D₁ receptor positive allosteric modulation", trialPhase: "Phase 1 completed, Phase 2 ongoing (ATLANTIS)", link: "https://clinicaltrials.gov/study/NCT06055985", tentativeMarketDate: "2028\nPhase 2 completed. Phase 3 expected 2025, market 2028." },
+  { id: 35, name: "Nicotinamide Riboside (NR, NOPARK)", administration: "Oral", goal: "Disease-modifying (NAD⁺ replenishment, neuroprotection)", trialPhase: "Phase 1 completed, Phase 2/3 ongoing (NOPARK)", link: "https://clinicaltrials.gov/study/NCT03568968", tentativeMarketDate: "2029\nPhase 2 ongoing. Phase 3 2026, market 2029." },
+  { id: 34, name: "RB-190 (metyrosine)", administration: "Oral", goal: "Disease-modifying (reduce dopamine-induced neurotoxicity)", trialPhase: "Preclinical, preparing Phase 2 (IND ready)", link: "https://www.prnewswire.com/...RB-190-manufacturing-agreement...", tentativeMarketDate: "2032\nPhase 1 planned. Phase 2 2026, Phase 3 2028, market 2032." },
+  { id: 33, name: "Ibuprofen", administration: "Oral", goal: "Neuroprotection potential", trialPhase: "Epidemiology / Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, limited evidence for PD application." },
+  { id: 32, name: "Metformin", administration: "Oral", goal: "Mixed data in PD models", trialPhase: "Preclinical / Observational", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unlikely\nMixed preclinical data, no clear path to approval." },
+  { id: 31, name: "Rapamycin (Sirolimus)", administration: "Oral", goal: "Autophagy activator", trialPhase: "Preclinical / Early PD studies", link: "https://clinicaltrials.gov/search?term=Rapamycin+Parkinson", tentativeMarketDate: "2032\nPreclinical, early studies. Phase 1/2 2026, Phase 3 2028, market 2032." },
+  { id: 30, name: "Empagliflozin", administration: "Oral", goal: "Neuroprotection", trialPhase: "Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, early research." },
+  { id: 29, name: "Terazosin", administration: "Oral", goal: "Enhances glycolysis", trialPhase: "Preclinical / Observational", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, observational data only." },
+  { id: 28, name: "Imatinib", administration: "Oral", goal: "LRRK2 modulation, autophagy", trialPhase: "Preclinical", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, early research." },
+  { id: 27, name: "Semaglutide", administration: "Injection (Subcutaneous) or Oral", goal: "Neuroprotection", trialPhase: "Preclinical / Early trials", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2032\nPreclinical, early trials. Phase 2 2026, Phase 3 2028, market 2032." },
+  { id: 26, name: "RB-190 (roscovitine)", administration: "Oral", goal: "LRRK2 kinase inhibition", trialPhase: "Phase 1", link: "https://clinicaltrials.gov/search?term=roscovitine+Parkinson", tentativeMarketDate: "2032\nPhase 1. Phase 2 2026, Phase 3 2028, market 2032." },
+  { id: 25, name: "Sunrise-PD (ulotaront)", administration: "Oral", goal: "Non-motor symptoms", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=ulotaront+Parkinson", tentativeMarketDate: "2029\nPhase 2. Phase 3 2026, market 2029." },
+  { id: 24, name: "Lixisenatide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Lixisenatide+Parkinson", tentativeMarketDate: "2028\nPhase 2 positive. Phase 3 planned 2025, market 2028." },
+  { id: 23, name: "UDCA", administration: "Oral", goal: "Mitochondrial function", trialPhase: "Phase 2/3", link: "https://clinicaltrials.gov/search?term=UDCA+Parkinson", tentativeMarketDate: "2028\nPhase 2 positive. Phase 3 planned 2025, market 2028." },
+  { id: 22, name: "Ambroxol", administration: "Oral", goal: "GBA1 enhancer / lysosomal function. Ambroxol is approved as a cough medicine in many countries, but not for PD.", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Ambroxol+Parkinson", tentativeMarketDate: "2027\nPhase 3 ongoing. Data 2025, market 2027 if approved." },
+  { id: 21, name: "Pioglitazone", administration: "Oral", goal: "Neuroprotection", trialPhase: "Phase 2 completed", link: "https://clinicaltrials.gov/search?term=Pioglitazone+Parkinson", tentativeMarketDate: "Unlikely\nPhase 2 negative, no clear path to approval." },
+  { id: 20, name: "BIIB122 (DNL151) — LUMA", administration: "Oral (tablet)", goal: "LRRK2 inhibitor aiming to slow progression in early Parkinson’s disease", trialPhase: "Phase 2b active, not recruiting (NCT05348785)", link: "https://clinicaltrials.gov/study/NCT05348785", tentativeMarketDate: "2029–2030\nIf Phase 2b is positive, Phase 3 would be required; earliest launch late 2020s." },
+  { id: 19, name: "Liraglutide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 2 completed", link: "https://clinicaltrials.gov/search?term=Liraglutide+Parkinson", tentativeMarketDate: "2029\nPhase 2 completed. Phase 3 2026, market 2029." },
+  { id: 18, name: "Isradipine", administration: "Oral", goal: "Mitochondrial protection", trialPhase: "Phase 3 completed", link: "https://clinicaltrials.gov/search?term=Isradipine+Parkinson", tentativeMarketDate: "Unlikely\nPhase 3 negative, no clear path to approval." },
+  { id: 17, name: "Exenatide", administration: "Injection (Subcutaneous)", goal: "Neuroprotection", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Exenatide+PD3", tentativeMarketDate: "Unlikely\nPhase 3 negative, no clear path to approval." },
+  { id: 16, name: "Bemnapredocel (cell therapy)", administration: "Cell infusion", goal: "Replace lost dopamine neurons", trialPhase: "Phase 1/2", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "2028\nPhase 1 positive. Phase 3 2025, market 2028." },
+  { id: 15, name: "SOD1 modulators", administration: "Injection", goal: "Reduce oxidative stress", trialPhase: "Early research", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, early research." },
+  { id: 14, name: "Alpha-synuclein immunotherapy", administration: "Injection/Infusion", goal: "Remove toxic alpha-synuclein", trialPhase: "Phase 2/3", link: "https://clinicaltrials.gov/search?term=alpha-synuclein+immunotherapy+Parkinson", tentativeMarketDate: "2028\nPhase 2/3 ongoing. Phase 3 2025, market 2028." },
+  { id: 13, name: "Apomorphine (Onapgo, Apokyn)", administration: "Oral film, sublingual", goal: "Reduce 'off' episodes", trialPhase: "Approved", link: "https://clinicaltrials.gov/search?term=Apomorphine+Parkinson", tentativeMarketDate: "Marketed" },
+  { id: 12, name: "Copper supplements", administration: "Oral (tablet)", goal: "Restore copper balance, antioxidant effect", trialPhase: "Early research", link: "https://findingdopa.com/clinical-trials.html", tentativeMarketDate: "Unknown\nPreclinical, early research." },
+  { id: 11, name: "NPT100-18A", administration: "Oral small molecule", goal: "Displace α-synuclein from neuronal membranes to reduce toxicity", trialPhase: "Preclinical; early human trials pending", link: "https://pubmed.ncbi.nlm.nih.gov/39875842/", tentativeMarketDate: "2030s (if trials succeed)" },
+  { id: 10, name: "NE3107 (Bezisterim)", administration: "Oral (tablet)", goal: "Reduce neuroinflammation, early therapy", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=NE3107", tentativeMarketDate: "2029\nPhase 2 ongoing. Phase 3 2026, market 2029." },
+  { id: 9, name: "GZ/SAR402671 (Venglustat)", administration: "Oral (tablet)", goal: "Target GBA mutation, slow progression", trialPhase: "Phase 2", link: "https://clinicaltrials.gov/search?term=Venglustat", tentativeMarketDate: "Discontinued\nPhase 2 negative, no further development." },
+  { id: 6, name: "Tavapadon", administration: "Oral (tablet)", goal: "D1/D5 partial agonist, motor symptom control", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=Tavapadon", tentativeMarketDate: "2025\nPhase 3 positive. Launch 2025." },
+  { id: 5, name: "LRRK2 inhibitors (DNL151/BIIB122)", administration: "Oral (tablet)", goal: "Slow progression in LRRK2 mutation carriers", trialPhase: "Phase 3", link: "https://clinicaltrials.gov/search?term=DNL151+Parkinson", tentativeMarketDate: "2028\nPhase 2/3 ongoing. Phase 3 data 2025, market 2028." },
+  { id: 4, name: "AL-101 (intranasal apomorphine)", administration: "Intranasal spray (dopamine agonist)", goal: "Rapid relief of OFF episodes in PD; also studied for sexual dysfunctions", trialPhase: "Phase 2 ongoing", link: "https://clinicaltrials.gov/study/NCT05258071", tentativeMarketDate: "2027–2028 (if Phase 3 successful)" },
+  { id: 3, name: "Celeste® (PhotoPharmics)", administration: "At-home evening phototherapy (≈1 hr/day)", goal: "Non-drug light therapy to improve motor & non-motor PD symptoms via retinal/circadian pathways", trialPhase: "Pivotal randomized trial (FDA Breakthrough) ongoing", link: "https://www.lightforpd.com", tentativeMarketDate: "2026 (pending FDA review)" },
+  { id: 2, name: "Extended-release Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Reduce 'off' time, improved symptom control", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" },
+  { id: 1, name: "Levodopa/Carbidopa", administration: "Oral (tablet/capsule)", goal: "Symptom control (dopamine replacement)", trialPhase: "Approved", link: "https://clinicaltrials.gov/study/NCT05036473", tentativeMarketDate: "Marketed" }
+];
+
+const treatments_second_table = [
+  // New data for a second table
+  { id: 201, name: "Novel Gene Therapy X", administration: "Intracerebral injection", goal: "Gene-editing to correct PD-related mutations.", trialPhase: "Preclinical", link: "#", tentativeMarketDate: "2035+" },
+  { id: 202, name: "Immunotherapy Y", administration: "Intravenous infusion", goal: "Active immunotherapy to clear alpha-synuclein aggregates.", trialPhase: "Phase 1/2a", link: "#", tentativeMarketDate: "2030+" },
+  { id: 203, name: "Stem Cell Z", administration: "Stereotactic transplantation", goal: "Replace lost dopamine neurons with iPSC-derived cells.", trialPhase: "Phase 1", link: "#", tentativeMarketDate: "2032+" },
+  { id: 204, name: "Anti-inflammatory A", administration: "Oral", goal: "Reduce neuroinflammation to slow disease progression.", trialPhase: "Phase 2b", link: "#", tentativeMarketDate: "2028+" },
+  { id: 205, name: "Wearable Device B", administration: "External device", goal: "Non-invasive tremor reduction via neuromodulation.", trialPhase: "Pilot Study", link: "#", tentativeMarketDate: "2027+" }
+];
+
+// DOM elements
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('searchBtn');
+const clearBtn = document.getElementById('clearBtn');
+const sortKey = document.getElementById('sortKey');
+const sortOrderBtn = document.getElementById('sortOrder');
+const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
+const switchTableBtn = document.getElementById('switchTableBtn');
+
+// State
+let currentSortKey = 'name';
+let currentSortOrder = 'asc';
+let currentSearch = '';
+
+// Helper: Parse market date for sorting
+function parseMarketDate(val) {
+  if (!val) return Infinity;
+  const firstLine = val.split('\n')[0].trim();
+  if (firstLine === "Marketed" || firstLine.includes("Approved") || firstLine.includes("Available")) return -Infinity;
+  if (firstLine === "Unlikely" || firstLine.includes("Unknown") || firstLine.includes("Discontinued") || firstLine.includes("N/A")) return Infinity;
+  const yearMatch = firstLine.match(/\d{4}/);
+  if (yearMatch) return parseInt(yearMatch[0], 10);
+  return Infinity;
+}
+
+// Render table
+function renderTable() {
+  const currentTable = switchTableBtn.dataset.table === 'table1' ? treatments : treatments_second_table;
+
+  let filtered = currentTable.filter(t =>
+    t.name.toLowerCase().includes(currentSearch.toLowerCase())
+  );
+
+  filtered.sort((a, b) => {
+    if (currentSortKey === 'tentativeMarketDate') {
+      const aDate = parseMarketDate(a.tentativeMarketDate);
+      const bDate = parseMarketDate(b.tentativeMarketDate);
+      return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
+    }
+    // All others compared as strings (case-insensitive)
+    return currentSortOrder === 'desc'
+      ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
+      : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
+  });
+
+  tableBody.innerHTML = '';
+  const total = filtered.length;
+
+  filtered.forEach((t, index) => {
+    const reverseIndex = total - index;
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${reverseIndex}</td>
+      <td>${t.name}</td>
+      <td>${t.tentativeMarketDate}</td>
+      <td>${t.administration}</td>
+      <td>${t.goal}</td>
+      <td>${t.trialPhase}</td>
+      <td><a href="${t.link}" target="_blank">Link</a></td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+  switchTableBtn.textContent = switchTableBtn.dataset.table === 'table1' ? 'Switch to Table 2' : 'Switch to Table 1';
+}
+
+function updateSearch() {
+  currentSearch = searchInput.value;
+  clearBtn.style.display = searchInput.value ? 'flex' : 'none';
+  renderTable();
+}
+
+searchInput.addEventListener('input', updateSearch);
+searchBtn.addEventListener('click', updateSearch);
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  currentSearch = '';
+  clearBtn.style.display = 'none';
+  renderTable();
+});
+
+sortKey.addEventListener('change', e => {
+  currentSortKey = e.target.value;
+  renderTable();
+});
+
+sortOrderBtn.addEventListener('click', () => {
+  currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
+  renderTable();
+});
+
+switchTableBtn.addEventListener('click', () => {
+  const currentTable = switchTableBtn.dataset.table;
+  switchTableBtn.dataset.table = currentTable === 'table1' ? 'table2' : 'table1';
+  // Reset search and sort when switching tables for a clean slate
+  searchInput.value = '';
+  currentSearch = '';
+  currentSortKey = 'name';
+  currentSortOrder = 'asc';
+  sortKey.value = 'name';
+  renderTable();
+});
+
+// Initial render
+renderTable();
+</script>
+</body>
+</html>
