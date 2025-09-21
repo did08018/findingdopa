@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Boulangerie Le Pain Doré — Votre boulangerie artisanale à [Ville]</title>
+  <meta name="description" content="Boulangerie Le Pain Doré — pains, viennoiseries et pâtisseries artisanales à [Ville]. Horaires, photos, avis clients et localisation." />
+  <link rel="canonical" href="https://example.com/" />
+  <meta name="keywords" content="boulangerie, pain, viennoiserie, pâtisserie, [Ville], artisan, horaires, avis" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Boulangerie Le Pain Doré — [Ville]" />
+  <meta property="og:description" content="Pains, viennoiseries et pâtisseries artisanales. Horaires, photos et avis clients." />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --accent:#d99a3b;
+      --muted:#6b6b6b;
+      --max-width:1100px;
+      --radius:10px;
+      --shadow: 0 6px 22px rgba(0,0,0,0.08);
+    }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:#111;
+      line-height:1.5;
+    }
+
+    /* Top bar + Hamburger */
+    .topbar{
+      position:fixed;
+      top:12px;
+      left:12px;
+      z-index:1000;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      background:transparent;
+    }
+    .hamburger{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      background:var(--bg);
+      border-radius:8px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,0.04);
+      cursor:pointer;
+    }
+    .hamburger .bars{
+      width:22px;height:2px;background:#222;
+      box-shadow:0 6px 0 #222,0 -6px 0 #222;
+      border-radius:2px;
+    }
+    .brand{display:flex;flex-direction:column;gap:2px;}
+    .brand .name{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;}
+    .brand .tag{font-size:0.75rem;color:var(--muted);}
+
+    nav.site-nav{
+      position:fixed;left:12px;top:72px;z-index:999;
+      background:rgba(255,255,255,0.98);backdrop-filter:blur(6px);
+      border-radius:12px;padding:10px;
+      box-shadow:var(--shadow);
+      max-width:240px;
+      display:none;
+    }
+    nav.site-nav a{
+      display:block;padding:10px 12px;border-radius:8px;color:#111;text-decoration:none;font-weight:600;
+    }
+    nav.site-nav a:hover{background:rgba(217,154,59,0.08);}
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px 20px 90px;}
+
+    header.hero{
+      display:flex;gap:28px;align-items:center;
+      padding:28px 12px;margin-top:20px;
+      border-radius:12px;
+      background:linear-gradient(180deg,rgba(217,154,59,0.06),rgba(217,154,59,0.02));
+    }
+    .hero-left{flex:1;}
+    .hero-right{width:300px;flex-shrink:0;}
+    .hero h1{margin:0;font-family:'Playfair Display',serif;font-size:2rem;}
+    .hero p.lead{color:var(--muted);margin:8px 0 0;}
+
+    section{margin-top:28px;padding:22px;border-radius:12px;background:#fff;box-shadow:var(--shadow);}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+    .section-title h2{margin:0;font-size:1.1rem;font-weight:700;font-family:'Playfair Display',serif;}
+    .muted{color:var(--muted);font-size:0.95rem;}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px;cursor:pointer;}
+
+    .info-row{display:flex;flex-wrap:wrap;gap:12px;}
+    .card{flex:1;min-width:180px;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.03);}
+
+    .hours{width:100%;border-collapse:collapse;}
+    .hours td{padding:6px 8px;border-bottom:1px dashed #f0f0f0;}
+
+    .review{padding:10px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.04);}
+    .stars{color:var(--accent);font-weight:700;}
+
+    .map{width:100%;height:300px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:0.95rem;margin-top:18px;}
+
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:2000;padding:20px;}
+    .modal img{max-width:95%;max-height:85%;border-radius:8px;}
+
+    @media (max-width:600px){
+      .container{padding:20px 12px 80px;}
+      header.hero{flex-direction:column;padding:20px 12px;}
+      .hero-right{width:100%;}
+      .gallery img{height:120px;}
+      .site-nav{width:calc(100% - 24px);left:12px;right:12px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="site-nav"><span class="bars"></span></button>
+    <div class="brand">
+      <span class="name">Boulangerie Le Pain Doré</span>
+      <span class="tag">Artisan boulanger — [Ville]</span>
+    </div>
+  </div>
+
+  <nav class="site-nav" id="site-nav">
+    <a href="#photos">Photos</a>
+    <a href="#menu">Menu & Spécialités</a>
+    <a href="#horaires">Horaires</a>
+    <a href="#avis">Avis</a>
+    <a href="#carte">Nous trouver</a>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <div class="hero-left">
+        <h1>Boulangerie Le Pain Doré</h1>
+        <p class="lead">Pains traditionnels, viennoiseries au beurre et pâtisseries maison — fraîcheur quotidienne depuis 1998.</p>
+      </div>
+      <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1542327897-5b9e200a3c2a?q=80&w=800&auto=format&fit=crop" alt="Vitrine de boulangerie" style="width:100%;border-radius:12px;height:200px;object-fit:cover;">
+      </div>
+    </header>
+
+    <!-- Photos -->
+    <section id="photos">
+      <div class="section-title"><h2>Photos</h2></div>
+      <div class="gallery" id="gallery">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1516929562872-3f1474d3f2c0?q=80&w=800&auto=format&fit=crop" alt="Baguettes artisanales" data-large="https://images.unsplash.com/photo-1516929562872-3f1474d3f2c0?q=80&w=1600&auto=format&fit=crop">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1547483238-8a4c9e7f7b3e?q=80&w=800&auto=format&fit=crop" alt="Viennoiseries dorées" data-large="https://images.unsplash.com/photo-1547483238-8a4c9e7f7b3e?q=80&w=1600&auto=format&fit=crop">
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu">
+      <div class="section-title"><h2>Menu & Spécialités</h2></div>
+      <div class="info-row">
+        <div class="card"><h3>Pains</h3><p class="muted">Baguette tradition, Pain complet, Pain de campagne.</p></div>
+        <div class="card"><h3>Viennoiseries</h3><p class="muted">Croissants au beurre, Pain au chocolat.</p></div>
+        <div class="card"><h3>Pâtisseries</h3><p class="muted">Tarte aux fruits, Éclair au chocolat.</p></div>
+      </div>
+    </section>
+
+    <!-- Horaires -->
+    <section id="horaires">
+      <div class="section-title"><h2>Horaires</h2></div>
+      <table class="hours">
+        <tr><td>Lundi — Vendredi</td><td>7:00 — 19:00</td></tr>
+        <tr><td>Samedi</td><td>7:00 — 18:00</td></tr>
+        <tr><td>Dimanche</td><td>8:00 — 13:00</td></tr>
+      </table>
+    </section>
+
+    <!-- Avis -->
+    <section id="avis">
+      <div class="section-title"><h2>Avis clients</h2></div>
+      <div class="review"><strong>Julie P.</strong><span class="stars">★★★★★</span><p class="muted">Croissants incroyables, service chaleureux.</p></div>
+      <div class="review"><strong>Marc L.</strong><span class="stars">★★★★☆</span><p class="muted">Pain de campagne excellent, un peu d’attente le samedi.</p></div>
+    </section>
+
+    <!-- Carte -->
+    <section id="carte">
+      <div class="section-title"><h2>Nous trouver</h2></div>
+      <div class="map">
+        <iframe title="Plan Boulangerie Le Pain Doré" src="https://www.google.com/maps/embed?pb=!1m18..." style="width:100%;height:100%;border:0;" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> Boulangerie Le Pain Doré — Tous droits réservés</footer>
+  </main>
+
+  <div class="modal" id="imgModal"><img id="modalImg" alt=""></div>
+
+  <script>
+    const hamburger=document.getElementById('hamburger');
+    const nav=document.getElementById('site-nav');
+    hamburger.addEventListener('click',()=>{
+      const expanded=hamburger.getAttribute('aria-expanded')==='true';
+      hamburger.setAttribute('aria-expanded',!expanded);
+      nav.style.display=expanded?'none':'block';
+    });
+    nav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+        nav.style.display='none';
+        hamburger.setAttribute('aria-expanded','false');
+      });
+    });
+    const gallery=document.getElementById('gallery');
+    const modal=document.getElementById('imgModal');
+    const modalImg=document.getElementById('modalImg');
+    gallery.addEventListener('click',e=>{
+      const el=e.target.closest('img');if(!el)return;
+      modalImg.src=el.dataset.large||el.src;
+      modal.style.display='flex';
+    });
+    modal.addEventListener('click',()=>{modal.style.display='none';modalImg.src='';});
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
