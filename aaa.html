@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest PD Treatments</title>
+  <style>
+    /* ... [All your CSS pasted here, unchanged for brevity] ... */
+    .toggle-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .toggle-btn {
+      background: #EF9280;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 6px 18px;
+      margin-bottom: 0;
+      transition: background 0.2s;
+      outline: none;
+    }
+    .toggle-btn.active,
+    .toggle-btn:focus {
+      background: #d87a6b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>The Shield & The Snake *</h1>
+  <a href="/" class="home-button">Finding Dopa</a>
+  <div class="toggle-buttons">
+    <button class="toggle-btn active" id="btnTable1">Main Table</button>
+    <button class="toggle-btn" id="btnTable2">Alternate Table</button>
+  </div>
+  <!-- Table controls and table for Page 1 -->
+  <div id="tableContainer1">
+    <div class="controls">
+      <div class="search-container">
+        <input id="search1" type="text" placeholder="Search Treatment...">
+        <button id="clearBtn1" style="display: none;">✕</button>
+        <button id="searchBtn1"></button>
+      </div>
+      <select id="sortKey1">
+        <option value="name">Sort by Treatment</option>
+        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
+        <option value="administration">Sort by Administration</option>
+        <option value="trialPhase">Sort by Trial Phase</option>
+      </select>
+      <button id="sortOrder1">↓ Desc</button>
+    </div>
+    <div class="table-wrapper">
+      <table id="treatmentsTable1">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Treatment</th>
+            <th>Tentative Market Date</th>
+            <th>Administration</th>
+            <th>Goal</th>
+            <th>Trial Phase</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Table controls and table for Page 2 -->
+  <div id="tableContainer2" style="display:none;">
+    <div class="controls">
+      <div class="search-container">
+        <input id="search2" type="text" placeholder="Search Treatment...">
+        <button id="clearBtn2" style="display: none;">✕</button>
+        <button id="searchBtn2"></button>
+      </div>
+      <select id="sortKey2">
+        <option value="name">Sort by Treatment</option>
+        <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
+        <option value="administration">Sort by Administration</option>
+        <option value="trialPhase">Sort by Trial Phase</option>
+      </select>
+      <button id="sortOrder2">↓ Desc</button>
+    </div>
+    <div class="table-wrapper">
+      <table id="treatmentsTable2">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Treatment</th>
+            <th>Tentative Market Date</th>
+            <th>Administration</th>
+            <th>Goal</th>
+            <th>Trial Phase</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <p>* The Shield & The Snake, I cannot tell them apart, yet I walk with both.</p>
+</div>
+
+<script>
+// -- DATA BLOCKS --  
+const treatments1 = [
+ { id:169, name: "AG01", ... },
+ // ... [REPLACE THIS with your pasted treatments list for main table] ...
+];
+const treatments2 = [
+  { id: 201, name: "XYZ123", administration: "Oral", goal: "Neuroprotection", trialPhase: "Phase 1", link: "https://example.com", tentativeMarketDate: "2028" },
+  // ... [Put alternate/new records here] ...
+];
+
+// -- UNIVERSAL TABLE RENDERER --
+function renderTable(treatments, tableBody, search, sortKey, sortDesc) {
+  let filtered = treatments.filter(tr => tr.name.toLowerCase().includes(search.toLowerCase()) 
+        || (tr.administration||"").toLowerCase().includes(search.toLowerCase())
+        || (tr.goal||"").toLowerCase().includes(search.toLowerCase())
+        || (tr.trialPhase||"").toLowerCase().includes(search.toLowerCase())
+        || (tr.tentativeMarketDate||"").toLowerCase().includes(search.toLowerCase())
+      );
+  filtered.sort((a, b) => {
+    let v1 = a[sortKey] || "", v2 = b[sortKey] || "";
+    v1 = v1.toString().toLowerCase(); v2 = v2.toString().toLowerCase();
+    if (v1 < v2) return sortDesc ? 1 : -1;
+    if (v1 > v2) return sortDesc ? -1 : 1;
+    return 0;
+  });
+  tableBody.innerHTML = filtered.map((tr,i) => `<tr>
+    <td>${i+1}</td>
+    <td>${tr.name||""}</td>
+    <td>${tr.tentativeMarketDate||""}</td>
+    <td>${tr.administration||""}</td>
+    <td>${tr.goal||""}</td>
+    <td>${tr.trialPhase||""}</td>
+    <td>${tr.link ? `<a href="${tr.link}" target="_blank">link</a>` : ""}</td>
+  </tr>`).join("");
+}
+
+// -- INIT TABLE CONTROLS --
+function initTableBlock({tableId, searchId, clearBtnId, searchBtnId, sortKeyId, sortOrderId, data}) {
+  let sortKey = "name";
+  let sortDesc = true;
+  let search = "";
+
+  const tableBody = document.querySelector(`#${tableId} tbody`);
+  const searchInput = document.getElementById(searchId);
+  const clearBtn = document.getElementById(clearBtnId);
+  const searchBtn = document.getElementById(searchBtnId);
+  const sortKeySelect = document.getElementById(sortKeyId);
+  const sortOrderBtn = document.getElementById(sortOrderId);
+
+  function update() { 
+    renderTable(data, tableBody, search, sortKey, sortDesc); 
+    clearBtn.style.display = search ? "block" : "none";
+  }
+
+  searchInput.addEventListener("input", (e) => {
+    search = e.target.value;
+    update();
+  });
+  searchBtn.addEventListener("click", () => { update(); });
+  clearBtn.addEventListener("click", () => { searchInput.value = ""; search = ""; update(); });
+  sortKeySelect.addEventListener("change", (e) => { sortKey = e.target.value; update(); });
+  sortOrderBtn.addEventListener("click", () => { sortDesc=!sortDesc; sortOrderBtn.innerText = sortDesc ? "↓ Desc" : "↑ Asc"; update(); });
+
+  // Default render
+  update();
+}
+
+// -- TOGGLE BUTTON LOGIC --
+const btnTable1 = document.getElementById('btnTable1');
+const btnTable2 = document.getElementById('btnTable2');
+const tableContainer1 = document.getElementById('tableContainer1');
+const tableContainer2 = document.getElementById('tableContainer2');
+btnTable1.addEventListener('click', () => {
+  tableContainer1.style.display = "block";
+  tableContainer2.style.display = "none";
+  btnTable1.classList.add('active');
+  btnTable2.classList.remove('active');
+});
+btnTable2.addEventListener('click', () => {
+  tableContainer1.style.display = "none";
+  tableContainer2.style.display = "block";
+  btnTable2.classList.add('active');
+  btnTable1.classList.remove('active');
+});
+
+// -- INIT BOTH TABLES --
+initTableBlock({ 
+  tableId: "treatmentsTable1", searchId: "search1", clearBtnId: "clearBtn1", searchBtnId: "searchBtn1", 
+  sortKeyId: "sortKey1", sortOrderId: "sortOrder1",  treatments1 
+});
+initTableBlock({ 
+  tableId: "treatmentsTable2", searchId: "search2", clearBtnId: "clearBtn2", searchBtnId: "searchBtn2", 
+  sortKeyId: "sortKey2", sortOrderId: "sortOrder2",  treatments2 
+});
+</script>
+</body>
+</html>
