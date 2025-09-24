@@ -70,31 +70,11 @@
   cursor:pointer;
 }
 
-/*.brand .name{
+.brand .name{
   font-family:'Playfair Display',serif;
   font-weight:700;
   font-size:1rem;
   color:#111; /* consistent with rest of page */
-}*/
-
-    .brand {
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  padding:6px 10px;
-  background: var(--bg);       /* même fond que la page */
-  border-radius:8px;           /* arrondi cohérent avec le hamburger */
-  box-shadow: var(--shadow);   /* optionnel, pour cohérence visuelle */
-}
-.brand .name {
-  font-family:'Playfair Display',serif;
-  font-weight:700;
-  font-size:1rem;
-  color:#111;
-}
-.brand .tag {
-  font-size:0.75rem;
-  color:var(--muted);
 }
 
 /* Responsive tweaks */
@@ -110,12 +90,12 @@
     .hamburger .bars{
       width:22px;height:2px;background:#222;box-shadow:0 6px 0 #222,0 -6px 0 #222;border-radius:2px;
     }
-    /*.brand{
+    .brand{
       display:flex;flex-direction:column;gap:2px;padding-left:6px;
     }
     .brand .name{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;}
     .brand .tag{font-size:0.75rem;color:var(--muted);}
-*/
+
     /* Sidebar nav (hidden by default on mobile) */
     nav.site-nav{
       position:fixed;left:12px;top:72px;z-index:999;
