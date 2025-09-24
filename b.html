@@ -57,8 +57,24 @@
   display:flex;
   gap:12px;
   align-items:center;
-  background:transparent; /* harmonize with page */
+  background:transparent;
 }*/
+
+    /* Donne un fond blanc et une bordure douce à la topbar */
+.topbar {
+  position: fixed;
+  top: 0; /* colle bien en haut */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--bg); /* fond uni */
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
 
 .hamburger{
   width:44px;height:44px;
@@ -116,22 +132,6 @@
       margin:0 auto;
       padding:28px 20px 90px;
     }*/
-
-/* Donne un fond blanc et une bordure douce à la topbar */
-.topbar {
-  position: fixed;
-  top: 0; /* colle bien en haut */
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  background: var(--bg); /* fond uni */
-  box-shadow: var(--shadow);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
 
 /* Décale ton contenu pour qu’il ne passe pas sous la topbar */
 .container {
