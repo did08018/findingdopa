@@ -49,7 +49,7 @@
     }
 
 /* Top bar + Hamburger */
-.topbar{
+/*.topbar{
   position:fixed;
   top:12px;
   left:12px;
@@ -58,7 +58,7 @@
   gap:12px;
   align-items:center;
   background:transparent; /* harmonize with page */
-}
+}*/
 
 .hamburger{
   width:44px;height:44px;
@@ -111,12 +111,35 @@
     nav.site-nav a:hover{background:rgba(217,154,59,0.08);}
 
     /* Layout container */
-    .container{
+   /* .container{
       max-width:var(--max-width);
       margin:0 auto;
       padding:28px 20px 90px;
-    }
+    }*/
 
+/* Donne un fond blanc et une bordure douce à la topbar */
+.topbar {
+  position: fixed;
+  top: 0; /* colle bien en haut */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--bg); /* fond uni */
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Décale ton contenu pour qu’il ne passe pas sous la topbar */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 90px 20px 90px; /* <-- 90px en haut au lieu de 28px */
+}
+    
     header.hero{
       display:flex;
       gap:28px;
