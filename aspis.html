@@ -558,7 +558,16 @@ function renderTable() {
       <td>${t.administration}</td>
       <td>${t.goal}</td>
       <td>${t.trialPhase}</td>
-      <td><a href="${t.link}" target="_blank">Link</a></td>
+      const linkCell = row.insertCell();
+
+t.link.forEach(url => {
+  const a = document.createElement("a");
+  a.href = url;
+  a.textContent = "Link";
+  a.target = "_blank";
+  linkCell.appendChild(a);
+  linkCell.appendChild(document.createElement("br"));
+});
     `;
     tableBody.appendChild(row);
   });
