@@ -537,19 +537,30 @@ function renderTable() {
       const bDate = parseMarketDate(b.tentativeMarketDate);
       return currentSortOrder === 'desc' ? bDate - aDate : aDate - bDate;
     }
-    // All others compared as strings (case-insensitive)
     return currentSortOrder === 'desc'
       ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
       : String(a[currentSortKey]).localeCompare(String(b[currentSortKey]));
   });
 
   tableBody.innerHTML = '';
-
   const total = filtered.length;
 
   filtered.forEach((t, index) => {
-    const reverseIndex = total - index; // numbering from bottom (1) to top (max)
+    const reverseIndex = total - index;
 
+    // 1. Prepare the link HTML first
+    let linkHtml = '';
+    if (Array.isArray(t.link)) {
+      // If it's your new list (Buntanetap), make two links
+      linkHtml = t.link.map((url, i) => 
+        `<a href="${url}" target="_blank">Link ${i+1}</a>`
+      ).join('<br>'); 
+    } else if (t.link) {
+      // If it's a normal single link
+      linkHtml = `<a href="${t.link}" target="_blank">Link</a>`;
+    }
+
+    // 2. Insert it cleanly into the row
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${reverseIndex}</td>
@@ -558,19 +569,14 @@ function renderTable() {
       <td>${t.administration}</td>
       <td>${t.goal}</td>
       <td>${t.trialPhase}</td>
-      const linkCell = row.insertCell();
-
-t.link.forEach(url => {
-  const a = document.createElement("a");
-  a.href = url;
-  a.textContent = "Link";
-  a.target = "_blank";
-  linkCell.appendChild(a);
-  linkCell.appendChild(document.createElement("br"));
-});
+      <td>${linkHtml}</td>
     `;
     tableBody.appendChild(row);
   });
+
+  sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
+}
+
 
   // Keep sort button label in sync after each render
   sortOrderBtn.textContent = currentSortOrder === 'desc' ? '↓ Desc' : '↑ Asc';
