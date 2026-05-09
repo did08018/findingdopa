@@ -47,21 +47,20 @@
 
 ```
 /* --- Form controls ---
-   Phone portrait (<600px): stack vertically, centered.
-   Phone landscape and up (>=600px): horizontal row, centered.
-   At 600px we have room for 200+200+110 widths plus gaps.
+   Phone portrait (<600px): stack vertically, centered, full-width.
+   Phone landscape and up (>=600px): horizontal row, three controls
+   share available width equally via flex:1 (capped by .controls max-width).
    font-size:16px prevents iOS auto-zoom on focus. */
 
 .controls {
-  text-align: center;
-  margin: 20px 0 36px;
+  margin: 20px auto 28px;
   padding: 0;
+  max-width: 720px;
 }
 
 .controls > * {
   display: block;
   width: 100%;
-  max-width: 340px;
   height: 48px;
   margin: 0 auto 14px;
   box-sizing: border-box;
@@ -70,10 +69,6 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-.controls > *:last-child {
-  margin-bottom: 0;
 }
 
 /* Search box (input + clear + search-icon) */
@@ -111,7 +106,6 @@
   padding: 0;
   margin: 0;
   width: auto;
-  max-width: none;
   height: auto;
 }
 .search-container button svg {
@@ -174,39 +168,17 @@
   background: #d87a6b;
 }
 
-/* Phone landscape and up : switch to horizontal row */
+/* Phone landscape and up: three controls share available width equally */
 @media (min-width: 600px) {
   .controls {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
     gap: 12px;
-    text-align: initial;
   }
   .controls > * {
-    display: inline-block;
+    flex: 1 1 0;
     width: auto;
-    max-width: none;
     margin: 0;
-  }
-  .search-container,
-  #sortKey {
-    width: 220px;
-  }
-  #sortOrder {
-    width: 120px;
-  }
-}
-
-/* Wider screens: a bit more breathing room */
-@media (min-width: 900px) {
-  .search-container,
-  #sortKey {
-    width: 240px;
-  }
-  #sortOrder {
-    width: 130px;
   }
 }
 .table-wrapper {
