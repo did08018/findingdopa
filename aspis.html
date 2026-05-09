@@ -47,15 +47,15 @@
     }
 
 ```
-/* --- Form controls: simple block layout for max iOS compatibility ---
-   Stacked vertically by default with 14px gap (margin-bottom on each item).
-   Explicit centering via margin: 0 auto rather than flex centering.
-   Switches to horizontal row only at >=1024px (real tablets/desktops);
-   below that — including iPhone Pro Max landscape at 932px — it stays stacked. */
+/* --- Form controls ---
+   Phone portrait (<600px): stack vertically, centered.
+   Phone landscape and up (>=600px): horizontal row, centered.
+   At 600px we have room for 200+200+110 widths plus gaps.
+   font-size:16px prevents iOS auto-zoom on focus. */
 
 .controls {
   text-align: center;
-  margin: 20px 0 32px;
+  margin: 20px 0 36px;
   padding: 0;
 }
 
@@ -175,13 +175,14 @@
   background: #d87a6b;
 }
 
-/* Tablet+ : switch to horizontal row */
-@media (min-width: 1024px) {
+/* Phone landscape and up : switch to horizontal row */
+@media (min-width: 600px) {
   .controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 14px;
+    align-items: center;
+    gap: 12px;
     text-align: initial;
   }
   .controls > * {
@@ -190,6 +191,17 @@
     max-width: none;
     margin: 0;
   }
+  .search-container,
+  #sortKey {
+    width: 220px;
+  }
+  #sortOrder {
+    width: 120px;
+  }
+}
+
+/* Wider screens: a bit more breathing room */
+@media (min-width: 900px) {
   .search-container,
   #sortKey {
     width: 240px;
@@ -461,8 +473,8 @@ const treatments = [
 { id: 60, name: "Fetal/Embryonic Stem Cell Grafts", administration: "Cell infusion", goal: "Replace dopamine neurons with fetal/embryonic stem cell-derived neurons", trialPhase: "Historical/limited trials", link: "https://findingdopa.com/science.html", tentativeMarketDate: "Unlikely\nEthical and sourcing challenges limit future use." },
 { id: 59, name: "Propranolol", administration: "Oral (tablet)", goal: "Reduce Parkinsonian tremor via beta-adrenergic blockade", trialPhase: "Repurposed, observational/preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "Unknown\nRepurposed, not in formal PD trials." },
 { id: 58, name: "CREXONT (IPX203)", administration: "Oral (capsule, extended-release carbidopa/levodopa)", goal: "Extended-release carbidopa/levodopa for longer 'on' time and reduced dose frequency", trialPhase: "Phase 3 complete (NCT03877510)", link: "https://clinicaltrials.gov/study/NCT03877510", tentativeMarketDate: "Marketed 2024 (US); EU launch pending 2026" },
-{ id: 57, name: "Exosome Therapy", administration: "Injection (intranasal/intravenous)", goal: "Deliver neuroprotective factors and alpha-synuclein clearance via engineered exosomes", trialPhase: "Preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "2035\nPreclinical now. Market ~2035 if successful." },
-{ id: 56, name: "CRISPR Gene Editing", administration: "Gene editing (in vivo/ex vivo)", goal: "Correct PD-causing mutations (e.g., LRRK2, SNCA) with precision editing", trialPhase: "Preclinical", link: "https://findingdopa.com/science.html", tentativeMarketDate: "2035+\nPreclinical only, years from market." },
+{ id: 57, name: "Exosome Therapy (UC-MSC AlloEx)", administration: "Intranasal instillation (allogeneic umbilical cord MSC-derived exosomes)", goal: "Deliver neuroprotective factors and reduce neuroinflammation via stem cell-derived exosomes", trialPhase: "Phase 1 ongoing (NCT05152394, intranasal AlloEx, safety/efficacy)", link: "https://clinicaltrials.gov/study/NCT05152394", tentativeMarketDate: "2032+\nPhase 1 ongoing; multi-year clinical pathway" },
+{ id: 56, name: "CRISPR Gene Editing", administration: "Gene editing (preclinical: in vivo viral, ex vivo iPSC)", goal: "Correct PD-causing mutations (SNCA, LRRK2, PINK1, GBA) with precision editing — currently iPSC models and animal studies only", trialPhase: "Preclinical only — no human PD trials registered as of 2026", link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8430539/", tentativeMarketDate: "2035+\nNo human trials yet; clinical pathway 8–10+ years" },
 { id: 55, name: "AB-1005 (REGENERATE-PD)", administration: "Bilateral intracerebral putaminal AAV2-GDNF gene therapy infusion (AskBio / Bayer subsidiary)", goal: "Deliver GDNF gene to putamen to enhance dopaminergic neuron survival and slow motor progression", trialPhase: "Phase 1b complete (NCT04167540, putamen coverage demonstrated); Phase 2 REGENERATE-PD ongoing (sham-controlled)", link: "https://clinicaltrials.gov/study/NCT04167540", tentativeMarketDate: "2032+\nPhase 2 ongoing; pivotal trial readout multi-year" },
 { id: 54, name: "RNDP-001 (Kenai Therapeutics)", administration: "Cell infusion", goal: "Allogeneic iPSC-derived dopaminergic progenitors for Parkinson's treatment", trialPhase: "Preclinical, IND planned", link: "https://kenaitx.com", tentativeMarketDate: "2034\nPreclinical now. Phase 1 ~2026, market ~2034." },
 { id: 53, name: "TFG 001 (TreeFrog Therapeutics)", administration: "Cell infusion", goal: "Scalable iPSC-derived dopaminergic neuron therapy for PD", trialPhase: "Preclinical, Phase 1 planned for 2027", link: "https://treefrog.fr", tentativeMarketDate: "2035\nPreclinical now. Phase 1 ~2027, market ~2035." },
