@@ -303,6 +303,7 @@ th:nth-child(7), td:nth-child(6) {
       <select id="sortKey">
         <option value="name">Sort by Treatment</option>
         <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
+        <option value="distanceFromNow">Sort by Relevance (Now)</option>
         <option value="administration">Sort by Administration</option>
         <option value="trialPhase">Sort by Trial Phase</option>
       </select>
@@ -516,8 +517,8 @@ const sortOrderBtn = document.getElementById('sortOrder');
 const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
 
 // State
-let currentSortKey = 'tentativeMarketDate';
-let currentSortOrder = 'desc';
+let currentSortKey = 'distanceFromNow';
+let currentSortOrder = 'asc';
 let currentSearch = '';
 
 // Helper: extract a usable http(s) URL from a link field, or null if none.
@@ -569,6 +570,40 @@ function compareMarketDate(a, b, desc) {
   return desc ? bD.year - aD.year : aD.year - bD.year;
 }
 
+// Comparator: distance from current year.
+// Asc: closest to current year first → outward, future-first within same-distance tier
+//      (e.g., 2026 → 2027 → 2025 → 2028 → 2024 → ... → indefinite at bottom)
+// Desc: walks backward in time from current year only
+//      (e.g., 2026 → 2025 → 2024 → ... → 1955 → then future years → then indefinite)
+const CURRENT_YEAR = new Date().getFullYear();
+function compareDistanceFromNow(a, b, desc) {
+  const aD = parseMarketDate(a);
+  const bD = parseMarketDate(b);
+  if (aD.indefinite && !bD.indefinite) return 1;
+  if (!aD.indefinite && bD.indefinite) return -1;
+  if (aD.indefinite && bD.indefinite) return 0;
+
+  if (desc) {
+    // Past walk: years <= CURRENT_YEAR sort first (desc by year), then future years (asc by year, so closer-to-now first).
+    const aIsPast = aD.year <= CURRENT_YEAR;
+    const bIsPast = bD.year <= CURRENT_YEAR;
+    if (aIsPast && !bIsPast) return -1;
+    if (!aIsPast && bIsPast) return 1;
+    if (aIsPast && bIsPast) {
+      // Both past: newer first (2026 → 2025 → ... → 1955)
+      return bD.year - aD.year;
+    }
+    // Both future: closer to now first (2027 → 2028 → ...)
+    return aD.year - bD.year;
+  }
+
+  // Asc: distance from now ascending; future-first within same-distance tier
+  const aDist = Math.abs(aD.year - CURRENT_YEAR);
+  const bDist = Math.abs(bD.year - CURRENT_YEAR);
+  if (aDist !== bDist) return aDist - bDist;
+  return bD.year - aD.year;
+}
+
 // Render table
 function renderTable() {
   let filtered = treatments.filter(t =>
@@ -578,6 +613,9 @@ function renderTable() {
   filtered.sort((a, b) => {
     if (currentSortKey === 'tentativeMarketDate') {
       return compareMarketDate(a.tentativeMarketDate, b.tentativeMarketDate, currentSortOrder === 'desc');
+    }
+    if (currentSortKey === 'distanceFromNow') {
+      return compareDistanceFromNow(a.tentativeMarketDate, b.tentativeMarketDate, currentSortOrder === 'desc');
     }
     return currentSortOrder === 'desc'
       ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
@@ -628,6 +666,13 @@ clearBtn.addEventListener('click', () => {
 
 sortKey.addEventListener('change', e => {
   currentSortKey = e.target.value;
+  // For the "Relevance (Now)" sort, the natural default is asc (closest first).
+  // For everything else, the natural default is desc (latest year, last alpha).
+  if (currentSortKey === 'distanceFromNow') {
+    currentSortOrder = 'asc';
+  } else {
+    currentSortOrder = 'desc';
+  }
   renderTable();
 });
 
