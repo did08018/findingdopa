@@ -55,27 +55,28 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 8px;
-  max-width: 720px;
-  margin: 14px auto 8px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 16px auto 10px;
   padding: 0;
 }
 .tab {
-  height: 44px;
-  padding: 0 22px;
-  min-width: 110px;
+  height: 36px;
+  padding: 0 16px;
+  min-width: 96px;
   border: 1px solid #EF9280;
   background: #fff;
   color: #EF9280;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   white-space: nowrap;
-  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -95,11 +96,12 @@
   font-size: 12px;
 }
 @media (max-width: 600px) {
+  .tabs {
+    width: 100%;
+  }
   .tab {
     flex: 1 1 0;
     min-width: 0;
-    font-size: 13px;
-    height: 42px;
     padding: 0 6px;
   }
 }
@@ -112,20 +114,23 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  max-width: 720px;
-  margin: 4px auto 16px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 16px;
 }
 .counter-pill,
 .trend-btn {
   display: inline-flex;
   align-items: center;
-  height: 32px;
-  padding: 0 12px;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
   border-radius: 6px;
   font-family: inherit;
   font-size: 13px;
   box-sizing: border-box;
   background: #fff;
+  white-space: nowrap;
 }
 .counter-pill {
   border: 1px solid #f5cbc2; /* pale salmon, informational */
@@ -151,6 +156,16 @@
 .trend-btn:hover {
   background: #EF9280;
   color: #fff;
+}
+@media (max-width: 600px) {
+  .stats {
+    gap: 6px;
+  }
+  .counter-pill,
+  .trend-btn {
+    padding: 0 10px;
+    font-size: 12px;
+  }
 }
 
 /* --- Modal --- */
@@ -235,278 +250,307 @@
 }
 ```
 
-```
-/* --- Form controls ---
-   Phone portrait (<600px): stack vertically, centered, full-width.
-   Phone landscape and up (>=600px): horizontal row, three controls
-   share available width equally via flex:1 (capped by .controls max-width).
-   font-size:16px prevents iOS auto-zoom on focus. */
+/* — Form controls —
+Phone portrait (<600px): stack vertically, centered, full-width.
+Phone landscape and up (>=600px): horizontal row, three controls
+share available width equally via flex:1 (capped by .controls max-width).
+font-size:16px prevents iOS auto-zoom on focus. */
 
 .controls {
-  margin: 20px auto 28px;
-  padding: 0;
-  max-width: 720px;
+margin: 8px auto 24px;
+padding: 0;
+max-width: 720px;
 }
 
 .controls > * {
-  display: block;
-  width: 100%;
-  height: 48px;
-  margin: 0 auto 14px;
-  box-sizing: border-box;
-  font-family: inherit;
-  font-size: 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+display: block;
+width: 100%;
+height: 36px;
+margin: 0 auto 10px;
+box-sizing: border-box;
+font-family: inherit;
+font-size: 14px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 /* Search box (input + clear + search-icon) */
 .search-container {
-  position: relative;
+position: relative;
 }
 .search-container input {
-  width: 100%;
-  height: 100%;
-  padding: 0 90px 0 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background: #fff;
-  color: #333;
-  font-family: inherit;
-  font-size: 16px;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  appearance: none;
+width: 100%;
+height: 100%;
+padding: 0 76px 0 12px;
+border: 1px solid #ccc;
+border-radius: 6px;
+background: #fff;
+color: #333;
+font-family: inherit;
+font-size: 16px;
+box-sizing: border-box;
+-webkit-appearance: none;
+appearance: none;
 }
 .search-container input:focus {
-  outline: 2px solid #EF9280;
-  outline-offset: -1px;
-  border-color: #EF9280;
+outline: 2px solid #EF9280;
+outline-offset: -1px;
+border-color: #EF9280;
 }
 .search-container button {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  width: auto;
-  height: auto;
+position: absolute;
+top: 0;
+bottom: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+border: none;
+cursor: pointer;
+padding: 0;
+margin: 0;
+width: auto;
+height: auto;
 }
 .search-container button svg {
-  display: block;
+display: block;
 }
 .search-container #clearBtn {
-  right: 44px;
-  width: 40px;
-  background: transparent;
-  color: #666;
-  border-right: 1px solid #ddd;
-  border-radius: 0;
+right: 36px;
+width: 32px;
+background: transparent;
+color: #666;
+border-right: 1px solid #ddd;
+border-radius: 0;
 }
 .search-container #clearBtn:hover {
-  background: #f5f5f5;
+background: #f5f5f5;
 }
 .search-container #searchBtn {
-  right: 0;
-  width: 44px;
-  background: #EF9280;
-  color: white;
-  border-radius: 0 10px 10px 0;
+right: 0;
+width: 36px;
+background: #EF9280;
+color: white;
+border-radius: 0 6px 6px 0;
 }
 .search-container #searchBtn:hover {
-  background: #d87a6b;
+background: #d87a6b;
 }
 
 /* Sort dropdown — custom chevron, native iOS appearance stripped */
 #sortKey {
-  padding: 0 40px 0 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23666' d='M4 6l4 4 4-4z'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 14px;
+padding: 0 32px 0 12px;
+border: 1px solid #ccc;
+border-radius: 6px;
+background-color: #fff;
+color: #333;
+cursor: pointer;
+background-image: url(“data:image/svg+xml;charset=UTF-8,%3csvg xmlns=‘http://www.w3.org/2000/svg’ viewBox=‘0 0 16 16’%3e%3cpath fill=’%23666’ d=‘M4 6l4 4 4-4z’/%3e%3c/svg%3e”);
+background-repeat: no-repeat;
+background-position: right 10px center;
+background-size: 12px;
 }
 #sortKey:focus {
-  outline: 2px solid #EF9280;
-  outline-offset: -1px;
-  border-color: #EF9280;
+outline: 2px solid #EF9280;
+outline-offset: -1px;
+border-color: #EF9280;
 }
 
-/* Asc/Desc button */
+/* Asc/Desc button — salmon-filled toggle, matches .tab.active visually */
 #sortOrder {
-  padding: 0 14px;
-  background: #EF9280;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  text-align: center;
-  line-height: 48px;
+padding: 0 14px;
+background: #EF9280;
+color: white;
+border: 1px solid #EF9280;
+border-radius: 6px;
+cursor: pointer;
+font-weight: 500;
+text-align: center;
+line-height: 34px;
 }
 #sortOrder:hover {
-  background: #d87a6b;
+background: #d87a6b;
+border-color: #d87a6b;
 }
 
 /* Phone landscape and up: three controls share available width equally */
 @media (min-width: 600px) {
-  .controls {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-  .controls > * {
-    flex: 1 1 0;
-    width: auto;
-    margin: 0;
-  }
+.controls {
+display: flex;
+flex-direction: row;
+gap: 10px;
+margin-bottom: 28px;
+}
+.controls > * {
+flex: 1 1 0;
+width: auto;
+margin: 0;
+}
 }
 .table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
 }
 table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
+table-layout: fixed;
+width: 100%;
+border-collapse: collapse;
 }
 td, th {
-  white-space: normal;
-  word-wrap: break-word;
-  vertical-align: top;
-  padding: 8px;
-  border: 1px solid #ccc;
+white-space: normal;
+word-wrap: break-word;
+vertical-align: top;
+padding: 8px;
+border: 1px solid #ccc;
 }
 th {
-  background: #EF9280;
-  color: white;
-  cursor: pointer;
-  white-space: nowrap;
+background: #EF9280;
+color: white;
+cursor: pointer;
+white-space: nowrap;
 }
 th:hover {
-  background: #d87a6b;
+background: #d87a6b;
 }
 tr:nth-child(even) {
-  background: #fff5f3;
+background: #fff5f3;
 }
 tr:hover {
-  background: #ffe6e2;
+background: #ffe6e2;
 }
 a {
-  color: #EF9280;
-  text-decoration: none;
+color: #EF9280;
+text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+text-decoration: underline;
 }
 .no-link {
-  color: #999;
+color: #999;
 }
 th:nth-child(1), td:nth-child(1) {
-  width: 70px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  word-wrap: break-word;
+width: 70px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: normal;
+word-wrap: break-word;
 }
 th:nth-child(2), td:nth-child(2) {
-  width: 70px;
-  white-space: pre-line;
+width: 70px;
+white-space: pre-line;
 }
 th:nth-child(3), td:nth-child(3) {
-  width: 95px;
+width: 95px;
 }
 th:nth-child(4), td:nth-child(4) {
-  width: 90px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  word-wrap: break-word;
+width: 90px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: normal;
+word-wrap: break-word;
 }
 th:nth-child(5), td:nth-child(5) {
-  width: 185px;
+width: 185px;
 }
 th:nth-child(6), td:nth-child(6) {
-  width: 85px;
+width: 85px;
 }
 th:nth-child(7), td:nth-child(6) {
-  width: 30px;
+width: 30px;
 }
 @media (max-width: 600px) {
-  th, td {
-    font-size: 12px;
-    padding: 4px;
-  }
+th, td {
+font-size: 12px;
+padding: 4px;
+}
 }
 #treatmentsTable th:first-child,
 #treatmentsTable td:first-child {
-  width: 4ch;
-  max-width: 4ch;
-  text-align: center;
-  white-space: nowrap;
+width: 4ch;
+max-width: 4ch;
+text-align: center;
+white-space: nowrap;
 }
 #treatmentsTable th {
-  white-space: normal;
-  word-wrap: break-word;
-  text-align: center;
-  padding: 4px 6px;
+white-space: normal;
+word-wrap: break-word;
+text-align: center;
+padding: 4px 6px;
 }
 #treatmentsTable td {
-  white-space: normal;
-  word-wrap: break-word;
+white-space: normal;
+word-wrap: break-word;
 }
 
-/* --- Footer Aspis note --- */
+/* — Footer Aspis note: Greek-meander dividers, large word display in
+serif italic, classical-feeling typography. The metaphor sits at the
+bottom of the page like an inscription below the table. — */
 .aspis-note {
-  max-width: 600px;
-  margin: 40px auto 16px;
-  padding: 0 8px;
-  font-size: 13px;
-  color: #6a6a6a;
-  line-height: 1.7;
+max-width: 600px;
+margin: 56px auto 24px;
+padding: 0 12px;
+font-size: 13.5px;
+color: #6a6a6a;
+line-height: 1.75;
 }
-.aspis-rule {
-  width: 60px;
-  height: 1px;
-  background: #EF9280;
-  opacity: 0.45;
-  margin: 0 auto;
+.aspis-meander {
+display: block;
+width: 196px;
+max-width: 80%;
+height: auto;
+margin: 0 auto;
+opacity: 0.55;
 }
-.aspis-rule + .aspis-epigraph {
-  margin-top: 20px;
+.aspis-meander + .aspis-greek {
+margin-top: 26px;
 }
-.aspis-note .aspis-rule:last-child {
-  margin-top: 22px;
+.aspis-greek {
+display: block;
+text-align: center;
+font-family: ‘Iowan Old Style’, ‘Palatino Linotype’, Palatino, Georgia, ‘Times New Roman’, serif;
+font-style: italic;
+font-size: 30px;
+color: #EF9280;
+letter-spacing: 0.08em;
+line-height: 1;
+margin: 0 0 6px;
+}
+.aspis-pronounce {
+display: block;
+text-align: center;
+font-family: ‘Iowan Old Style’, ‘Palatino Linotype’, Palatino, Georgia, serif;
+font-style: italic;
+font-size: 12px;
+color: #b07a6b;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+margin: 0 0 22px;
 }
 .aspis-note .aspis-epigraph {
-  font-style: italic;
-  color: #555;
-  font-size: 14px;
-  text-align: center;
-  letter-spacing: 0.015em;
-  margin: 0 0 20px;
+font-family: ‘Iowan Old Style’, ‘Palatino Linotype’, Palatino, Georgia, ‘Times New Roman’, serif;
+font-style: italic;
+color: #555;
+font-size: 14.5px;
+text-align: center;
+letter-spacing: 0.02em;
+margin: 0 0 24px;
+line-height: 1.55;
 }
 .aspis-note p {
-  margin: 0 0 12px;
+margin: 0 0 14px;
 }
 .aspis-note p:last-of-type {
-  margin-bottom: 0;
+margin: 0 0 26px;
 }
 .aspis-note em {
-  font-style: italic;
+font-style: italic;
+font-family: ‘Iowan Old Style’, ‘Palatino Linotype’, Palatino, Georgia, serif;
 }
-```
+@media (max-width: 600px) {
+.aspis-greek { font-size: 26px; }
+.aspis-note { font-size: 13px; padding: 0 8px; }
+.aspis-meander { width: 160px; }
+}
 
   </style>
 </head>
@@ -570,11 +614,19 @@ th:nth-child(7), td:nth-child(6) {
       </table>
     </div>
       <div class="aspis-note">
-        <div class="aspis-rule"></div>
+        <svg class="aspis-meander" viewBox="0 0 196 14" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path d="M 0,12 L 0,2 L 10,2 L 10,9 L 4,9 L 4,6 L 8,6 L 8,12 L 14,12 L 14,2 L 24,2 L 24,9 L 18,9 L 18,6 L 22,6 L 22,12 L 28,12 L 28,2 L 38,2 L 38,9 L 32,9 L 32,6 L 36,6 L 36,12 L 42,12 L 42,2 L 52,2 L 52,9 L 46,9 L 46,6 L 50,6 L 50,12 L 56,12 L 56,2 L 66,2 L 66,9 L 60,9 L 60,6 L 64,6 L 64,12 L 70,12 L 70,2 L 80,2 L 80,9 L 74,9 L 74,6 L 78,6 L 78,12 L 84,12 L 84,2 L 94,2 L 94,9 L 88,9 L 88,6 L 92,6 L 92,12 L 98,12 L 98,2 L 108,2 L 108,9 L 102,9 L 102,6 L 106,6 L 106,12 L 112,12 L 112,2 L 122,2 L 122,9 L 116,9 L 116,6 L 120,6 L 120,12 L 126,12 L 126,2 L 136,2 L 136,9 L 130,9 L 130,6 L 134,6 L 134,12 L 140,12 L 140,2 L 150,2 L 150,9 L 144,9 L 144,6 L 148,6 L 148,12 L 154,12 L 154,2 L 164,2 L 164,9 L 158,9 L 158,6 L 162,6 L 162,12 L 168,12 L 168,2 L 178,2 L 178,9 L 172,9 L 172,6 L 176,6 L 176,12 L 182,12 L 182,2 L 192,2 L 192,9 L 186,9 L 186,6 L 190,6 L 190,12"
+                fill="none" stroke="#EF9280" stroke-width="1.4" stroke-linejoin="miter" stroke-linecap="square"/>
+        </svg>
+        <span class="aspis-greek">&#7940;&sigma;&pi;&iota;&sigmaf;</span>
+        <span class="aspis-pronounce">aspis</span>
         <p class="aspis-epigraph">* The Shield &amp; The Snake, I cannot tell them apart, yet I walk with both.</p>
-        <p>In Greek, <em>aspis</em> (&#7940;&sigma;&pi;&iota;&sigmaf;) carries a layered double meaning &mdash; both the ancient word for a warrior's shield and, through later association, the image of a venomous snake. Mechanisms of defense and agents of harm can mirror each other so closely that distinction collapses, and one moves forward carrying both, unable to set either down.</p>
+        <p>In Greek, <em>aspis</em> carries a layered double meaning &mdash; both the ancient word for a warrior's shield and, through later association, the image of a venomous snake. Mechanisms of defense and agents of harm can mirror each other so closely that distinction collapses, and one moves forward carrying both, unable to set either down.</p>
         <p>Beneath this lies a quieter unease: systems built to heal are also shaped by delay, by hesitation, by the long spaces between promise and arrival. Those waiting &mdash; especially for conditions without clear cure &mdash; remain suspended between hope and urgency, unable to tell whether what surrounds them is protection in motion or harm unfolding at a different pace.</p>
-        <div class="aspis-rule"></div>
+        <svg class="aspis-meander" viewBox="0 0 196 14" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path d="M 0,12 L 0,2 L 10,2 L 10,9 L 4,9 L 4,6 L 8,6 L 8,12 L 14,12 L 14,2 L 24,2 L 24,9 L 18,9 L 18,6 L 22,6 L 22,12 L 28,12 L 28,2 L 38,2 L 38,9 L 32,9 L 32,6 L 36,6 L 36,12 L 42,12 L 42,2 L 52,2 L 52,9 L 46,9 L 46,6 L 50,6 L 50,12 L 56,12 L 56,2 L 66,2 L 66,9 L 60,9 L 60,6 L 64,6 L 64,12 L 70,12 L 70,2 L 80,2 L 80,9 L 74,9 L 74,6 L 78,6 L 78,12 L 84,12 L 84,2 L 94,2 L 94,9 L 88,9 L 88,6 L 92,6 L 92,12 L 98,12 L 98,2 L 108,2 L 108,9 L 102,9 L 102,6 L 106,6 L 106,12 L 112,12 L 112,2 L 122,2 L 122,9 L 116,9 L 116,6 L 120,6 L 120,12 L 126,12 L 126,2 L 136,2 L 136,9 L 130,9 L 130,6 L 134,6 L 134,12 L 140,12 L 140,2 L 150,2 L 150,9 L 144,9 L 144,6 L 148,6 L 148,12 L 154,12 L 154,2 L 164,2 L 164,9 L 158,9 L 158,6 L 162,6 L 162,12 L 168,12 L 168,2 L 178,2 L 178,9 L 172,9 L 172,6 L 176,6 L 176,12 L 182,12 L 182,2 L 192,2 L 192,9 L 186,9 L 186,6 L 190,6 L 190,12"
+                fill="none" stroke="#EF9280" stroke-width="1.4" stroke-linejoin="miter" stroke-linecap="square"/>
+        </svg>
       </div>
   </div>
 
