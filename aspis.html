@@ -53,6 +53,7 @@
    or indefinite/unknown). Search and sort apply within the active tab. */
 .tabs {
   display: flex;
+  justify-content: center;
   gap: 6px;
   max-width: 720px;
   margin: 14px auto 8px;
@@ -76,6 +77,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .tab:hover {
   background: #ffe6e2;
@@ -96,6 +101,130 @@
     height: 42px;
     padding: 0 4px;
   }
+}
+
+/* --- Stats row: marketed / in-development counters + trend button --- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 16px;
+  max-width: 720px;
+  margin: 0 auto 14px;
+  font-size: 13px;
+  color: #666;
+}
+.stats-counters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.counter-num {
+  font-weight: 600;
+  color: #333;
+}
+.counter-sep {
+  color: #ccc;
+}
+.trend-btn {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #EF9280;
+  background: #fff;
+  color: #EF9280;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.trend-btn:hover {
+  background: #EF9280;
+  color: #fff;
+}
+
+/* --- Modal --- */
+.modal[hidden] { display: none; }
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.modal-card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 16px 16px 18px;
+  box-sizing: border-box;
+}
+.modal-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+.modal-close:hover { color: #333; }
+.modal-card h2 {
+  margin: 0 36px 6px 0;
+  color: #EF9280;
+  font-size: 18px;
+}
+.modal-legend {
+  font-size: 13px;
+  margin: 6px 0 10px;
+  color: #555;
+}
+.legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  vertical-align: -1px;
+  margin-right: 4px;
+}
+.legend-swatch + .legend-swatch,
+.modal-legend span + .legend-swatch { margin-left: 14px; }
+.swatch-marketed { background: #EF9280; }
+.swatch-projected { background: #FFC4B6; }
+#trendChart {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+.modal-note {
+  font-size: 12px;
+  color: #666;
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .modal-card { padding: 14px 12px 14px; }
+  #trendChart { height: 260px; }
+  .modal-card h2 { font-size: 16px; }
 }
 ```
 
@@ -343,6 +472,14 @@ th:nth-child(7), td:nth-child(6) {
       <button class="tab active" type="button" data-tab="current" role="tab">This Year <span class="count" id="countCurrent"></span></button>
       <button class="tab" type="button" data-tab="future" role="tab">Future <span class="count" id="countFuture"></span></button>
     </div>
+    <div class="stats">
+      <div class="stats-counters">
+        <span class="counter"><span class="counter-num" id="totalMarketed">0</span> marketed</span>
+        <span class="counter-sep">&bull;</span>
+        <span class="counter"><span class="counter-num" id="totalUnmarketed">0</span> in development</span>
+      </div>
+      <button id="trendBtn" type="button" class="trend-btn">&#x2197; Show trend</button>
+    </div>
     <div class="controls">
       <div class="search-container">
         <input id="search" type="text" placeholder="Search...">
@@ -361,7 +498,6 @@ th:nth-child(7), td:nth-child(6) {
       <select id="sortKey">
         <option value="name">Sort by Treatment</option>
         <option value="tentativeMarketDate">Sort by Tentative Market Date</option>
-        <option value="distanceFromNow">Sort by Relevance (Now)</option>
         <option value="administration">Sort by Administration</option>
         <option value="trialPhase">Sort by Trial Phase</option>
       </select>
@@ -384,6 +520,20 @@ th:nth-child(7), td:nth-child(6) {
       </table>
     </div>
       <p>* The Shield &amp; The Snake, I cannot tell them apart, yet I walk with both.</p>
+  </div>
+
+  <div id="trendModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-card" role="dialog" aria-labelledby="trendTitle" aria-modal="true">
+      <button class="modal-close" type="button" aria-label="Close" data-close="1">&times;</button>
+      <h2 id="trendTitle">Treatments by year</h2>
+      <p class="modal-legend">
+        <span class="legend-swatch swatch-marketed"></span> Marketed
+        <span class="legend-swatch swatch-projected"></span> Projected
+      </p>
+      <svg id="trendChart" preserveAspectRatio="xMidYMid meet" aria-label="Bar chart: number of treatments per market-date year"></svg>
+      <p class="modal-note">Counts use the year of actual approval ("Marketed YYYY") for past/current entries and the first projected year for upcoming entries. Decade-only references (e.g. "2020s late") and indefinite outcomes (Unknown / Discontinued / Withdrawn / Supplement / etc.) are omitted.</p>
+    </div>
   </div>
 
 <script>
@@ -574,8 +724,8 @@ const sortOrderBtn = document.getElementById('sortOrder');
 const tableBody = document.getElementById('treatmentsTable').querySelector('tbody');
 
 // State
-let currentSortKey = 'distanceFromNow';
-let currentSortOrder = 'asc';
+let currentSortKey = 'tentativeMarketDate';
+let currentSortOrder = 'desc';
 let currentSearch = '';
 let currentTab = 'current'; // 'past' | 'current' | 'future'
 
@@ -628,51 +778,39 @@ function compareMarketDate(a, b, desc) {
   return desc ? bD.year - aD.year : aD.year - bD.year;
 }
 
-// Comparator: distance from current year.
-// Asc: closest to current year first → outward, future-first within same-distance tier
-//      (e.g., 2026 → 2027 → 2025 → 2028 → 2024 → ... → indefinite at bottom)
-// Desc: walks backward in time from current year only
-//      (e.g., 2026 → 2025 → 2024 → ... → 1955 → then future years → then indefinite)
 const CURRENT_YEAR = new Date().getFullYear();
-function compareDistanceFromNow(a, b, desc) {
-  const aD = parseMarketDate(a);
-  const bD = parseMarketDate(b);
-  if (aD.indefinite && !bD.indefinite) return 1;
-  if (!aD.indefinite && bD.indefinite) return -1;
-  if (aD.indefinite && bD.indefinite) return 0;
 
-  if (desc) {
-    // Past walk: years <= CURRENT_YEAR sort first (desc by year), then future years (asc by year, so closer-to-now first).
-    const aIsPast = aD.year <= CURRENT_YEAR;
-    const bIsPast = bD.year <= CURRENT_YEAR;
-    if (aIsPast && !bIsPast) return -1;
-    if (!aIsPast && bIsPast) return 1;
-    if (aIsPast && bIsPast) {
-      // Both past: newer first (2026 → 2025 → ... → 1955)
-      return bD.year - aD.year;
-    }
-    // Both future: closer to now first (2027 → 2028 → ...)
-    return aD.year - bD.year;
-  }
-
-  // Asc: distance from now ascending; future-first within same-distance tier
-  const aDist = Math.abs(aD.year - CURRENT_YEAR);
-  const bDist = Math.abs(bD.year - CURRENT_YEAR);
-  if (aDist !== bDist) return aDist - bDist;
-  return bD.year - aD.year;
+// Tab classification: an entry counts as "marketed" only if its first line of
+// tentativeMarketDate starts with "Marketed YYYY" (the convention this file
+// uses for actual approvals). Anything else — projection years, decade
+// references like "2020s (late)", or indefinite outcomes — is treated as
+// "not yet marketed" and goes to Future.
+function getTabForEntry(val) {
+  if (!val) return 'future';
+  const firstLine = val.split('\n')[0].trim();
+  const m = firstLine.match(/^marketed\s+(\d{4})/i);
+  if (!m) return 'future';
+  const year = parseInt(m[1], 10);
+  if (year < CURRENT_YEAR) return 'past';
+  if (year === CURRENT_YEAR) return 'current';
+  return 'past'; // marketed in a year beyond CURRENT_YEAR — treat as past to keep "marketed" semantics
 }
 
-// Tab classification: place each entry into past, current year, or future.
-// Indefinite entries (Unknown / Unlikely / Discontinued / Withdrawn / N/A /
-// Supplement / etc.) go to "future" — they haven't happened in the past and
-// they aren't happening in the current year, so they belong with everything
-// that is yet to materialise (if ever).
-function getTabForEntry(val) {
-  const d = parseMarketDate(val);
-  if (d.indefinite) return 'future';
-  if (d.year < CURRENT_YEAR) return 'past';
-  if (d.year === CURRENT_YEAR) return 'current';
-  return 'future';
+// Year extraction for the trend chart. Returns null when no specific year is
+// available (indefinite entries, decade-only references like "2020s").
+function getChartYear(val) {
+  if (!val) return null;
+  const firstLine = val.split('\n')[0].trim();
+  // Indefinite — exclude from chart
+  if (/^(unknown|unlikely|discontinued|withdrawn|n\/a|not (established|applicable)|tbd|multi[-\s]year|procedure[-\s]based|supplement|existing products)/i.test(firstLine)) {
+    return null;
+  }
+  // Decade-only reference without an explicit year ("2020s (late)") — too vague to plot
+  if (/\b\d{4}s\b/i.test(firstLine) && !/^marketed/i.test(firstLine)) {
+    return null;
+  }
+  const m = firstLine.match(/(\d{4})/);
+  return m ? parseInt(m[1], 10) : null;
 }
 
 function updateTabCounts() {
@@ -681,6 +819,11 @@ function updateTabCounts() {
   document.getElementById('countPast').textContent = '(' + counts.past + ')';
   document.getElementById('countCurrent').textContent = '(' + counts.current + ')';
   document.getElementById('countFuture').textContent = '(' + counts.future + ')';
+  // Top-level counters: marketed = past + current, in-development = future
+  const marketed = counts.past + counts.current;
+  const inDev = counts.future;
+  document.getElementById('totalMarketed').textContent = marketed;
+  document.getElementById('totalUnmarketed').textContent = inDev;
 }
 
 // Render table
@@ -701,9 +844,6 @@ function renderTable() {
   filtered.sort((a, b) => {
     if (currentSortKey === 'tentativeMarketDate') {
       return compareMarketDate(a.tentativeMarketDate, b.tentativeMarketDate, currentSortOrder === 'desc');
-    }
-    if (currentSortKey === 'distanceFromNow') {
-      return compareDistanceFromNow(a.tentativeMarketDate, b.tentativeMarketDate, currentSortOrder === 'desc');
     }
     return currentSortOrder === 'desc'
       ? String(b[currentSortKey]).localeCompare(String(a[currentSortKey]))
@@ -754,13 +894,6 @@ clearBtn.addEventListener('click', () => {
 
 sortKey.addEventListener('change', e => {
   currentSortKey = e.target.value;
-  // For the "Relevance (Now)" sort, the natural default is asc (closest first).
-  // For everything else, the natural default is desc (latest year, last alpha).
-  if (currentSortKey === 'distanceFromNow') {
-    currentSortOrder = 'asc';
-  } else {
-    currentSortOrder = 'desc';
-  }
   renderTable();
 });
 
@@ -769,16 +902,119 @@ sortOrderBtn.addEventListener('click', () => {
   renderTable();
 });
 
-// Tab switching: search + sort state persist across tabs; only the visible
-// entry set changes. Clearing search/sort on every tab change would be more
-// surprising than helpful.
+// Tab switching: search + sort key persist; sort order auto-adjusts so each
+// tab opens in the most useful direction (past → desc, newest first; future →
+// asc, closest projection first; current → leave as-is since all entries
+// share the same year).
 document.querySelectorAll('.tabs .tab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tabs .tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentTab = btn.dataset.tab;
+    if (currentSortKey === 'tentativeMarketDate') {
+      if (currentTab === 'past') currentSortOrder = 'desc';
+      else if (currentTab === 'future') currentSortOrder = 'asc';
+    }
+    sortOrderBtn.innerHTML = currentSortOrder === 'desc' ? '&#x2193; Desc' : '&#x2191; Asc';
     renderTable();
   });
+});
+
+// --- Trend modal ---
+// The chart renders one bar per year of available data, with marketed years
+// (year < current) in the primary salmon and projected years (year >= current)
+// in a paler shade. Width fits the modal; the modal itself is responsive.
+const trendModal = document.getElementById('trendModal');
+const trendBtn = document.getElementById('trendBtn');
+const trendChart = document.getElementById('trendChart');
+
+function renderTrendChart() {
+  const yearCounts = {};
+  treatments.forEach(t => {
+    const y = getChartYear(t.tentativeMarketDate);
+    if (y === null) return;
+    yearCounts[y] = (yearCounts[y] || 0) + 1;
+  });
+
+  const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+  if (!years.length) {
+    trendChart.innerHTML = '';
+    return;
+  }
+  const minYear = years[0];
+  const maxYear = years[years.length - 1];
+  const maxCount = Math.max(...years.map(y => yearCounts[y]));
+
+  // Viewbox coordinates — SVG scales to container width via preserveAspectRatio
+  const W = 900;
+  const H = 300;
+  const M = { top: 16, right: 16, bottom: 36, left: 32 };
+  const innerW = W - M.left - M.right;
+  const innerH = H - M.top - M.bottom;
+  const span = maxYear - minYear + 1;
+  const barWidth = innerW / span;
+
+  const parts = [];
+
+  // Y-axis gridlines + labels (4 ticks)
+  const ticks = 4;
+  for (let i = 0; i <= ticks; i++) {
+    const value = Math.round((maxCount / ticks) * i);
+    const y = M.top + innerH - (i / ticks) * innerH;
+    parts.push('<line x1="' + M.left + '" y1="' + y + '" x2="' + (W - M.right) + '" y2="' + y + '" stroke="#eee" stroke-width="1"/>');
+    parts.push('<text x="' + (M.left - 6) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="#888">' + value + '</text>');
+  }
+
+  // Bars
+  for (let yr = minYear; yr <= maxYear; yr++) {
+    const c = yearCounts[yr] || 0;
+    if (c === 0) continue;
+    const x = M.left + (yr - minYear) * barWidth;
+    const h = (c / maxCount) * innerH;
+    const y = M.top + innerH - h;
+    const fill = yr < CURRENT_YEAR ? '#EF9280' : '#FFC4B6';
+    const w = Math.max(barWidth - 1, 1.5);
+    parts.push('<rect x="' + x.toFixed(2) + '" y="' + y.toFixed(2) + '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) + '" fill="' + fill + '"><title>' + yr + ': ' + c + '</title></rect>');
+  }
+
+  // X-axis labels every 5 years (aligned to multiples of 5)
+  const labelStart = Math.ceil(minYear / 5) * 5;
+  for (let yr = labelStart; yr <= maxYear; yr += 5) {
+    const x = M.left + (yr - minYear) * barWidth + barWidth / 2;
+    parts.push('<text x="' + x.toFixed(2) + '" y="' + (H - M.bottom + 16) + '" text-anchor="middle" font-size="11" fill="#666">' + yr + '</text>');
+  }
+
+  // Axis lines
+  parts.push('<line x1="' + M.left + '" y1="' + M.top + '" x2="' + M.left + '" y2="' + (H - M.bottom) + '" stroke="#ccc"/>');
+  parts.push('<line x1="' + M.left + '" y1="' + (H - M.bottom) + '" x2="' + (W - M.right) + '" y2="' + (H - M.bottom) + '" stroke="#ccc"/>');
+
+  // Current-year marker
+  if (CURRENT_YEAR >= minYear && CURRENT_YEAR <= maxYear) {
+    const x = M.left + (CURRENT_YEAR - minYear) * barWidth + barWidth / 2;
+    parts.push('<line x1="' + x.toFixed(2) + '" y1="' + M.top + '" x2="' + x.toFixed(2) + '" y2="' + (H - M.bottom) + '" stroke="#999" stroke-dasharray="3,3" stroke-width="1"/>');
+    parts.push('<text x="' + x.toFixed(2) + '" y="' + (M.top - 4) + '" text-anchor="middle" font-size="10" fill="#999">now</text>');
+  }
+
+  trendChart.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  trendChart.innerHTML = parts.join('');
+}
+
+function openTrend() {
+  renderTrendChart();
+  trendModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeTrend() {
+  trendModal.hidden = true;
+  document.body.style.overflow = '';
+}
+
+trendBtn.addEventListener('click', openTrend);
+trendModal.addEventListener('click', e => {
+  if (e.target && e.target.dataset && e.target.dataset.close === '1') closeTrend();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !trendModal.hidden) closeTrend();
 });
 
 // Sync UI to default state
