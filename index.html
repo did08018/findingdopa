@@ -28,84 +28,15 @@
         background: #f0f0f0;
       }
 
-      /* ---------- NEURAL BACKGROUND ---------- */
-      .neural-bg {
+      /* ---------- NEURAL CANVAS ---------- */
+      #neural-bg {
         position: fixed;
         inset: 0;
         z-index: 0;
         pointer-events: none;
-        overflow: hidden;
-      }
-      .neural-bg svg {
-        width: 100%;
-        height: 100%;
         display: block;
       }
-
-      .cell {
-        opacity: 0.42;
-        will-change: opacity, filter;
-        animation: fire infinite ease-in-out;
-        /* always-on soft halo — same color as the cell, very tight */
-        filter: drop-shadow(0 0 1px currentColor);
-      }
-      /* line tiers — proximal (trunks) heavier, distal (forks/terminals) lighter */
-      .cell path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
-      .cell .trunk  { stroke-width: 1.2; }
-      .cell .distal { stroke-width: 0.7; opacity: 0.85; }
-      .cell ellipse { fill: currentColor; }
-
-      /* Per-cell duration + delay so they don't sync */
-      .cell.a { color: #EF9280; animation-duration: 12s; animation-delay:  0s;   }
-      .cell.b { color: #F2A395; animation-duration: 15s; animation-delay: -4s;   }
-      .cell.c { color: #E8826F; animation-duration: 14s; animation-delay: -8s;   }
-      .cell.d { color: #EE9A85; animation-duration: 11s; animation-delay: -10.5s;}
-
-      /* Multi-stage spike — lead-in, peak, dip, second smaller peak, decay.
-         The stutter at 86%/87% is what makes it read as electric. */
-      @keyframes fire {
-        0%, 82% {
-          opacity: 0.42;
-          filter: drop-shadow(0 0 1px currentColor);
-        }
-        83% {
-          opacity: 0.6;
-          filter: drop-shadow(0 0 2px #FFAA90);
-        }
-        85% {
-          opacity: 1;
-          filter: drop-shadow(0 0 3px #FFE4DC)
-                  drop-shadow(0 0 8px #FF8060)
-                  drop-shadow(0 0 18px #FF6040);
-        }
-        86% {
-          opacity: 0.72;
-          filter: drop-shadow(0 0 2px #FFAA90)
-                  drop-shadow(0 0 5px #FF8060);
-        }
-        87% {
-          opacity: 0.93;
-          filter: drop-shadow(0 0 2.5px #FFE4DC)
-                  drop-shadow(0 0 6px #FF8060);
-        }
-        90% {
-          opacity: 0.62;
-          filter: drop-shadow(0 0 1.5px #FFAA90);
-        }
-        95% {
-          opacity: 0.46;
-          filter: drop-shadow(0 0 1px currentColor);
-        }
-        100% {
-          opacity: 0.42;
-          filter: drop-shadow(0 0 1px currentColor);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .cell { animation: none; }
-      }
-      /* ---------- /NEURAL BACKGROUND ---------- */
+      /* ---------- /NEURAL CANVAS ---------- */
 
       header,
       .page-wrapper {
@@ -219,86 +150,7 @@
 
 <body>
 
-    <!-- ============ NEURAL BACKGROUND ============ -->
-    <div class="neural-bg" aria-hidden="true">
-      <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
-
-        <!-- =========================================================
-             Neuron A — small, ~upper-left. 3 simple dendrites,
-             axon extending toward center with two terminal boutons.
-             ========================================================= -->
-        <g class="cell a">
-          <path class="trunk" d="M 280 220 C 268 200 254 175 244 152"/>
-          <path class="trunk" d="M 280 220 C 258 213 232 207 208 204"/>
-          <path class="trunk" d="M 280 220 C 264 232 246 246 232 262"/>
-          <path class="trunk"  d="M 280 220 C 320 232 365 240 410 244 C 448 248 478 258 502 270"/>
-          <path class="distal" d="M 502 270 C 515 280 524 292 530 304"/>
-          <path class="distal" d="M 502 270 C 518 268 530 274 540 282"/>
-          <ellipse cx="280" cy="220" rx="6" ry="5.4"/>
-        </g>
-
-        <!-- =========================================================
-             Neuron B — larger, ~upper-right. Multipolar; one dendrite
-             forks. Long sinuous axon descending left toward center.
-             ========================================================= -->
-        <g class="cell b">
-          <!-- main "up" dendrite + fork -->
-          <path class="trunk"  d="M 920 270 C 922 244 918 212 912 182"/>
-          <path class="distal" d="M 912 182 C 904 170 894 162 884 156"/>
-          <path class="distal" d="M 912 182 C 922 168 932 158 944 152"/>
-          <!-- side dendrites -->
-          <path class="trunk" d="M 920 270 C 946 264 974 260 1000 258"/>
-          <path class="trunk" d="M 920 270 C 944 285 970 296 992 304"/>
-          <path class="trunk" d="M 920 270 C 898 283 876 296 858 308"/>
-          <!-- axon descending and trailing inward -->
-          <path class="trunk"  d="M 920 270 C 892 290 858 312 826 332 C 798 350 770 365 740 372"/>
-          <path class="distal" d="M 740 372 C 725 380 712 390 702 400"/>
-          <path class="distal" d="M 740 372 C 732 386 728 400 724 414"/>
-          <path class="distal" d="M 740 372 C 722 374 706 372 692 368"/>
-          <ellipse cx="920" cy="270" rx="7" ry="6.2"/>
-        </g>
-
-        <!-- =========================================================
-             Neuron C — bipolar, ~lower-left. Two long graceful
-             processes pointing in roughly opposite directions, plus
-             a short axon.
-             ========================================================= -->
-        <g class="cell c">
-          <!-- long dendrite going up-and-out, with a single fork -->
-          <path class="trunk"  d="M 250 690 C 252 660 264 624 282 594 C 296 568 314 548 330 532"/>
-          <path class="distal" d="M 330 532 C 342 522 358 516 372 514"/>
-          <!-- long dendrite trailing left -->
-          <path class="trunk"  d="M 250 690 C 222 682 192 674 162 670 C 138 668 116 672 100 680"/>
-          <!-- short axon to the right -->
-          <path class="trunk"  d="M 250 690 C 282 700 318 706 350 710"/>
-          <path class="distal" d="M 350 710 C 365 705 380 710 390 720"/>
-          <path class="distal" d="M 350 710 C 365 715 378 722 388 732"/>
-          <ellipse cx="250" cy="690" rx="6" ry="5.6"/>
-        </g>
-
-        <!-- =========================================================
-             Neuron D — pyramidal-style, ~lower-right. Single big
-             apical dendrite going up (forked), short basal dendrites,
-             axon descending.
-             ========================================================= -->
-        <g class="cell d">
-          <!-- apical dendrite, long ascending + fork at top -->
-          <path class="trunk"  d="M 950 640 C 952 612 948 580 944 548 C 940 522 944 498 956 478"/>
-          <path class="distal" d="M 956 478 C 946 464 934 456 924 452"/>
-          <path class="distal" d="M 956 478 C 968 464 980 456 990 452"/>
-          <!-- basal dendrites -->
-          <path class="trunk" d="M 950 640 C 928 650 908 664 894 680"/>
-          <path class="trunk" d="M 950 640 C 970 652 988 668 1000 686"/>
-          <!-- axon descending, with two terminal boutons -->
-          <path class="trunk"  d="M 950 640 C 962 668 968 696 968 720 C 968 740 970 758 974 772"/>
-          <path class="distal" d="M 974 772 C 968 786 962 796 956 802"/>
-          <path class="distal" d="M 974 772 C 982 786 988 796 994 802"/>
-          <ellipse cx="950" cy="640" rx="6.4" ry="5.8"/>
-        </g>
-
-      </svg>
-    </div>
-    <!-- ============ /NEURAL BACKGROUND ============ -->
+    <canvas id="neural-bg" aria-hidden="true"></canvas>
 
     <header>
       <div class="top-bar">
@@ -343,6 +195,249 @@
         </a>
       </div>
     </div>
+
+<script>
+(() => {
+  /* ============================================================
+     NEURAL NETWORK BACKGROUND
+     - Jittered grid of ~50 nodes in the 6 tile colors
+     - Each node connects to its 2-3 nearest neighbors with a soft
+       curved line
+     - Continuous traffic of ~15-22 pulses traveling along edges
+     - Pulses are bright with glow; destination nodes briefly flash
+     ============================================================ */
+
+  const canvas = document.getElementById('neural-bg');
+  const ctx = canvas.getContext('2d');
+
+  // The six tile colors — pulses cycle through these so the
+  // background visibly belongs to the same family as the foreground
+  const COLORS = ['#FAC46E', '#BB93C8', '#EF9280', '#A7CB8C', '#FFBBD0', '#A8D5E2'];
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let nodes = [];
+  let edges = [];
+  let pulses = [];
+  let W = 0, H = 0;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function generateNetwork() {
+    nodes = [];
+    edges = [];
+
+    // Adaptive grid based on viewport size — denser on large screens,
+    // sparser on small ones so it doesn't get crowded
+    const COLS = Math.max(6, Math.floor(W / 160));
+    const ROWS = Math.max(5, Math.floor(H / 160));
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        nodes.push({
+          x: (c + 0.5) * (W / COLS) + (Math.random() - 0.5) * (W / COLS) * 0.5,
+          y: (r + 0.5) * (H / ROWS) + (Math.random() - 0.5) * (H / ROWS) * 0.5,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          flash: 0
+        });
+      }
+    }
+
+    // For each node, connect to 2-3 nearest neighbors. Use a Set keyed
+    // on sorted-id-pairs so we never create duplicate edges (a→b and b→a)
+    const edgeSet = new Set();
+    nodes.forEach((n, i) => {
+      const sorted = nodes
+        .map((m, j) => ({ j, d: Math.hypot(n.x - m.x, n.y - m.y) }))
+        .filter(o => o.j !== i)
+        .sort((a, b) => a.d - b.d);
+
+      const k = 2 + (Math.random() < 0.4 ? 1 : 0);
+      for (let kk = 0; kk < k && kk < sorted.length; kk++) {
+        const j = sorted[kk].j;
+        const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+        if (edgeSet.has(key)) continue;
+        edgeSet.add(key);
+
+        // Compute a curve control point perpendicular to the edge —
+        // organic, not Etch-a-Sketch
+        const a = nodes[i], b = nodes[j];
+        const mx = (a.x + b.x) / 2;
+        const my = (a.y + b.y) / 2;
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const px = -dy / len;
+        const py = dx / len;
+        const offset = (Math.random() - 0.5) * len * 0.2;
+
+        edges.push({
+          a: i, b: j,
+          cx: mx + px * offset,
+          cy: my + py * offset
+        });
+      }
+    });
+  }
+
+  function bezier(t, p0x, p0y, c1x, c1y, p2x, p2y) {
+    const u = 1 - t;
+    return {
+      x: u*u*p0x + 2*u*t*c1x + t*t*p2x,
+      y: u*u*p0y + 2*u*t*c1y + t*t*p2y
+    };
+  }
+
+  function spawnPulse() {
+    if (pulses.length >= 22 || edges.length === 0) return;
+    const edge = edges[Math.floor(Math.random() * edges.length)];
+    const direction = Math.random() < 0.5;
+    pulses.push({
+      edge,
+      direction,
+      t: 0,
+      speed: 0.5 + Math.random() * 0.9,
+      size: 2 + Math.random() * 2,
+      color: nodes[direction ? edge.a : edge.b].color
+    });
+  }
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Edges — soft baseline tint, low opacity so the network reads as
+    // ambient rather than diagrammatic
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 1;
+    edges.forEach(e => {
+      const a = nodes[e.a], b = nodes[e.b];
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(e.cx, e.cy, b.x, b.y);
+      ctx.strokeStyle = a.color;
+      ctx.globalAlpha = 0.14;
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+
+    // Nodes — including their flash decay
+    nodes.forEach(n => {
+      n.flash = Math.max(0, n.flash - dt * 2.5);
+      const flashBoost = n.flash;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.5 + flashBoost * 3, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = 0.32 + flashBoost * 0.65;
+      if (flashBoost > 0.05) {
+        ctx.shadowBlur = 16 * flashBoost;
+        ctx.shadowColor = n.color;
+      } else {
+        ctx.shadowBlur = 0;
+      }
+      ctx.fill();
+    });
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+
+    // Pulses — update, draw, retire
+    for (let i = pulses.length - 1; i >= 0; i--) {
+      const p = pulses[i];
+      p.t += p.speed * dt;
+
+      if (p.t >= 1) {
+        // Arrived — flash the destination node, retire the pulse
+        const destIdx = p.direction ? p.edge.b : p.edge.a;
+        nodes[destIdx].flash = 1;
+        nodes[destIdx].color = p.color; // destination takes on the incoming color briefly
+        pulses.splice(i, 1);
+        continue;
+      }
+
+      const a = nodes[p.direction ? p.edge.a : p.edge.b];
+      const b = nodes[p.direction ? p.edge.b : p.edge.a];
+      const pt = bezier(p.t, a.x, a.y, p.edge.cx, p.edge.cy, b.x, b.y);
+
+      // Sin-shaped opacity: fades in, peaks mid-travel, fades out
+      const fade = Math.sin(p.t * Math.PI);
+
+      ctx.globalAlpha = fade;
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 18;
+      ctx.shadowColor = p.color;
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+
+    // Spawn — high probability each frame, but capped at 22 pulses total
+    if (Math.random() < 0.5) spawnPulse();
+
+    if (!reduceMotion) requestAnimationFrame(frame);
+  }
+
+  function init() {
+    resize();
+    generateNetwork();
+    if (reduceMotion) {
+      // Static render: draw network once, no animation, no pulses
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 1;
+      edges.forEach(e => {
+        const a = nodes[e.a], b = nodes[e.b];
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.quadraticCurveTo(e.cx, e.cy, b.x, b.y);
+        ctx.strokeStyle = a.color;
+        ctx.globalAlpha = 0.14;
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = n.color;
+        ctx.globalAlpha = 0.4;
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      return;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // Debounce resize a bit so dragging a window doesn't thrash
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      resize();
+      generateNetwork();
+    }, 150);
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 </body>
 </html>
