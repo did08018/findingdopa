@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECHNOVATIS | Engineering & Special Machines</title>
     <style>
-        /* CSS Variables for Engineering Theme */
         :root {
             --bg-dark: #0b132b;
             --bg-card: #1c2541;
             --accent: #00ffcc;
-            --accent-hover: #00ccaa;
             --text-light: #f8f9fa;
             --text-muted: #a1b0c6;
-            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-main: 'Inter', 'Segoe UI', system-ui, sans-serif;
         }
 
         * {
@@ -29,381 +27,198 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Navigation & Hamburger Menu */
+        /* --- NAVIGATION (Mobile Optimized) --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 5%;
+            height: 70px;
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(11, 19, 43, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+            background: rgba(11, 19, 43, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            letter-spacing: 2px;
             color: var(--text-light);
-            text-transform: uppercase;
             text-decoration: none;
+            text-transform: uppercase;
         }
 
-        .logo span {
-            color: var(--accent);
-        }
+        .logo span { color: var(--accent); }
 
         .nav-links {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: var(--bg-dark);
+            flex-direction: column;
             display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 2rem;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        .nav-links.active { left: 0; }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .hamburger {
-            display: none;
+            display: block;
             cursor: pointer;
             border: none;
             background: none;
+            z-index: 2001;
         }
 
         .bar {
             display: block;
-            width: 25px;
+            width: 28px;
             height: 3px;
-            margin: 5px auto;
-            transition: all 0.3s ease-in-out;
+            margin: 6px auto;
             background-color: var(--accent);
+            transition: 0.3s;
         }
 
-        /* General Sections */
-        section {
-            padding: 100px 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto 3rem auto;
-            font-size: 1.1rem;
-        }
-
-        .section-title span {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
+        /* --- HERO SECTION --- */
         #home {
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #1c2541 0%, #0b132b 100%);
+            padding: 120px 5% 60px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 150px;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 255, 204, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 204, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
+            background: radial-gradient(circle at top, #1c2541 0%, #0b132b 100%);
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
         }
+
+        .hero-content h1 span { color: var(--accent); }
 
         .hero-content p {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
+        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background-color: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            border-radius: 4px;
+            padding: 14px 28px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:hover {
-            background-color: var(--accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            transition: 0.3s;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
         }
 
         .btn-solid {
-            background-color: var(--accent);
+            background: var(--accent);
             color: var(--bg-dark);
         }
 
-        .btn-solid:hover {
-            background-color: transparent;
-            color: var(--accent);
+        /* --- GRID LAYOUTS (Flexible) --- */
+        .container {
+            width: 100%;
+            padding: 60px 5%;
         }
 
-        /* Stats Section */
-        .stats-container {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
+            grid-template-columns: 1fr; /* Default to mobile stack */
+            gap: 1.5rem;
         }
 
-        .stat-item h3 {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text-light);
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* Expertise Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
+        .card {
             background: var(--bg-card);
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 3px solid transparent;
-            text-align: left;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-top: 3px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            color: var(--text-light);
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* LinkedIn Posts / Projects Section */
-        #projects {
-            background-color: #0d1836;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .project-card {
-            background: var(--bg-dark);
-            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-card);
+            border-radius: 12px;
         }
 
         .project-img {
             width: 100%;
-            height: 250px;
+            height: 220px;
             object-fit: cover;
-            border-bottom: 2px solid var(--accent);
+            display: block;
+            background-color: #333; /* Fallback color */
         }
 
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .read-more:hover {
-            text-decoration: underline;
-        }
-
-        /* Contact & Address Section */
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .contact-cta {
-            flex: 1;
-            min-width: 300px;
+        /* --- CONTACT SECTION --- */
+        .contact-box {
             background: rgba(0, 255, 204, 0.05);
+            border: 1px solid var(--accent);
             padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 12px;
+            margin-bottom: 2rem;
         }
 
-        .contact-cta h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .info-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .info-item h4 {
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-item p {
-            color: var(--text-muted);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #050914;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(0, 255, 204, 0.1);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .hamburger.active .bar:nth-child(2) { opacity: 0; }
-            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        /* --- DESKTOP ADJUSTMENTS (Queries) --- */
+        @media (min-width: 768px) {
             .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                gap: 0;
-                flex-direction: column;
-                background-color: var(--bg-dark);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
+                position: static;
+                height: auto;
+                width: auto;
+                flex-direction: row;
+                background: none;
+                display: flex;
             }
-            .nav-links.active { left: 0; }
-            .nav-links a { display: block; padding: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-            .hero-content h1 { font-size: 2.5rem; }
-            .contact-container { padding: 2rem; }
+            .hamburger { display: none; }
+            .nav-links a { font-size: 1rem; }
+            .hero-content h1 { font-size: 4rem; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .hero-content p { font-size: 1.2rem; }
+            .btn { width: auto; }
         }
+
+        @media (min-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Animations */
+        .hamburger.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#home" class="logo">Techno<span>vatis</span></a>
-        <div class="nav-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#expertise" class="nav-link">Expertise</a>
-            <a href="#projects" class="nav-link">Innovations</a>
-            <a href="#contact" class="nav-link">Contact</a>
+        <div class="nav-links" id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#projects">Innovation</a>
+            <a href="#contact">Contact</a>
         </div>
-        <button class="hamburger">
+        <button class="hamburger" onclick="toggleMenu()">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -413,141 +228,108 @@
     <section id="home">
         <div class="hero-content">
             <h1>Securing & Optimizing <span>Industrial Processes</span></h1>
-            <p>At TECHNOVATIS, we design and deliver special-purpose clip assembly machines and robotic cells engineered to meet your exact production challenges. From cycle time and repeatability to quality assurance and seamless integration.</p>
+            <p>Technovatis designs special-purpose clip assembly machines and robotic cells engineered to master cycle times, repeatability, and quality assurance.</p>
             <a href="#contact" class="btn btn-solid">Request Feasibility Review</a>
         </div>
     </section>
 
-    <section style="padding: 60px 5%; background-color: #0d1836;">
-        <div class="stats-container">
-            <div class="stat-item">
-                <h3>20+</h3>
-                <p>Years Experience</p>
+    <div class="container" style="background: #0d1836;">
+        <div class="grid grid-4" style="text-align: center;">
+            <div><h2 style="color:var(--accent)">20+</h2><p>Years Experience</p></div>
+            <div><h2 style="color:var(--accent)">100+</h2><p>Machines Delivered</p></div>
+            <div><h2 style="color:var(--accent)">100%</h2><p>Europe Support</p></div>
+            <div><h2 style="color:var(--accent)">72h</h2><p>Feasibility Review</p></div>
+        </div>
+    </div>
+
+    <section id="expertise" class="container">
+        <h2 style="margin-bottom: 2rem; text-align: center;">Our <span>Expertise</span></h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>⚙️ Automated Assembly</h3>
+                <p>Specialized automated assembly of plastic clips on automotive components using patented sorting technology.</p>
             </div>
-            <div class="stat-item">
-                <h3>100+</h3>
-                <p>Machines Delivered</p>
+            <div class="card">
+                <h3>🤖 Robotic Cells</h3>
+                <p>Mechanical and robotic assembly systems tailored to production challenges and seamless integration.</p>
             </div>
-            <div class="stat-item">
-                <h3>100%</h3>
-                <p>Concept to Production</p>
+            <div class="card">
+                <h3>👁️ Vision Inspection</h3>
+                <p>Advanced vision systems ensuring 100% quality assurance and repeatability in industrial environments.</p>
             </div>
-            <div class="stat-item">
-                <h3>∞</h3>
-                <p>Patented Technologies</p>
+            <div class="card">
+                <h3>🧠 AI-Enabled Vision</h3>
+                <p>State-of-the-art AI inspection gantries designed for the next generation of manufacturing.</p>
             </div>
         </div>
     </section>
 
-    <section id="expertise">
-        <h2 class="section-title">Our <span>Expertise</span></h2>
-        <p class="section-subtitle">We support manufacturers with highly tailored solutions emphasizing ergonomics, flexibility, and performance.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">⚙️</div>
-                <h3>Automated Clip Assembly</h3>
-                <p>Specialized automated assembly of plastic clips on automotive components, utilizing our patented clip sorting and assembly technologies.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🤖</div>
-                <h3>Robotic Assembly Systems</h3>
-                <p>Advanced mechanical and robotic cells designed to integrate seamlessly into your existing production environments.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">👁️</div>
-                <h3>Vision Inspection Solutions</h3>
-                <p>High-precision vision inspection tools to guarantee quality assurance and flawless repeatability on your assembly lines.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🧠</div>
-                <h3>AI-Enabled Gantries</h3>
-                <p>Next-generation AI-enabled vision inspection gantries that learn, adapt, and dramatically reduce industrial defect rates.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Latest <span>Innovations</span></h2>
-        <p class="section-subtitle">Discover our latest engineering deployments, robotic integrations, and special-purpose machines.</p>
-
-        <div class="projects-grid">
+    <section id="projects" class="container" style="background: #0d1836;">
+        <h2 style="margin-bottom: 2rem; text-align: center;">Latest <span>Innovations</span></h2>
+        <div class="grid grid-3">
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1565439387829-4c2299863486?auto=format&fit=crop&q=80&w=600" alt="Robotic Assembly" class="project-img">
-                <div class="project-content">
-                    <h3>Robotic & Assembly Innovation</h3>
-                    <p>Recent deployment of our custom robotic cells designed specifically to optimize cycle times and improve ergonomics.</p>
-                    <a href="https://www.linkedin.com/posts/machinespeciales-assemblage-robotique-share-7433181952829976576-S217" target="_blank" class="read-more">View on LinkedIn →</a>
+                <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800" alt="Robotic cell" class="project-img">
+                <div style="padding: 1.5rem;">
+                    <h3>Robotic Innovation</h3>
+                    <p>Optimizing industrial processes through tailored robotic cells.</p>
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7440040560591024128/" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">View Post →</a>
                 </div>
             </div>
-
             <div class="project-card">
-                 <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Vision Inspection" class="project-img">
-                <div class="project-content">
-                    <h3>Advanced Machine Engineering</h3>
-                    <p>Delivering on our promise of repeatability and quality assurance with state-of-the-art vision and AI sorting systems.</p>
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7440040560591024128/" target="_blank" class="read-more">View on LinkedIn →</a>
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Engineering" class="project-img">
+                <div style="padding: 1.5rem;">
+                    <h3>Special Machines</h3>
+                    <p>Feasibility and concept to production ramp-up.</p>
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7434968071989112832/" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">View Post →</a>
                 </div>
             </div>
-
             <div class="project-card">
-                 <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=600" alt="Automotive Components" class="project-img">
-                <div class="project-content">
-                    <h3>Automotive Clip Assembly</h3>
-                    <p>Showcasing our patented clip sorting and assembly technology in action, ensuring seamless integration for manufacturers.</p>
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7434968071989112832/" target="_blank" class="read-more">View on LinkedIn →</a>
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="AI Tech" class="project-img">
+                <div style="padding: 1.5rem;">
+                    <h3>Patented Tech</h3>
+                    <p>Leading the way in clip sorting and assembly technology.</p>
+                    <a href="https://www.linkedin.com/posts/machinespeciales-assemblage-robotique-share-7433181952829976576-S217" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">View Post →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2 class="section-title">Get in <span>Touch</span></h2>
-        <p class="section-subtitle">Based in France, we support customers across France and Europe with a pragmatic, confidential, and results-oriented approach.</p>
-        
-        <div class="contact-container">
-            <div class="contact-cta">
-                <h3>📩 72-Hour Feasibility Review</h3>
-                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Share your requirements, your part specifications, and your process constraints. Our engineering team will analyze your needs and provide an initial feasibility review within 72 hours.</p>
-                <a href="mailto:contact@technovatis.com" class="btn btn-solid" style="width: 100%; text-align: center;">Start Your Project</a>
+    <section id="contact" class="container">
+        <div class="contact-box">
+            <h3>📩 72h Feasibility Review</h3>
+            <p>Share your requirements and part specifications. We will provide an initial review within 72 hours.</p>
+        </div>
+        <div class="grid grid-2">
+            <div>
+                <h4>📍 Address</h4>
+                <p>8 Allée de la Clairière, 59136 Wavrin, France</p>
+                <br>
+                <h4>📞 Phone</h4>
+                <p>+33 3 20 50 27 85</p>
             </div>
-
-            <div class="contact-info">
-                <div class="info-item">
-                    <h4>📍 Headquarters</h4>
-                    <p>8 Allée de la Clairière<br>Zone d'Activités des Ansereuilles<br>59136 Wavrin, France</p>
-                </div>
-                <div class="info-item">
-                    <h4>📞 Phone</h4>
-                    <p>+33 3 20 50 27 85</p>
-                </div>
-                <div class="info-item">
-                    <h4>💼 Professional Network</h4>
-                    <p>Follow our latest innovations and connect with our team.</p>
-                    <a href="https://www.linkedin.com/company/technovatis/" target="_blank" class="read-more" style="display:inline-block; margin-top: 10px;">Visit LinkedIn Page →</a>
-                </div>
+            <div style="text-align: center;">
+                <a href="mailto:contact@technovatis.com" class="btn btn-solid">Contact Us Now</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Technovatis. All Rights Reserved. Engineered in Wavrin, France.</p>
+    <footer style="text-align:center; padding: 2rem; opacity: 0.6; font-size: 0.8rem;">
+        &copy; 2026 TECHNOVATIS. All rights reserved.
     </footer>
 
     <script>
-        const hamburger = document.querySelector(".hamburger");
-        const navLinks = document.querySelector(".nav-links");
-        const links = document.querySelectorAll(".nav-link");
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            const burger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            burger.classList.toggle('active');
+        }
 
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navLinks.classList.toggle("active");
-        });
-
-        links.forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("active");
-                navLinks.classList.remove("active");
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
             });
         });
     </script>
