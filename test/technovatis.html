@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHNOVATIS | Specialized Engineering & Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b132b;
+            --bg-card: #1c2541;
+            --accent: #00ffcc;
+            --accent-soft: rgba(0, 255, 204, 0.1);
+            --text-light: #f8f9fa;
+            --text-muted: #a1b0c6;
+            --gradient: linear-gradient(135deg, #1c2541 0%, #0b132b 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 80px;
+            padding: 0 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(11, 19, 43, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-light); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px);
+            background: var(--bg-dark); flex-direction: column; display: flex;
+            align-items: center; justify-content: center; gap: 2.5rem;
+            transition: 0.4s ease-in-out;
+        }
+
+        .nav-links.active { left: 0; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .hamburger { display: block; cursor: pointer; border: none; background: none; }
+        .bar { display: block; width: 28px; height: 3px; margin: 6px auto; background-color: var(--accent); transition: 0.3s; }
+
+        /* --- HERO --- */
+        #home {
+            padding: 160px 5% 80px;
+            text-align: center;
+            background: var(--gradient);
+        }
+        .hero-content h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 800; }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2.5rem; }
+
+        /* --- ABOUT SECTION (New & Warmed Up) --- */
+        #about { padding: 80px 5%; background: #0f1a36; }
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; }
+        .about-main-text { font-size: 1.1rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
+        
+        .expertise-box {
+            display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;
+        }
+        .exp-card {
+            background: var(--bg-card); padding: 1.5rem; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+        }
+        .exp-card h4 { color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+
+        /* --- FEASIBILITY CTA --- */
+        .feasibility-banner {
+            background: linear-gradient(90deg, #00ffcc22, #1c2541);
+            padding: 2.5rem; border-radius: 15px; border: 1px solid var(--accent);
+            margin-top: 3rem; text-align: center;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block; padding: 16px 32px; border-radius: 8px;
+            text-decoration: none; font-weight: 700; transition: 0.3s;
+            text-align: center; width: 100%; max-width: 320px;
+        }
+        .btn-solid { background: var(--accent); color: var(--bg-dark); }
+        .btn-solid:hover { box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); transform: translateY(-2px); }
+
+        /* --- RESPONSIVE DESKTOP --- */
+        @media (min-width: 768px) {
+            nav { padding: 0 8%; }
+            .nav-links { position: static; height: auto; width: auto; flex-direction: row; background: none; }
+            .hamburger { display: none; }
+            .hero-content h1 { font-size: 4rem; }
+            .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .about-grid { grid-template-columns: 1.2fr 1fr; }
+            .btn { width: auto; }
+        }
+
+        .active-menu .bar:nth-child(2) { opacity: 0; }
+        .active-menu .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .active-menu .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">Techno<span>vatis</span></a>
+        <div class="nav-links" id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#projects">Innovation</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Securing & Optimizing <span>Industrial Processes</span></h1>
+            <p>We design and deliver special-purpose clip assembly machines and robotic cells engineered for repeatability, quality, and seamless integration.</p>
+            <a href="#contact" class="btn btn-solid">Request 72h Feasibility Review</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-grid">
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">Who <span>We Are</span></h2>
+                <div class="about-main-text">
+                    <p>At TECHNOVATIS, we design and deliver special-purpose clip assembly machines and robotic cells engineered to secure and optimize industrial processes.</p>
+                    <br>
+                    <p>We support manufacturers with solutions tailored to their production challenges, including cycle time, repeatability, quality assurance, ergonomics, flexibility, and seamless integration into existing environments.</p>
+                </div>
+                
+                <div class="expertise-box">
+                    <div class="exp-card">
+                        <h4>🛡️ Reliability</h4>
+                        <p>Built on 20 years of experience and over 100 machines delivered to satisfied partners.</p>
+                    </div>
+                    <div class="exp-card">
+                        <h4>💡 Innovation</h4>
+                        <p>Patented clip sorting and assembly technologies that lead the industrial market.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-card); padding: 2rem; border-radius: 12px;">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem;">Our Areas of Expertise</h3>
+                <ul style="list-style: none; color: var(--text-muted);">
+                    <li style="margin-bottom: 1rem;">• Automated assembly of plastic clips on automotive components</li>
+                    <li style="margin-bottom: 1rem;">• Mechanical and robotic assembly systems</li>
+                    <li style="margin-bottom: 1rem;">• High-precision vision inspection solutions</li>
+                    <li style="margin-bottom: 1rem;">• AI-enabled vision inspection gantries</li>
+                </ul>
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0;">
+                <p>Based in France, we support customers across <strong>France and Europe</strong> with a pragmatic, confidential, and results-oriented approach.</p>
+            </div>
+        </div>
+
+        <div class="feasibility-banner">
+            <h3>📩 Share Your Requirements</h3>
+            <p style="margin: 1rem 0 2rem;">Send us your part specifications and process constraints: <strong>we will provide an initial feasibility review within 72 hours.</strong></p>
+            <a href="mailto:contact@technovatis.com" class="btn btn-solid">Submit Your Specifications</a>
+        </div>
+    </section>
+
+    <!-- INNOVATIONS / PROJECTS -->
+    <section id="projects" style="padding: 80px 5%;">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Latest <span>Innovations</span></h2>
+        <div class="grid-2">
+            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" style="width:100%; height:250px; object-fit:cover;">
+                <div style="padding: 1.5rem;">
+                    <h3>Robotic Assembly Cells</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 1rem 0;">Discover how we integrate robots to reduce cycle times and improve worker ergonomics.</p>
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7440040560591024128/" style="color: var(--accent); text-decoration: none;">View LinkedIn Case Study →</a>
+                </div>
+            </div>
+            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" style="width:100%; height:250px; object-fit:cover;">
+                <div style="padding: 1.5rem;">
+                    <h3>AI Vision Systems</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 1rem 0;">Our AI-enabled gantries ensure 100% quality assurance in complex automotive parts.</p>
+                    <a href="https://www.linkedin.com/posts/machinespeciales-assemblage-robotique-share-7433181952829976576-S217" style="color: var(--accent); text-decoration: none;">View Tech Specs →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="padding: 80px 5%; background: #0d1836; text-align: center;">
+        <h2 style="margin-bottom: 1rem;">Let's <span>Connect</span></h2>
+        <p style="color: var(--text-muted); margin-bottom: 3rem;">Ready to optimize your production line? Reach out to our engineering team.</p>
+        <div class="grid-2" style="max-width: 800px; margin: 0 auto; text-align: left;">
+            <div>
+                <h4 style="color: var(--accent);">📍 Headquarters</h4>
+                <p>8 Allée de la Clairière<br>59136 Wavrin, France</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent);">📞 Contact</h4>
+                <p>+33 3 20 50 27 85<br>contact@technovatis.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.5;">
+        &copy; 2026 TECHNOVATIS. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            const burger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            burger.classList.toggle('active-menu');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active-menu');
+            });
+        });
+    </script>
+</body>
+</html>
