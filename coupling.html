@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PD Research News — Gossip Hill</title>
+  <link rel="icon" href="/favicon.webp" type="image/webp">
+  <link rel="apple-touch-icon" href="/favicon.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFF5E1;
+      --ink: #1a1818;
+      --ink-soft: #4a4543;
+
+      /* Articles = warm yellow (existing brand) */
+      --article-bg: #FFE8A3;
+      --article-accent: #B8860B;
+
+      /* Podcasts = lavender (echoes the Dopa VOX tile) */
+      --podcast-bg: #E8D5F2;
+      --podcast-accent: #7B4FA8;
+
+      --rule: rgba(26, 24, 24, 0.15);
+      --shadow: 0 2px 0 rgba(26, 24, 24, 0.08), 0 10px 24px -8px rgba(26, 24, 24, 0.15);
+      --shadow-hover: 0 4px 0 rgba(26, 24, 24, 0.12), 0 18px 36px -10px rgba(26, 24, 24, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(circle at 18% 8%,  rgba(255, 232, 163, 0.55) 0%, transparent 45%),
+        radial-gradient(circle at 82% 72%, rgba(232, 213, 242, 0.45) 0%, transparent 50%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* Subtle grain so the warm flats feel like paper, not pixels */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    header { position: relative; z-index: 1; }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .home-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      font-variation-settings: 'opsz' 14;
+      transition: color 0.2s;
+    }
+    .home-brand:hover { color: var(--article-accent); }
+    .home-brand i { font-size: 1.1rem; }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 8px 24px 80px;
+    }
+
+    .masthead {
+      text-align: center;
+      padding: 24px 0 40px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .masthead h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 800;
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      line-height: 0.95;
+      margin: 0 0 10px;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .feed {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 720px) {
+      .feed { grid-template-columns: 1fr 1fr; gap: 22px; }
+    }
+
+    .card {
+      position: relative;
+      background: var(--article-bg);
+      border: 1px solid var(--ink);
+      border-radius: 14px;
+      padding: 22px 22px 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, rotate 0.25s;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 150px;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .card:nth-child(3n):hover   { rotate: -0.5deg; }
+    .card:nth-child(3n+1):hover { rotate:  0.4deg; }
+
+    .card.podcast { background: var(--podcast-bg); }
+
+    .tag {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px 4px 8px;
+      border-radius: 100px;
+      background: var(--ink);
+      color: var(--article-bg);
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .podcast .tag { color: var(--podcast-bg); }
+    .tag i { font-size: 0.7rem; }
+
+    .card-body {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.02rem;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .card-body strong { font-weight: 700; }
+    .card-body em     { font-style: italic; color: var(--ink-soft); }
+
+    .card-arrow {
+      align-self: flex-end;
+      margin-top: auto;
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .card:hover .card-arrow {
+      color: var(--ink);
+      transform: translateX(4px);
+    }
+
+    /* Staggered entrance — calm, not flashy */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: rise 0.5s ease-out backwards; }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.10s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.20s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.30s; }
+    .card:nth-child(7) { animation-delay: 0.35s; }
+    .card:nth-child(8) { animation-delay: 0.40s; }
+    .card:nth-child(9) { animation-delay: 0.45s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; transition: none; }
+      .card:hover { transform: none; rotate: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">
+      <a href="../index.html" class="home-brand" aria-label="Home">
+        <i class="fas fa-brain"></i>
+        <span>Finding Dopa</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="masthead">
+      <div class="eyebrow">PD Research News · Curated</div>
+      <h1>Gossip Hill</h1>
+      <p class="tagline">Field notes, the long arc, and what's on the wires.</p>
+    </div>
+
+    <section class="feed">
+
+      <a class="card article" href="https://www.neurologylive.com/view/previewing-expected-fda-decisions-in-neurology-for-2026" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="card-body">2026 FDA-expected decision: <strong>Tavapadon (AbbVie)</strong> for Parkinson Disease.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card article" href="https://www.itochu.co.jp/en/news/press/2025/250905.html" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="card-body"><strong>ITOCHU</strong> announces basic agreement on development and licensing of an automated iPS cell culture kit.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card article" href="https://www.biospace.com/key-parkinson-s-trial-delayed-due-to-feud-between-a-georgetown-university-scientist-and-the-michael-j-fox-foundation" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="card-body">Key Parkinson's trial delayed due to a <em>feud</em> between a Georgetown University scientist and the Michael J. Fox Foundation.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card article" href="https://parkinsonsnewstoday.com/news/energi-f705pd-parkinsons-disease-modifying-therapy-found-safe-volunteers/" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="card-body">Disease-modifying Parkinson's therapy <strong>ENERGI-F705PD</strong> found safe in volunteers.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card podcast" href="https://parkinsons-podcast.libsyn.com/dr-karunapuzha-on-how-to-take-levodopa-for-parkinsons" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="card-body">Dr. Karunapuzha on <strong>how to take levodopa</strong> for Parkinson's.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card podcast" href="https://shows.acast.com/movers-and-shakers-a-podcast-about-life-with-parkinsons/episodes/662c09203bcafa0012db5b28" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="card-body"><strong>Movers and Shakers</strong>, a podcast about life with Parkinson's — episode on <em>cell therapy</em>.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card podcast" href="https://parkinsons-podcast.libsyn.com/stem-cells-cell-replacement-and-parkinsons-a-conversation-with-dr-roger-barker" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="card-body">Stem cells, cell replacement, and Parkinson's — a conversation with <strong>Dr. Roger Barker</strong>.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card podcast" href="https://hlthforward.buzzsprout.com/1984227/episodes/16033462-mitochondria-unlocked-taking-care-of-your-health-at-a-cellular-level-rob-fried-ceo-chromadex" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="card-body"><strong>Mitochondria Unlocked</strong>: cellular-level health with Rob Fried, CEO @ Chromadex.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card article" href="https://biz.chosun.com/en/en-science/2025/08/06/TPNGFRUOLFAGNGIZJBZW3D7BBY/" target="_blank" rel="noopener">
+        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="card-body">Sumitomo Pharma seeks approval for the world's first Parkinson's iPS cell therapy <em>(Shinya Yamanaka)</em>.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+    </section>
+  </main>
+
+</body>
+</html>
