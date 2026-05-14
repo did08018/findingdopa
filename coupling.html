@@ -45,7 +45,6 @@
       min-height: 100vh;
     }
 
-    /* Subtle grain so the warm flats feel like paper, not pixels */
     body::before {
       content: '';
       position: fixed;
@@ -142,7 +141,7 @@
       background: var(--article-bg);
       border: 1px solid var(--ink);
       border-radius: 14px;
-      padding: 22px 22px 20px;
+      padding: 20px 22px 18px;
       box-shadow: var(--shadow);
       transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, rotate 0.25s;
       text-decoration: none;
@@ -162,8 +161,14 @@
 
     .card.podcast { background: var(--podcast-bg); }
 
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
     .tag {
-      align-self: flex-start;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -176,9 +181,19 @@
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
     .podcast .tag { color: var(--podcast-bg); }
     .tag i { font-size: 0.7rem; }
+
+    .date {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
 
     .card-body {
       font-family: 'Fraunces', Georgia, serif;
@@ -204,7 +219,6 @@
       transform: translateX(4px);
     }
 
-    /* Staggered entrance — calm, not flashy */
     @keyframes rise {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -239,64 +253,100 @@
 
   <main>
     <div class="masthead">
-      <div class="eyebrow">PD Research News · Curated</div>
+      <div class="eyebrow">PD Research News · Curated · Newest First</div>
       <h1>Gossip Hill</h1>
       <p class="tagline">Field notes, the long arc, and what's on the wires.</p>
     </div>
 
     <section class="feed">
 
+      <a class="card article" href="https://www.japantimes.co.jp/news/2026/05/13/japan/science-health/ips-parkinsons-disease/" target="_blank" rel="noopener">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">May 2026</span>
+        </div>
+        <div class="card-body">Health panel approves <strong>coverage</strong> for iPS cell-derived Parkinson’s disease treatment.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+      
       <a class="card article" href="https://www.neurologylive.com/view/previewing-expected-fda-decisions-in-neurology-for-2026" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">May 2026</span>
+        </div>
         <div class="card-body">2026 FDA-expected decision: <strong>Tavapadon (AbbVie)</strong> for Parkinson Disease.</div>
         <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a class="card article" href="https://www.itochu.co.jp/en/news/press/2025/250905.html" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">05 Sep 2025</span>
+        </div>
         <div class="card-body"><strong>ITOCHU</strong> announces basic agreement on development and licensing of an automated iPS cell culture kit.</div>
         <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
       </a>
 
-      <a class="card article" href="https://www.biospace.com/key-parkinson-s-trial-delayed-due-to-feud-between-a-georgetown-university-scientist-and-the-michael-j-fox-foundation" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
-        <div class="card-body">Key Parkinson's trial delayed due to a <em>feud</em> between a Georgetown University scientist and the Michael J. Fox Foundation.</div>
-        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
-      </a>
-
       <a class="card article" href="https://parkinsonsnewstoday.com/news/energi-f705pd-parkinsons-disease-modifying-therapy-found-safe-volunteers/" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">11 Aug 2025</span>
+        </div>
         <div class="card-body">Disease-modifying Parkinson's therapy <strong>ENERGI-F705PD</strong> found safe in volunteers.</div>
         <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
       </a>
 
+      <a class="card article" href="https://biz.chosun.com/en/en-science/2025/08/06/TPNGFRUOLFAGNGIZJBZW3D7BBY/" target="_blank" rel="noopener">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">06 Aug 2025</span>
+        </div>
+        <div class="card-body">Sumitomo Pharma seeks approval for the world's first Parkinson's iPS cell therapy <em>(Shinya Yamanaka)</em>.</div>
+        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
+      </a>
+
       <a class="card podcast" href="https://parkinsons-podcast.libsyn.com/dr-karunapuzha-on-how-to-take-levodopa-for-parkinsons" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="meta">
+          <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+          <span class="date">19 Mar 2025</span>
+        </div>
         <div class="card-body">Dr. Karunapuzha on <strong>how to take levodopa</strong> for Parkinson's.</div>
         <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
       </a>
 
-      <a class="card podcast" href="https://shows.acast.com/movers-and-shakers-a-podcast-about-life-with-parkinsons/episodes/662c09203bcafa0012db5b28" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
-        <div class="card-body"><strong>Movers and Shakers</strong>, a podcast about life with Parkinson's — episode on <em>cell therapy</em>.</div>
-        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
-      </a>
-
-      <a class="card podcast" href="https://parkinsons-podcast.libsyn.com/stem-cells-cell-replacement-and-parkinsons-a-conversation-with-dr-roger-barker" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
-        <div class="card-body">Stem cells, cell replacement, and Parkinson's — a conversation with <strong>Dr. Roger Barker</strong>.</div>
-        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
-      </a>
-
       <a class="card podcast" href="https://hlthforward.buzzsprout.com/1984227/episodes/16033462-mitochondria-unlocked-taking-care-of-your-health-at-a-cellular-level-rob-fried-ceo-chromadex" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+        <div class="meta">
+          <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+          <span class="date">05 Jan 2025</span>
+        </div>
         <div class="card-body"><strong>Mitochondria Unlocked</strong>: cellular-level health with Rob Fried, CEO @ Chromadex.</div>
         <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
       </a>
 
-      <a class="card article" href="https://biz.chosun.com/en/en-science/2025/08/06/TPNGFRUOLFAGNGIZJBZW3D7BBY/" target="_blank" rel="noopener">
-        <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
-        <div class="card-body">Sumitomo Pharma seeks approval for the world's first Parkinson's iPS cell therapy <em>(Shinya Yamanaka)</em>.</div>
+      <a class="card podcast" href="https://parkinsons-podcast.libsyn.com/stem-cells-cell-replacement-and-parkinsons-a-conversation-with-dr-roger-barker" target="_blank" rel="noopener">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+          <span class="date">18 Sep 2024</span>
+        </div>
+        <div class="card-body">Stem cells, cell replacement, and Parkinson's — a conversation with <strong>Dr. Roger Barker</strong>.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card podcast" href="https://shows.acast.com/movers-and-shakers-a-podcast-about-life-with-parkinsons/episodes/662c09203bcafa0012db5b28" target="_blank" rel="noopener">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-microphone"></i> Podcast</span>
+          <span class="date">27 Apr 2024</span>
+        </div>
+        <div class="card-body"><strong>Movers and Shakers</strong>, a podcast about life with Parkinson's — episode on <em>cell therapy</em>.</div>
+        <div class="card-arrow">Listen <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a class="card article" href="https://www.biospace.com/key-parkinson-s-trial-delayed-due-to-feud-between-a-georgetown-university-scientist-and-the-michael-j-fox-foundation" target="_blank" rel="noopener">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
+          <span class="date">30 Aug 2016</span>
+        </div>
+        <div class="card-body">Key Parkinson's trial delayed due to a <em>feud</em> between a Georgetown University scientist and the Michael J. Fox Foundation.</div>
         <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
       </a>
 
