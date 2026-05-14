@@ -320,14 +320,119 @@ body {
   transform: scale(1.03);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
+
+
+    <!--
+================================================================
+  LEGACY BANNER — reusable snippet for any legacy page
+================================================================
+
+  WHAT IT DOES
+  ------------
+  Sticks a yellow-and-black caution-tape bar to the very top of the
+  page. Centered. Clickable anywhere on the bar. Takes the visitor
+  to "/" (the current Finding Dopa site root).
+
+  HOW TO ADD IT TO A PAGE
+  -----------------------
+  1. Copy the entire <style> block below and paste it INSIDE the
+     existing <style>...</style> block of the page (anywhere, but
+     near the top is conventional).
+
+  2. Copy the <a class="legacy-banner">...</a> block and paste it
+     immediately after the opening <body> tag, BEFORE the <header>.
+
+  3. That's it. The page must already load Font Awesome — every
+     legacy page in this site already does, so no action needed.
+
+  NOTES
+  -----
+  - The link uses href="/" which is an absolute path. It works
+    correctly from any legacy page no matter how deep it's nested
+    (e.g. /legacy/index.html, /legacy/dopa/vox.html). Do not change
+    it to a relative path.
+  - The chip icon is fa-floppy-disk. Swap to fa-cassette-tape,
+    fa-compact-disc, fa-clock-rotate-left, or fa-tape if preferred.
+
+================================================================
+-->
+
+.legacy-banner {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 9px 14px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fff3a8 0 14px,
+    #ffd84d 14px 28px
+  );
+  color: #1a1a1a;
+  font-family: 'PT Serif', serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid #1a1a1a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: filter 0.2s, transform 0.1s;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.legacy-banner:hover  { filter: brightness(0.96); }
+.legacy-banner:active { transform: translateY(1px); }
+
+.legacy-banner__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1a1a1a;
+  color: #ffd84d;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.legacy-banner__cta {
+  font-weight: 700;
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.legacy-banner__cta .arrow { transition: transform 0.2s; }
+.legacy-banner:hover .legacy-banner__cta .arrow { transform: translateX(3px); }
+
+@media (max-width: 520px) {
+  .legacy-banner       { font-size: 0.8rem; padding: 7px 10px; gap: 8px; }
+  .legacy-banner__chip { font-size: 0.62rem; padding: 3px 8px; }
+}
     
   </style>
 </head>
 
 <body>
+
+  <a class="legacy-banner" href="/" aria-label="Go to the current Finding Dopa site">
+  <span class="legacy-banner__chip"><i class="fas fa-floppy-disk"></i> Legacy Edition</span>
+  <span class="legacy-banner__cta">
+    Take me back to the new site
+    <i class="fas fa-arrow-right arrow"></i>
+  </span>
+</a>
+  
   <header>
+
+    
     <div class="top-bar">
-      <a href="../index.html" class="home-brand" aria-label="Home">
+      <a href="/legacy/index.html" class="home-brand" aria-label="Home">
         <i class="fas fa-brain"></i>
         <span class="logo-text">Finding Dopa</span>
       </a>
