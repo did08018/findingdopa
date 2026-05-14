@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Dopa – Platform dedicated to providing the latest research, resources, and hope.</title>
+    <meta name="description" content="Explore the latest in Parkinson's disease research, treatments, and clinical trials. Finding Dopa offers resources and hope: a fix is on the way, keep fighting!.">
+    <link rel="icon" href="/favicon.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="/favicon.webp">
+    <link rel="canonical" href="https://findingdopa.com/">
+    <meta name="theme-color" content="#f0f0f0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Finding Dopa",
+      "url": "https://www.findingdopa.com/"
+    }
+    </script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+      }
+
+      /* ---------- NEURAL BACKGROUND ---------- */
+      .neural-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .neural-bg svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .neural-bg .axon {
+        fill: none;
+        stroke: #EF9280;
+        stroke-width: 1;
+        stroke-linecap: round;
+        opacity: 0.32;
+      }
+      .neural-bg .soma {
+        fill: #EF9280;
+        opacity: 0.55;
+      }
+      .neural-bg .soma--big {
+        opacity: 0.45;
+      }
+      .neural-bg .pulse {
+        fill: #FF7E5F;
+        filter: url(#pulseGlow);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .neural-bg .pulse { display: none; }
+      }
+      /* ---------- /NEURAL BACKGROUND ---------- */
+
+      header,
+      .page-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 3px;
+        width: 320px;
+        height: 83vh;
+        padding: 0;
+      }
+
+      .box {
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2px;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-size: 0.8em;
+        background-clip: padding-box;
+        position: relative;
+      }
+      .box img {
+        height: auto;
+        max-height: 50%;
+        width: auto;
+        object-fit: contain;
+        display: none;
+      }
+      .box h2, .box p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .box1 { background: #FAC46E url('coupling') no-repeat center; background-size: cover; grid-column: 1; grid-row: 1 / span 2; }
+      .box5 { background: #BB93C8 url('dopavox') no-repeat center; background-size: cover; grid-column: 2 / span 2; grid-row: 1; }
+      .box2 { background: #EF9280 url('aspis') no-repeat center; background-size: cover; grid-column: 2; grid-row: 2; }
+      .box3 { background: #A7CB8C url('dopeaf') no-repeat center; background-size: cover; grid-column: 3; grid-row: 2; }
+      .box4 { background: #ffbbd0 url('prisencolinensinainciusol') no-repeat center; background-size: cover; grid-column: 1 / span 2; grid-row: 3; }
+      .box6 { background: #A8D5E2 url('legacy') no-repeat center; background-size: cover; grid-column: 3; grid-row: 3; }
+
+      @media (min-width: 321px) {
+        .container {
+          width: 100%;
+          max-width: 600px;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          gap: 10px;
+          padding: 10px;
+        }
+        .box { padding: 10px; }
+        .box img, .box p { display: block; }
+        .box h2 { font-size: 1.2em; }
+        .box p { font-size: 0.9em; }
+        .box1 { grid-column: 1; grid-row: 1 / span 2; }
+        .box5 { grid-column: 2 / span 2; grid-row: 1; }
+        .box2 { grid-column: 2; grid-row: 2; }
+        .box3 { grid-column: 3; grid-row: 2; }
+        .box4 { grid-column: 1 / span 2; grid-row: 3; }
+        .box6 { grid-column: 3; grid-row: 3; }
+      }
+
+      header {
+        background-color: transparent;
+        width: 100%;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        padding: 10px 0 0 0;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .home-brand {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        color: #0084a2;
+        font-size: 1.0rem;
+        white-space: nowrap;
+      }
+      .home-brand i {
+        font-size: 1.0rem;
+        line-height: 1;
+      }
+      .logo-text {
+        font-weight: 700;
+        font-size: 1.0rem;
+        color: #0084a2;
+      }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ NEURAL BACKGROUND ============ -->
+    <div class="neural-bg" aria-hidden="true">
+      <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="pulseGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Axons (curved connections) -->
+        <g>
+          <path id="ax1"  class="axon" d="M 100 100  Q 160 50  220 60"/>
+          <path id="ax2"  class="axon" d="M 100 100  Q 130 180 180 220"/>
+          <path id="ax3"  class="axon" d="M 220 60   Q 280 80  340 140"/>
+          <path id="ax4"  class="axon" d="M 340 140  Q 410 200 440 280"/>
+          <path id="ax5"  class="axon" d="M 180 220  Q 100 260 60 320"/>
+          <path id="ax6"  class="axon" d="M 180 220  Q 230 280 260 350"/>
+          <path id="ax7"  class="axon" d="M 60 320   Q 70 500  100 680"/>
+          <path id="ax8"  class="axon" d="M 260 350  Q 350 300 440 280"/>
+          <path id="ax9"  class="axon" d="M 260 350  Q 320 440 380 500"/>
+          <path id="ax10" class="axon" d="M 440 280  Q 510 220 580 180"/>
+          <path id="ax11" class="axon" d="M 440 280  Q 600 350 760 400"/>
+          <path id="ax12" class="axon" d="M 440 280  Q 500 380 560 460"/>
+          <path id="ax13" class="axon" d="M 580 180  Q 650 130 720 100"/>
+          <path id="ax14" class="axon" d="M 580 180  Q 670 300 760 400"/>
+          <path id="ax15" class="axon" d="M 720 100  Q 800 130 880 160"/>
+          <path id="ax16" class="axon" d="M 720 100  Q 820 200 920 320"/>
+          <path id="ax17" class="axon" d="M 880 160  Q 960 130 1040 110"/>
+          <path id="ax18" class="axon" d="M 880 160  Q 1000 250 1080 360"/>
+          <path id="ax19" class="axon" d="M 1040 110 Q 1100 180 1150 240"/>
+          <path id="ax20" class="axon" d="M 1150 240 Q 1130 300 1080 360"/>
+          <path id="ax21" class="axon" d="M 1080 360 Q 1000 350 920 320"/>
+          <path id="ax22" class="axon" d="M 1080 360 Q 1050 480 1000 600"/>
+          <path id="ax23" class="axon" d="M 920 320  Q 840 360 760 400"/>
+          <path id="ax24" class="axon" d="M 760 400  Q 660 430 560 460"/>
+          <path id="ax25" class="axon" d="M 760 400  Q 720 530 660 660"/>
+          <path id="ax26" class="axon" d="M 560 460  Q 470 480 380 500"/>
+          <path id="ax27" class="axon" d="M 560 460  Q 520 590 480 720"/>
+          <path id="ax28" class="axon" d="M 380 500  Q 290 520 200 540"/>
+          <path id="ax29" class="axon" d="M 380 500  Q 340 620 300 740"/>
+          <path id="ax30" class="axon" d="M 200 540  Q 150 610 100 680"/>
+          <path id="ax31" class="axon" d="M 200 540  Q 250 640 300 740"/>
+          <path id="ax32" class="axon" d="M 100 680  Q 200 710 300 740"/>
+          <path id="ax33" class="axon" d="M 300 740  Q 390 730 480 720"/>
+          <path id="ax34" class="axon" d="M 480 720  Q 570 690 660 660"/>
+          <path id="ax35" class="axon" d="M 660 660  Q 750 690 840 720"/>
+          <path id="ax36" class="axon" d="M 660 660  Q 830 630 1000 600"/>
+          <path id="ax37" class="axon" d="M 840 720  Q 920 660 1000 600"/>
+          <path id="ax38" class="axon" d="M 840 720  Q 990 760 1140 800"/>
+          <path id="ax39" class="axon" d="M 1000 600 Q 1070 700 1140 800"/>
+        </g>
+
+        <!-- Soma (cell bodies) -->
+        <g>
+          <circle class="soma" cx="100"  cy="100" r="3"/>
+          <circle class="soma" cx="220"  cy="60"  r="2.5"/>
+          <circle class="soma soma--big" cx="340"  cy="140" r="4"/>
+          <circle class="soma" cx="180"  cy="220" r="3"/>
+          <circle class="soma" cx="60"   cy="320" r="2.5"/>
+          <circle class="soma" cx="260"  cy="350" r="3"/>
+          <circle class="soma soma--big" cx="440"  cy="280" r="4.5"/>
+          <circle class="soma" cx="580"  cy="180" r="3"/>
+          <circle class="soma" cx="720"  cy="100" r="2.5"/>
+          <circle class="soma" cx="880"  cy="160" r="3"/>
+          <circle class="soma" cx="1040" cy="110" r="2.5"/>
+          <circle class="soma" cx="1150" cy="240" r="3"/>
+          <circle class="soma soma--big" cx="1080" cy="360" r="4"/>
+          <circle class="soma" cx="920"  cy="320" r="3"/>
+          <circle class="soma soma--big" cx="760"  cy="400" r="4.5"/>
+          <circle class="soma" cx="560"  cy="460" r="3"/>
+          <circle class="soma" cx="380"  cy="500" r="3"/>
+          <circle class="soma" cx="200"  cy="540" r="2.5"/>
+          <circle class="soma" cx="100"  cy="680" r="3"/>
+          <circle class="soma" cx="300"  cy="740" r="3"/>
+          <circle class="soma" cx="480"  cy="720" r="2.5"/>
+          <circle class="soma soma--big" cx="660"  cy="660" r="4"/>
+          <circle class="soma" cx="840"  cy="720" r="3"/>
+          <circle class="soma" cx="1000" cy="600" r="3"/>
+          <circle class="soma" cx="1140" cy="800" r="2.5"/>
+        </g>
+
+        <!-- Synaptic pulses — fire briefly along axons, staggered -->
+        <circle class="pulse" r="3.5">
+          <animateMotion dur="9s" repeatCount="indefinite" begin="0s">
+            <mpath href="#ax11"/>
+          </animateMotion>
+          <animate attributeName="opacity"
+                   values="0;0;1;1;0;0"
+                   keyTimes="0;0.05;0.15;0.35;0.45;1"
+                   dur="9s" repeatCount="indefinite" begin="0s"/>
+        </circle>
+
+        <circle class="pulse" r="3.5">
+          <animateMotion dur="9s" repeatCount="indefinite" begin="1.8s">
+            <mpath href="#ax22"/>
+          </animateMotion>
+          <animate attributeName="opacity"
+                   values="0;0;1;1;0;0"
+                   keyTimes="0;0.05;0.15;0.35;0.45;1"
+                   dur="9s" repeatCount="indefinite" begin="1.8s"/>
+        </circle>
+
+        <circle class="pulse" r="3.5">
+          <animateMotion dur="9s" repeatCount="indefinite" begin="3.6s">
+            <mpath href="#ax7"/>
+          </animateMotion>
+          <animate attributeName="opacity"
+                   values="0;0;1;1;0;0"
+                   keyTimes="0;0.05;0.15;0.35;0.45;1"
+                   dur="9s" repeatCount="indefinite" begin="3.6s"/>
+        </circle>
+
+        <circle class="pulse" r="3.5">
+          <animateMotion dur="9s" repeatCount="indefinite" begin="5.4s">
+            <mpath href="#ax35"/>
+          </animateMotion>
+          <animate attributeName="opacity"
+                   values="0;0;1;1;0;0"
+                   keyTimes="0;0.05;0.15;0.35;0.45;1"
+                   dur="9s" repeatCount="indefinite" begin="5.4s"/>
+        </circle>
+
+        <circle class="pulse" r="3.5">
+          <animateMotion dur="9s" repeatCount="indefinite" begin="7.2s">
+            <mpath href="#ax18"/>
+          </animateMotion>
+          <animate attributeName="opacity"
+                   values="0;0;1;1;0;0"
+                   keyTimes="0;0.05;0.15;0.35;0.45;1"
+                   dur="9s" repeatCount="indefinite" begin="7.2s"/>
+        </circle>
+      </svg>
+    </div>
+    <!-- ============ /NEURAL BACKGROUND ============ -->
+
+    <header>
+      <div class="top-bar">
+        <a href="../index.html" class="home-brand" aria-label="Home">
+          <i class="fas fa-brain"></i>
+          <span class="logo-text">Welcome to Finding Dopa</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="page-wrapper">
+      <div class="container">
+        <a href="coupling.html" class="box box1">
+          <h2>Filofax</h2>
+          <img src="images/coupling.jpeg" alt="Customization">
+          <p>Things as they happen</p>
+        </a>
+        <a href="/dopa/vox.html" class="box box5">
+          <h2>Dopa VOX</h2>
+          <img src="images/dopavox.jpeg" alt="Send Gifts">
+          <p>A voice for PD / share - ask - connect</p>
+        </a>
+        <a href="aspis.html" class="box box2">
+          <h2>Resolve</h2>
+          <img src="/images/aspirator.jpeg" alt="Aspis">
+          <p>Have you got a 27B-6?</p>
+        </a>
+        <a href="/vote/dopeaf.html" class="box box3">
+          <h2>DopeAF</h2>
+          <img src="images/dopeaf3.jpeg" alt="DopeAF">
+          <p>A Dance of Ace & Flat</p>
+        </a>
+        <a href="prisencolinensinainciusol.html" class="box box4">
+          <h2>Prisencolinensinainciusol</h2>
+          <img src="images/monkey3.jpg" alt="Inbox">
+          <p>There'll be days like this</p>
+        </a>
+        <a href="/legacy/index.html" class="box box6">
+          <h2>Legacy</h2>
+          <img src="images/legacy.JPG" alt="Legacy">
+          <p>Unexpectad Error</p>
+        </a>
+      </div>
+    </div>
+
+</body>
+</html>
