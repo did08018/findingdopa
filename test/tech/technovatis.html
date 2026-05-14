@@ -1,243 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECHNOVATIS | Specialized Engineering & Robotics</title>
+    <title>TECHNOVATIS | Machines Spéciales & Robotique</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
+            --primary: #004a99; /* Bleu Technovatis */
+            --accent: #00ffcc;
             --bg-dark: #0b132b;
             --bg-card: #1c2541;
-            --accent: #00ffcc;
-            --accent-soft: rgba(0, 255, 204, 0.1);
             --text-light: #f8f9fa;
             --text-muted: #a1b0c6;
-            --gradient: linear-gradient(135deg, #1c2541 0%, #0b132b 100%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+        
         /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%; height: 80px;
-            padding: 0 5%;
+            position: fixed; top: 0; width: 100%; height: 80px;
+            background: rgba(11, 19, 43, 0.95); backdrop-filter: blur(10px);
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(11, 19, 43, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 2000;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+            padding: 0 5%; z-index: 2000; border-bottom: 1px solid rgba(0, 255, 204, 0.1);
         }
-
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-light); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        .logo { font-weight: 800; text-transform: uppercase; color: var(--text-light); text-decoration: none; font-size: 1.2rem; }
         .logo span { color: var(--accent); }
-
-        .nav-links {
-            position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px);
-            background: var(--bg-dark); flex-direction: column; display: flex;
-            align-items: center; justify-content: center; gap: 2.5rem;
-            transition: 0.4s ease-in-out;
-        }
-
-        .nav-links.active { left: 0; }
-        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: 0.3s; }
+        
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        .hamburger { display: block; cursor: pointer; border: none; background: none; }
-        .bar { display: block; width: 28px; height: 3px; margin: 6px auto; background-color: var(--accent); transition: 0.3s; }
+        .lang-toggle {
+            background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent);
+            padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.8rem;
+        }
 
         /* --- HERO --- */
         #home {
-            padding: 160px 5% 80px;
-            text-align: center;
-            background: var(--gradient);
+            height: 90vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(rgba(11, 19, 43, 0.7), rgba(11, 19, 43, 0.7)), url('1772208678840.jpeg');
+            background-size: cover; background-position: center; text-align: center; padding: 0 5%;
         }
-        .hero-content h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 800; }
-        .hero-content h1 span { color: var(--accent); }
-        .hero-content p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2.5rem; }
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero-content p { max-width: 800px; margin: 0 auto 2rem; color: var(--text-muted); }
 
-        /* --- ABOUT SECTION (New & Warmed Up) --- */
-        #about { padding: 80px 5%; background: #0f1a36; }
-        .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; }
-        .about-main-text { font-size: 1.1rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
-        
-        .expertise-box {
-            display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;
-        }
-        .exp-card {
-            background: var(--bg-card); padding: 1.5rem; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-        }
-        .exp-card h4 { color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        /* --- SECTIONS --- */
+        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2rem; margin-bottom: 3rem; text-align: center; }
+        .section-title span { color: var(--accent); }
 
-        /* --- FEASIBILITY CTA --- */
-        .feasibility-banner {
-            background: linear-gradient(90deg, #00ffcc22, #1c2541);
-            padding: 2.5rem; border-radius: 15px; border: 1px solid var(--accent);
-            margin-top: 3rem; text-align: center;
-        }
+        /* --- ABOUT (L'agrandissement) --- */
+        .about-container { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+        @media (min-width: 768px) { .about-container { grid-template-columns: 1fr 1fr; } }
+        .about-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .tag-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+        .tag { background: rgba(0, 255, 204, 0.1); padding: 10px; border-radius: 5px; font-size: 0.85rem; border: 1px solid rgba(0, 255, 204, 0.2); }
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block; padding: 16px 32px; border-radius: 8px;
-            text-decoration: none; font-weight: 700; transition: 0.3s;
-            text-align: center; width: 100%; max-width: 320px;
-        }
-        .btn-solid { background: var(--accent); color: var(--bg-dark); }
-        .btn-solid:hover { box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); transform: translateY(-2px); }
+        /* --- EXPERTISE (Techno & Clips) --- */
+        .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: 15px; border-top: 4px solid var(--accent); }
+        .card h3 { margin-bottom: 15px; color: var(--accent); }
 
-        /* --- RESPONSIVE DESKTOP --- */
-        @media (min-width: 768px) {
-            nav { padding: 0 8%; }
-            .nav-links { position: static; height: auto; width: auto; flex-direction: row; background: none; }
-            .hamburger { display: none; }
-            .hero-content h1 { font-size: 4rem; }
-            .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-            .about-grid { grid-template-columns: 1.2fr 1fr; }
-            .btn { width: auto; }
-        }
+        /* --- GALLERY --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; height: 200px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-label { position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 10px; font-size: 0.8rem; text-align: center; }
 
-        .active-menu .bar:nth-child(2) { opacity: 0; }
-        .active-menu .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .active-menu .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        /* --- CONTACT --- */
+        .contact-cta { background: linear-gradient(135deg, var(--primary), #002d5e); padding: 50px; border-radius: 20px; text-align: center; }
+        .btn { display: inline-block; background: var(--accent); color: var(--bg-dark); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); }
+
+        /* --- UTILS --- */
+        [data-lang="en"] { display: none; }
+        .lang-en [data-lang="fr"] { display: none; }
+        .lang-en [data-lang="en"] { display: block; }
+
+        /* Responsive Menu */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .bar { width: 25px; height: 3px; background: var(--accent); border-radius: 2px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#home" class="logo">Techno<span>vatis</span></a>
-        <div class="nav-links" id="navMenu">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#projects">Innovation</a>
-            <a href="#contact">Contact</a>
+        <a href="#home" class="logo">TECHNO<span>VATIS</span></a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#home" data-lang="fr">Accueil</a>
+                <a href="#home" data-lang="en">Home</a>
+                <a href="#about" data-lang="fr">À Propos</a>
+                <a href="#about" data-lang="en">About</a>
+                <a href="#expertise" data-lang="fr">Expertise</a>
+                <a href="#expertise" data-lang="en">Expertise</a>
+                <a href="#contact" data-lang="fr">Contact</a>
+                <a href="#contact" data-lang="en">Contact</a>
+            </div>
+            <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </div>
-        <button class="hamburger" onclick="toggleMenu()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
     </nav>
 
-    <!-- HERO -->
     <section id="home">
         <div class="hero-content">
-            <h1>Securing & Optimizing <span>Industrial Processes</span></h1>
-            <p>We design and deliver special-purpose clip assembly machines and robotic cells engineered for repeatability, quality, and seamless integration.</p>
-            <a href="#contact" class="btn btn-solid">Request 72h Feasibility Review</a>
+            <h1 data-lang="fr">Machines spéciales d'assemblage et de clippage</h1>
+            <h1 data-lang="en">Specialized Assembly and Clipping Machines</h1>
+            <p data-lang="fr">Conception et réalisation de solutions robustes pour sécuriser et optimiser vos processus industriels.</p>
+            <p data-lang="en">Design and creation of robust solutions to secure and optimize your industrial processes.</p>
+            <a href="#contact" class="btn" data-lang="fr">Faisabilité sous 72h</a>
+            <a href="#contact" class="btn" data-lang="en">72h Feasibility Review</a>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about">
-        <div class="about-grid">
-            <div>
-                <h2 style="margin-bottom: 1.5rem;">Who <span>We Are</span></h2>
-                <div class="about-main-text">
-                    <p>At TECHNOVATIS, we design and deliver special-purpose clip assembly machines and robotic cells engineered to secure and optimize industrial processes.</p>
-                    <br>
-                    <p>We support manufacturers with solutions tailored to their production challenges, including cycle time, repeatability, quality assurance, ergonomics, flexibility, and seamless integration into existing environments.</p>
-                </div>
-                
-                <div class="expertise-box">
-                    <div class="exp-card">
-                        <h4>🛡️ Reliability</h4>
-                        <p>Built on 20 years of experience and over 100 machines delivered to satisfied partners.</p>
-                    </div>
-                    <div class="exp-card">
-                        <h4>💡 Innovation</h4>
-                        <p>Patented clip sorting and assembly technologies that lead the industrial market.</p>
-                    </div>
-                </div>
+        <h2 class="section-title" data-lang="fr">Notre <span>Développement</span></h2>
+        <h2 class="section-title" data-lang="en">Our <span>Growth</span></h2>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="1772634521522.jpeg" alt="Extension Technovatis">
             </div>
-
-            <div style="background: var(--bg-card); padding: 2rem; border-radius: 12px;">
-                <h3 style="color: var(--accent); margin-bottom: 1.5rem;">Our Areas of Expertise</h3>
-                <ul style="list-style: none; color: var(--text-muted);">
-                    <li style="margin-bottom: 1rem;">• Automated assembly of plastic clips on automotive components</li>
-                    <li style="margin-bottom: 1rem;">• Mechanical and robotic assembly systems</li>
-                    <li style="margin-bottom: 1rem;">• High-precision vision inspection solutions</li>
-                    <li style="margin-bottom: 1rem;">• AI-enabled vision inspection gantries</li>
-                </ul>
-                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0;">
-                <p>Based in France, we support customers across <strong>France and Europe</strong> with a pragmatic, confidential, and results-oriented approach.</p>
+            <div class="about-text">
+                <h3 data-lang="fr">Des nouveaux moyens pour vos projets</h3>
+                <h3 data-lang="en">New resources for your projects</h3>
+                <p data-lang="fr">TECHNOVATIS se renforce pour mieux répondre aux exigences de cadence, répétabilité et qualité.</p>
+                <p data-lang="en">TECHNOVATIS is expanding to better meet demands for speed, repeatability, and quality.</p>
+                <div class="tag-grid">
+                    <div class="tag" data-lang="fr">✅ Extension de 290 m²</div>
+                    <div class="tag" data-lang="en">✅ 290 m² Extension</div>
+                    <div class="tag" data-lang="fr">✅ Nouvelle zone soudure</div>
+                    <div class="tag" data-lang="en">✅ New Welding Zone</div>
+                    <div class="tag" data-lang="fr">✅ Salle impression 3D</div>
+                    <div class="tag" data-lang="en">✅ 3D Printing Room</div>
+                    <div class="tag" data-lang="fr">✅ Atelier agrandi</div>
+                    <div class="tag" data-lang="en">✅ Expanded Workshop</div>
+                </div>
             </div>
         </div>
-
-        <div class="feasibility-banner">
-            <h3>📩 Share Your Requirements</h3>
-            <p style="margin: 1rem 0 2rem;">Send us your part specifications and process constraints: <strong>we will provide an initial feasibility review within 72 hours.</strong></p>
-            <a href="mailto:contact@technovatis.com" class="btn btn-solid">Submit Your Specifications</a>
-        </div>
-    </section>
-
-    <!-- INNOVATIONS / PROJECTS -->
-    <section id="projects" style="padding: 80px 5%;">
-        <h2 style="text-align: center; margin-bottom: 3rem;">Latest <span>Innovations</span></h2>
-        <div class="grid-2">
-            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" style="width:100%; height:250px; object-fit:cover;">
-                <div style="padding: 1.5rem;">
-                    <h3>Robotic Assembly Cells</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 1rem 0;">Discover how we integrate robots to reduce cycle times and improve worker ergonomics.</p>
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7440040560591024128/" style="color: var(--accent); text-decoration: none;">View LinkedIn Case Study →</a>
-                </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="1772634521576.jpeg" alt="Montage">
+                <div class="gallery-label" data-lang="fr">Atelier de montage</div>
+                <div class="gallery-label" data-lang="en">Assembly Workshop</div>
             </div>
-            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" style="width:100%; height:250px; object-fit:cover;">
-                <div style="padding: 1.5rem;">
-                    <h3>AI Vision Systems</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 1rem 0;">Our AI-enabled gantries ensure 100% quality assurance in complex automotive parts.</p>
-                    <a href="https://www.linkedin.com/posts/machinespeciales-assemblage-robotique-share-7433181952829976576-S217" style="color: var(--accent); text-decoration: none;">View Tech Specs →</a>
-                </div>
+            <div class="gallery-item">
+                <img src="1772634521412.jpeg" alt="3D">
+                <div class="gallery-label" data-lang="fr">Salle impression 3D</div>
+                <div class="gallery-label" data-lang="en">3D Printing Room</div>
+            </div>
+            <div class="gallery-item">
+                <img src="1772634521620.jpeg" alt="Soudure">
+                <div class="gallery-label" data-lang="fr">Zone de soudure</div>
+                <div class="gallery-label" data-lang="en">Welding Zone</div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" style="padding: 80px 5%; background: #0d1836; text-align: center;">
-        <h2 style="margin-bottom: 1rem;">Let's <span>Connect</span></h2>
-        <p style="color: var(--text-muted); margin-bottom: 3rem;">Ready to optimize your production line? Reach out to our engineering team.</p>
-        <div class="grid-2" style="max-width: 800px; margin: 0 auto; text-align: left;">
-            <div>
-                <h4 style="color: var(--accent);">📍 Headquarters</h4>
-                <p>8 Allée de la Clairière<br>59136 Wavrin, France</p>
+    <section id="expertise">
+        <h2 class="section-title" data-lang="fr">Notre <span>Expertise</span></h2>
+        <h2 class="section-title" data-lang="en">Our <span>Expertise</span></h2>
+        
+        <div class="expertise-grid">
+            <div class="card">
+                <h3 data-lang="fr">Solutions Brevetées</h3>
+                <h3 data-lang="en">Patented Solutions</h3>
+                <p data-lang="fr">Depuis plusieurs années, nous développons des technologies brevetées pour le tri et l'assemblage de clips plastiques, garantissant une orientation fiable sans réglage mécanique.</p>
+                <p data-lang="en">For several years, we have developed patented technologies for plastic clip sorting and assembly, ensuring reliable orientation without mechanical adjustment.</p>
             </div>
-            <div>
-                <h4 style="color: var(--accent);">📞 Contact</h4>
-                <p>+33 3 20 50 27 85<br>contact@technovatis.com</p>
+            <div class="card">
+                <h3 data-lang="fr">Robotique & Vision IA</h3>
+                <h3 data-lang="en">Robotics & AI Vision</h3>
+                <p data-lang="fr">Intégration de cellules robotisées et contrôle qualité par vision avec Intelligence Artificielle pour les environnements industriels exigeants.</p>
+                <p data-lang="en">Integration of robotic cells and vision-based quality control with Artificial Intelligence for demanding industrial environments.</p>
+            </div>
+        </div>
+
+        <div class="about-container" style="margin-top: 50px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px;">
+            <div class="about-text">
+                <h3 data-lang="fr">Tri de clips plastiques</h3>
+                <h3 data-lang="en">Plastic Clip Sorting</h3>
+                <p data-lang="fr">Orientation fiable, alimentation stable et capacité de trier plusieurs références sur une même ligne tout en conservant la cadence.</p>
+                <p data-lang="en">Reliable orientation, stable feeding, and the ability to sort multiple references on the same line while maintaining speed.</p>
+            </div>
+            <div class="about-image">
+                <img src="1773843897986.jpeg" alt="Détail technique clips">
             </div>
         </div>
     </section>
 
-    <footer style="padding: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.5;">
-        &copy; 2026 TECHNOVATIS. All rights reserved.
+    <section id="contact">
+        <div class="contact-cta">
+            <h2 data-lang="fr">Prêt à sécuriser votre process ?</h2>
+            <h2 data-lang="en">Ready to secure your process?</h2>
+            <p data-lang="fr">Envoyez-nous vos contraintes et spécifications. Premier retour de faisabilité sous 72 h.</p>
+            <p data-lang="en">Send us your constraints and specifications. Initial feasibility review within 72 hours.</p>
+            <a href="mailto:contact@technovatis.com" class="btn">📧 contact@technovatis.com</a>
+            <p style="margin-top: 20px; font-size: 0.9rem;">📍 8 Allée de la Clairière, 59136 Wavrin, France | 📞 +33 3 20 50 27 85</p>
+        </div>
+    </section>
+
+    <footer style="padding: 40px; text-align: center; font-size: 0.8rem; opacity: 0.6;">
+        &copy; 2026 TECHNOVATIS. #machinespeciales #robotique #industrie
     </footer>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            const burger = document.querySelector('.hamburger');
-            menu.classList.toggle('active');
-            burger.classList.toggle('active-menu');
+        function toggleLanguage() {
+            const body = document.body;
+            const btn = document.querySelector('.lang-toggle');
+            
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                btn.innerText = 'EN';
+            } else {
+                body.classList.add('lang-en');
+                btn.innerText = 'FR';
+            }
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navMenu').classList.remove('active');
-                document.querySelector('.hamburger').classList.remove('active-menu');
-            });
-        });
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if(nav.style.display === 'flex') {
+                nav.style.position = 'absolute';
+                nav.style.top = '80px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = '#0b132b';
+                nav.style.flexDirection = 'column';
+                nav.style.padding = '20px';
+                nav.style.textAlign = 'center';
+            }
+        }
     </script>
 </body>
 </html>
