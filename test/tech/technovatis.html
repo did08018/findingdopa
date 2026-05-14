@@ -4,99 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technovatis — Machines spéciales d'assemblage et de clippage</title>
-<meta name="description" content="Ingénierie de machines spéciales d'assemblage et de clippage. Robotique, vision IA, hautes cadences. Wavrin, France.">
+<meta name="description" content="Conception et fabrication de machines spéciales d'assemblage et de clippage. Robotique, vision IA. Wavrin, France.">
 <link rel="icon" type="image/png" href="technovatis_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --paper:        #F4EFE3;
-  --paper-2:      #ECE5D2;
+  --paper:        #F2EEE3;
+  --paper-2:      #E9E3D2;
   --ink:          #0F1A2C;
-  --ink-2:        #2A3548;
-  --muted:        #757B8A;
+  --ink-2:        #2A3344;
+  --muted:        #6E7484;
   --accent:       #0E8FC9;
-  --accent-deep:  #095F8A;
-  --line:         rgba(15, 26, 44, 0.13);
-  --line-soft:    rgba(15, 26, 44, 0.06);
+  --accent-deep:  #0A6FA0;
+  --line:         rgba(15, 26, 44, 0.14);
+  --line-soft:    rgba(15, 26, 44, 0.07);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   background: var(--paper);
   color: var(--ink);
-  line-height: 1.55;
+  line-height: 1.45;
   font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.005em;
   overflow-x: hidden;
 }
 ::selection { background: var(--accent); color: #fff; }
 
-/* ============ TYPOGRAPHY ============ */
-.eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
 }
+.mono.muted { color: var(--muted); }
 
 /* ============ TOP BAR ============ */
 .top-bar {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(244, 239, 227, 0.94);
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  border-bottom: 1px solid var(--line-soft);
+  background: rgba(242, 238, 227, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 .top-bar-inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  height: 72px;
-  padding: 0 40px;
-  gap: 40px;
+  height: 60px;
+  padding: 0 32px;
+  gap: 32px;
 }
-.brand { display: inline-flex; align-items: center; height: 40px; text-decoration: none; }
-.brand img { height: 28px; width: auto; display: block; }
+.brand { display: inline-flex; align-items: center; height: 36px; text-decoration: none; }
+.brand img { height: 22px; width: auto; display: block; }
 .nav-links {
-  display: flex; gap: 36px; justify-content: center;
-  font-size: 13px;
+  display: flex; gap: 32px; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 .nav-links a {
   color: var(--ink-2);
   text-decoration: none;
-  transition: color .2s ease;
+  transition: color .2s;
   position: relative;
-  padding: 6px 0;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: -2px;
-  height: 1px; background: var(--accent);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1);
 }
 .nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after { transform: scaleX(1); }
+.tel-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  transition: border-color .2s, color .2s;
+}
+.tel-link:hover { border-color: var(--accent); color: var(--accent); }
 .lang-switch {
   background: transparent;
   border: 1px solid var(--line);
-  padding: 8px 14px;
+  padding: 8px 12px;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   color: var(--ink);
   text-transform: uppercase;
-  transition: border-color .2s ease;
+  transition: border-color .2s;
 }
 .lang-switch:hover { border-color: var(--ink); }
 .lang-switch .on { color: var(--accent); }
@@ -104,386 +111,461 @@ body {
 .lang-en .lang-switch .off { color: var(--accent); }
 
 /* ============ HERO ============ */
-.hero { padding: 180px 40px 100px; position: relative; }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 80px;
-  align-items: center;
-  max-width: 1400px;
+.hero {
+  padding: 120px 32px 64px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 .hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 28px;
 }
-.hero-eyebrow::before {
-  content: '';
-  width: 28px; height: 1px;
-  background: var(--accent);
+.hero-eyebrow::after {
+  content: ''; flex: 1;
+  border-top: 1px solid var(--line);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 56px;
+  align-items: stretch;
 }
 h1.hero-title {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
-  font-weight: 400;
-  font-size: clamp(44px, 5.8vw, 92px);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(38px, 5.4vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-h1.hero-title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
-}
+h1.hero-title .hl { color: var(--accent); }
 .hero-sub {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.5;
   color: var(--ink-2);
-  max-width: 48ch;
-  margin-bottom: 44px;
+  max-width: 52ch;
+  margin-bottom: 36px;
 }
+.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
 .hero-image-wrap {
   position: relative;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
   overflow: hidden;
-  box-shadow: 0 30px 60px -30px rgba(15, 26, 44, 0.25), 0 12px 24px -12px rgba(15, 26, 44, 0.18);
+  background: var(--paper-2);
 }
 .hero-image-wrap img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: contrast(1.03) saturate(0.92);
 }
-.hero-meta-strip {
-  max-width: 1400px;
-  margin: 80px auto 0;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
+.hero-image-tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 9px;
+  color: var(--ink-2);
+}
+
+/* Inline spec row (in hero) */
+.spec-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
 }
-.hero-meta-item .eyebrow { display: block; margin-bottom: 8px; }
-.hero-meta-item .val {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 24;
+.spec-row .item {
+  padding: 18px 24px 18px 0;
+  border-right: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.spec-row .item:last-child { border-right: none; padding-right: 0; }
+.spec-row .item .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
   font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.spec-row .item .val {
+  font-size: 14px;
+  font-weight: 500;
   color: var(--ink);
+  line-height: 1.35;
 }
 
 /* ============ BUTTONS ============ */
 .btn-cta {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   background: var(--accent);
   color: #fff;
-  padding: 18px 30px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
+  padding: 14px 22px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
   font-size: 13.5px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   text-decoration: none;
   border: 1px solid var(--accent);
-  transition: background .25s ease, border-color .25s ease;
+  transition: background .2s, border-color .2s;
 }
-.btn-cta .arrow {
-  display: inline-block;
-  transition: transform .3s cubic-bezier(.2,.7,.2,1);
-}
+.btn-cta .arrow { display: inline-block; transition: transform .25s; }
 .btn-cta:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
-.btn-cta:hover .arrow { transform: translateX(6px); }
+.btn-cta:hover .arrow { transform: translateX(4px); }
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--ink);
+  transition: color .2s, border-color .2s;
+}
+.btn-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* ============ SECTION ============ */
 section.block {
-  padding: 140px 40px;
-  max-width: 1400px;
+  padding: 80px 32px;
+  max-width: 1440px;
   margin: 0 auto;
 }
-.section-head {
+.sec-head {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 56px;
+  grid-template-columns: 160px 1fr;
+  gap: 40px;
   align-items: baseline;
-  margin-bottom: 80px;
+  margin-bottom: 56px;
+  border-top: 1px solid var(--ink);
+  padding-top: 24px;
 }
-.section-head .index {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 96;
+.sec-head .ref {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
   font-weight: 500;
-  font-size: 22px;
-  color: var(--accent);
-  letter-spacing: -0.01em;
-}
-.section-head .index small {
-  display: block;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 6px;
-}
-h2.section-title {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
-  font-weight: 400;
-  font-size: clamp(32px, 4.4vw, 64px);
-  line-height: 1;
-  letter-spacing: -0.022em;
+  letter-spacing: 0.08em;
   color: var(--ink);
-  max-width: 16ch;
 }
-h2.section-title em { font-style: italic; font-weight: 400; color: var(--accent); }
+.sec-head h2 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 3.6vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 22ch;
+}
+.sec-head h2 .hl { color: var(--accent); }
 
 /* ============ WORKSHOP ============ */
 .workshop {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
-  align-items: end;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 48px;
+  align-items: stretch;
+}
+.workshop-left { display: flex; flex-direction: column; gap: 32px; }
+.workshop-stat {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
 }
 .workshop-stat .stat-num {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 144, "SOFT" 0;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
-  font-size: clamp(120px, 16vw, 240px);
-  line-height: 0.85;
+  font-size: clamp(80px, 11vw, 152px);
+  line-height: 0.88;
   letter-spacing: -0.05em;
   color: var(--ink);
 }
 .workshop-stat .stat-num sup {
-  font-size: 0.26em;
+  font-size: 0.25em;
   vertical-align: top;
-  margin-left: 10px;
-  font-weight: 400;
-  font-style: italic;
+  margin-left: 8px;
+  font-weight: 500;
   color: var(--accent);
 }
 .workshop-stat .stat-caption {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.workshop-stat .stat-caption b { color: var(--ink); font-weight: 600; }
+.workshop-copy p {
   font-size: 15px;
   color: var(--ink-2);
-  max-width: 30ch;
-  margin-top: 18px;
   line-height: 1.55;
-}
-.workshop-copy h3 {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 72;
-  font-weight: 400;
-  font-size: clamp(22px, 2.3vw, 32px);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--ink);
   margin-bottom: 24px;
-}
-.workshop-copy h3 em { font-style: italic; color: var(--accent); }
-.workshop-copy p {
-  font-size: 16px;
-  color: var(--ink-2);
-  max-width: 52ch;
-  margin-bottom: 36px;
+  max-width: 50ch;
 }
 .workshop-list { list-style: none; }
 .workshop-list li {
-  padding: 22px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 20px;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
   align-items: baseline;
-  font-size: 16px;
+  font-size: 14.5px;
   color: var(--ink);
+  line-height: 1.4;
 }
 .workshop-list li:last-child { border-bottom: 1px solid var(--line); }
 .workshop-list li .num {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 24;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
-  font-style: italic;
-  font-size: 18px;
+  font-size: 12px;
   color: var(--accent);
+}
+.workshop-photo {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.workshop-photo img { width: 100%; height: 100%; object-fit: cover; }
+.workshop-photo .photo-tag {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  background: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 9px;
+  color: var(--ink-2);
 }
 
 /* Gallery */
 .gallery {
-  max-width: 1400px;
-  margin: 96px auto 0;
+  margin-top: 32px;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 20px;
-  grid-auto-rows: 220px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 .g-item {
   position: relative;
+  aspect-ratio: 4/3;
   overflow: hidden;
   background: var(--paper-2);
 }
 .g-item img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1.1s cubic-bezier(.2,.7,.2,1);
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
 }
-.g-item:hover img { transform: scale(1.04); }
+.g-item:hover img { transform: scale(1.03); }
 .g-item .cap {
   position: absolute;
-  left: 18px; bottom: 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  bottom: 10px; left: 12px;
+  background: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  color: var(--ink-2);
 }
-.g-1 { grid-column: 1 / 8;  grid-row: span 2; }
-.g-2 { grid-column: 8 / 13; grid-row: span 1; }
-.g-3 { grid-column: 8 / 13; grid-row: span 1; }
 
 /* ============ EXPERTISE ============ */
-.expertise {
-  background: var(--paper-2);
-  padding: 140px 40px;
-}
-.expertise-inner { max-width: 1400px; margin: 0 auto; }
+.expertise { background: var(--paper-2); }
+.expertise .sec-head { border-top-color: var(--ink); }
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 16px;
 }
 .exp-card {
   background: var(--paper);
-  padding: 48px 36px 40px;
-  position: relative;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
+  padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  min-height: 360px;
+  gap: 20px;
+  transition: border-color .25s, transform .25s;
 }
-.exp-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 48px -24px rgba(15, 26, 44, 0.22);
+.exp-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.exp-card .exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
 }
 .exp-card .exp-id {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 24;
-  font-weight: 500;
-  font-style: italic;
-  font-size: 17px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--accent);
+  letter-spacing: 0.06em;
 }
-.exp-card .exp-id::after {
-  content: '';
-  display: block;
-  width: 32px; height: 1px;
-  background: var(--accent);
-  margin-top: 14px;
+.exp-card .exp-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 .exp-card h3 {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 96, "SOFT" 30;
-  font-weight: 400;
-  font-size: clamp(24px, 2vw, 30px);
-  line-height: 1.1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--ink);
 }
-.exp-card h3 em { font-style: italic; color: var(--accent); }
 .exp-card p {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.exp-specs {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exp-specs .row {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.exp-specs .row .k { color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.exp-specs .row .v { color: var(--ink); font-weight: 500; }
+
+/* ============ CONTACT + MAP ============ */
+.contact { padding-top: 80px; padding-bottom: 80px; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 32px;
+  align-items: stretch;
+  min-height: 480px;
+}
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+.contact-left h3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.contact-left h3 .hl { color: var(--accent); }
+.contact-left .blurb {
   font-size: 15px;
   color: var(--ink-2);
   line-height: 1.55;
-  margin-bottom: auto;
-}
-.exp-card .tag {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 20px;
-  border-top: 1px solid var(--line-soft);
-}
-
-/* ============ CONTACT ============ */
-.contact {
-  padding: 140px 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.contact-inner {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 96px;
-  align-items: center;
-  padding: 80px 0;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-.contact-left h2 {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
-  font-weight: 400;
-  font-size: clamp(40px, 5vw, 76px);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  color: var(--ink);
   margin-bottom: 28px;
-}
-.contact-left h2 em { font-style: italic; color: var(--accent); }
-.contact-left p {
-  font-size: 17px;
-  color: var(--ink-2);
   max-width: 42ch;
-  margin-bottom: 40px;
 }
-.contact-right { display: flex; flex-direction: column; gap: 24px; }
-.contact-row { display: flex; flex-direction: column; gap: 4px; }
-.contact-row .label {
-  font-family: 'DM Sans', sans-serif;
+.contact-details {
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.contact-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+  font-size: 14px;
+}
+.contact-row .k {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.16em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--muted);
 }
-.contact-row a, .contact-row span {
-  font-family: 'Fraunces', serif;
-  font-variation-settings: "opsz" 24;
-  font-weight: 400;
-  font-size: 18px;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: -0.005em;
-  line-height: 1.45;
+.contact-row .v { color: var(--ink); line-height: 1.5; }
+.contact-row .v a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: color .2s, border-color .2s; }
+.contact-row .v a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.map-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  min-height: 480px;
 }
-.contact-row a:hover { color: var(--accent); }
+.map-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.45) saturate(0.85) contrast(1.02);
+}
+.map-overlay {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--paper);
+  padding: 8px 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-overlay::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+}
 
 /* ============ FOOTER ============ */
 footer {
-  padding: 32px 40px;
+  border-top: 1px solid var(--line);
+  padding: 24px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--muted);
-  border-top: 1px solid var(--line-soft);
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
 }
-footer .mark { display: inline-flex; align-items: center; gap: 12px; }
-footer .mark img { height: 18px; width: auto; opacity: 0.6; }
+footer .mark { display: inline-flex; align-items: center; gap: 10px; }
+footer .mark img { height: 16px; width: auto; opacity: 0.55; }
 
 /* ============ LANG ============ */
 [data-en] { display: none; }
@@ -491,37 +573,36 @@ footer .mark img { height: 18px; width: auto; opacity: 0.6; }
 .lang-en [data-en] { display: initial; }
 
 /* ============ REVEAL ============ */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);
-}
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
-.reveal.d2 { transition-delay: .12s; }
-.reveal.d3 { transition-delay: .22s; }
-.reveal.d4 { transition-delay: .32s; }
+.reveal.d2 { transition-delay: .08s; }
+.reveal.d3 { transition-delay: .16s; }
+.reveal.d4 { transition-delay: .24s; }
 
 /* ============ RESPONSIVE ============ */
-@media (max-width: 900px) {
-  .top-bar-inner { grid-template-columns: auto auto; gap: 12px; padding: 0 20px; height: 64px; }
-  .nav-links { display: none; }
-  .brand img { height: 22px; }
+@media (max-width: 980px) {
+  .top-bar-inner { grid-template-columns: auto 1fr auto; gap: 12px; padding: 0 18px; }
+  .nav-links, .tel-link { display: none; }
+  .brand img { height: 20px; }
 
-  .hero { padding: 130px 20px 60px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-image-wrap { aspect-ratio: 5/6; order: -1; }
-  .hero-meta-strip { grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; padding-top: 24px; }
+  .hero { padding: 96px 18px 48px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-image-wrap { aspect-ratio: 4/3; order: -1; }
+  .hero-actions { gap: 12px 20px; }
+  .spec-row { grid-template-columns: 1fr 1fr; }
+  .spec-row .item { padding: 14px 16px 14px 0; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+  .spec-row .item:nth-child(2n) { border-right: none; }
+  .spec-row .item:nth-last-child(-n+2) { border-bottom: none; }
 
-  section.block, .expertise, .contact { padding: 80px 20px; }
-  .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
-  .workshop { grid-template-columns: 1fr; gap: 56px; }
-  .workshop-stat .stat-num { font-size: clamp(96px, 22vw, 160px); }
-  .gallery { grid-template-columns: 1fr; grid-auto-rows: 240px; margin-top: 64px; }
-  .g-1, .g-2, .g-3 { grid-column: 1 / -1; grid-row: span 1; }
-  .expertise-grid { grid-template-columns: 1fr; gap: 16px; }
-  .exp-card { min-height: auto; padding: 36px 28px 32px; }
-  .contact-inner { grid-template-columns: 1fr; gap: 48px; padding: 56px 0; }
-  footer { padding: 24px 20px; }
+  section.block { padding: 56px 18px; }
+  .sec-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+  .workshop { grid-template-columns: 1fr; gap: 32px; }
+  .workshop-photo, .hero-image-wrap { aspect-ratio: 4/3; }
+  .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .expertise-grid { grid-template-columns: 1fr; gap: 12px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 24px; min-height: auto; }
+  .map-wrap { min-height: 320px; aspect-ratio: 4/3; }
+  footer { padding: 18px; gap: 8px; font-size: 10px; }
 }
 </style>
 </head>
@@ -534,206 +615,237 @@ footer .mark img { height: 18px; width: auto; opacity: 0.6; }
       <img src="technovatis_logo.png" alt="Technovatis">
     </a>
     <nav class="nav-links">
-      <a href="#workshop"><span data-fr>Atelier</span><span data-en>Workshop</span></a>
-      <a href="#expertise"><span data-fr>Expertise</span><span data-en>Expertise</span></a>
-      <a href="#contact"><span data-fr>Contact</span><span data-en>Contact</span></a>
+      <a href="#workshop">01 · <span data-fr>Atelier</span><span data-en>Workshop</span></a>
+      <a href="#expertise">02 · <span data-fr>Expertise</span><span data-en>Expertise</span></a>
+      <a href="#contact">03 · Contact</a>
     </nav>
+    <a href="tel:+33320502785" class="tel-link">+33 3 20 50 27 85</a>
     <button class="lang-switch" onclick="toggleLang()" aria-label="Toggle language">
-      <span class="on">FR</span> <span style="color:var(--muted)">/</span> <span class="off">EN</span>
+      <span class="on">FR</span> / <span class="off">EN</span>
     </button>
   </div>
 </header>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
+  <div class="hero-eyebrow reveal in">
+    <span class="mono"><span data-fr>Ingénierie</span><span data-en>Engineering</span> · Wavrin, FR-59136</span>
+  </div>
+
   <div class="hero-grid">
     <div>
-      <div class="hero-eyebrow reveal in">
-        <span class="eyebrow"><span data-fr>Ingénierie · Wavrin, France</span><span data-en>Engineering · Wavrin, France</span></span>
-      </div>
-
       <h1 class="hero-title reveal in d2">
-        <span data-fr>Machines spéciales<br>d'assemblage<br>&amp; de <em>clippage.</em></span>
-        <span data-en>Special-purpose<br>assembly &amp;<br><em>clipping</em> machines.</span>
+        <span data-fr>Machines spéciales<br>d'assemblage et de <span class="hl">clippage</span>.</span>
+        <span data-en>Special-purpose<br>assembly and <span class="hl">clipping</span> machines.</span>
       </h1>
 
-      <p class="hero-sub reveal in d3" data-fr>Robotique, clippage automatisé et contrôle qualité par vision IA. Conçus, prototypés et mis au point dans notre atelier — pour des cadences tenues et une qualité sans dérive.</p>
-      <p class="hero-sub reveal in d3" data-en>Robotics, automated clipping, and AI vision inspection. Designed, prototyped, and tuned in our workshop — for production-grade throughput and no-drift quality.</p>
+      <p class="hero-sub reveal in d3" data-fr>Conception, prototypage et mise au point de cellules robotisées : tri et clippage breveté, assemblage haute cadence, contrôle qualité par vision IA. Plasturgie, automobile, sous-traitance industrielle.</p>
+      <p class="hero-sub reveal in d3" data-en>Design, prototyping and commissioning of robotic cells: patented sort &amp; clip, high-speed assembly, AI vision inspection. Plastics, automotive, industrial subcontracting.</p>
 
-      <a href="#contact" class="btn-cta reveal in d4">
-        <span data-fr>Étude de faisabilité 72 h</span><span data-en>72-hour feasibility study</span>
-        <span class="arrow">→</span>
-      </a>
+      <div class="hero-actions reveal in d4">
+        <a href="#contact" class="btn-cta">
+          <span data-fr>Nous contacter</span><span data-en>Contact us</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#workshop" class="btn-link">
+          <span data-fr>Atelier &amp; expertise</span><span data-en>Workshop &amp; expertise</span>
+        </a>
+      </div>
     </div>
 
     <div class="hero-image-wrap reveal in d2">
+      <span class="hero-image-tag">REF · 001 / <span data-fr>Cellule robotisée</span><span data-en>Robotic cell</span></span>
       <img src="1772208678840.jpeg" alt="Cellule robotique Technovatis">
     </div>
   </div>
 
-  <div class="hero-meta-strip reveal">
-    <div class="hero-meta-item">
-      <span class="eyebrow"><span data-fr>Secteurs</span><span data-en>Sectors</span></span>
+  <div class="spec-row reveal" style="margin-top: 56px;">
+    <div class="item">
+      <span class="label"><span data-fr>Secteurs</span><span data-en>Sectors</span></span>
       <span class="val"><span data-fr>Plasturgie · Automobile</span><span data-en>Plastics · Automotive</span></span>
     </div>
-    <div class="hero-meta-item">
-      <span class="eyebrow"><span data-fr>Spécialité</span><span data-en>Specialty</span></span>
-      <span class="val"><span data-fr>Tri &amp; clippage breveté</span><span data-en>Patented sort &amp; clip</span></span>
+    <div class="item">
+      <span class="label"><span data-fr>Spécialité</span><span data-en>Specialty</span></span>
+      <span class="val"><span data-fr>Tri &amp; clippage — breveté</span><span data-en>Sort &amp; clip — patented</span></span>
     </div>
-    <div class="hero-meta-item">
-      <span class="eyebrow"><span data-fr>Contrôle</span><span data-en>Inspection</span></span>
-      <span class="val"><span data-fr>Vision · IA</span><span data-en>Vision · AI</span></span>
+    <div class="item">
+      <span class="label"><span data-fr>Contrôle qualité</span><span data-en>QC</span></span>
+      <span class="val"><span data-fr>Portique vision · IA</span><span data-en>Vision gantry · AI</span></span>
     </div>
-    <div class="hero-meta-item">
-      <span class="eyebrow"><span data-fr>Réponse initiale</span><span data-en>Initial response</span></span>
-      <span class="val">72 h</span>
+    <div class="item">
+      <span class="label"><span data-fr>Faisabilité</span><span data-en>Feasibility</span></span>
+      <span class="val">72 h <span data-fr>après brief</span><span data-en>from brief</span></span>
     </div>
   </div>
 </section>
 
 <!-- ============ WORKSHOP ============ -->
 <section class="block" id="workshop">
-  <div class="section-head reveal">
-    <div class="index">
-      01<small><span data-fr>Atelier</span><span data-en>Workshop</span></small>
-    </div>
-    <h2 class="section-title">
-      <span data-fr>Une capacité projet <em>renforcée.</em></span>
-      <span data-en>Project capacity, <em>expanded.</em></span>
+  <div class="sec-head reveal">
+    <span class="ref">01 / <span data-fr>Atelier</span><span data-en>Workshop</span></span>
+    <h2>
+      <span data-fr>Une capacité projet <span class="hl">renforcée</span>.</span>
+      <span data-en>Project capacity, <span class="hl">expanded</span>.</span>
     </h2>
   </div>
 
   <div class="workshop">
-    <div class="workshop-stat reveal">
-      <div class="stat-num">290<sup>m²</sup></div>
-      <p class="stat-caption">
-        <span data-fr>de surface ajoutée — soudure, stockage, préparation.</span>
-        <span data-en>added floor area — welding, storage, staging.</span>
-      </p>
+    <div class="workshop-left">
+      <div class="workshop-stat reveal">
+        <div class="stat-num">290<sup>m²</sup></div>
+        <div class="stat-caption">
+          <b><span data-fr>Surface ajoutée</span><span data-en>Floor area added</span></b> ·
+          <span data-fr>Soudure · Stockage · Préparation</span>
+          <span data-en>Welding · Storage · Staging</span>
+        </div>
+      </div>
+
+      <div class="workshop-copy reveal d2">
+        <p data-fr>Études en parallèle, prototypage rapide, mise au point sans goulot d'étranglement. L'extension dimensionne l'atelier pour absorber des programmes plus complexes — du brief à la livraison.</p>
+        <p data-en>Parallel studies, rapid prototyping, bottleneck-free machine tuning. The extension scales the workshop to absorb more complex programs — from brief to delivery.</p>
+
+        <ul class="workshop-list">
+          <li><span class="num">01</span><span><span data-fr>Extension 290 m² — zone soudure &amp; stockage.</span><span data-en>290 m² extension — welding &amp; storage zone.</span></span></li>
+          <li><span class="num">02</span><span><span data-fr>Atelier de montage et de mise au point agrandi.</span><span data-en>Expanded assembly &amp; commissioning workshop.</span></span></li>
+          <li><span class="num">03</span><span><span data-fr>Salle prototype et impression 3D dédiée.</span><span data-en>Dedicated prototype &amp; 3D-printing room.</span></span></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="workshop-copy reveal d2">
-      <h3>
-        <span data-fr>Un investissement industriel pour les projets les plus exigeants.</span>
-        <span data-en>An industrial investment to support the most demanding projects.</span>
-      </h3>
-      <p data-fr>Études en parallèle, prototypage rapide, mise au point sans goulot d'étranglement. Nos infrastructures ont été dimensionnées pour absorber des programmes plus complexes.</p>
-      <p data-en>Parallel studies, rapid prototyping, and bottleneck-free machine tuning. Our facilities have been sized to absorb more complex programs end to end.</p>
-
-      <ul class="workshop-list">
-        <li>
-          <span class="num">i.</span>
-          <span><span data-fr>Extension de 290 m² — zone soudure &amp; stockage.</span><span data-en>290 m² extension — welding &amp; storage zone.</span></span>
-        </li>
-        <li>
-          <span class="num">ii.</span>
-          <span><span data-fr>Atelier de montage et de mise au point agrandi.</span><span data-en>Expanded assembly &amp; commissioning workshop.</span></span>
-        </li>
-        <li>
-          <span class="num">iii.</span>
-          <span><span data-fr>Salle prototype &amp; impression 3D dédiée.</span><span data-en>Dedicated prototype &amp; 3D-printing suite.</span></span>
-        </li>
-      </ul>
+    <div class="workshop-photo reveal d2">
+      <img src="1772634521522.jpeg" alt="Atelier Technovatis">
+      <span class="photo-tag">PL · 01 / <span data-fr>Site Wavrin</span><span data-en>Wavrin site</span></span>
     </div>
   </div>
 
   <div class="gallery">
-    <div class="g-item g-1 reveal">
-      <img src="1772634521522.jpeg" alt="">
-      <span class="cap"><span data-fr>Site de Wavrin · Extension</span><span data-en>Wavrin site · Extension</span></span>
-    </div>
-    <div class="g-item g-2 reveal d2">
+    <div class="g-item reveal">
       <img src="1772634521576.jpeg" alt="">
-      <span class="cap"><span data-fr>Montage &amp; mise au point</span><span data-en>Assembly &amp; tuning</span></span>
+      <span class="cap">PL · 02 / <span data-fr>Montage</span><span data-en>Assembly</span></span>
     </div>
-    <div class="g-item g-3 reveal d3">
+    <div class="g-item reveal d2">
       <img src="1772634521620.jpeg" alt="">
-      <span class="cap"><span data-fr>Zone de soudure</span><span data-en>Welding zone</span></span>
+      <span class="cap">PL · 03 / <span data-fr>Soudure</span><span data-en>Welding</span></span>
+    </div>
+    <div class="g-item reveal d3">
+      <img src="1772634521412.jpeg" alt="">
+      <span class="cap">PL · 04 / <span data-fr>Prototype &amp; 3D</span><span data-en>Prototype &amp; 3D</span></span>
     </div>
   </div>
 </section>
 
 <!-- ============ EXPERTISE ============ -->
-<section class="expertise" id="expertise">
-  <div class="expertise-inner">
-    <div class="section-head reveal">
-      <div class="index">
-        02<small><span data-fr>Expertise</span><span data-en>Expertise</span></small>
+<section class="expertise">
+  <section class="block" id="expertise" style="padding-top: 0; padding-bottom: 0;">
+    <div style="padding: 80px 0;">
+      <div class="sec-head reveal">
+        <span class="ref">02 / <span data-fr>Expertise</span><span data-en>Expertise</span></span>
+        <h2>
+          <span data-fr>Trois axes <span class="hl">techniques</span>.</span>
+          <span data-en>Three technical <span class="hl">verticals</span>.</span>
+        </h2>
       </div>
-      <h2 class="section-title">
-        <span data-fr>Trois axes <em>techniques.</em></span>
-        <span data-en>Three technical <em>verticals.</em></span>
-      </h2>
+
+      <div class="expertise-grid">
+
+        <article class="exp-card reveal">
+          <div class="exp-head">
+            <span class="exp-id">E.01</span>
+            <span class="exp-status"><span data-fr>Brevet déposé</span><span data-en>Patent granted</span></span>
+          </div>
+          <h3><span data-fr>Tri &amp; clippage automatisé</span><span data-en>Automated sort &amp; clip</span></h3>
+          <p data-fr>Orientation fiable et alimentation stable de clips plastiques. Sans réglage manuel, sans dérive en série.</p>
+          <p data-en>Reliable orientation and stable feeding of plastic clips. No manual adjustment, no drift in production.</p>
+          <div class="exp-specs">
+            <div class="row"><span class="k"><span data-fr>Type</span><span data-en>Type</span></span><span class="v"><span data-fr>Bols vibrants / convoyeurs</span><span data-en>Vibratory bowls / conveyors</span></span></div>
+            <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Clips, fixations plastiques</span><span data-en>Plastic clips, fasteners</span></span></div>
+            <div class="row"><span class="k">Statut</span><span class="v"><span data-fr>En production</span><span data-en>In production</span></span></div>
+          </div>
+        </article>
+
+        <article class="exp-card reveal d2">
+          <div class="exp-head">
+            <span class="exp-id">E.02</span>
+            <span class="exp-status"><span data-fr>Robotique</span><span data-en>Robotics</span></span>
+          </div>
+          <h3><span data-fr>Assemblage haute cadence</span><span data-en>High-speed assembly</span></h3>
+          <p data-fr>Cellules robotisées pensées pour les contraintes réelles de la production série — plasturgie, automobile, sous-traitance.</p>
+          <p data-en>Robotic cells engineered for the real constraints of serial production — plastics, automotive, subcontracting.</p>
+          <div class="exp-specs">
+            <div class="row"><span class="k"><span data-fr>Architecture</span><span data-en>Architecture</span></span><span class="v"><span data-fr>Robots 6 axes / SCARA</span><span data-en>6-axis / SCARA robots</span></span></div>
+            <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Cadences série</span><span data-en>Production-grade</span></span></div>
+            <div class="row"><span class="k">Format</span><span class="v"><span data-fr>Sur mesure</span><span data-en>Bespoke</span></span></div>
+          </div>
+        </article>
+
+        <article class="exp-card reveal d3">
+          <div class="exp-head">
+            <span class="exp-id">E.03</span>
+            <span class="exp-status">Vision · IA</span>
+          </div>
+          <h3><span data-fr>Contrôle qualité par vision</span><span data-en>Vision-based quality control</span></h3>
+          <p data-fr>Portiques équipés d'algorithmes d'IA pour la détection de défauts. Contrôle automatisé, sans angle mort.</p>
+          <p data-en>Vision gantries equipped with AI algorithms for defect detection. Automated, no blind spots.</p>
+          <div class="exp-specs">
+            <div class="row"><span class="k">Capteurs</span><span class="v"><span data-fr>Multi-caméras</span><span data-en>Multi-camera</span></span></div>
+            <div class="row"><span class="k"><span data-fr>Logique</span><span data-en>Logic</span></span><span class="v"><span data-fr>Détection défauts IA</span><span data-en>AI defect detection</span></span></div>
+            <div class="row"><span class="k">Action</span><span class="v"><span data-fr>Tri / rejet auto</span><span data-en>Auto sort / reject</span></span></div>
+          </div>
+        </article>
+
+      </div>
     </div>
-
-    <div class="expertise-grid">
-
-      <article class="exp-card reveal">
-        <div class="exp-id">i.</div>
-        <h3>
-          <span data-fr>Tri &amp; clippage <em>breveté.</em></span>
-          <span data-en>Patented clip <em>sorting.</em></span>
-        </h3>
-        <p data-fr>Orientation fiable et alimentation stable de clips plastiques — sans réglage manuel, sans dérive en série.</p>
-        <p data-en>Reliable orientation and stable feeding of plastic clips — no manual adjustment, no drift in production.</p>
-        <div class="tag"><span data-fr>Brevet déposé</span><span data-en>Patent granted</span></div>
-      </article>
-
-      <article class="exp-card reveal d2">
-        <div class="exp-id">ii.</div>
-        <h3>
-          <span data-fr>Assemblage <em>haute cadence.</em></span>
-          <span data-en><em>High-speed</em> assembly.</span>
-        </h3>
-        <p data-fr>Machines robustes pensées pour les contraintes réelles de la production série — plasturgie, automobile, sous-traitance industrielle.</p>
-        <p data-en>Robust machines engineered for the real constraints of serial production — plastics, automotive, industrial subcontracting.</p>
-        <div class="tag"><span data-fr>Robotique · SCARA · 6 axes</span><span data-en>Robotics · SCARA · 6-axis</span></div>
-      </article>
-
-      <article class="exp-card reveal d3">
-        <div class="exp-id">iii.</div>
-        <h3>
-          <span data-fr>Vision &amp; <em>contrôle IA.</em></span>
-          <span data-en>Vision &amp; <em>AI control.</em></span>
-        </h3>
-        <p data-fr>Portiques de vision équipés d'algorithmes d'IA pour la détection de défauts — contrôle qualité automatisé, sans angle mort.</p>
-        <p data-en>Vision gantries equipped with AI algorithms for defect detection — automated quality control, no blind spots.</p>
-        <div class="tag"><span data-fr>Multi-caméras · IA</span><span data-en>Multi-camera · AI</span></div>
-      </article>
-
-    </div>
-  </div>
+  </section>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
-  <div class="contact-inner">
+<!-- ============ CONTACT + MAP ============ -->
+<section class="block contact" id="contact">
+  <div class="sec-head reveal">
+    <span class="ref">03 / Contact</span>
+    <h2>
+      <span data-fr>Parlons de votre <span class="hl">projet</span>.</span>
+      <span data-en>Let's talk about your <span class="hl">project</span>.</span>
+    </h2>
+  </div>
+
+  <div class="contact-grid">
     <div class="contact-left reveal">
-      <h2>
-        <span data-fr>Un projet de <em>robotisation&nbsp;?</em></span>
-        <span data-en>A project in <em>robotics?</em></span>
-      </h2>
-      <p data-fr>Partagez vos contraintes — pièce, cadence cible, environnement, intégration. Retour de faisabilité initial sous 72 heures.</p>
-      <p data-en>Share your constraints — part, target throughput, environment, integration. Initial feasibility feedback within 72 hours.</p>
-      <a href="mailto:contact@technovatis.com?subject=Étude%20de%20faisabilité" class="btn-cta">
-        <span data-fr>Envoyer le brief</span><span data-en>Send the brief</span>
-        <span class="arrow">→</span>
-      </a>
+      <div>
+        <h3>
+          <span data-fr>Retour de faisabilité sous <span class="hl">72 heures</span>.</span>
+          <span data-en>Feasibility feedback within <span class="hl">72 hours</span>.</span>
+        </h3>
+        <p class="blurb" data-fr>Décrivez votre pièce, vos cadences cibles et votre environnement. Nous revenons vers vous avec une lecture technique et les premières pistes de cellule.</p>
+        <p class="blurb" data-en>Send us your part, target throughput and environment. We respond with a technical read and an initial cell direction.</p>
+        <a href="mailto:contact@technovatis.com" class="btn-cta">
+          <span data-fr>Nous contacter</span><span data-en>Contact us</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="contact-details">
+        <div class="contact-row">
+          <span class="k">Email</span>
+          <span class="v"><a href="mailto:contact@technovatis.com">contact@technovatis.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k"><span data-fr>Téléphone</span><span data-en>Phone</span></span>
+          <span class="v"><a href="tel:+33320502785">+33 3 20 50 27 85</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k"><span data-fr>Adresse</span><span data-en>Address</span></span>
+          <span class="v">8 Allée de la Clairière<br>59136 Wavrin · France</span>
+        </div>
+      </div>
     </div>
 
-    <div class="contact-right reveal d2">
-      <div class="contact-row">
-        <span class="label"><span data-fr>Courriel</span><span data-en>Email</span></span>
-        <a href="mailto:contact@technovatis.com">contact@technovatis.com</a>
-      </div>
-      <div class="contact-row">
-        <span class="label"><span data-fr>Téléphone</span><span data-en>Phone</span></span>
-        <a href="tel:+33320502785">+33 3 20 50 27 85</a>
-      </div>
-      <div class="contact-row">
-        <span class="label"><span data-fr>Adresse</span><span data-en>Address</span></span>
-        <span>8 Allée de la Clairière<br>59136 Wavrin · France</span>
-      </div>
+    <div class="map-wrap reveal d2">
+      <span class="map-overlay">Wavrin · FR-59136</span>
+      <iframe
+        src="https://maps.google.com/maps?q=8%20All%C3%A9e%20de%20la%20Clairi%C3%A8re%2C%2059136%20Wavrin%2C%20France&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Technovatis — Wavrin, France"></iframe>
     </div>
   </div>
 </section>
@@ -742,7 +854,7 @@ footer .mark img { height: 18px; width: auto; opacity: 0.6; }
 <footer>
   <span class="mark">
     <img src="technovatis_logo.png" alt="">
-    &copy; 2026
+    &copy; 2026 Technovatis
   </span>
   <span><span data-fr>Machines spéciales d'assemblage · Wavrin, France</span><span data-en>Special-purpose assembly machines · Wavrin, France</span></span>
 </footer>
@@ -764,12 +876,9 @@ footer .mark img { height: 18px; width: auto; opacity: 0.6; }
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
 </script>
 
