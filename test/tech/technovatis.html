@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technovatis — Machines spéciales d'assemblage et de clippage</title>
-<meta name="description" content="Conception et fabrication de machines spéciales d'assemblage et de clippage. Robotique, vision IA. Wavrin, France.">
+<title>Technovatis — Ingénierie d'automatisation industrielle</title>
+<meta name="description" content="Conception, prototypage et mise en service de cellules robotisées sur mesure. Tri et clippage breveté, vision IA. Wavrin, France.">
 <link rel="icon" type="image/png" href="technovatis_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,6 @@ body {
   letter-spacing: 0.06em;
   color: var(--ink-2);
 }
-.mono.muted { color: var(--muted); }
 
 /* ============ TOP BAR ============ */
 .top-bar {
@@ -77,7 +76,6 @@ body {
   color: var(--ink-2);
   text-decoration: none;
   transition: color .2s;
-  position: relative;
 }
 .nav-links a:hover { color: var(--accent); }
 .tel-link {
@@ -126,38 +124,38 @@ body {
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 56px;
-  align-items: stretch;
+  align-items: start;  /* photo and text sit at their own heights */
 }
 h1.hero-title {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
-  font-size: clamp(38px, 5.4vw, 80px);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
   color: var(--ink);
   margin-bottom: 28px;
 }
 h1.hero-title .hl { color: var(--accent); }
 .hero-sub {
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 16.5px;
+  line-height: 1.55;
   color: var(--ink-2);
-  max-width: 52ch;
+  max-width: 56ch;
   margin-bottom: 36px;
 }
-.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .hero-image-wrap {
   position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
   background: var(--paper-2);
 }
 .hero-image-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  width: 100%;
+  height: auto;  /* NATURAL aspect — no crop */
 }
-.hero-image-tag {
+.photo-tag {
   position: absolute;
   top: 12px; left: 12px;
   background: var(--paper);
@@ -168,14 +166,17 @@ h1.hero-title .hl { color: var(--accent); }
   letter-spacing: 0.08em;
   padding: 5px 9px;
   color: var(--ink-2);
+  z-index: 2;
 }
+.photo-tag.bottom { top: auto; bottom: 12px; }
 
-/* Inline spec row (in hero) */
+/* Inline spec row */
 .spec-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--line);
+  margin-top: 56px;
 }
 .spec-row .item {
   padding: 18px 24px 18px 0;
@@ -197,7 +198,7 @@ h1.hero-title .hl { color: var(--accent); }
   font-size: 14px;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 /* ============ BUTTONS ============ */
@@ -241,10 +242,10 @@ section.block {
 }
 .sec-head {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 40px;
   align-items: baseline;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
   border-top: 1px solid var(--ink);
   padding-top: 24px;
 }
@@ -259,95 +260,98 @@ section.block {
 .sec-head h2 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
-  font-size: clamp(26px, 3.6vw, 46px);
-  line-height: 1.05;
+  font-size: clamp(26px, 3.4vw, 42px);
+  line-height: 1.08;
   letter-spacing: -0.025em;
   color: var(--ink);
-  max-width: 22ch;
+  max-width: 24ch;
 }
 .sec-head h2 .hl { color: var(--accent); }
 
-/* ============ WORKSHOP ============ */
-.workshop {
+/* ============ FACILITIES ============ */
+.facilities {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 48px;
-  align-items: stretch;
+  align-items: start;  /* no crop / no stretch */
 }
-.workshop-left { display: flex; flex-direction: column; gap: 32px; }
-.workshop-stat {
+.facilities-left { display: flex; flex-direction: column; gap: 32px; }
+.fac-stat {
   border-top: 1px solid var(--line);
   padding-top: 20px;
 }
-.workshop-stat .stat-num {
+.fac-stat .stat-num {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
-  font-size: clamp(80px, 11vw, 152px);
+  font-size: clamp(76px, 10.5vw, 144px);
   line-height: 0.88;
   letter-spacing: -0.05em;
   color: var(--ink);
 }
-.workshop-stat .stat-num sup {
-  font-size: 0.25em;
+.fac-stat .stat-num sup {
+  font-size: 0.24em;
   vertical-align: top;
   margin-left: 8px;
   font-weight: 500;
   color: var(--accent);
 }
-.workshop-stat .stat-caption {
+.fac-stat .stat-caption {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 14px;
+  margin-top: 12px;
 }
-.workshop-stat .stat-caption b { color: var(--ink); font-weight: 600; }
-.workshop-copy p {
+.fac-stat .stat-caption b { color: var(--ink); font-weight: 600; }
+.fac-copy p {
   font-size: 15px;
   color: var(--ink-2);
   line-height: 1.55;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   max-width: 50ch;
 }
-.workshop-list { list-style: none; }
-.workshop-list li {
-  padding: 14px 0;
+
+/* Spec list (tabular) */
+.spec-list {
+  list-style: none;
   border-top: 1px solid var(--line);
+}
+.spec-list li {
   display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 16px;
+  grid-template-columns: 36px 1fr auto;
+  gap: 20px;
   align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
   font-size: 14.5px;
   color: var(--ink);
   line-height: 1.4;
 }
-.workshop-list li:last-child { border-bottom: 1px solid var(--line); }
-.workshop-list li .num {
+.spec-list li .num {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
   font-size: 12px;
   color: var(--accent);
 }
-.workshop-photo {
+.spec-list li .v {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.facilities-photo {
   position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
   background: var(--paper-2);
 }
-.workshop-photo img { width: 100%; height: 100%; object-fit: cover; }
-.workshop-photo .photo-tag {
-  position: absolute;
-  bottom: 12px; left: 12px;
-  background: var(--paper);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 5px 9px;
-  color: var(--ink-2);
+.facilities-photo img {
+  display: block;
+  width: 100%;
+  height: auto;  /* NATURAL */
 }
 
 /* Gallery */
@@ -356,34 +360,28 @@ section.block {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  align-items: start;
 }
 .g-item {
   position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
   background: var(--paper-2);
 }
 .g-item img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+  display: block;
+  width: 100%;
+  height: auto;  /* NATURAL */
+  transition: opacity .3s;
 }
-.g-item:hover img { transform: scale(1.03); }
-.g-item .cap {
-  position: absolute;
-  bottom: 10px; left: 12px;
-  background: var(--paper);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 8px;
-  color: var(--ink-2);
-}
+.g-item:hover img { opacity: 0.96; }
 
 /* ============ EXPERTISE ============ */
-.expertise { background: var(--paper-2); }
-.expertise .sec-head { border-top-color: var(--ink); }
+.expertise-wrap { background: var(--paper-2); }
+.expertise-wrap .sec-head { border-top-color: var(--ink); }
+.expertise-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -424,7 +422,7 @@ section.block {
 .exp-card h3 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--ink);
@@ -454,13 +452,12 @@ section.block {
 .exp-specs .row .v { color: var(--ink); font-weight: 500; }
 
 /* ============ CONTACT + MAP ============ */
-.contact { padding-top: 80px; padding-bottom: 80px; }
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 32px;
   align-items: stretch;
-  min-height: 480px;
+  min-height: 460px;
 }
 .contact-left {
   display: flex;
@@ -471,30 +468,28 @@ section.block {
 .contact-left h3 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
-  font-size: clamp(24px, 2.8vw, 36px);
-  line-height: 1.1;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .contact-left h3 .hl { color: var(--accent); }
 .contact-left .blurb {
   font-size: 15px;
   color: var(--ink-2);
   line-height: 1.55;
-  margin-bottom: 28px;
-  max-width: 42ch;
+  margin-bottom: 24px;
+  max-width: 44ch;
 }
 .contact-details {
   border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
 }
 .contact-row {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 96px 1fr;
   gap: 16px;
-  padding: 14px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--line);
   align-items: baseline;
   font-size: 14px;
@@ -516,7 +511,7 @@ section.block {
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--paper-2);
-  min-height: 480px;
+  min-height: 460px;
 }
 .map-wrap iframe {
   display: block;
@@ -587,21 +582,20 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
 
   .hero { padding: 96px 18px 48px; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-image-wrap { aspect-ratio: 4/3; order: -1; }
+  .hero-image-wrap { order: -1; }
   .hero-actions { gap: 12px 20px; }
   .spec-row { grid-template-columns: 1fr 1fr; }
   .spec-row .item { padding: 14px 16px 14px 0; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
   .spec-row .item:nth-child(2n) { border-right: none; }
   .spec-row .item:nth-last-child(-n+2) { border-bottom: none; }
 
-  section.block { padding: 56px 18px; }
-  .sec-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
-  .workshop { grid-template-columns: 1fr; gap: 32px; }
-  .workshop-photo, .hero-image-wrap { aspect-ratio: 4/3; }
+  section.block, .expertise-inner { padding: 56px 18px; }
+  .sec-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 32px; }
+  .facilities { grid-template-columns: 1fr; gap: 32px; }
   .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
   .expertise-grid { grid-template-columns: 1fr; gap: 12px; }
   .contact-grid { grid-template-columns: 1fr; gap: 24px; min-height: auto; }
-  .map-wrap { min-height: 320px; aspect-ratio: 4/3; }
+  .map-wrap { min-height: 320px; }
   footer { padding: 18px; gap: 8px; font-size: 10px; }
 }
 </style>
@@ -615,7 +609,7 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
       <img src="technovatis_logo.png" alt="Technovatis">
     </a>
     <nav class="nav-links">
-      <a href="#workshop">01 · <span data-fr>Atelier</span><span data-en>Workshop</span></a>
+      <a href="#facilities">01 · <span data-fr>Installations</span><span data-en>Facilities</span></a>
       <a href="#expertise">02 · <span data-fr>Expertise</span><span data-en>Expertise</span></a>
       <a href="#contact">03 · Contact</a>
     </nav>
@@ -629,48 +623,48 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
   <div class="hero-eyebrow reveal in">
-    <span class="mono"><span data-fr>Ingénierie</span><span data-en>Engineering</span> · Wavrin, FR-59136</span>
+    <span class="mono"><span data-fr>Ingénierie · Automatisation industrielle</span><span data-en>Engineering · Industrial automation</span></span>
   </div>
 
   <div class="hero-grid">
     <div>
       <h1 class="hero-title reveal in d2">
-        <span data-fr>Machines spéciales<br>d'assemblage et de <span class="hl">clippage</span>.</span>
-        <span data-en>Special-purpose<br>assembly and <span class="hl">clipping</span> machines.</span>
+        <span data-fr>L'ingénierie qui tient vos <span class="hl">cadences</span>.</span>
+        <span data-en>Engineering that holds your <span class="hl">throughput</span>.</span>
       </h1>
 
-      <p class="hero-sub reveal in d3" data-fr>Conception, prototypage et mise au point de cellules robotisées : tri et clippage breveté, assemblage haute cadence, contrôle qualité par vision IA. Plasturgie, automobile, sous-traitance industrielle.</p>
-      <p class="hero-sub reveal in d3" data-en>Design, prototyping and commissioning of robotic cells: patented sort &amp; clip, high-speed assembly, AI vision inspection. Plastics, automotive, industrial subcontracting.</p>
+      <p class="hero-sub reveal in d3" data-fr>Conception, prototypage et mise en service de cellules robotisées sur mesure — tri et clippage breveté, vision IA, contrôle qualité automatisé. Pour la plasturgie, l'automobile et la sous-traitance industrielle.</p>
+      <p class="hero-sub reveal in d3" data-en>Design, prototyping and commissioning of custom robotic cells — patented sort and clip, AI vision, automated quality control. For plastics, automotive and industrial subcontracting.</p>
 
       <div class="hero-actions reveal in d4">
         <a href="#contact" class="btn-cta">
           <span data-fr>Nous contacter</span><span data-en>Contact us</span>
           <span class="arrow">→</span>
         </a>
-        <a href="#workshop" class="btn-link">
-          <span data-fr>Atelier &amp; expertise</span><span data-en>Workshop &amp; expertise</span>
+        <a href="#facilities" class="btn-link">
+          <span data-fr>Installations &amp; expertise</span><span data-en>Facilities &amp; expertise</span>
         </a>
       </div>
     </div>
 
     <div class="hero-image-wrap reveal in d2">
-      <span class="hero-image-tag">REF · 001 / <span data-fr>Cellule robotisée</span><span data-en>Robotic cell</span></span>
-      <img src="1772208678840.jpeg" alt="Cellule robotique Technovatis">
+      <span class="photo-tag">REF · 001 / <span data-fr>Cellule robotisée</span><span data-en>Robotic cell</span></span>
+      <img src="1772208678840.jpeg" alt="Cellule robotisée Technovatis">
     </div>
   </div>
 
-  <div class="spec-row reveal" style="margin-top: 56px;">
+  <div class="spec-row reveal">
     <div class="item">
       <span class="label"><span data-fr>Secteurs</span><span data-en>Sectors</span></span>
-      <span class="val"><span data-fr>Plasturgie · Automobile</span><span data-en>Plastics · Automotive</span></span>
+      <span class="val"><span data-fr>Plasturgie · Automobile · Sous-traitance</span><span data-en>Plastics · Automotive · Subcontracting</span></span>
     </div>
     <div class="item">
-      <span class="label"><span data-fr>Spécialité</span><span data-en>Specialty</span></span>
-      <span class="val"><span data-fr>Tri &amp; clippage — breveté</span><span data-en>Sort &amp; clip — patented</span></span>
+      <span class="label"><span data-fr>Production</span><span data-en>Production</span></span>
+      <span class="val"><span data-fr>Études · Prototypes · Séries</span><span data-en>Studies · Prototypes · Series</span></span>
     </div>
     <div class="item">
-      <span class="label"><span data-fr>Contrôle qualité</span><span data-en>QC</span></span>
-      <span class="val"><span data-fr>Portique vision · IA</span><span data-en>Vision gantry · AI</span></span>
+      <span class="label">Site</span>
+      <span class="val"><span data-fr>Wavrin, FR-59136 · 290 m² récents</span><span data-en>Wavrin, FR-59136 · 290 m² recent</span></span>
     </div>
     <div class="item">
       <span class="label"><span data-fr>Faisabilité</span><span data-en>Feasibility</span></span>
@@ -679,127 +673,135 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
   </div>
 </section>
 
-<!-- ============ WORKSHOP ============ -->
-<section class="block" id="workshop">
+<!-- ============ FACILITIES ============ -->
+<section class="block" id="facilities">
   <div class="sec-head reveal">
-    <span class="ref">01 / <span data-fr>Atelier</span><span data-en>Workshop</span></span>
+    <span class="ref">01 / <span data-fr>Installations</span><span data-en>Facilities</span></span>
     <h2>
       <span data-fr>Une capacité projet <span class="hl">renforcée</span>.</span>
       <span data-en>Project capacity, <span class="hl">expanded</span>.</span>
     </h2>
   </div>
 
-  <div class="workshop">
-    <div class="workshop-left">
-      <div class="workshop-stat reveal">
+  <div class="facilities">
+    <div class="facilities-left">
+      <div class="fac-stat reveal">
         <div class="stat-num">290<sup>m²</sup></div>
         <div class="stat-caption">
-          <b><span data-fr>Surface ajoutée</span><span data-en>Floor area added</span></b> ·
-          <span data-fr>Soudure · Stockage · Préparation</span>
-          <span data-en>Welding · Storage · Staging</span>
+          <b><span data-fr>Surface ajoutée — extension récente</span><span data-en>Floor area added — recent extension</span></b>
         </div>
       </div>
 
-      <div class="workshop-copy reveal d2">
-        <p data-fr>Études en parallèle, prototypage rapide, mise au point sans goulot d'étranglement. L'extension dimensionne l'atelier pour absorber des programmes plus complexes — du brief à la livraison.</p>
-        <p data-en>Parallel studies, rapid prototyping, bottleneck-free machine tuning. The extension scales the workshop to absorb more complex programs — from brief to delivery.</p>
-
-        <ul class="workshop-list">
-          <li><span class="num">01</span><span><span data-fr>Extension 290 m² — zone soudure &amp; stockage.</span><span data-en>290 m² extension — welding &amp; storage zone.</span></span></li>
-          <li><span class="num">02</span><span><span data-fr>Atelier de montage et de mise au point agrandi.</span><span data-en>Expanded assembly &amp; commissioning workshop.</span></span></li>
-          <li><span class="num">03</span><span><span data-fr>Salle prototype et impression 3D dédiée.</span><span data-en>Dedicated prototype &amp; 3D-printing room.</span></span></li>
-        </ul>
+      <div class="fac-copy reveal d2">
+        <p data-fr>Études en parallèle, prototypage rapide, mise au point sans goulot d'étranglement. L'extension dimensionne le site pour absorber des programmes plus complexes — du brief à la livraison.</p>
+        <p data-en>Parallel studies, rapid prototyping, bottleneck-free commissioning. The extension scales the site to absorb more complex programs — from brief to delivery.</p>
       </div>
+
+      <ul class="spec-list reveal d3">
+        <li>
+          <span class="num">01</span>
+          <span><span data-fr>Soudure et stockage</span><span data-en>Welding and storage</span></span>
+          <span class="v"><span data-fr>Extension 290 m²</span><span data-en>290 m² extension</span></span>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <span><span data-fr>Montage et mise au point</span><span data-en>Assembly and commissioning</span></span>
+          <span class="v"><span data-fr>Surface étendue</span><span data-en>Extended</span></span>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <span><span data-fr>Prototype et impression 3D</span><span data-en>Prototype and 3D-printing</span></span>
+          <span class="v"><span data-fr>Salle dédiée</span><span data-en>Dedicated room</span></span>
+        </li>
+      </ul>
     </div>
 
-    <div class="workshop-photo reveal d2">
-      <img src="1772634521522.jpeg" alt="Atelier Technovatis">
+    <div class="facilities-photo reveal d2">
       <span class="photo-tag">PL · 01 / <span data-fr>Site Wavrin</span><span data-en>Wavrin site</span></span>
+      <img src="1772634521522.jpeg" alt="">
     </div>
   </div>
 
   <div class="gallery">
     <div class="g-item reveal">
+      <span class="photo-tag">PL · 02 / <span data-fr>Montage</span><span data-en>Assembly</span></span>
       <img src="1772634521576.jpeg" alt="">
-      <span class="cap">PL · 02 / <span data-fr>Montage</span><span data-en>Assembly</span></span>
     </div>
     <div class="g-item reveal d2">
+      <span class="photo-tag">PL · 03 / <span data-fr>Soudure</span><span data-en>Welding</span></span>
       <img src="1772634521620.jpeg" alt="">
-      <span class="cap">PL · 03 / <span data-fr>Soudure</span><span data-en>Welding</span></span>
     </div>
     <div class="g-item reveal d3">
+      <span class="photo-tag">PL · 04 / <span data-fr>Prototype</span><span data-en>Prototype</span></span>
       <img src="1772634521412.jpeg" alt="">
-      <span class="cap">PL · 04 / <span data-fr>Prototype &amp; 3D</span><span data-en>Prototype &amp; 3D</span></span>
     </div>
   </div>
 </section>
 
 <!-- ============ EXPERTISE ============ -->
-<section class="expertise">
-  <section class="block" id="expertise" style="padding-top: 0; padding-bottom: 0;">
-    <div style="padding: 80px 0;">
-      <div class="sec-head reveal">
-        <span class="ref">02 / <span data-fr>Expertise</span><span data-en>Expertise</span></span>
-        <h2>
-          <span data-fr>Trois axes <span class="hl">techniques</span>.</span>
-          <span data-en>Three technical <span class="hl">verticals</span>.</span>
-        </h2>
-      </div>
-
-      <div class="expertise-grid">
-
-        <article class="exp-card reveal">
-          <div class="exp-head">
-            <span class="exp-id">E.01</span>
-            <span class="exp-status"><span data-fr>Brevet déposé</span><span data-en>Patent granted</span></span>
-          </div>
-          <h3><span data-fr>Tri &amp; clippage automatisé</span><span data-en>Automated sort &amp; clip</span></h3>
-          <p data-fr>Orientation fiable et alimentation stable de clips plastiques. Sans réglage manuel, sans dérive en série.</p>
-          <p data-en>Reliable orientation and stable feeding of plastic clips. No manual adjustment, no drift in production.</p>
-          <div class="exp-specs">
-            <div class="row"><span class="k"><span data-fr>Type</span><span data-en>Type</span></span><span class="v"><span data-fr>Bols vibrants / convoyeurs</span><span data-en>Vibratory bowls / conveyors</span></span></div>
-            <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Clips, fixations plastiques</span><span data-en>Plastic clips, fasteners</span></span></div>
-            <div class="row"><span class="k">Statut</span><span class="v"><span data-fr>En production</span><span data-en>In production</span></span></div>
-          </div>
-        </article>
-
-        <article class="exp-card reveal d2">
-          <div class="exp-head">
-            <span class="exp-id">E.02</span>
-            <span class="exp-status"><span data-fr>Robotique</span><span data-en>Robotics</span></span>
-          </div>
-          <h3><span data-fr>Assemblage haute cadence</span><span data-en>High-speed assembly</span></h3>
-          <p data-fr>Cellules robotisées pensées pour les contraintes réelles de la production série — plasturgie, automobile, sous-traitance.</p>
-          <p data-en>Robotic cells engineered for the real constraints of serial production — plastics, automotive, subcontracting.</p>
-          <div class="exp-specs">
-            <div class="row"><span class="k"><span data-fr>Architecture</span><span data-en>Architecture</span></span><span class="v"><span data-fr>Robots 6 axes / SCARA</span><span data-en>6-axis / SCARA robots</span></span></div>
-            <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Cadences série</span><span data-en>Production-grade</span></span></div>
-            <div class="row"><span class="k">Format</span><span class="v"><span data-fr>Sur mesure</span><span data-en>Bespoke</span></span></div>
-          </div>
-        </article>
-
-        <article class="exp-card reveal d3">
-          <div class="exp-head">
-            <span class="exp-id">E.03</span>
-            <span class="exp-status">Vision · IA</span>
-          </div>
-          <h3><span data-fr>Contrôle qualité par vision</span><span data-en>Vision-based quality control</span></h3>
-          <p data-fr>Portiques équipés d'algorithmes d'IA pour la détection de défauts. Contrôle automatisé, sans angle mort.</p>
-          <p data-en>Vision gantries equipped with AI algorithms for defect detection. Automated, no blind spots.</p>
-          <div class="exp-specs">
-            <div class="row"><span class="k">Capteurs</span><span class="v"><span data-fr>Multi-caméras</span><span data-en>Multi-camera</span></span></div>
-            <div class="row"><span class="k"><span data-fr>Logique</span><span data-en>Logic</span></span><span class="v"><span data-fr>Détection défauts IA</span><span data-en>AI defect detection</span></span></div>
-            <div class="row"><span class="k">Action</span><span class="v"><span data-fr>Tri / rejet auto</span><span data-en>Auto sort / reject</span></span></div>
-          </div>
-        </article>
-
-      </div>
+<section class="expertise-wrap">
+  <div class="expertise-inner" id="expertise">
+    <div class="sec-head reveal">
+      <span class="ref">02 / <span data-fr>Expertise</span><span data-en>Expertise</span></span>
+      <h2>
+        <span data-fr>Trois axes <span class="hl">techniques</span>.</span>
+        <span data-en>Three technical <span class="hl">verticals</span>.</span>
+      </h2>
     </div>
-  </section>
+
+    <div class="expertise-grid">
+
+      <article class="exp-card reveal">
+        <div class="exp-head">
+          <span class="exp-id">E.01</span>
+          <span class="exp-status"><span data-fr>Brevet déposé</span><span data-en>Patent granted</span></span>
+        </div>
+        <h3><span data-fr>Tri et clippage automatisé</span><span data-en>Automated sort and clip</span></h3>
+        <p data-fr>Orientation fiable et alimentation stable de clips plastiques. Sans réglage manuel, sans dérive en série.</p>
+        <p data-en>Reliable orientation and stable feeding of plastic clips. No manual adjustment, no drift in production.</p>
+        <div class="exp-specs">
+          <div class="row"><span class="k"><span data-fr>Type</span><span data-en>Type</span></span><span class="v"><span data-fr>Bols vibrants · convoyeurs</span><span data-en>Vibratory bowls · conveyors</span></span></div>
+          <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Clips, fixations plastiques</span><span data-en>Plastic clips, fasteners</span></span></div>
+          <div class="row"><span class="k">Statut</span><span class="v"><span data-fr>Breveté · en production</span><span data-en>Patented · in production</span></span></div>
+        </div>
+      </article>
+
+      <article class="exp-card reveal d2">
+        <div class="exp-head">
+          <span class="exp-id">E.02</span>
+          <span class="exp-status"><span data-fr>Robotique</span><span data-en>Robotics</span></span>
+        </div>
+        <h3><span data-fr>Assemblage haute cadence</span><span data-en>High-speed assembly</span></h3>
+        <p data-fr>Cellules robotisées pensées pour les contraintes réelles de la production série. Conception sur mesure, intégration site client.</p>
+        <p data-en>Robotic cells engineered for the real constraints of serial production. Bespoke design, on-site integration.</p>
+        <div class="exp-specs">
+          <div class="row"><span class="k"><span data-fr>Architecture</span><span data-en>Architecture</span></span><span class="v"><span data-fr>Robots 6 axes · SCARA</span><span data-en>6-axis · SCARA robots</span></span></div>
+          <div class="row"><span class="k"><span data-fr>Cible</span><span data-en>Target</span></span><span class="v"><span data-fr>Cadences série</span><span data-en>Production-grade</span></span></div>
+          <div class="row"><span class="k">Format</span><span class="v"><span data-fr>Sur mesure</span><span data-en>Bespoke</span></span></div>
+        </div>
+      </article>
+
+      <article class="exp-card reveal d3">
+        <div class="exp-head">
+          <span class="exp-id">E.03</span>
+          <span class="exp-status">Vision · IA</span>
+        </div>
+        <h3><span data-fr>Contrôle qualité par vision</span><span data-en>Vision-based quality control</span></h3>
+        <p data-fr>Portiques de vision équipés d'algorithmes IA pour la détection de défauts. Contrôle automatisé, sans angle mort.</p>
+        <p data-en>Vision gantries running AI defect-detection algorithms. Automated control, no blind spots.</p>
+        <div class="exp-specs">
+          <div class="row"><span class="k"><span data-fr>Capteurs</span><span data-en>Sensors</span></span><span class="v"><span data-fr>Multi-caméras</span><span data-en>Multi-camera</span></span></div>
+          <div class="row"><span class="k"><span data-fr>Logique</span><span data-en>Logic</span></span><span class="v"><span data-fr>Détection défauts IA</span><span data-en>AI defect detection</span></span></div>
+          <div class="row"><span class="k">Action</span><span class="v"><span data-fr>Tri / rejet automatique</span><span data-en>Auto sort / reject</span></span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
 </section>
 
 <!-- ============ CONTACT + MAP ============ -->
-<section class="block contact" id="contact">
+<section class="block" id="contact">
   <div class="sec-head reveal">
     <span class="ref">03 / Contact</span>
     <h2>
@@ -815,8 +817,8 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
           <span data-fr>Retour de faisabilité sous <span class="hl">72 heures</span>.</span>
           <span data-en>Feasibility feedback within <span class="hl">72 hours</span>.</span>
         </h3>
-        <p class="blurb" data-fr>Décrivez votre pièce, vos cadences cibles et votre environnement. Nous revenons vers vous avec une lecture technique et les premières pistes de cellule.</p>
-        <p class="blurb" data-en>Send us your part, target throughput and environment. We respond with a technical read and an initial cell direction.</p>
+        <p class="blurb" data-fr>Pièce, cadences cibles, environnement, contraintes d'intégration. Nous revenons avec une lecture technique et les premières pistes de cellule.</p>
+        <p class="blurb" data-en>Part, target throughput, environment, integration constraints. We come back with a technical read and initial cell directions.</p>
         <a href="mailto:contact@technovatis.com" class="btn-cta">
           <span data-fr>Nous contacter</span><span data-en>Contact us</span>
           <span class="arrow">→</span>
@@ -856,7 +858,7 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
     <img src="technovatis_logo.png" alt="">
     &copy; 2026 Technovatis
   </span>
-  <span><span data-fr>Machines spéciales d'assemblage · Wavrin, France</span><span data-en>Special-purpose assembly machines · Wavrin, France</span></span>
+  <span><span data-fr>Ingénierie d'automatisation industrielle · Wavrin, France</span><span data-en>Industrial automation engineering · Wavrin, France</span></span>
 </footer>
 
 <script>
