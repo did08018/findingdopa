@@ -354,22 +354,24 @@ section.block {
   height: auto;  /* NATURAL */
 }
 
-/* Gallery */
+/* Gallery — uniform boxes, letterbox into paper, never crops */
 .gallery {
   margin-top: 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  align-items: start;
 }
 .g-item {
   position: relative;
   background: var(--paper-2);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 .g-item img {
   display: block;
   width: 100%;
-  height: auto;  /* NATURAL */
+  height: 100%;
+  object-fit: contain;  /* no crop — letterbox blends into paper-2 */
   transition: opacity .3s;
 }
 .g-item:hover img { opacity: 0.96; }
@@ -648,7 +650,6 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
     </div>
 
     <div class="hero-image-wrap reveal in d2">
-      <span class="photo-tag">REF · 001 / <span data-fr>Cellule robotisée</span><span data-en>Robotic cell</span></span>
       <img src="1772208678840.jpeg" alt="Cellule robotisée Technovatis">
     </div>
   </div>
@@ -717,22 +718,18 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
     </div>
 
     <div class="facilities-photo reveal d2">
-      <span class="photo-tag">PL · 01 / <span data-fr>Site Wavrin</span><span data-en>Wavrin site</span></span>
       <img src="1772634521522.jpeg" alt="">
     </div>
   </div>
 
   <div class="gallery">
     <div class="g-item reveal">
-      <span class="photo-tag">PL · 02 / <span data-fr>Montage</span><span data-en>Assembly</span></span>
       <img src="1772634521576.jpeg" alt="">
     </div>
     <div class="g-item reveal d2">
-      <span class="photo-tag">PL · 03 / <span data-fr>Soudure</span><span data-en>Welding</span></span>
       <img src="1772634521620.jpeg" alt="">
     </div>
     <div class="g-item reveal d3">
-      <span class="photo-tag">PL · 04 / <span data-fr>Prototype</span><span data-en>Prototype</span></span>
       <img src="1772634521412.jpeg" alt="">
     </div>
   </div>
@@ -842,7 +839,6 @@ footer .mark img { height: 16px; width: auto; opacity: 0.55; }
     </div>
 
     <div class="map-wrap reveal d2">
-      <span class="map-overlay">Wavrin · FR-59136</span>
       <iframe
         src="https://maps.google.com/maps?q=8%20All%C3%A9e%20de%20la%20Clairi%C3%A8re%2C%2059136%20Wavrin%2C%20France&t=&z=15&ie=UTF8&iwloc=&output=embed"
         loading="lazy"
