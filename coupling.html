@@ -204,6 +204,10 @@
     .card-body strong { font-weight: 700; }
     .card-body em     { font-style: italic; color: var(--ink-soft); }
 
+    .card-links { display: flex; gap: 18px; }
+    .card-links a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .card-links a:hover { color: var(--ink); }
+
     .card-arrow {
       align-self: flex-end;
       margin-top: auto;
@@ -265,15 +269,6 @@
 
     <section class="feed">
 
-      <a class="card article" href="https://longevity.technology/news/unixells-fda-clearance-advances-parkinsons-cell-therapy/" target="_blank" rel="noopener">
-        <div class="meta">
-          <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
-          <span class="date">01 Jul 2026</span>
-        </div>
-        <div class="card-body"><strong>UniXell</strong> UX-DA003 wins FDA IND clearance — an allogeneic 'off-the-shelf' iPSC dopaminergic cell therapy for PD, cleared in <em>the US and China</em> in parallel. Their autologous UX-DA001 remains in Phase 1 at Ruijin.</div>
-        <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
-      </a>
-
       <a class="card article" href="https://www.futura-sciences.com/en/parkinsons-disease-how-this-breakthrough-treatment-is-changing-lives-forever_34019/" target="_blank" rel="noopener">
         <div class="meta">
           <span class="tag"><i class="fas fa-newspaper"></i> Article</span>
@@ -300,6 +295,18 @@
         <div class="card-body">2026 FDA-expected decision: <strong>Tavapadon (AbbVie)</strong> for Parkinson Disease.</div>
         <div class="card-arrow">Read <i class="fas fa-arrow-right"></i></div>
       </a>
+
+      <div class="card article">
+        <div class="meta">
+          <span class="tag"><i class="fas fa-file-invoice-dollar"></i> Investor Disclosure</span>
+          <span class="date">04 Mar 2026</span>
+        </div>
+        <div class="card-body"><strong>Nicotinamide Riboside</strong> fails in Parkinson's: the <strong>NOPARK</strong> trial (Tzoulis, Haukeland/Bergen) missed its primary endpoint. Disclosed on <strong>Niagen Bioscience</strong>'s FQ4 2025 earnings call — manuscript <em>not yet submitted</em>, pre-peer-review. Sponsor reframing NR toward prevention.</div>
+        <div class="card-arrow card-links">
+          <a href="https://s205.q4cdn.com/770776702/files/doc_financials/2025/q4/Transcript-Niagen-Bioscience-Fourth-Quarter-2025-Earnings-Conference-Call-CID-8584242.pdf" target="_blank" rel="noopener">Transcript <i class="fas fa-arrow-right"></i></a>
+          <a href="files/Transcript-Niagen-Bioscience-Fourth-Quarter-2025-Earnings-Conference-Call-CID-8584242.pdf" target="_blank" rel="noopener">Mirror (PDF) <i class="fas fa-download"></i></a>
+        </div>
+      </div>
 
       <a class="card podcast" href="https://www.moversandshakerspodcast.com/podcast/episode/ed47ec53/the-dopamine-debate" target="_blank" rel="noopener">
         <div class="meta">
